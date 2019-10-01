@@ -1,0 +1,963 @@
+fileFormatVersion: 2
+guid: 9e7a8e5970777b04888515dec71d69d9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8139572851715939349
+    second: gorem_monster_noshape_0
+  - first:
+      213: 1804612146786955101
+    second: gorem_monster_noshape_1
+  - first:
+      213: 3811968652430063183
+    second: gorem_monster_noshape_2
+  - first:
+      213: 5526951635520993716
+    second: gorem_monster_noshape_3
+  - first:
+      213: 5866806580350320943
+    second: gorem_monster_noshape_4
+  - first:
+      213: 4896418577959517702
+    second: gorem_monster_noshape_5
+  - first:
+      213: 8342683965950586914
+    second: gorem_monster_noshape_6
+  - first:
+      213: 5508600174537699803
+    second: gorem_monster_noshape_7
+  - first:
+      213: -4759000847486962376
+    second: gorem_monster_noshape_8
+  - first:
+      213: 8849018713773902682
+    second: gorem_monster_noshape_9
+  - first:
+      213: -9097031487162641151
+    second: gorem_monster_noshape_10
+  - first:
+      213: 1572459816632047020
+    second: gorem_monster_noshape_11
+  - first:
+      213: 3100093056278807118
+    second: gorem_monster_noshape_12
+  - first:
+      213: -2222248036110394327
+    second: gorem_monster_noshape_13
+  - first:
+      213: 3902187546146392566
+    second: gorem_monster_noshape_14
+  - first:
+      213: -1114818577640047431
+    second: gorem_monster_noshape_15
+  - first:
+      213: 2473214483387003111
+    second: gorem_monster_noshape_16
+  - first:
+      213: -3988904835018027250
+    second: gorem_monster_noshape_17
+  - first:
+      213: -7102063803396523964
+    second: gorem_monster_noshape_18
+  - first:
+      213: 1903211241678838563
+    second: gorem_monster_noshape_19
+  - first:
+      213: -6515057112711784474
+    second: gorem_monster_noshape_20
+  - first:
+      213: -3708693034416483536
+    second: gorem_monster_noshape_21
+  - first:
+      213: 2544718209839753506
+    second: gorem_monster_noshape_22
+  - first:
+      213: -1650185865299025982
+    second: gorem_monster_noshape_23
+  - first:
+      213: -5818755570488652278
+    second: gorem_monster_noshape_24
+  - first:
+      213: -4842926473189050551
+    second: gorem_monster_noshape_25
+  - first:
+      213: -5478001677078176290
+    second: gorem_monster_noshape_26
+  - first:
+      213: -8742999123174142528
+    second: gorem_monster_noshape_27
+  - first:
+      213: -5858955307480401444
+    second: gorem_monster_noshape_28
+  - first:
+      213: -9149876566822309365
+    second: gorem_monster_noshape_29
+  - first:
+      213: 3469861520614993195
+    second: gorem_monster_noshape_30
+  - first:
+      213: -6362151356816088049
+    second: gorem_monster_noshape_31
+  - first:
+      213: -901336936948721228
+    second: gorem_monster_noshape_32
+  - first:
+      213: -4138426862000781012
+    second: gorem_monster_noshape_33
+  - first:
+      213: 2483646673400371528
+    second: gorem_monster_noshape_34
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: gorem_monster_noshape_0
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 360
+        width: 83
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6412f5300c2e3d0468cf7a7a67759152
+      internalID: 8139572851715939349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_1
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 360
+        width: 83
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef4007e5775ab6947954061ee202dfb9
+      internalID: 1804612146786955101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_2
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 360
+        width: 88
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb9d47ffa014a0248af053b09ab92c75
+      internalID: 3811968652430063183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_3
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 360
+        width: 87
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24e014eba6ae21443b84b091ede43a58
+      internalID: 5526951635520993716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_4
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 106
+        width: 327
+        height: 334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13216c45d0006864eb26bda3c194ad8c
+      internalID: 5866806580350320943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_5
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 256
+        width: 69
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 477db96b5734f9448a07500f943d18c9
+      internalID: 4896418577959517702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_6
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 256
+        width: 78
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 600ee5188ab5b3a48bd70d3c209a19f7
+      internalID: 8342683965950586914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 256
+        width: 65
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c25fd34a102df7f46b09fed339e47f72
+      internalID: 5508600174537699803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_8
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 256
+        width: 68
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a82057488be6920489e4167b8dc4547f
+      internalID: -4759000847486962376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_9
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 256
+        width: 81
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fcfcec338f41964dabc1bd8be144528
+      internalID: 8849018713773902682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_10
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 256
+        width: 82
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8369adfb26b15a44e8743d7ed903bc44
+      internalID: -9097031487162641151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_11
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 256
+        width: 80
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 102bf747136dae049a7bc92f35e8ac39
+      internalID: 1572459816632047020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_12
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 208
+        width: 43
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66c0d8455f761d8458b634c2d4c501d0
+      internalID: 3100093056278807118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_13
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 208
+        width: 40
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e47e7dc780ee154bb8a3e4bfb2d84a5
+      internalID: -2222248036110394327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_14
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 206
+        width: 41
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14365edad7f1def47ac381f18f2b5514
+      internalID: 3902187546146392566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_15
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 208
+        width: 43
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68b8dd1178b982c41a6d062b9d69fc62
+      internalID: -1114818577640047431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_16
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 208
+        width: 43
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cd8746bfabb4f4448c449bc36448ce0
+      internalID: 2473214483387003111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_17
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 200
+        width: 41
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81e544702ca79de40846780a8c00936f
+      internalID: -3988904835018027250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_18
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 207
+        width: 43
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94381325d5df82145893c93d858291cf
+      internalID: -7102063803396523964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_19
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 112
+        width: 83
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f12fbf760f3feb64db1d2a46e7853685
+      internalID: 1903211241678838563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_20
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 115
+        width: 84
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10944ac61516caa42aad470029d82626
+      internalID: -6515057112711784474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_21
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 112
+        width: 87
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b92630d1254201b42aad90e1ac5f9b68
+      internalID: -3708693034416483536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_22
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 112
+        width: 84
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 842f03e34698997469533003f11e47cf
+      internalID: 2544718209839753506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_23
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 112
+        width: 88
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 985bb6ca8f4048641a4c15ab1247956b
+      internalID: -1650185865299025982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_24
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 15
+        width: 83
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 424f4548f847c3645940f5ca10aa770f
+      internalID: -5818755570488652278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_25
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 15
+        width: 88
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c26e3d6249752f4bbbe14911a941000
+      internalID: -4842926473189050551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_26
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 15
+        width: 92
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a03616a4ca8719a488c04fe2664f35d8
+      internalID: -5478001677078176290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_27
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 15
+        width: 96
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f49c187af1f277479da2ee137b5d831
+      internalID: -8742999123174142528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_28
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 15
+        width: 87
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3edc1723f2e9e243a2d8dff48acd2c9
+      internalID: -5858955307480401444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_29
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 15
+        width: 82
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4aa7d61274184b04e9e2dbf477e9d8ff
+      internalID: -9149876566822309365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_30
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 15
+        width: 78
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7734d66b85786b48af4fc8362d9637e
+      internalID: 3469861520614993195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_31
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 15
+        width: 68
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 042f1888e7d0caf4aa0859a7e123737a
+      internalID: -6362151356816088049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_32
+      rect:
+        serializedVersion: 2
+        x: 759
+        y: 15
+        width: 65
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6219c173fb35bcb4a80137fed534c687
+      internalID: -901336936948721228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_33
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 16
+        width: 64
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0ca4a3338eebf04294487298ded8517
+      internalID: -4138426862000781012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gorem_monster_noshape_34
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 15
+        width: 72
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7ea459424515e040bd1b7a2536b4e97
+      internalID: 2483646673400371528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: c3594f99dd8e3c94f95ff57a1f8c6dd1
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,915 @@
+fileFormatVersion: 2
+guid: 7102cf97dab44d5448e7300f6683d14d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1630970463308574979
+    second: T-Rex_noshape_0
+  - first:
+      213: 502539247834852247
+    second: T-Rex_noshape_1
+  - first:
+      213: 3301465040556730535
+    second: T-Rex_noshape_2
+  - first:
+      213: -4443671760027821519
+    second: T-Rex_noshape_3
+  - first:
+      213: -2363031851148209671
+    second: T-Rex_noshape_4
+  - first:
+      213: 7581635603217509832
+    second: T-Rex_noshape_5
+  - first:
+      213: 8367801670834757389
+    second: T-Rex_noshape_6
+  - first:
+      213: -8273008318041745882
+    second: T-Rex_noshape_7
+  - first:
+      213: 7064039631212272232
+    second: T-Rex_noshape_8
+  - first:
+      213: 3083695988872941922
+    second: T-Rex_noshape_9
+  - first:
+      213: -3987352030090505388
+    second: T-Rex_noshape_10
+  - first:
+      213: -4763611449555870879
+    second: T-Rex_noshape_11
+  - first:
+      213: -2913770384475416420
+    second: T-Rex_noshape_12
+  - first:
+      213: -7858431678403380307
+    second: T-Rex_noshape_13
+  - first:
+      213: -6881559606528091358
+    second: T-Rex_noshape_14
+  - first:
+      213: 289898928204531812
+    second: T-Rex_noshape_15
+  - first:
+      213: 2942926823951129278
+    second: T-Rex_noshape_16
+  - first:
+      213: 5477340848626940245
+    second: T-Rex_noshape_17
+  - first:
+      213: 5921014243648927155
+    second: T-Rex_noshape_18
+  - first:
+      213: 2779650051540781597
+    second: T-Rex_noshape_19
+  - first:
+      213: 7625708341084813107
+    second: T-Rex_noshape_20
+  - first:
+      213: -783321369365306133
+    second: T-Rex_noshape_21
+  - first:
+      213: 1699700656449091362
+    second: T-Rex_noshape_22
+  - first:
+      213: 3934842004047022736
+    second: T-Rex_noshape_23
+  - first:
+      213: -8932807118443865205
+    second: T-Rex_noshape_24
+  - first:
+      213: 3712575443605864913
+    second: T-Rex_noshape_25
+  - first:
+      213: -788051101105584133
+    second: T-Rex_noshape_26
+  - first:
+      213: -5012528038776003682
+    second: T-Rex_noshape_27
+  - first:
+      213: -1647593163675158273
+    second: T-Rex_noshape_28
+  - first:
+      213: -3963663211965177140
+    second: T-Rex_noshape_29
+  - first:
+      213: 4330407797063027421
+    second: T-Rex_noshape_30
+  - first:
+      213: 8668583889041588299
+    second: T-Rex_noshape_31
+  - first:
+      213: 4523405805811300699
+    second: T-Rex_noshape_32
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: T-Rex_noshape_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 316
+        width: 83
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a631a5c9dee4c949b0821fea3b6f3b0
+      internalID: -1630970463308574979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_1
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 316
+        width: 77
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19c2eb89bd84bf54fab3c4aee38c5243
+      internalID: 502539247834852247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_2
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 316
+        width: 74
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58adad44c596b0b4c8f6a95467e23e8b
+      internalID: 3301465040556730535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_3
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 316
+        width: 75
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 017aaae7ed4565047b204d75aa790075
+      internalID: -4443671760027821519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_4
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 316
+        width: 74
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a471bc344b86544baf2249e204fbfd7
+      internalID: -2363031851148209671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_5
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 316
+        width: 80
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 267d3fe4ee2f7064eb1b7ba3c5b94387
+      internalID: 7581635603217509832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_6
+      rect:
+        serializedVersion: 2
+        x: 584
+        y: 81
+        width: 402
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b573a2609f130d4e8d6f2a25ce620b5
+      internalID: 8367801670834757389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_7
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 228
+        width: 73
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 317d5aab2a016c744aff8dc1ba3ed883
+      internalID: -8273008318041745882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_8
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 229
+        width: 68
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58a248aa10698de458745161d79e9a1a
+      internalID: 7064039631212272232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_9
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 228
+        width: 74
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9d20d095ab967f47957c60787577668
+      internalID: 3083695988872941922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_10
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 228
+        width: 73
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72654f37335b16845a052c81d182b5c2
+      internalID: -3987352030090505388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_11
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 228
+        width: 79
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba42e07f2eaae614ba00de5cecf198e9
+      internalID: -4763611449555870879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_12
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 228
+        width: 72
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77b88d0a4af8afd4882efd3ee17415a7
+      internalID: -2913770384475416420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_13
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 228
+        width: 71
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6eaa84e730e3f5f40813eb15a0e2ec52
+      internalID: -7858431678403380307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_14
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 164
+        width: 76
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c95956dc5064ea479e65aed740913e8
+      internalID: -6881559606528091358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_15
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 164
+        width: 81
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c03a6ec0ea2db86499a5054bf7a63a08
+      internalID: 289898928204531812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_16
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 164
+        width: 75
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb8a7b02f48cf36409412592fecdfba1
+      internalID: 2942926823951129278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_17
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 92
+        width: 78
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e6184d66c8c02f4a87c04956b12b92e
+      internalID: 5477340848626940245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_18
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 92
+        width: 80
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08f981355da017049bb22f320ac86049
+      internalID: 5921014243648927155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_19
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 93
+        width: 78
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 731f404dd774bf1408901d67a14737d4
+      internalID: 2779650051540781597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_20
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 92
+        width: 87
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 110d664c9d7c0d74a9f011983ca5740f
+      internalID: 7625708341084813107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_21
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 92
+        width: 95
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c00f90966a33f5b4da5200b515b594b5
+      internalID: -783321369365306133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_22
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 21
+        width: 81
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1de6d8aa423254540b1ebb6cf0403151
+      internalID: 1699700656449091362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_23
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 20
+        width: 77
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23d76d3518950ea42944054d3396c14f
+      internalID: 3934842004047022736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_24
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 20
+        width: 77
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 521502fc99deddc45bfe767f6772896f
+      internalID: -8932807118443865205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_25
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 20
+        width: 76
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd816399ff51f084e8b8215a95d46893
+      internalID: 3712575443605864913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_26
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 20
+        width: 76
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c44ed277f39a9b41812512349d95524
+      internalID: -788051101105584133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_27
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 20
+        width: 77
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b44eee3d72c510419ca644a590ff06b
+      internalID: -5012528038776003682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_28
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 20
+        width: 154
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b9f35eb9967f6e468045df4f05da923
+      internalID: -1647593163675158273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_29
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 20
+        width: 78
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50fa63870d005734aad048d231caccf6
+      internalID: -3963663211965177140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_30
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 22
+        width: 78
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2aca5c2b450bc524ba7420c24c00c37f
+      internalID: 4330407797063027421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_31
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 20
+        width: 81
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dcb8336a6119cb418f44df1d2b8eca9
+      internalID: 8668583889041588299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T-Rex_noshape_32
+      rect:
+        serializedVersion: 2
+        x: 905
+        y: 20
+        width: 78
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78e2d9ebd1eeb1c4db5369616f9474e8
+      internalID: 4523405805811300699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: d2799e9d9db14004abb98636a2ad0dbc
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

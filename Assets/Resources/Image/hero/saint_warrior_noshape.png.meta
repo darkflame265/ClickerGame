@@ -1,0 +1,1203 @@
+fileFormatVersion: 2
+guid: f3bb0e79100db444c9eed56c0007c5d1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1155798071088644060
+    second: saint_warrior_noshape_0
+  - first:
+      213: -356486940298258320
+    second: saint_warrior_noshape_1
+  - first:
+      213: 7989761292449009210
+    second: saint_warrior_noshape_2
+  - first:
+      213: 7075880434025525787
+    second: saint_warrior_noshape_3
+  - first:
+      213: 3150452126368097428
+    second: saint_warrior_noshape_4
+  - first:
+      213: 8769228156909340089
+    second: saint_warrior_noshape_5
+  - first:
+      213: 472608525764160595
+    second: saint_warrior_noshape_6
+  - first:
+      213: -6783982902982641385
+    second: saint_warrior_noshape_7
+  - first:
+      213: -8930062470562224078
+    second: saint_warrior_noshape_8
+  - first:
+      213: -3213955407294103392
+    second: saint_warrior_noshape_9
+  - first:
+      213: -3072681100911726053
+    second: saint_warrior_noshape_10
+  - first:
+      213: 1517738067979769328
+    second: saint_warrior_noshape_11
+  - first:
+      213: -1542580506041387712
+    second: saint_warrior_noshape_12
+  - first:
+      213: -9139342297566647871
+    second: saint_warrior_noshape_13
+  - first:
+      213: -5545571864787000447
+    second: saint_warrior_noshape_14
+  - first:
+      213: -7285554017933168866
+    second: saint_warrior_noshape_15
+  - first:
+      213: -4233877808385522848
+    second: saint_warrior_noshape_16
+  - first:
+      213: 5456197922155596964
+    second: saint_warrior_noshape_17
+  - first:
+      213: -3118829753294580628
+    second: saint_warrior_noshape_18
+  - first:
+      213: 7204524651686403987
+    second: saint_warrior_noshape_19
+  - first:
+      213: -471564115607031254
+    second: saint_warrior_noshape_20
+  - first:
+      213: 7489940692532104813
+    second: saint_warrior_noshape_21
+  - first:
+      213: -7842267595720685480
+    second: saint_warrior_noshape_22
+  - first:
+      213: 1190899057146817318
+    second: saint_warrior_noshape_23
+  - first:
+      213: -2553527474318757454
+    second: saint_warrior_noshape_24
+  - first:
+      213: -4854743634275696372
+    second: saint_warrior_noshape_25
+  - first:
+      213: -5265804411536631292
+    second: saint_warrior_noshape_26
+  - first:
+      213: -2093815028628052763
+    second: saint_warrior_noshape_27
+  - first:
+      213: -925886692599109199
+    second: saint_warrior_noshape_28
+  - first:
+      213: -4122416738251455946
+    second: saint_warrior_noshape_29
+  - first:
+      213: -2450383594825951717
+    second: saint_warrior_noshape_30
+  - first:
+      213: -3060598017786433944
+    second: saint_warrior_noshape_31
+  - first:
+      213: -676849290519490964
+    second: saint_warrior_noshape_32
+  - first:
+      213: -4442079571234091867
+    second: saint_warrior_noshape_33
+  - first:
+      213: -2358062202018356164
+    second: saint_warrior_noshape_34
+  - first:
+      213: -5084659686514524262
+    second: saint_warrior_noshape_35
+  - first:
+      213: 8092057144615986842
+    second: saint_warrior_noshape_36
+  - first:
+      213: 984257632209606863
+    second: saint_warrior_noshape_37
+  - first:
+      213: 2053025870501153820
+    second: saint_warrior_noshape_38
+  - first:
+      213: 6250937128098886702
+    second: saint_warrior_noshape_39
+  - first:
+      213: -8653608352857189523
+    second: saint_warrior_noshape_40
+  - first:
+      213: -4999193653800432750
+    second: saint_warrior_noshape_41
+  - first:
+      213: -777530650297612874
+    second: saint_warrior_noshape_42
+  - first:
+      213: -929146267979950388
+    second: saint_warrior_noshape_43
+  - first:
+      213: -6018133783816359902
+    second: saint_warrior_noshape_44
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: saint_warrior_noshape_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 446
+        width: 110
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c0756fb6c46b594897419e680c6957f
+      internalID: 1155798071088644060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_1
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 446
+        width: 109
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5d147cee4d065443a409e0c058b297b
+      internalID: -356486940298258320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_2
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 443
+        width: 110
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dcfb6bdcafb2ec4ab26608aae8cbcf7
+      internalID: 7989761292449009210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_3
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 445
+        width: 110
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55dbdd78e9771b94485890746d6091cc
+      internalID: 7075880434025525787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_4
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 443
+        width: 111
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88b6e8543b7d189458e2adcf5aaabbb3
+      internalID: 3150452126368097428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_5
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 440
+        width: 110
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f8e74d003a8104458c0f0cb15c08fc3
+      internalID: 8769228156909340089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_6
+      rect:
+        serializedVersion: 2
+        x: 970
+        y: 444
+        width: 109
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12462832397a6f54d9df4c6277920063
+      internalID: 472608525764160595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_7
+      rect:
+        serializedVersion: 2
+        x: 1282
+        y: 111
+        width: 642
+        height: 435
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f36b0b110f25b545821bc4e2bb1cbe7
+      internalID: -6783982902982641385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_8
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 337
+        width: 113
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b7f9a12df711a346a733fcfc40e6d5d
+      internalID: -8930062470562224078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_9
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 338
+        width: 112
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6f8ed01111fe9b4a8c5e8be0b42389a
+      internalID: -3213955407294103392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_10
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 337
+        width: 109
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa7c4f5018e87994b977aeba5a18fe88
+      internalID: -3072681100911726053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_11
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 338
+        width: 101
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 592edeec465f4764796e1f5fa1729487
+      internalID: 1517738067979769328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_12
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 337
+        width: 96
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2adbf98b5dc7a304e8cd900f5770a61e
+      internalID: -1542580506041387712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_13
+      rect:
+        serializedVersion: 2
+        x: 722
+        y: 337
+        width: 91
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5422bac860cb7740a517839b80fc4a2
+      internalID: -9139342297566647871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_14
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 337
+        width: 87
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0aba567be821a6a4b9dcabb77fdb958e
+      internalID: -5545571864787000447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_15
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 233
+        width: 107
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d1c9bff735666447a89e1caff9d4350
+      internalID: -7285554017933168866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_16
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 233
+        width: 96
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbe4d53528f515347bed379ab7c5aa79
+      internalID: -4233877808385522848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_17
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 223
+        width: 88
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 032d4063cda83904585b5a922491dd4e
+      internalID: 5456197922155596964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_18
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 224
+        width: 87
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c76a4f22c9270294aa7bed6e0feb04cc
+      internalID: -3118829753294580628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_19
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 223
+        width: 86
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1957deb09b46fad44b5b64755ecc19b0
+      internalID: 7204524651686403987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_20
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 223
+        width: 85
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bcfaca06fceec840a9cbfc1988eb337
+      internalID: -471564115607031254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_21
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 229
+        width: 92
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fe036c512422ea46aa12e4077d10872
+      internalID: 7489940692532104813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_22
+      rect:
+        serializedVersion: 2
+        x: 1034
+        y: 228
+        width: 109
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19cfb5aa94823cd4192c73345eb14170
+      internalID: -7842267595720685480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_23
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 112
+        width: 109
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f8b3c20a3da1d144baebe1ff3a7da78
+      internalID: 1190899057146817318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_24
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 104
+        width: 70
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41297a368f74cfa499401172de35b122
+      internalID: -2553527474318757454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_25
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 112
+        width: 66
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6241bf4415e019f438f2c7f7c8a8351a
+      internalID: -4854743634275696372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_26
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 102
+        width: 73
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7c81075385c9f04b9e8526cee0be88f
+      internalID: -5265804411536631292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_27
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 110
+        width: 106
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84d555f8becfd914eb3561fd47409454
+      internalID: -2093815028628052763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_28
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 107
+        width: 128
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f06521f74bdc4e64dab924c77f630f11
+      internalID: -925886692599109199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_29
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 110
+        width: 127
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 982204ba0caedec40b7b63d476af5e8f
+      internalID: -4122416738251455946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_30
+      rect:
+        serializedVersion: 2
+        x: 1105
+        y: 112
+        width: 120
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 850e77c2e7eaa30429b20beb1080fcaa
+      internalID: -2450383594825951717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_31
+      rect:
+        serializedVersion: 2
+        x: 1276
+        y: 112
+        width: 109
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d55f45997bbf194e8e72e28a39e00d0
+      internalID: -3060598017786433944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 109
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ae6139bc08dff641965d2430fc74daa
+      internalID: -676849290519490964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_33
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 1
+        width: 108
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30fe28bb892f74c41a5dc9ca58868155
+      internalID: -4442079571234091867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_34
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 1
+        width: 107
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b79f8506ea730be4ba4b252131906d6c
+      internalID: -2358062202018356164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_35
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 1
+        width: 107
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff1ce25e8deec8e40b03bde82d26b93c
+      internalID: -5084659686514524262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_36
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 1
+        width: 107
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09cff5dc7083d5c4eaa95d352d5784fd
+      internalID: 8092057144615986842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_37
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 1
+        width: 109
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f14c334f60da3544b89f82c72bd0b347
+      internalID: 984257632209606863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_38
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 1
+        width: 109
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 633d2a95c28488346a29ffde3277bf43
+      internalID: 2053025870501153820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_39
+      rect:
+        serializedVersion: 2
+        x: 1039
+        y: 1
+        width: 103
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f99cf912d431ba34ab3bd383d039969e
+      internalID: 6250937128098886702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_40
+      rect:
+        serializedVersion: 2
+        x: 1190
+        y: 2
+        width: 98
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c098941c02c2654ab045b3e7f81e75e
+      internalID: -8653608352857189523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_41
+      rect:
+        serializedVersion: 2
+        x: 1342
+        y: 1
+        width: 90
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5d15dfd87241504fb4c68e5a421020f
+      internalID: -4999193653800432750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_42
+      rect:
+        serializedVersion: 2
+        x: 1487
+        y: 1
+        width: 97
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23c221bc990963f4e82541391c432d83
+      internalID: -777530650297612874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_43
+      rect:
+        serializedVersion: 2
+        x: 1631
+        y: 1
+        width: 104
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e359a5a3594650848af6af5588b21819
+      internalID: -929146267979950388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: saint_warrior_noshape_44
+      rect:
+        serializedVersion: 2
+        x: 1777
+        y: 0
+        width: 109
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 251274ea35e69b945a4bc8f0cbbdb557
+      internalID: -6018133783816359902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: f65f41a7be5d4a845b41d7eba8fb8edf
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

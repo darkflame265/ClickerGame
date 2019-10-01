@@ -1,0 +1,771 @@
+fileFormatVersion: 2
+guid: 4d41a7b6c2ccd4348a9ab812bfc82ee1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6967614653833248981
+    second: big_gorem_noshape_0
+  - first:
+      213: -4641522976447780448
+    second: big_gorem_noshape_1
+  - first:
+      213: 8151702610058653053
+    second: big_gorem_noshape_2
+  - first:
+      213: 6801158445038819110
+    second: big_gorem_noshape_3
+  - first:
+      213: -3946314617489019358
+    second: big_gorem_noshape_4
+  - first:
+      213: -4105449445736121882
+    second: big_gorem_noshape_5
+  - first:
+      213: -3801244904724839231
+    second: big_gorem_noshape_6
+  - first:
+      213: 8286110244427992682
+    second: big_gorem_noshape_7
+  - first:
+      213: -1517395446473358008
+    second: big_gorem_noshape_8
+  - first:
+      213: -5728973294170993185
+    second: big_gorem_noshape_9
+  - first:
+      213: 2512606847043051959
+    second: big_gorem_noshape_10
+  - first:
+      213: 3749558355308867381
+    second: big_gorem_noshape_11
+  - first:
+      213: 8912189855300782327
+    second: big_gorem_noshape_12
+  - first:
+      213: 7632329124180363434
+    second: big_gorem_noshape_13
+  - first:
+      213: -6296372497472530172
+    second: big_gorem_noshape_14
+  - first:
+      213: 3732201402193308017
+    second: big_gorem_noshape_15
+  - first:
+      213: -7368683601807265218
+    second: big_gorem_noshape_16
+  - first:
+      213: -4798767051769967610
+    second: big_gorem_noshape_17
+  - first:
+      213: -1438886334400494441
+    second: big_gorem_noshape_18
+  - first:
+      213: 7631607452872177383
+    second: big_gorem_noshape_19
+  - first:
+      213: -3549188500363343302
+    second: big_gorem_noshape_20
+  - first:
+      213: -5242340645619259831
+    second: big_gorem_noshape_21
+  - first:
+      213: -5261463193039613383
+    second: big_gorem_noshape_22
+  - first:
+      213: -5210418182199863894
+    second: big_gorem_noshape_23
+  - first:
+      213: -2390306011612679273
+    second: big_gorem_noshape_24
+  - first:
+      213: 2151039541323986162
+    second: big_gorem_noshape_25
+  - first:
+      213: -4966657800232148492
+    second: big_gorem_noshape_26
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: big_gorem_noshape_0
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 386
+        width: 615
+        height: 411
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef9752a484f322e438e26aaab537c26a
+      internalID: 6967614653833248981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 290
+        width: 103
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e229af90ac55ba148a78939dd7708cc3
+      internalID: -4641522976447780448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_2
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 290
+        width: 103
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f107083dc7ae714d9c6c5a6d62fb668
+      internalID: 8151702610058653053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_3
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 290
+        width: 103
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66b32425bc418e64aa08456d6ffb7bbf
+      internalID: 6801158445038819110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_4
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 290
+        width: 102
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47504a072b2013d45abfab4d35384275
+      internalID: -3946314617489019358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_5
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 200
+        width: 96
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee819b56a46893e4c9d0ea68a3a5f975
+      internalID: -4105449445736121882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_6
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 200
+        width: 93
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89643b055abc58b40a515b1023b97820
+      internalID: -3801244904724839231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_7
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 201
+        width: 86
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b13e6dd43fb952744918fefbe14969ab
+      internalID: 8286110244427992682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_8
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 201
+        width: 80
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1aca3080d37c0614ea2baecd53cd8666
+      internalID: -1517395446473358008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_9
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 201
+        width: 88
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4acd3ec0c25089b4fb534421da53f709
+      internalID: -5728973294170993185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_10
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 201
+        width: 96
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff4dfd527d819bd4b8cc280814a3077f
+      internalID: 2512606847043051959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_11
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 201
+        width: 102
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c636f12e1a30de347a427949a208a87e
+      internalID: 3749558355308867381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_12
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 202
+        width: 105
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1757187475a49ea4cac5c22ddc22100c
+      internalID: 8912189855300782327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_13
+      rect:
+        serializedVersion: 2
+        x: 847
+        y: 201
+        width: 100
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bf92fc789290234abefd49c8345e05e
+      internalID: 7632329124180363434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_14
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 89
+        width: 105
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aac419fa897e1ee4a9126182ca47daf0
+      internalID: -6296372497472530172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_15
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 89
+        width: 83
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59d29a2386ed37749899293e41ce5959
+      internalID: 3732201402193308017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_16
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 89
+        width: 65
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 646a3235b7f0508409c565cb5660ad94
+      internalID: -7368683601807265218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_17
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 89
+        width: 83
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24c051fd168905940b29e50b9586ab04
+      internalID: -4798767051769967610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_18
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 88
+        width: 104
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c974895a998e8c343a34990f85ac411f
+      internalID: -1438886334400494441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_19
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 87
+        width: 112
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ded5882a83bc3c1499b6afb0e7ac95b5
+      internalID: 7631607452872177383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_20
+      rect:
+        serializedVersion: 2
+        x: 735
+        y: 88
+        width: 102
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e05a77a00fb336c448a97f88e977ebee
+      internalID: -3549188500363343302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_21
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 88
+        width: 97
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09c4dfbbfd964c8498e5d054bc5ea354
+      internalID: -5242340645619259831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 99
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4473a70f3e713f14fb99ab0691fed128
+      internalID: -5261463193039613383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_23
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 1
+        width: 100
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0602b6e5dd91b945b6ae4d9d6e87d00
+      internalID: -5210418182199863894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_24
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 1
+        width: 99
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9f3ebab963f46247b1fec374b168322
+      internalID: -2390306011612679273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_25
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 1
+        width: 108
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55ca751baa9182c4f9a1cbfb972553e5
+      internalID: 2151039541323986162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_gorem_noshape_26
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 0
+        width: 111
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a4509c481d12ab4d957fb243dc4e12d
+      internalID: -4966657800232148492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 06a0974d0f858e74992513d35d1d05bb
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

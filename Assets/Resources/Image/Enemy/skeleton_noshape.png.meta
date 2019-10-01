@@ -1,0 +1,675 @@
+fileFormatVersion: 2
+guid: 5125cbc9bc543a048953b67098f57c22
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1624249981150194661
+    second: skeleton_noshape_0
+  - first:
+      213: -9094609903786339770
+    second: skeleton_noshape_1
+  - first:
+      213: 3041811160888090605
+    second: skeleton_noshape_2
+  - first:
+      213: -8871239539238660235
+    second: skeleton_noshape_3
+  - first:
+      213: -2996193762516836813
+    second: skeleton_noshape_4
+  - first:
+      213: 4492910263126140876
+    second: skeleton_noshape_5
+  - first:
+      213: -5084527855432994545
+    second: skeleton_noshape_6
+  - first:
+      213: 2733359564433633547
+    second: skeleton_noshape_7
+  - first:
+      213: 6541508867138057109
+    second: skeleton_noshape_8
+  - first:
+      213: -2006472016568840807
+    second: skeleton_noshape_9
+  - first:
+      213: 8833630334456249746
+    second: skeleton_noshape_10
+  - first:
+      213: -8414330211076781085
+    second: skeleton_noshape_11
+  - first:
+      213: -5459290876568909576
+    second: skeleton_noshape_12
+  - first:
+      213: 668674621574519630
+    second: skeleton_noshape_13
+  - first:
+      213: 2742426574406296807
+    second: skeleton_noshape_14
+  - first:
+      213: -2581939119948370679
+    second: skeleton_noshape_15
+  - first:
+      213: 6357722468080004221
+    second: skeleton_noshape_16
+  - first:
+      213: -8560130123137625301
+    second: skeleton_noshape_17
+  - first:
+      213: 7827838172814923772
+    second: skeleton_noshape_18
+  - first:
+      213: 5127393637469289787
+    second: skeleton_noshape_19
+  - first:
+      213: -3782692226676099089
+    second: skeleton_noshape_20
+  - first:
+      213: -3527243203891103552
+    second: skeleton_noshape_21
+  - first:
+      213: -1431178182430847389
+    second: skeleton_noshape_22
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: skeleton_noshape_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 758
+        width: 145
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7db481f31f3aaf54c9ce5eab215f7f0e
+      internalID: -1624249981150194661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_noshape_1
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 4
+        width: 988
+        height: 909
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 840468cbdc48cb4448803d1217c3cd2f
+      internalID: -9094609903786339770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_noshape_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 571
+        width: 154
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caa2ca23671606345969fa5f83882298
+      internalID: 3041811160888090605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_noshape_3
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 571
+        width: 154
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b69f186cb0a4b24b97aca4c7781f50d
+      internalID: -8871239539238660235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_noshape_4
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 571
+        width: 154
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e940474df2735cd4ba01bfd5b1f2f98f
+      internalID: -2996193762516836813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_noshape_5
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 571
+        width: 153
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfaafd8a0a7fae2478201a7ff702bfe6
+      internalID: 4492910263126140876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_noshape_6
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 571
+        width: 163
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c62cd2c3e9634440ae88386a5b66cf3
+      internalID: -5084527855432994545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_noshape_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 406
+        width: 154
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e830e2a3af1f1304b86734f008a6e9f5
+      internalID: 2733359564433633547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_noshape_8
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 406
+        width: 154
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b412749e8982fa47875fb023fe6a856
+      internalID: 6541508867138057109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_noshape_9
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 406
+        width: 155
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80402b547aad036428f08f767bfa6624
+      internalID: -2006472016568840807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_noshape_10
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 406
+        width: 155
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49ba0cae8c806484a87a5d9314f06ff9
+      internalID: 8833630334456249746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_noshape_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 182
+        width: 146
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03dc83b264ceb454aa574d85e308396b
+      internalID: -8414330211076781085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_noshape_12
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 182
+        width: 139
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aeaed47303122d04098a3a3f20880dab
+      internalID: -5459290876568909576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_noshape_13
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 182
+        width: 136
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89a48104c00594746bb50ca153114e4c
+      internalID: 668674621574519630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_noshape_14
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 182
+        width: 133
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c027da1bdf4dc741b40bb21706e4b21
+      internalID: 2742426574406296807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_noshape_15
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 182
+        width: 136
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f27565deea0bd245b8dc8e73e3c0d3b
+      internalID: -2581939119948370679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_noshape_16
+      rect:
+        serializedVersion: 2
+        x: 805
+        y: 182
+        width: 139
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2faba06c08db276429e13a92af26c13a
+      internalID: 6357722468080004221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_noshape_17
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 1
+        width: 145
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce849029e6d707b4eb00ff717ca51fcb
+      internalID: -8560130123137625301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_noshape_18
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 0
+        width: 141
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e967306c3ee1de408d5f2ef99287b0c
+      internalID: 7827838172814923772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_noshape_19
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 1
+        width: 139
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8f1020d3b1a8cc4db18b1d698e141de
+      internalID: 5127393637469289787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_noshape_20
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 1
+        width: 136
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d45f2a7960bbe034d985e00b00764d0e
+      internalID: -3782692226676099089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_noshape_21
+      rect:
+        serializedVersion: 2
+        x: 658
+        y: 1
+        width: 139
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cacd4123712690547b42eda62aa215dc
+      internalID: -3527243203891103552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_noshape_22
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 1
+        width: 141
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcb57324acfd5014ea20be054aef5084
+      internalID: -1431178182430847389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 8357fef5b1e7a844c99b751fc1cfbd91
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

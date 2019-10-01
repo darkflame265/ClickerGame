@@ -1,0 +1,56 @@
+[
+  {
+    "id": 0,
+    "title": "사과",
+    "value": 543,
+    "description": "맛있는 사과.\n먹으면 체력이 5증가합니다.",
+    "stackable": true,
+    "rarity": 2,
+    "slug": "apple",
+    "effect": "DataController.Instance.health += 5;"
+  },
+
+  {
+    "id": 1,
+    "title": "고기",
+    "value": 543,
+    "description": "맛있는 고기.\n먹으면 근력이 5증가합니다.",
+    "stackable": true,
+    "rarity": 2,
+    "slug": "Meat",
+    "effect": "DataController.Instance.attack += 5;"
+  },
+
+  {
+    "id": 2,
+    "title": "호박",
+    "value": 543,
+    "description": "단단한 호박입니다.\n먹으면 민첩이 5증가합니다.",
+    "stackable": true,
+    "rarity": 2,
+    "slug": "pumpking",
+    "effect": "DataController.Instance.health += 5;"
+  },
+
+  {
+    "id": 3,
+    "title": "버섯",
+    "value": 543,
+    "description": "알수없는 버섯입니다.\n먹으면 특성이 5증가합니다.",
+    "stackable": true,
+    "rarity": 2,
+    "slug": "mushroom",
+    "effect": "DataController.Instance.health += 5;"
+  },
+
+  {
+    "id": 4,
+    "title": "레벨업 포션",
+    "value": 543,
+    "description": "현재 레벨에 필요한 양 만큼 경험치를 얻습니다.",
+    "stackable": true,
+    "rarity": 2,
+    "slug": "mp",
+    "effect": "DataController.Instance.health += 5;"
+  }
+]

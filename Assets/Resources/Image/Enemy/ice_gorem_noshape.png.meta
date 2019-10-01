@@ -1,0 +1,795 @@
+fileFormatVersion: 2
+guid: c3d21ba9470c4294f9f19afebd65faca
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3032080557831676643
+    second: ice_gorem_noshape_0
+  - first:
+      213: -9202270163108594421
+    second: ice_gorem_noshape_1
+  - first:
+      213: 7744607078178348012
+    second: ice_gorem_noshape_2
+  - first:
+      213: -4060636241843475856
+    second: ice_gorem_noshape_3
+  - first:
+      213: 9182637481579310739
+    second: ice_gorem_noshape_4
+  - first:
+      213: -7364599538012874662
+    second: ice_gorem_noshape_5
+  - first:
+      213: 3133150224353620981
+    second: ice_gorem_noshape_6
+  - first:
+      213: -2923461558451715576
+    second: ice_gorem_noshape_7
+  - first:
+      213: -3021863330557561462
+    second: ice_gorem_noshape_8
+  - first:
+      213: -5870858360282834438
+    second: ice_gorem_noshape_9
+  - first:
+      213: -6002183038146569166
+    second: ice_gorem_noshape_10
+  - first:
+      213: -5051238624870158718
+    second: ice_gorem_noshape_11
+  - first:
+      213: 8198476841904997958
+    second: ice_gorem_noshape_12
+  - first:
+      213: 883375264008810018
+    second: ice_gorem_noshape_13
+  - first:
+      213: -8593576856441118162
+    second: ice_gorem_noshape_14
+  - first:
+      213: -8708120051642418099
+    second: ice_gorem_noshape_15
+  - first:
+      213: 6399268220367821493
+    second: ice_gorem_noshape_16
+  - first:
+      213: 3807340557896397335
+    second: ice_gorem_noshape_17
+  - first:
+      213: 1944453684419935325
+    second: ice_gorem_noshape_18
+  - first:
+      213: 7449741351388473765
+    second: ice_gorem_noshape_19
+  - first:
+      213: 1791256893974297011
+    second: ice_gorem_noshape_20
+  - first:
+      213: -6666774540659258593
+    second: ice_gorem_noshape_21
+  - first:
+      213: -5109074062412281780
+    second: ice_gorem_noshape_22
+  - first:
+      213: -3794435564877744039
+    second: ice_gorem_noshape_23
+  - first:
+      213: -5561065071027065259
+    second: ice_gorem_noshape_24
+  - first:
+      213: 5152131777359471636
+    second: ice_gorem_noshape_25
+  - first:
+      213: -351306278345326307
+    second: ice_gorem_noshape_26
+  - first:
+      213: -1882413902065583567
+    second: ice_gorem_noshape_27
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ice_gorem_noshape_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 606
+        width: 176
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a1d96144aafd7a409ca5eaa6e7c0472
+      internalID: 3032080557831676643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_1
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 606
+        width: 175
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d5af7e5fd5bcea468d88995209b6b13
+      internalID: -9202270163108594421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_2
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 605
+        width: 175
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5ac07923dc7df648b8c2617f7efcbc4
+      internalID: 7744607078178348012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_3
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 605
+        width: 175
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5276408d1a9dccf4c9a9f477d8e7ed45
+      internalID: -4060636241843475856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_4
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 605
+        width: 175
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50e9141d89a630c4f9a3c101cf3a4d7d
+      internalID: 9182637481579310739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_5
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 606
+        width: 176
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56250fa0738b0334b89752ae95675405
+      internalID: -7364599538012874662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_6
+      rect:
+        serializedVersion: 2
+        x: 1266
+        y: 354
+        width: 672
+        height: 546
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78e8f6958ddc7404eb2c5cd33399bbb1
+      internalID: 3133150224353620981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 434
+        width: 186
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9229530595c91264492dc987adefb61f
+      internalID: -2923461558451715576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_8
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 434
+        width: 184
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bd44a1d1bc700c4bb94bb469ab6a396
+      internalID: -3021863330557561462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_9
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 434
+        width: 213
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b9ae9fccc1598a42ab9c919a162876b
+      internalID: -5870858360282834438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_10
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 434
+        width: 217
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f8995f696eecf84fa0b78db7c1bcba3
+      internalID: -6002183038146569166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_11
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 434
+        width: 216
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60923dc1f12c05b4892529545dc6ce12
+      internalID: -5051238624870158718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_12
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 205
+        width: 184
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc9c8662ded5d6f419ae8119a4dc98da
+      internalID: 8198476841904997958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_13
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 208
+        width: 151
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efae7b95a13d7d7489fb77904c55fe76
+      internalID: 883375264008810018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_14
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 208
+        width: 175
+        height: 186
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebc47b2458f722a47aee9db5a24dcfc2
+      internalID: -8593576856441118162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_15
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 208
+        width: 134
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bc0074bb9ea5964b95a647c47285fa8
+      internalID: -8708120051642418099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_16
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 207
+        width: 176
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78a386fb5d208d145a7224e65812209a
+      internalID: 6399268220367821493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_17
+      rect:
+        serializedVersion: 2
+        x: 1157
+        y: 207
+        width: 184
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef1c4edfc61a3e54d9c59618873980e7
+      internalID: 3807340557896397335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_18
+      rect:
+        serializedVersion: 2
+        x: 1373
+        y: 199
+        width: 186
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9c8a6b6b53533347815872821197b91
+      internalID: 1944453684419935325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_19
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 2
+        width: 171
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6874d8794c42c304e815b53b575565ca
+      internalID: 7449741351388473765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_20
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 5
+        width: 160
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4a4792e4dc0b5f4983cebaa3551605e
+      internalID: 1791256893974297011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_21
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 3
+        width: 156
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad6a6df2775275148b0aa4e4e98b8b26
+      internalID: -6666774540659258593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_22
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 5
+        width: 151
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9582ca844bd3d32498749b42a5b095b6
+      internalID: -5109074062412281780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_23
+      rect:
+        serializedVersion: 2
+        x: 764
+        y: 0
+        width: 162
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6f1fc4248430e148a9c9b8f7273d7f0
+      internalID: -3794435564877744039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_24
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 4
+        width: 169
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1853348ed4800dc46aa9993967278adc
+      internalID: -5561065071027065259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_25
+      rect:
+        serializedVersion: 2
+        x: 1160
+        y: 4
+        width: 171
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1cca7aa50b98d041a161c45edff2f88
+      internalID: 5152131777359471636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_26
+      rect:
+        serializedVersion: 2
+        x: 1354
+        y: 3
+        width: 173
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fd795eb8be0b6f4b8d13dcf8efddb86
+      internalID: -351306278345326307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ice_gorem_noshape_27
+      rect:
+        serializedVersion: 2
+        x: 1549
+        y: 4
+        width: 172
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4807b0c82eef0a441949cfc571c22c9c
+      internalID: -1882413902065583567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 20a46fe4d265fa0488bb528980dfa2c1
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,939 @@
+fileFormatVersion: 2
+guid: 93edd0fc602bc9c478cace1679debbde
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2387032738701859779
+    second: warm_monster_noshape_0
+  - first:
+      213: -1726887394991016700
+    second: warm_monster_noshape_1
+  - first:
+      213: 5220521497121318702
+    second: warm_monster_noshape_2
+  - first:
+      213: 4572495856343269638
+    second: warm_monster_noshape_3
+  - first:
+      213: -7046960235635063431
+    second: warm_monster_noshape_4
+  - first:
+      213: 5097656036694995720
+    second: warm_monster_noshape_5
+  - first:
+      213: 5591161194111156923
+    second: warm_monster_noshape_6
+  - first:
+      213: 5719892145937421637
+    second: warm_monster_noshape_7
+  - first:
+      213: -534186623408719458
+    second: warm_monster_noshape_8
+  - first:
+      213: 654952472537666455
+    second: warm_monster_noshape_9
+  - first:
+      213: 4166813824175015174
+    second: warm_monster_noshape_10
+  - first:
+      213: -7872960011473697235
+    second: warm_monster_noshape_11
+  - first:
+      213: -6732318587278894855
+    second: warm_monster_noshape_12
+  - first:
+      213: 4481341130849587693
+    second: warm_monster_noshape_13
+  - first:
+      213: -4244793848985657985
+    second: warm_monster_noshape_14
+  - first:
+      213: 3250787872632602526
+    second: warm_monster_noshape_15
+  - first:
+      213: -5128731365085424108
+    second: warm_monster_noshape_16
+  - first:
+      213: 8021851532845555363
+    second: warm_monster_noshape_17
+  - first:
+      213: 4885327924803438309
+    second: warm_monster_noshape_18
+  - first:
+      213: -2153856616794974844
+    second: warm_monster_noshape_19
+  - first:
+      213: -8865585220983780392
+    second: warm_monster_noshape_20
+  - first:
+      213: 7766388525602506464
+    second: warm_monster_noshape_21
+  - first:
+      213: 7571173412796671029
+    second: warm_monster_noshape_22
+  - first:
+      213: -1919931121337973949
+    second: warm_monster_noshape_23
+  - first:
+      213: 5124540509879073547
+    second: warm_monster_noshape_24
+  - first:
+      213: -3724833248258811772
+    second: warm_monster_noshape_25
+  - first:
+      213: -2225442320350296519
+    second: warm_monster_noshape_26
+  - first:
+      213: 4118672687171304590
+    second: warm_monster_noshape_27
+  - first:
+      213: -4873349615346148722
+    second: warm_monster_noshape_28
+  - first:
+      213: 2064137161527966527
+    second: warm_monster_noshape_29
+  - first:
+      213: -4299000989551376467
+    second: warm_monster_noshape_30
+  - first:
+      213: -7675753216714561858
+    second: warm_monster_noshape_31
+  - first:
+      213: -4860927321878578924
+    second: warm_monster_noshape_32
+  - first:
+      213: -8549382179352832619
+    second: warm_monster_noshape_23.5
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: warm_monster_noshape_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 388
+        width: 101
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 001aca0062ae6c041b020a8efbaafbb3
+      internalID: -2387032738701859779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_1
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 388
+        width: 101
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd0bb1712e0a65c4d96602b8876b46d5
+      internalID: -1726887394991016700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_2
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 388
+        width: 101
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb32c28bcdc71d84f84e67e51535fc01
+      internalID: 5220521497121318702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_3
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 388
+        width: 101
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 254d4b67cd375514d8575cf0d8fdc897
+      internalID: 4572495856343269638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_4
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 388
+        width: 101
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd223037f25e70b49aaaa12a423bb33a
+      internalID: -7046960235635063431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_5
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 388
+        width: 101
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fd60189444742043a07bc096adb5135
+      internalID: 5097656036694995720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_6
+      rect:
+        serializedVersion: 2
+        x: 946
+        y: 109
+        width: 642
+        height: 516
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f80fd4f341ed4cd4a87ba5e7af0a637d
+      internalID: 5591161194111156923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 252
+        width: 94
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9616c47b8e515e42b94bd68f93a00cd
+      internalID: 5719892145937421637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_8
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 252
+        width: 76
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bba7cabfad49b0949a7052e6c4d1ab36
+      internalID: -534186623408719458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_9
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 252
+        width: 104
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 097c33e9b53a24541a55eccbc1dc5a99
+      internalID: 654952472537666455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_10
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 252
+        width: 110
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36dc60f1248f5c246b8b755ec3a14a1e
+      internalID: 4166813824175015174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_11
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 252
+        width: 118
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8230532f1e8d6f84bb4bc4d0cb2b91fd
+      internalID: -7872960011473697235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 101
+        width: 94
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff4af49f095ad284db01376ec0adae0c
+      internalID: -6732318587278894855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_13
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 101
+        width: 76
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 479d66d0c5176994491e07e284617817
+      internalID: 4481341130849587693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_14
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 101
+        width: 60
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d279cc010beb4aa43943d57e02b8a9c0
+      internalID: -4244793848985657985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_15
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 101
+        width: 100
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de74d59ae76820d4c89dba8b79e676f4
+      internalID: 3250787872632602526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_16
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 102
+        width: 119
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f11b2e8730178746ba1cb3ae93c9ac2
+      internalID: -5128731365085424108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_17
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 101
+        width: 126
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1a4b7d046460ff498db71273d0cfe45
+      internalID: 8021851532845555363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_18
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 0
+        width: 54
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 965a23f4d06fe684ebc4a7b1f04d8473
+      internalID: 4885327924803438309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_19
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 0
+        width: 57
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd9ca63ff33a01348b9158ab08d73d21
+      internalID: -2153856616794974844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_20
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 0
+        width: 66
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92d1ba0d884339a42910b4ad244ee2ac
+      internalID: -8865585220983780392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_21
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 0
+        width: 84
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b875fcddf881e2145be43feadadeda05
+      internalID: 7766388525602506464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_22
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 0
+        width: 96
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62eae16241036774f935f6bda2f65a2b
+      internalID: 7571173412796671029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_23
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 1
+        width: 115
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40ca90851c69c43499e027f766710844
+      internalID: -1919931121337973949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_24
+      rect:
+        serializedVersion: 2
+        x: 749
+        y: 0
+        width: 133
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da6dde077d61054489ac8488bc53969e
+      internalID: 5124540509879073547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_25
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 0
+        width: 139
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71b0236ec765ac84e9933d9c7d81facc
+      internalID: -3724833248258811772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_26
+      rect:
+        serializedVersion: 2
+        x: 1108
+        y: 0
+        width: 127
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1c28d6fa2ac9434dab5e3eb48d43cec
+      internalID: -2225442320350296519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_27
+      rect:
+        serializedVersion: 2
+        x: 1279
+        y: 0
+        width: 121
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59927062851dda84781b4583476a87f0
+      internalID: 4118672687171304590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_28
+      rect:
+        serializedVersion: 2
+        x: 1455
+        y: 0
+        width: 97
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9645c101914f54b4cb0f01fea8c34194
+      internalID: -4873349615346148722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_29
+      rect:
+        serializedVersion: 2
+        x: 1593
+        y: 0
+        width: 64
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb1820e8edc932848b16defd15f274eb
+      internalID: 2064137161527966527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_30
+      rect:
+        serializedVersion: 2
+        x: 1692
+        y: 0
+        width: 55
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73d805ef58584c44ab4716462b20878d
+      internalID: -4299000989551376467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_31
+      rect:
+        serializedVersion: 2
+        x: 1773
+        y: 0
+        width: 54
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abf56fd194054c84097ec9c842f0e5cc
+      internalID: -7675753216714561858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_32
+      rect:
+        serializedVersion: 2
+        x: 1852
+        y: 0
+        width: 54
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cd4c7ac03ea8ba4ebb7cfa802cdd0df
+      internalID: -4860927321878578924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warm_monster_noshape_23.5
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 0
+        width: 126
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d510a8a191189fb4f9a52205716733c9
+      internalID: -8549382179352832619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 14d1aa61ddbffa44485b9f59eacf5fc3
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

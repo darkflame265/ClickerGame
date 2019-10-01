@@ -1,0 +1,795 @@
+fileFormatVersion: 2
+guid: 50d975222e6a81c4a82600d37759662e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -517906980610070208
+    second: exex_0
+  - first:
+      213: -6977597124725336110
+    second: exex_1
+  - first:
+      213: -740393043128210811
+    second: exex_2
+  - first:
+      213: 357622994069266380
+    second: exex_3
+  - first:
+      213: 8229327710671670139
+    second: exex_4
+  - first:
+      213: 2141035273808960263
+    second: exex_5
+  - first:
+      213: 7429550536096163339
+    second: exex_6
+  - first:
+      213: 951678723532308431
+    second: exex_7
+  - first:
+      213: -6811455743015209136
+    second: exex_8
+  - first:
+      213: 5650374439926973368
+    second: exex_9
+  - first:
+      213: -4664501714525410802
+    second: exex_10
+  - first:
+      213: -5850860652445218842
+    second: exex_11
+  - first:
+      213: -1046412722980339940
+    second: exex_12
+  - first:
+      213: -1643965316772781072
+    second: exex_13
+  - first:
+      213: 8135825831735679505
+    second: exex_14
+  - first:
+      213: 9139765846074222012
+    second: exex_15
+  - first:
+      213: 2994501379660903007
+    second: exex_16
+  - first:
+      213: -8796954722680285181
+    second: exex_17
+  - first:
+      213: 3506020003990688758
+    second: exex_18
+  - first:
+      213: -7823744230298774183
+    second: exex_19
+  - first:
+      213: 358242063097075769
+    second: exex_20
+  - first:
+      213: 2701100400754777173
+    second: exex_21
+  - first:
+      213: -9174585763711235570
+    second: exex_22
+  - first:
+      213: 7934428425026368517
+    second: exex_23
+  - first:
+      213: 5623601583681601524
+    second: exex_24
+  - first:
+      213: -1598221516727108085
+    second: exex_25
+  - first:
+      213: -3682939402422699171
+    second: exex_26
+  - first:
+      213: 5167482911253058948
+    second: exex_27
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: exex_0
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 314
+        width: 528
+        height: 347
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0e0bc010835c854ca66ea7d14430231
+      internalID: -517906980610070208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_1
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 260
+        width: 78
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ad306a572fffec4395c1d48c674b2c2
+      internalID: -6977597124725336110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_2
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 260
+        width: 78
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d50e55f28e48019409cc21f0b360d0cf
+      internalID: -740393043128210811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_3
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 260
+        width: 78
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6113b8e77ca9ac54291cd65bc9a86719
+      internalID: 357622994069266380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_4
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 260
+        width: 78
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f18a9709ba35c3642b3e959c640cc66e
+      internalID: 8229327710671670139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_5
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 260
+        width: 78
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60e455ca52d1145428f5dbcd4f795bbe
+      internalID: 2141035273808960263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_6
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 260
+        width: 78
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c910fd343061134f9f301b0cc3a8dd0
+      internalID: 7429550536096163339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_7
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 183
+        width: 101
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8277ea7ed3161df4ca4222f00b593e74
+      internalID: 951678723532308431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_8
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 182
+        width: 106
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e28cf5b940f23149ad3fcf038777502
+      internalID: -6811455743015209136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_9
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 181
+        width: 99
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db42114d28d873c47873b216accfcd27
+      internalID: 5650374439926973368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_10
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 181
+        width: 89
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 053c52f640cc59740b659a1638547858
+      internalID: -4664501714525410802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_11
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 182
+        width: 94
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f67bcc2c8c38d84ca9ed153ea7d4883
+      internalID: -5850860652445218842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_12
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 183
+        width: 94
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9e1aef61e4e6574ebbf970e1cdc346f
+      internalID: -1046412722980339940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_13
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 182
+        width: 93
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0db466c746643514ca89f2441cb1e556
+      internalID: -1643965316772781072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_14
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 183
+        width: 103
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a0fa7dbb5fb49448a3811f5bbd909c2
+      internalID: 8135825831735679505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 90
+        width: 97
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f542b03d704d7b84189a50340a06e2ed
+      internalID: 9139765846074222012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_16
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 90
+        width: 90
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6113b6aec77c6b043b42eceee313c0ba
+      internalID: 2994501379660903007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_17
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 91
+        width: 104
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07a5dc5c4f1c52e409f1a4eab6c4f77c
+      internalID: -8796954722680285181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_18
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 90
+        width: 101
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d035cde9889fa994489022a05f456a55
+      internalID: 3506020003990688758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_19
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 90
+        width: 110
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18fe8f5be0ae1a44e98b9836105abb3c
+      internalID: -7823744230298774183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_20
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 90
+        width: 115
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c052f844979b69740b51de02ad608857
+      internalID: 358242063097075769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_21
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 2
+        width: 83
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30ee08ad46e08d446b7e2671a36dffb0
+      internalID: 2701100400754777173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_22
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 3
+        width: 72
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c3bb6f527984934db56e1259d896790
+      internalID: -9174585763711235570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_23
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 4
+        width: 67
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14d3aba062b04b047b9d263e547dcf97
+      internalID: 7934428425026368517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_24
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 1
+        width: 67
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1e2e552a1757264ab835c9347eef3e4
+      internalID: 5623601583681601524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_25
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 0
+        width: 65
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bc75f5745714d04489c747ceb91730c
+      internalID: -1598221516727108085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_26
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 1
+        width: 73
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0af6b8a30872364b81fd384370d23a9
+      internalID: -3682939402422699171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exex_27
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 2
+        width: 74
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7b4db7029910e64d83e54b035ee93d7
+      internalID: 5167482911253058948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: c2dba1baeae0e5744974cb1be97bfc52
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
