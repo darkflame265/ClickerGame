@@ -38,6 +38,12 @@ public class BattleManager : MonoBehaviour
     public GameObject knight;
     public GameObject archer;
 
+    public GameObject knight_01;
+    public GameObject knight_02;
+
+    public GameObject archer_01;
+    public GameObject archer_02;
+
     //Enemy
     public GameObject Bat_level1;
     public GameObject Bat_level2;
@@ -212,6 +218,29 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    void check_hero_level()
+    {
+        //knight
+        if(DataController.Instance.knight_level == 1)
+        {
+            knight = knight_01;
+        }
+        else if(DataController.Instance.knight_level == 2)
+        {
+            knight = knight_02;
+        }
+
+        //archer
+        if(DataController.Instance.archer_level == 1)
+        {
+            archer = archer_01;
+        }
+        else if(DataController.Instance.archer_level == 2)
+        {
+            archer = archer_02;
+        }
+    }
+
     public void Set_Hero_Base()
     {
          
@@ -228,6 +257,7 @@ public class BattleManager : MonoBehaviour
         string monster_1_name = DataController.Instance.monster_1_ID;
         string monster_2_name = DataController.Instance.monster_2_ID;
         //히어로
+        check_hero_level();
         switch(hero_0_name){
             case 0: 
                 hero_0 = dummy;

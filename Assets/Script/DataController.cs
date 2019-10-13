@@ -719,14 +719,14 @@ public class DataController : MonoBehaviour
         }
     }
 
-    public long char_damage
-    {
-        get
-        {
-            long tmpdamage = attack * damage_besu;
-            return (tmpdamage);
-        }
-    }
+    // public long char_damage
+    // {
+    //     get
+    //     {
+    //         long tmpdamage = attack * damage_besu;
+    //         return (tmpdamage);
+    //     }
+    // }
 
     public long damage_besu
     {
@@ -1111,13 +1111,31 @@ public class DataController : MonoBehaviour
         }
     }
 
+    public long knight_level
+    {
+        get
+        {
+            if(!PlayerPrefs.HasKey("knight_level")) // 골드가 없을떄
+            {
+                return 1;
+            }
+            string tmpknight_level = PlayerPrefs.GetString("knight_level");
+            return long.Parse(tmpknight_level);
+
+        }
+        set
+        {
+            PlayerPrefs.SetString("knight_level", value.ToString());
+        }
+    } 
+
     public long archer_level
     {
         get
         {
             if(!PlayerPrefs.HasKey("archer_level")) // 골드가 없을떄
             {
-                return 0;
+                return 1;
             }
             string tmparcher_level = PlayerPrefs.GetString("archer_level");
             return long.Parse(tmparcher_level);

@@ -39,7 +39,11 @@ public class CharacterStateController : MonoBehaviour
 
     //UI
     public Text Exp_Percent_text;
-    public GameObject SelectFrame;
+    public GameObject SelectFrame;  //skill
+    public GameObject charSelectFrame;  //char
+
+    public GameObject knightBtn;
+    public GameObject archerBtn;
 
     //skill 목록
     public Text skill_explain;
@@ -57,9 +61,69 @@ public class CharacterStateController : MonoBehaviour
 
     public string []skill_id = new string[skill_size];
 
+    public GameObject select_character_prefabs;  //empty
+
+    public GameObject knight01;
+    public GameObject knight02;
+
+    public GameObject archer01;
+    public GameObject archer02;
+
     void Start()
     {
+        select_knight();
         StartCoroutine("SomeCoroutine");
+    }
+
+
+
+    public void setT_char_selectFrame(Transform transform)
+    {
+        var tra = transform;
+        charSelectFrame.SetActive(true);
+        charSelectFrame.transform.position = tra.position;
+        charSelectFrame.transform.parent = tra.transform;
+    }
+
+    public void check_current_char()
+    {
+        if(charSelectFrame.transform.parent == knightBtn)
+        {
+            select_knight();
+        }
+        if(charSelectFrame.transform.parent == archerBtn)
+        {
+            select_archer();
+        }
+        else
+        {
+            select_knight();
+        }
+    }
+
+    public void select_knight()
+    {
+        if(DataController.Instance.knight_level == 1)
+        {
+            select_character_prefabs = knight01;
+        }
+        else if(DataController.Instance.knight_level == 2)
+        {
+            select_character_prefabs = knight02;
+        }
+    }
+
+    public void select_archer()
+    {
+        if(DataController.Instance.archer_level == 1)
+        {
+            select_character_prefabs = archer01;
+        }
+        else if(DataController.Instance.archer_level == 2)
+        {
+            select_character_prefabs = archer02;
+        }
+        
     }
 
     

@@ -20,12 +20,22 @@ public class UiManager : MonoBehaviour
    public Text upgradeDisplayer;
    public Text GoldLevelDisplayer;
 
+
+
     //캐릭터 스테이터스
+   public CharacterStateController characterStateController;
    public Text health;
    public Text attack;
    public Text mana;
    public Text special;
+
+   public Text finalHealth;
+   public Text finalAttack;
+   public Text finalMana;
+   public Text finalSpecial;
+
    public Text freestats;
+   public Text charLevel;
 
    //상세 스테이터스
    public Text HP_state;
@@ -53,7 +63,25 @@ public class UiManager : MonoBehaviour
 
 
 
-   public DataController datacontroller;
+   private static UiManager instance;
+
+    public static UiManager Instance
+    {
+        get{
+            if(instance == null)
+            {
+                instance = FindObjectOfType<UiManager>();
+
+                if(instance == null)
+                {
+                    GameObject container = new GameObject("UiManager");
+
+                    instance = container.AddComponent<UiManager>();
+                }
+            }
+            return instance;
+        }
+    }
 
    public static void SetBool(string name, bool booleanValue)
     {
@@ -116,6 +144,7 @@ public class UiManager : MonoBehaviour
     }
 
 
+
    void Update()
    {
     
@@ -130,15 +159,16 @@ public class UiManager : MonoBehaviour
        current_max_exp_displayer.text = "EXP: " + DataController.Instance.current_exp + "/" + DataController.Instance.max_exp;
        
        //캐릭터
-       health.text = "체력 : " + "(" + DataController.Instance.level + ")" + " + " + DataController.Instance.health; 
-       attack.text = "공격력 : " + "(" + DataController.Instance.level + ")" + " + " + DataController.Instance.attack;
-       mana.text = "마나 : " + "(" + DataController.Instance.level + ")" + " + " + DataController.Instance.mana;
-       special.text = "스킬효과 : " + "(" + DataController.Instance.level + ")" + " + " + DataController.Instance.special;
+       health.text = "체력 : " + "(" + characterStateController.select_character_prefabs.GetComponent<Character>().health_ratio + ")" + " * " + DataController.Instance.health + " = " + characterStateController.select_character_prefabs.GetComponent<Character>().health_ratio * DataController.Instance.health; 
+       attack.text = "공격력 : " + "(" + characterStateController.select_character_prefabs.GetComponent<Character>().attack_ratio + ")" + " * " + DataController.Instance.attack + " = " + characterStateController.select_character_prefabs.GetComponent<Character>().attack_ratio * DataController.Instance.attack; 
+       mana.text = "마나 : " + "(" + characterStateController.select_character_prefabs.GetComponent<Character>().mana_ratio + ")" + " * " + DataController.Instance.mana + " = " +characterStateController.select_character_prefabs.GetComponent<Character>().mana_ratio * DataController.Instance.mana; 
+       special.text = "스킬효과 : " + "(" + characterStateController.select_character_prefabs.GetComponent<Character>().special_ratio + ")" + " * " + DataController.Instance.special + " = " + characterStateController.select_character_prefabs.GetComponent<Character>().special_ratio * DataController.Instance.special; ;
        freestats.text = "프리스탯 : " + DataController.Instance.freestate;
+       charLevel.text = "lv." + characterStateController.select_character_prefabs.GetComponent<Character>().level;
 
        //상세스테이터스
        HP_state.text = "HP : " + DataController.Instance.health+ " X " + "10" + " = " + DataController.Instance.HP;
-       Damage_state.text = "데미지 : " + DataController.Instance.attack + " X " + DataController.Instance.damage_besu + " = " + DataController.Instance.char_damage;
+       //Damage_state.text = "데미지 : " + DataController.Instance.attack + " X " + DataController.Instance.damage_besu + " = " + DataController.Instance.char_damage;
        mana_state.text = "속도 : " + DataController.Instance.mana;
        special_state.text = "특성 : " + DataController.Instance.special;
 

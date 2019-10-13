@@ -48,6 +48,7 @@ public class goToPanel : MonoBehaviour
 
     public GameObject black_smith_panel;
     public GameObject general_store;
+    public GameObject magic_tower;
     //public GameObject mage_top; //미완
     public GameObject bar_panel;
     
@@ -132,6 +133,7 @@ public class goToPanel : MonoBehaviour
     {
          // 오브젝트의 차일드까지 변경함 굿굿^^
          SoundManager.Instance.click_button_sound();
+          
         if(charPanel.activeSelf == false)
         {
             hide_without_panel();
@@ -143,6 +145,7 @@ public class goToPanel : MonoBehaviour
             show_all_button();
             charPanel.SetActive(false);
         }
+        CharacterStateController.Instance.check_current_char();
         //charPanel.SetActive(!charPanel.active);
     }
 
@@ -439,6 +442,17 @@ public class goToPanel : MonoBehaviour
     public void hide_general_store_panel()
     {
         general_store.SetActive(false);
+    }
+
+    public void show_magic_tower_panel()
+    {
+        magic_tower.SetActive(true);
+        MagicTowerController.Instance.select_knight();
+    }
+
+    public void hide_magic_tower_panel()
+    {
+        magic_tower.SetActive(false);
     }
     
     public void show_bar_panel()
