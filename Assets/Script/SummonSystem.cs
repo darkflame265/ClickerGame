@@ -83,7 +83,7 @@ public class SummonSystem : MonoBehaviour
         
         if(result == 1)
         {
-            SoundManager.Instance.click_get_item_sound();
+            SoundManager.Instance.click_get_item_sound();  //음식
             int i =Random.Range(0,4); // 0~3
 
             inventory.AddItem(i);
@@ -98,7 +98,7 @@ public class SummonSystem : MonoBehaviour
             clone.GetComponentInChildren<Image>().sprite = image;
         }
 
-        if(result == 2)
+        if(result == 2)     //경험치 포션
         {
             SoundManager.Instance.click_get_item_sound();
             int i = 4;
@@ -115,7 +115,7 @@ public class SummonSystem : MonoBehaviour
             clone.GetComponentInChildren<Image>().sprite = image;
         }
 
-        if(result == 3)
+        if(result == 3)    //영웅조각
         {
             int count = 0;
             while(true)
@@ -197,7 +197,7 @@ public class SummonSystem : MonoBehaviour
             result = 3; // 가호
         }
         
-        if(result == 1)
+        if(result == 1)     //경험치 포션 ( 코드 아직 안 바꿈)
         {
             SoundManager.Instance.click_get_item_sound();
             int i =Random.Range(0,4); // 0~3

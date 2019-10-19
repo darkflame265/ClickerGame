@@ -82,7 +82,7 @@ public class DataController : MonoBehaviour
         InvokeRepeating("UpdateLastPlayDate", 0f, 5f);
     }
 
-    public long current_heart
+    public long current_heart   
     {
         get
         {
@@ -130,6 +130,23 @@ public class DataController : MonoBehaviour
         set
         {
             PlayerPrefs.SetString("limit_time", value.ToString()); 
+        }
+    }
+
+    public long clickCount
+    {
+        get
+        {
+            if(!PlayerPrefs.HasKey("clickCount")) // 골드가 없을떄
+            {
+                return 0;
+            }
+            string tmpclickCount = PlayerPrefs.GetString("clickCount");
+            return long.Parse(tmpclickCount);
+        }
+        set
+        {
+            PlayerPrefs.SetString("clickCount", value.ToString()); 
         }
     }
 

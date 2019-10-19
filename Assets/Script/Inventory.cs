@@ -261,10 +261,15 @@ public class Inventory : MonoBehaviour
             case 3: //버섯
                 DataController.Instance.special += 5;
                 break;
-            case 4: //버섯
+            case 4: //경험치 포션
                 DataController.Instance.current_exp += DataController.Instance.max_exp;
                 break;
-
+            case 5: //보석
+                DataController.Instance.current_exp += DataController.Instance.max_exp;
+                break;
+            case 6: //빨간 포션
+                DataController.Instance.current_exp += DataController.Instance.max_exp;
+                break;
         }
     }
 }

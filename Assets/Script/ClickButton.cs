@@ -10,12 +10,7 @@ public class ClickButton : MonoBehaviour
     
     public Inventory inventory;
 
-
     int result = 0;
-
-    
-
-
 
      public void OnClick()
      {
@@ -23,7 +18,7 @@ public class ClickButton : MonoBehaviour
          DataController.Instance.gold += goldPerClick;
          //SoundManager.Instance.click_sound();
         choose_power();
-        
+        DataController.Instance.clickCount++;
      }
 
      public void float_text()

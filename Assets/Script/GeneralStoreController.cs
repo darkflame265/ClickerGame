@@ -66,7 +66,7 @@ public class GeneralStoreController : MonoBehaviour
                     //int count = (int)LimitTime / DataController.Instance.timeAfterLastPlay;
                     //current_heart += count;
                    // count = 0;
-                    LimitTime += 1200;  //LifeTime - 지나간 시간 라이프타임 = 1200;
+                    LimitTime += 1200;  //LifeTime - 지나간 시간 라이프타임 = 1200;  
                     current_heart += 1;
                 }
             if(current_heart < max_heart) //충전 1200초 = 20분

@@ -68,6 +68,7 @@ public class goToPanel : MonoBehaviour
     public GameObject store_panel;
     public GameObject quest_panel;
     public GameObject gamble_panel;
+    public GameObject challenge_panel;
     public GameObject inventory_panel;
 
     //상세 스테이터스
@@ -330,6 +331,16 @@ public class goToPanel : MonoBehaviour
     public void hide_gamble_panel()
     {
         gamble_panel.SetActive(false);
+    }
+
+    public void show_challenge_panel()
+    {
+        challenge_panel.SetActive(true);
+    }
+
+    public void hide_challenge_panel()
+    {
+        challenge_panel.SetActive(false);
     }
 
     public void show_inventory_panel()

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
@@ -45,6 +46,7 @@ public class BattleManager : MonoBehaviour
     public GameObject archer_02;
 
     //Enemy
+    public GameObject Scarecrow;     //dpstest   
     public GameObject Bat_level1;
     public GameObject Bat_level2;
     public GameObject Spider;
@@ -58,12 +60,20 @@ public class BattleManager : MonoBehaviour
     public GameObject ice_gorem;
     public GameObject warm_monster;
 
-    //stage
+    //timer
+    long current_heart = 2;
+    long max_heart = 3;
+
+    public float LimitTime;
+    public Text text_Timer;
+    public Text text_damage;
+    public long total_damage;
  
     // Use this for initialization
     void Start () {
         IsPause = false;
         StartCoroutine("Auto");
+        StartCoroutine("Timer");
     }
 
     public static void SetBool(string name, bool booleanValue)
@@ -132,6 +142,47 @@ public class BattleManager : MonoBehaviour
         
     }
 
+    IEnumerator Timer()
+    {   
+        LimitTime = 30;
+        while(true)
+        {
+            if(DataController.Instance.current_stage == 0)
+            {
+
+                if(LimitTime > 0) //충전 1200초 = 20분
+                {
+                    
+                    LimitTime -= 1;
+                    //text_Timer.text = "충전시간 : " + Mathf.Round(LimitTime)/60 + "분 " + Mathf.Round(LimitTime)/60%60 + "초";
+                    text_Timer.text = Math.Truncate(Mathf.Round(LimitTime)%60%60) + "초";
+                    
+                }
+                else //시간이 다 지나면
+                {
+                    if(total_damage >= 1000)              //
+                    {
+                        DataController.Instance.get_stage_gold = 30000;
+                        DataController.Instance.get_stage_exp = 300;
+                    }
+                    if(total_damage >= 10000)
+                    {
+                        DataController.Instance.get_stage_gold = 2000000;
+                        DataController.Instance.get_stage_exp = 2000;
+                    }
+                    if(total_damage >= 10000000)
+                    {
+                        DataController.Instance.get_stage_gold = 9999999;
+                        DataController.Instance.get_stage_exp = 9999;
+                    }
+                    goToPanel.Instance.show_result_panel();       //결과창에 데미지 몇 돌파했는지 표시하기: 자신이 왜 이 만큼의 보상을 얻었는가 설명
+                }
+
+            }
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
 
 
     IEnumerator Auto()
@@ -139,8 +190,16 @@ public class BattleManager : MonoBehaviour
         while(true)
         {
             yield return new WaitForSeconds(0.1f);
+            
             GameObject[] player = GameObject.FindGameObjectsWithTag("Player");
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            
+            if(DataController.Instance.current_stage == 0)
+            {
+                total_damage = enemies[0].GetComponent<EnemyController>().Max_HP - enemies[0].GetComponent<EnemyController>().current_HP;
+                text_damage.text = "" + total_damage;
+            }
+
             
             if(enemies.Length == 0)  //승리할시
             {
@@ -304,6 +363,9 @@ public class BattleManager : MonoBehaviour
         //몬스터
         switch(monster_0_name)
         {
+            case "Scarecrow":
+                monster_0 = Scarecrow;
+                break;
             case "Bat":
                 monster_0 = Bat_level1;
                 break;
@@ -344,6 +406,9 @@ public class BattleManager : MonoBehaviour
         }
         switch(monster_1_name)
         {
+            case "Scarecrow":
+                monster_1 = Scarecrow;
+                break;
             case "Bat":
                 monster_1 = Bat_level1;
                 break;
@@ -385,6 +450,9 @@ public class BattleManager : MonoBehaviour
         }
         switch(monster_2_name)
         {
+            case "Scarecrow":
+                monster_2 = Scarecrow;
+                break;
             case "Bat":
                 monster_2 = Bat_level1;
                 break;
@@ -463,7 +531,7 @@ public class BattleManager : MonoBehaviour
         DataController.Instance.get_stage_gold = 0;
         DataController.Instance.get_stage_exp = 0;
         DataController.Instance.get_stage_crystal = 0;
-        random_get_crystal = Random.Range(0, 6); //0~5
+        random_get_crystal = UnityEngine.Random.Range(0, 6); //0~5
         DataController.Instance.get_stage_crystal = random_get_crystal;
     }
 
@@ -475,6 +543,27 @@ public class BattleManager : MonoBehaviour
     }
     //스테이지마다 나오는 몬스터의 능력치 수치를 조정하기 보단
     //능력치 수치가 다른 몬스터를 여러개 만들어서 prefab에서 가져오기
+
+    public void test_dps_stage()         //허수아비 필요함
+    {
+        fightPanelTimer.Instance.current_heart--;
+            monster_init();  //get_stage_gold, exp도 초기화
+            DataController.Instance.monster_0_ID = "Scarecrow";
+            DataController.Instance.monster_0_damage = 0;      //3
+            DataController.Instance.monster_0_hp = 10000000;       //100
+            Set_Hero_Base();
+            //보상        //dps_test는 입힌 데미지량에 따라 보상이 겨렁됨
+            DataController.Instance.get_stage_gold = 500;
+            DataController.Instance.get_stage_exp = 3;
+            DataController.Instance.get_stage_crystal = 3;
+        
+        
+        DataController.Instance.current_stage = 0;
+        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
+        Stage_explain.text = "몹 평균 체력\n100\n몹 평균 공격력\n3";
+    }
+
+
     public void stage1_1()
     {
         if(DataController.Instance.current_stage == 1)
