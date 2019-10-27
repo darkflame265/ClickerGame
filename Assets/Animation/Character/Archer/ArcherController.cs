@@ -43,9 +43,6 @@ public class ArcherController : MonoBehaviour
                 animator.SetBool("isIdle", false);
             }
         }
-        //GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        //Debug.Log("eneimies:  " + enemies.Length);
-        
         
     }
 
@@ -78,8 +75,6 @@ public class ArcherController : MonoBehaviour
                 this.transform.position = new Vector3(-8.5f, cp.y, 0);
             }
 
-            //Vector3 wp = Camera.main.ScreenToWorldPoint(Input.mousel);
-            //Debug.Log(Input.mousePosition);
             if(this.transform.GetComponent<Character>().current_HP <=0)
             {
                 movebool = false;
@@ -108,7 +103,6 @@ public class ArcherController : MonoBehaviour
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach(GameObject target in enemies) {
             float distance = Vector3.Distance(target.transform.position, this.transform.position);
-            //Debug.Log("Distance:  " + distance);
             A.Add(target);
             for(int i = 0; i < A.Count-1; i++)
             {
@@ -155,12 +149,15 @@ public class ArcherController : MonoBehaviour
 
     public void Attack()//애니메이션 이벤트 뒤에 배치
     {
-
-        close_enemy.transform.GetComponent<EnemyController>().decreaseHP(this.GetComponent<Character>().striking_power);
-        var clone = Instantiate(prefab_floating_text, close_enemy.transform.position, Quaternion.Euler(Vector3.zero));
-        clone.transform.position += new Vector3(0, 2);
-        clone.GetComponent<FloatingText>().text.text = "-" + this.GetComponent<Character>().striking_power;
-        clone.transform.SetParent(this.transform);
+        if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 4f)
+        {
+            close_enemy.transform.GetComponent<EnemyController>().decreaseHP(this.GetComponent<Character>().striking_power);
+            var clone = Instantiate(prefab_floating_text, close_enemy.transform.position, Quaternion.Euler(Vector3.zero));
+            clone.transform.position += new Vector3(0, 2);
+            clone.GetComponent<FloatingText>().text.text = "-" + this.GetComponent<Character>().striking_power;
+            clone.transform.SetParent(this.transform);
+        }
+        
     }
 
     IEnumerator WaitFotIt()

@@ -28,8 +28,6 @@ public class GeneralStoreController : MonoBehaviour
     public GameObject content0;
     public GameObject content1;
 
-    public GameObject exp_potion;
-
     public static bool GetBool(string name)
     {
         if(!PlayerPrefs.HasKey(name))
@@ -46,15 +44,6 @@ public class GeneralStoreController : MonoBehaviour
         max_heart = DataController.Instance.max_heart;
         StartCoroutine("check_button_able_to_buy");
         StartCoroutine("Timer");
-        check_stage();
-    }
-
-    void check_stage()
-    {
-        if(GetBool("ch1" + 20) == true)  //스테이지 20이 클리어됬으면 경험치포션 활성화
-        {
-            exp_potion.SetActive(true);
-        }
     }
 
     IEnumerator Timer()
@@ -99,6 +88,7 @@ public class GeneralStoreController : MonoBehaviour
     public void reset()
     {
         current_heart = 3;
+        max_heart = 3;
     }
 
     IEnumerator check_button_able_to_buy()
@@ -162,6 +152,7 @@ public class GeneralStoreController : MonoBehaviour
         Product_Pay_Panel.SetActive(true);
         ProductExplain.text = "사과\n효과: 체력 5 상승\n가격: 5000Gold";
         Product_Cost = 5000;
+        Product_Crystal = 0;
         Product_ID = 0;
     }
 
@@ -170,6 +161,7 @@ public class GeneralStoreController : MonoBehaviour
         Product_Pay_Panel.SetActive(true);
         ProductExplain.text = "고기\n효과: 공격력 5 상승\n가격: 5000Gold";
         Product_Cost = 5000;
+        Product_Crystal = 0;
         Product_ID = 1;
     }
 
@@ -178,6 +170,7 @@ public class GeneralStoreController : MonoBehaviour
         Product_Pay_Panel.SetActive(true);
         ProductExplain.text = "호박\n효과: 민첩 5 상승\n가격: 5000Gold";
         Product_Cost = 5000;
+        Product_Crystal = 0;
         Product_ID = 2;
     }
 
@@ -186,6 +179,7 @@ public class GeneralStoreController : MonoBehaviour
         Product_Pay_Panel.SetActive(true);
         ProductExplain.text = "버섯\n효과: 특성 5 상승\n가격: 5000Gold";
         Product_Cost = 5000;
+        Product_Crystal = 0;
         Product_ID = 3;
     }
 

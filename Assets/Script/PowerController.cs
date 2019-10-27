@@ -224,280 +224,280 @@ public class PowerController : MonoBehaviour
     public void choose_power()
     {
         select_rank();
-
-        if(result == 1)
+        if(DataController.Instance.power_ticket >= 1)
         {
-            int count = 0;
-            while(true)
+            if(result == 1)
             {
-                //C_power_list asdsd = (C_power_list)1;
-                power_list ThisResult_C = (power_list)Random.Range(12,16); // 0~3
-                bool get = false;
-                
-                for(int i = 12; i < 16; i++)
+                int count = 0;
+                while(true)
                 {
+                    //C_power_list asdsd = (C_power_list)1;
+                    power_list ThisResult_C = (power_list)Random.Range(12,16); // 0~3
+                    bool get = false;
                     
-                    if(ThisResult_C == (power_list)i)
+                    for(int i = 12; i < 16; i++)
                     {
-                        power_list b = (power_list)i;
-                        if(check_list.Load(b.ToString()) == 0) //새로운걸 얻을떄
-                            {
-                                if(i == 12) //eBonusState_50,
+                        
+                        if(ThisResult_C == (power_list)i)
+                        {
+                            power_list b = (power_list)i;
+                            if(check_list.Load(b.ToString()) == 0) //새로운걸 얻을떄
                                 {
-                                    DataController.Instance.MultiplyFreeStateBesu(3);
-                                    check_list.Save(b.ToString(), 1);
-                                    Debug.Log("보너스스탯 3배수 적용 완료!!");
-                                    get = true;
-                                    break;
+                                    if(i == 12) //eBonusState_50,
+                                    {
+                                        DataController.Instance.MultiplyFreeStateBesu(3);
+                                        check_list.Save(b.ToString(), 1);
+                                        Debug.Log("보너스스탯 3배수 적용 완료!!");
+                                        get = true;
+                                        break;
+                                    }
+                                    if(i == 13) //eClickGold_100,  
+                                    {
+                                        DataController.Instance.MultiplyGoldPerClick(6);
+                                        check_list.Save(b.ToString(), 1);
+                                        Debug.Log("클릭골드 6배 적용!!");
+                                        get = true;
+                                        break;
+                                    }
+                                    if(i == 14) //eClickExp_300,
+                                    {
+                                        DataController.Instance.MultiplyExpBesu(16);
+                                        check_list.Save(b.ToString(), 1);
+                                        Debug.Log("클릭경험치 16배 적용!!");
+                                        get =true;
+                                        break;
+                                    }
+                                    if(i == 15) //eDamage_1000,
+                                    {
+                                        DataController.Instance.MultiplyDamageBesu(40);
+                                        check_list.Save(b.ToString(), 1);
+                                        Debug.Log("데미지 40배 적용!!");
+                                        get = true;
+                                        break;
+                                    } 
                                 }
-                                if(i == 13) //eClickGold_100,  
-                                {
-                                    DataController.Instance.MultiplyGoldPerClick(6);
-                                    check_list.Save(b.ToString(), 1);
-                                    Debug.Log("클릭골드 6배 적용!!");
-                                    get = true;
-                                    break;
-                                }
-                                if(i == 14) //eClickExp_300,
-                                {
-                                    DataController.Instance.MultiplyExpBesu(16);
-                                    check_list.Save(b.ToString(), 1);
-                                    Debug.Log("클릭경험치 16배 적용!!");
-                                    get =true;
-                                    break;
-                                }
-                                if(i == 15) //eDamage_1000,
-                                {
-                                    DataController.Instance.MultiplyDamageBesu(40);
-                                    check_list.Save(b.ToString(), 1);
-                                    Debug.Log("데미지 40배 적용!!");
-                                    get = true;
-                                    break;
-                                } 
-                            }
-                    } 
-                }
-                count++;
-                if(get == true)
-                {
-                    break;
-                }
-                if(count == 50)
-                {
-                    result = result + 1; //4개 전부다 보유중이므로 다른거 
-                    Debug.Log("네 개 다 보유중");
-                    break;
+                        } 
+                    }
+                    count++;
+                    if(get == true)
+                    {
+                        break;
+                    }
+                    if(count == 50)
+                    {
+                        result = result + 1; //4개 전부다 보유중이므로 다른거 
+                        Debug.Log("네 개 다 보유중");
+                        break;
+                    }
                 }
             }
-        }
 
-        if(result == 2)
-        {
-            int count = 0;
-            while(true)
+            if(result == 2)
             {
-                //C_power_list asdsd = (C_power_list)1;
-                power_list ThisResult_C = (power_list)Random.Range(8,12); // 0~3
-                bool get = false;
-                
-                for(int i = 8; i < 12; i++)
+                int count = 0;
+                while(true)
                 {
+                    //C_power_list asdsd = (C_power_list)1;
+                    power_list ThisResult_C = (power_list)Random.Range(8,12); // 0~3
+                    bool get = false;
                     
-                    if(ThisResult_C == (power_list)i)
+                    for(int i = 8; i < 12; i++)
                     {
-                        power_list b = (power_list)i;
-                        if(check_list.Load(b.ToString()) == 0) //새로운걸 얻을떄
-                            {
-                                if(i == 8) //eBonusState_50,
+                        
+                        if(ThisResult_C == (power_list)i)
+                        {
+                            power_list b = (power_list)i;
+                            if(check_list.Load(b.ToString()) == 0) //새로운걸 얻을떄
                                 {
-                                    DataController.Instance.MultiplyFreeStateBesu(8);
-                                    check_list.Save(b.ToString(), 1);
-                                    Debug.Log("보너스스탯 8배수 적용 완료!!");
-                                    get = true;
-                                    break;
+                                    if(i == 8) //eBonusState_50,
+                                    {
+                                        DataController.Instance.MultiplyFreeStateBesu(8);
+                                        check_list.Save(b.ToString(), 1);
+                                        Debug.Log("보너스스탯 8배수 적용 완료!!");
+                                        get = true;
+                                        break;
+                                    }
+                                    if(i == 9) //eClickGold_100,  
+                                    {
+                                        DataController.Instance.MultiplyGoldPerClick(16);
+                                        check_list.Save(b.ToString(), 1);
+                                        Debug.Log("클릭골드 16배 적용!!");
+                                        get = true;
+                                        break;
+                                    }
+                                    if(i == 10) //eClickExp_300,
+                                    {
+                                        DataController.Instance.MultiplyExpBesu(40);
+                                        check_list.Save(b.ToString(), 1);
+                                        Debug.Log("클릭경험치 40배 적용!!");
+                                        get =true;
+                                        break;
+                                    }
+                                    if(i == 11) //eDamage_1000,
+                                    {
+                                        DataController.Instance.MultiplyDamageBesu(100);
+                                        check_list.Save(b.ToString(), 1);
+                                        Debug.Log("데미지 100배 적용!!");
+                                        get = true;
+                                        break;
+                                    } 
                                 }
-                                if(i == 9) //eClickGold_100,  
-                                {
-                                    DataController.Instance.MultiplyGoldPerClick(16);
-                                    check_list.Save(b.ToString(), 1);
-                                    Debug.Log("클릭골드 16배 적용!!");
-                                    get = true;
-                                    break;
-                                }
-                                if(i == 10) //eClickExp_300,
-                                {
-                                    DataController.Instance.MultiplyExpBesu(40);
-                                    check_list.Save(b.ToString(), 1);
-                                    Debug.Log("클릭경험치 40배 적용!!");
-                                    get =true;
-                                    break;
-                                }
-                                if(i == 11) //eDamage_1000,
-                                {
-                                    DataController.Instance.MultiplyDamageBesu(100);
-                                    check_list.Save(b.ToString(), 1);
-                                    Debug.Log("데미지 100배 적용!!");
-                                    get = true;
-                                    break;
-                                } 
-                            }
-                    } 
-                }
-                count++;
-                if(get == true)
-                {
-                    break;
-                }
-                if(count == 50)
-                {
-                    result = result + 1; //4개 전부다 보유중이므로 다른거 
-                    Debug.Log("네 개 다 보유중");
-                    break;
-                }
+                        } 
+                    }
+                    count++;
+                    if(get == true)
+                    {
+                        break;
+                    }
+                    if(count == 50)
+                    {
+                        result = result + 1; //4개 전부다 보유중이므로 다른거 
+                        Debug.Log("네 개 다 보유중");
+                        break;
+                    }
 
+                }
             }
-        }
 
-        if(result == 3)
-        {
-            int count = 0;
-            while(true)
+            if(result == 3)
             {
-                //C_power_list asdsd = (C_power_list)1;
-                power_list ThisResult_C = (power_list)Random.Range(4,8); // 0~3
-                bool get = false;
-                
-                for(int i = 4; i < 8; i++)
+                int count = 0;
+                while(true)
                 {
+                    //C_power_list asdsd = (C_power_list)1;
+                    power_list ThisResult_C = (power_list)Random.Range(4,8); // 0~3
+                    bool get = false;
                     
-                    if(ThisResult_C == (power_list)i)
+                    for(int i = 4; i < 8; i++)
                     {
-                        power_list b = (power_list)i;
-                        if(check_list.Load(b.ToString()) == 0) //새로운걸 얻을떄
-                            {
-                                if(i == 4) //eBonusState_50,
+                        
+                        if(ThisResult_C == (power_list)i)
+                        {
+                            power_list b = (power_list)i;
+                            if(check_list.Load(b.ToString()) == 0) //새로운걸 얻을떄
                                 {
-                                    DataController.Instance.MultiplyFreeStateBesu(20);
-                                    check_list.Save(b.ToString(), 1);
-                                    Debug.Log("보너스스탯 20배수 적용 완료!!");
-                                    get = true;
-                                    break;
+                                    if(i == 4) //eBonusState_50,
+                                    {
+                                        DataController.Instance.MultiplyFreeStateBesu(20);
+                                        check_list.Save(b.ToString(), 1);
+                                        Debug.Log("보너스스탯 20배수 적용 완료!!");
+                                        get = true;
+                                        break;
+                                    }
+                                    if(i == 5) //eClickGold_100,  
+                                    {
+                                        DataController.Instance.MultiplyGoldPerClick(40);
+                                        check_list.Save(b.ToString(), 1);
+                                        Debug.Log("클릭골드 40배 적용!!");
+                                        get = true;
+                                        break;
+                                    }
+                                    if(i == 6) //eClickExp_300,
+                                    {
+                                        DataController.Instance.MultiplyExpBesu(100);
+                                        check_list.Save(b.ToString(), 1);
+                                        Debug.Log("클릭경험치 100배 적용!!");
+                                        get =true;
+                                        break;
+                                    }
+                                    if(i == 7) //eDamage_1000,
+                                    {
+                                        DataController.Instance.MultiplyDamageBesu(300);
+                                        check_list.Save(b.ToString(), 1);
+                                        Debug.Log("데미지 300배 적용!!");
+                                        get = true;
+                                        break;
+                                    } 
                                 }
-                                if(i == 5) //eClickGold_100,  
-                                {
-                                    DataController.Instance.MultiplyGoldPerClick(40);
-                                    check_list.Save(b.ToString(), 1);
-                                    Debug.Log("클릭골드 40배 적용!!");
-                                    get = true;
-                                    break;
-                                }
-                                if(i == 6) //eClickExp_300,
-                                {
-                                    DataController.Instance.MultiplyExpBesu(100);
-                                    check_list.Save(b.ToString(), 1);
-                                    Debug.Log("클릭경험치 100배 적용!!");
-                                    get =true;
-                                    break;
-                                }
-                                if(i == 7) //eDamage_1000,
-                                {
-                                    DataController.Instance.MultiplyDamageBesu(300);
-                                    check_list.Save(b.ToString(), 1);
-                                    Debug.Log("데미지 300배 적용!!");
-                                    get = true;
-                                    break;
-                                } 
-                            }
-                    } 
-                }
-                count++;
-                if(get == true)
-                {
-                    break;
-                }
-                if(count == 50)
-                {
-                    result = result + 1; //4개 전부다 보유중이므로 다른거 
-                    Debug.Log("네 개 다 보유중");
-                    break;
-                }
+                        } 
+                    }
+                    count++;
+                    if(get == true)
+                    {
+                        break;
+                    }
+                    if(count == 50)
+                    {
+                        result = result + 1; //4개 전부다 보유중이므로 다른거 
+                        Debug.Log("네 개 다 보유중");
+                        break;
+                    }
 
+                }
             }
+            
+            if(result == 4)
+            {
+                int count = 0;
+                while(true)
+                {
+                    //C_power_list asdsd = (C_power_list)1;
+                    power_list ThisResult_C = (power_list)Random.Range(0,4); // 0~3
+                    bool get = false;
+                    
+                    for(int i = 0; i < 4; i++)
+                    {
+                        
+                        if(ThisResult_C == (power_list)i)
+                        {
+                            power_list b = (power_list)i;
+                            if(check_list.Load(b.ToString()) == 0) //새로운걸 얻을떄
+                                {
+                                    if(i == 0) //eBonusState_50,
+                                    {
+                                        DataController.Instance.MultiplyFreeStateBesu(50);
+                                        check_list.Save(b.ToString(), 1);
+                                        Debug.Log("보너스스탯 50배수 적용 완료!!");
+                                        get = true;
+                                        break;
+                                    }
+                                    if(i == 1) //eClickGold_100,  
+                                    {
+                                        DataController.Instance.MultiplyGoldPerClick(100);
+                                        check_list.Save(b.ToString(), 1);
+                                        Debug.Log("클릭골드 100배 적용!!");
+                                        get = true;
+                                        break;
+                                    }
+                                    if(i == 2) //eClickExp_300,
+                                    {
+                                        DataController.Instance.MultiplyExpBesu(300);
+                                        check_list.Save(b.ToString(), 1);
+                                        Debug.Log("클릭경험치 300배 적용!!");
+                                        get =true;
+                                        break;
+                                    }
+                                    if(i == 3) //eDamage_1000,
+                                    {
+                                        DataController.Instance.MultiplyDamageBesu(1000);
+                                        check_list.Save(b.ToString(), 1);
+                                        Debug.Log("데미지 1000배 적용!!");
+                                        get = true;
+                                        break;
+                                    } 
+                                }
+                        } 
+                    }
+                    count++;
+                    if(get == true)
+                    {
+                        break;
+                    }
+                    if(count == 50)
+                    {
+                        result = result + 1; //4개 전부다 보유중이므로 다른거 
+                        Debug.Log("네 개 다 보유중");
+                        break;
+                    }
+
+                }
+            }
+            DataController.Instance.power_ticket--;
         }
         
-        if(result == 4)
-        {
-            int count = 0;
-            while(true)
-            {
-                //C_power_list asdsd = (C_power_list)1;
-                power_list ThisResult_C = (power_list)Random.Range(0,4); // 0~3
-                bool get = false;
-                
-                for(int i = 0; i < 4; i++)
-                {
-                    
-                    if(ThisResult_C == (power_list)i)
-                    {
-                        power_list b = (power_list)i;
-                        if(check_list.Load(b.ToString()) == 0) //새로운걸 얻을떄
-                            {
-                                if(i == 0) //eBonusState_50,
-                                {
-                                    DataController.Instance.MultiplyFreeStateBesu(50);
-                                    check_list.Save(b.ToString(), 1);
-                                    Debug.Log("보너스스탯 50배수 적용 완료!!");
-                                    get = true;
-                                    break;
-                                }
-                                if(i == 1) //eClickGold_100,  
-                                {
-                                    DataController.Instance.MultiplyGoldPerClick(100);
-                                    check_list.Save(b.ToString(), 1);
-                                    Debug.Log("클릭골드 100배 적용!!");
-                                    get = true;
-                                    break;
-                                }
-                                if(i == 2) //eClickExp_300,
-                                {
-                                    DataController.Instance.MultiplyExpBesu(300);
-                                    check_list.Save(b.ToString(), 1);
-                                    Debug.Log("클릭경험치 300배 적용!!");
-                                    get =true;
-                                    break;
-                                }
-                                if(i == 3) //eDamage_1000,
-                                {
-                                    DataController.Instance.MultiplyDamageBesu(1000);
-                                    check_list.Save(b.ToString(), 1);
-                                    Debug.Log("데미지 1000배 적용!!");
-                                    get = true;
-                                    break;
-                                } 
-                            }
-                    } 
-                }
-                count++;
-                if(get == true)
-                {
-                    break;
-                }
-                if(count == 50)
-                {
-                    result = result + 1; //4개 전부다 보유중이므로 다른거 
-                    Debug.Log("네 개 다 보유중");
-                    break;
-                }
-
-            }
-        }
 
         Debug.Log("result =  " + result);
-        DataController.Instance.goldPerClick = DataController.Instance.level * DataController.Instance.besu;
-
-        
-
-        
+        //DataController.Instance.goldPerClick = DataController.Instance.level * DataController.Instance.besu;
     }
 
     public void only_debug()

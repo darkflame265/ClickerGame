@@ -47,7 +47,8 @@ public class UiManager : MonoBehaviour
    public Text bonus_state;
    public Text guitar_etc;
 
-   public Text artifact_button_text;
+   public Text artifact_ticket;
+   public Text power_ticket;
 
    
 
@@ -55,6 +56,7 @@ public class UiManager : MonoBehaviour
    public Text stage_gold_result;
    public Text stage_exp_result;
    public Text stage_crystal_result;
+   public Text tower_of_diamond;
 
    public bool checkFloatingNotice;
    public GameObject floatingNoticePanel;
@@ -152,7 +154,8 @@ public class UiManager : MonoBehaviour
        goldPerClickDisplayer.text = "터치골드획득 : " + ToStringKR(DataController.Instance.goldPerClick);
        goldPerSecDisplayer.text = "초당퀘스트골드 : " + ToStringKR(DataController.Instance.GetGoldPerSec());
        diamondDisplayer.text = "" + DataController.Instance.diamond;
-       artifact_button_text.text = "유물뽑기  " + DataController.Instance.artifactCost; 
+       artifact_ticket.text = "유물뽑기권: " + DataController.Instance.artifact_ticket;
+       power_ticket.text = "권능해방권: " + DataController.Instance.power_ticket;
        upgradeDisplayer.text = "강화비용 " + ToStringKR(DataController.Instance.currentCost);
        GoldLevelDisplayer.text = "레벨  " + DataController.Instance.level + "   X" + ToStringKR(DataController.Instance.besu); 
        char_level_displayer.text = "" + DataController.Instance.char_level;
@@ -182,6 +185,7 @@ public class UiManager : MonoBehaviour
        stage_gold_result.text = "" + DataController.Instance.get_stage_gold;
        stage_exp_result.text = "" + DataController.Instance.get_stage_exp;
        stage_crystal_result.text = "" + DataController.Instance.get_stage_crystal;
+       tower_of_diamond.text = "시련의 탑+" + DataController.Instance.tower_repeatCount + "\n" + DataController.Instance.tower_stage + "층";
 
        if(GetBool("floatnotice") == true)//check가 on이면 bool
        {

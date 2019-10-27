@@ -23,12 +23,13 @@ public class GoremStoneController : MonoBehaviour
                 if(distance < 1f)
                 {
                     target.transform.GetComponent<Character>().decreaseHP(StoneDamage);
-                }
-
-                if(distance < 0.5f)
-                {
                     Destroy(Stone);
                 }
+
+                // if(distance < 0.5f)
+                // {
+                        //Destroy(Stone);
+                // }
             }
     }
 }

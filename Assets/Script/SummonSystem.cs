@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,9 +17,105 @@ public class SummonSystem : MonoBehaviour
 
     public Inventory inventory;
 
+    public long require_diamond;
+
+    long current_heart = 9;
+    long max_heart = 10;
+
+    public float LimitTime;
+    public Text text_Timer;
+    public Text text_Heart;
+
+    public long common_summon_current_heart   
+    {
+        get
+        {
+            if(!PlayerPrefs.HasKey("common_summon_current_heart")) // 골드가 없을떄
+            {
+                return 10;
+            }
+            string tmpcommon_summon_current_heart = PlayerPrefs.GetString("common_summon_current_heart");
+            return long.Parse(tmpcommon_summon_current_heart);
+        }
+        set
+        {
+            PlayerPrefs.SetString("common_summon_current_heart", value.ToString()); 
+        }
+    }
+
+    public long common_summon_max_heart
+    {
+        get
+        {
+            if(!PlayerPrefs.HasKey("common_summon_max_heart")) // 골드가 없을떄
+            {
+                return 10;
+            }
+            string tmpcommon_summon_max_heart = PlayerPrefs.GetString("common_summon_max_heart");
+            return long.Parse(tmpcommon_summon_max_heart);
+        }
+        set
+        {
+            PlayerPrefs.SetString("common_summon_max_heart", value.ToString()); 
+        }
+    }
+
+    public float common_summon_limit_time
+    {
+        get
+        {
+            if(!PlayerPrefs.HasKey("common_summon_limit_time")) // 골드가 없을떄
+            {
+                return 3600;
+            }
+            string tmpcommon_summon_limit_time = PlayerPrefs.GetString("common_summon_limit_time");
+            return long.Parse(tmpcommon_summon_limit_time);
+        }
+        set
+        {
+            PlayerPrefs.SetString("common_summon_limit_time", value.ToString()); 
+        }
+    }
+
     void Start()
     {
+        LimitTime = common_summon_limit_time - DataController.Instance.timeAfterLastPlay;
+        current_heart = common_summon_current_heart;
+        max_heart = common_summon_max_heart;
         StartCoroutine("check_char_exist");
+        StartCoroutine("Timer");
+    }
+
+    IEnumerator Timer()
+    {
+        while(true)
+        {
+            while(LimitTime < 0)
+                {
+
+                    LimitTime += 1200;  //LifeTime - 지나간 시간 라이프타임 = 1200;  
+                    current_heart += 1;
+                }
+            if(current_heart < max_heart) //충전 1200초 = 20분
+            {
+                
+                LimitTime -= 1;
+                text_Timer.text = "" + Math.Truncate(Mathf.Round(LimitTime)/60)  + " : " + Math.Truncate(Mathf.Round(LimitTime)%60%60);
+                
+            }
+            else //하트가 충전되면
+            {
+                text_Timer.text = "Full";
+                current_heart = max_heart;
+                LimitTime = 3600;
+            }
+            text_Heart.text = "" + current_heart + "/" + max_heart;
+        
+            common_summon_limit_time = LimitTime;
+            common_summon_current_heart = current_heart;
+            common_summon_max_heart = max_heart;
+            yield return new WaitForSeconds(1f);
+        }
     }
 
     public IEnumerator check_char_exist()
@@ -52,24 +149,24 @@ public class SummonSystem : MonoBehaviour
 
     public void select_rank()
     {
-        int number = Random.Range(1, 1001); //1~1000 사이의 숫자
+        int number = UnityEngine.Random.Range(1, 1001); //1~1000 사이의 숫자
          // 0=에러 1=C 2=B 3=A 4=S 5=??
 
-        if(number > 0 && number <=600) //60%
+        if(number > 0 && number <=500) //50%
         {
-            result = 1; // 4가지 아이템
+            result = 1; // 꽝
         }
-        else if(number > 0 && number <=900) // 30%
+        else if(number > 0 && number <=770) // 27%
         {
-            result = 2; // 경험치 포션
+            result = 2; // 골드
         }
-        else if(number > 0 && number <=990) // 9%
+        else if(number > 0 && number <=970) // 20%
         {
-            result = 3; // 영웅 (다차면 포션으로 대체)
+            result = 3; // 음식
         }
         else if(number > 0 && number <=1000) // 1%
         {
-            result = 4; // 가호
+            result = 4; // 경험치포션
         }
         else
         {
@@ -79,226 +176,251 @@ public class SummonSystem : MonoBehaviour
 
     public void common_summon()
     {
-        select_rank();
+        if(current_heart >= 1)
+        {
+            select_rank();
         
-        if(result == 1)
-        {
-            SoundManager.Instance.click_get_item_sound();  //음식
-            int i =Random.Range(0,4); // 0~3
-
-            inventory.AddItem(i);
-            string item = inventory.database.FetchItemByID(i).Title;
-            Sprite image = inventory.database.FetchItemByID(i).Sprite;
-
-            var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
-            clone.GetComponent<FloatingText>().text.text = "  " + item;
-            clone.transform.SetParent(tranform_canvas);
-
-            clone.transform.GetChild(0).gameObject.SetActive(true);
-            clone.GetComponentInChildren<Image>().sprite = image;
-        }
-
-        if(result == 2)     //경험치 포션
-        {
-            SoundManager.Instance.click_get_item_sound();
-            int i = 4;
-
-            inventory.AddItem(i);
-            string item = inventory.database.FetchItemByID(i).Title;
-            Sprite image = inventory.database.FetchItemByID(i).Sprite;
-
-            var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
-            clone.GetComponent<FloatingText>().text.text = "            " + item;
-            clone.transform.SetParent(tranform_canvas);
-
-            clone.transform.GetChild(0).gameObject.SetActive(true);
-            clone.GetComponentInChildren<Image>().sprite = image;
-        }
-
-        if(result == 3)    //영웅조각
-        {
-            int count = 0;
-            while(true)
+            if(result == 1)
             {
-                //C_power_list asdsd = (C_power_list)1;
-                hero_list ThisResult_C = (hero_list)Random.Range(0,3); // 0~2
-                bool get = false;
-                
-                for(int i = 0; i < 3; i++)
-                {
-                    if(ThisResult_C == (hero_list)i)
-                    {
-                        hero_list b = (hero_list)i;
-                        if(PowerController.check_list.Load(b.ToString()) == 0) //새로운걸 얻을떄
-                            {
-                                if(i == 0) //knight
-                                {
-                                    PowerController.check_list.Save(b.ToString(), 1);
-                                    get = true;
-                                    Debug.Log("0");
-                                    var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
-                                    clone.GetComponent<FloatingText>().text.text = "knight 흭득";
-                                    clone.transform.SetParent(tranform_canvas);
-                                    break;
-                                }
-                                if(i == 1) //archer 
-                                {
+                SoundManager.Instance.click_get_item_sound();  //꽝
 
-                                    PowerController.check_list.Save(b.ToString(), 1);
-                                    get = true;
-                                    Debug.Log("1");
-                                    var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
-                                    clone.GetComponent<FloatingText>().text.text = "Archer 흭득";
-                                    clone.transform.SetParent(tranform_canvas);
-                                    break;
-                                }
-                                if(i == 2) //eClickExp_300,
-                                {
-                                    get =true;
-                                    var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
-                                    clone.GetComponent<FloatingText>().text.text = "꽝";
-                                    clone.transform.SetParent(tranform_canvas);
-                                    
-                                    break;
-                                }
-                            }
-                    } 
-                }
-                count++;
-                if(get == true)
-                {
-                    break;
-                }
-                if(count == 50)
-                {
-                    result = result + 1; //4개 전부다 보유중이므로 다른거 
-                    Debug.Log("네 개 다 보유중");
-                    break;
-                }
+                var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
+                clone.GetComponent<FloatingText>().text.text = " 꽝 ";
+                clone.transform.SetParent(tranform_canvas);
             }
+
+            if(result == 2)     //골드
+            {
+                SoundManager.Instance.click_get_item_sound();
+
+
+                var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
+                clone.GetComponent<FloatingText>().text.text = " 10000골드 흭득";
+                clone.transform.SetParent(tranform_canvas);
+
+                clone.transform.GetChild(0).gameObject.SetActive(true);
+                clone.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>("Image/UI/Freeui/ZOSMA/Main/Coin");
+            }
+
+            if(result == 3)    //음식
+            {
+                SoundManager.Instance.click_get_item_sound();
+                int i =UnityEngine.Random.Range(0,4); // 0~3
+
+                inventory.AddItem(i);
+                string item = inventory.database.FetchItemByID(i).Title;
+                Sprite image = inventory.database.FetchItemByID(i).Sprite;
+
+                var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
+                clone.GetComponent<FloatingText>().text.text = "  " + item;
+                clone.transform.SetParent(tranform_canvas);
+
+                clone.transform.GetChild(0).gameObject.SetActive(true);
+                clone.GetComponentInChildren<Image>().sprite = image;
+            }
+
+            if(result == 4) //경험치 포션
+            {
+                SoundManager.Instance.click_get_item_sound();
+                int i = 4;
+
+                inventory.AddItem(i);
+                string item = inventory.database.FetchItemByID(i).Title;
+                Sprite image = inventory.database.FetchItemByID(i).Sprite;
+
+                var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
+                clone.GetComponent<FloatingText>().text.text = "  " + item;
+                clone.transform.SetParent(tranform_canvas);
+
+                clone.transform.GetChild(0).gameObject.SetActive(true);
+                clone.GetComponentInChildren<Image>().sprite = image;
+            }
+            current_heart--;
         }
+        
     }
 
     public void rare_summon()
     {
-        int number = Random.Range(1, 1001); //1~1000 사이의 숫자
-         // 0=에러 1=C 2=B 3=A 4=S 5=??
+        require_diamond = 100;
+        if(DataController.Instance.diamond >= require_diamond)
+        {
+            int number = UnityEngine.Random.Range(1, 1001); //1~1000 사이의 숫자
+            // 0=에러 1=C 2=B 3=A 4=S 5=??
 
-        if(number > 0 && number <=600) //60%
-        {
-            result = 1; // 경험치 포션
-        }
-        else if(number > 0 && number <=900) // 30%
-        {
-            result = 2; // 영웅 (다차면 포션으로 대체)
-        }
-        else if(number > 0 && number <=990) // 10%
-        {
-            result = 3; // 가호
+            if(number > 0 && number <=500) //50%
+            {
+                result = 1; // 꽝
+            }
+            else if(number > 0 && number <=780) // 28%
+            {
+                result = 2; // 음식X10
+            }
+            else if(number > 0 && number <=980) // 20%
+            {
+                result = 3; // 경험치포션
+            }
+            else if(number > 0 && number <=1000) // 2%
+            {
+                result = 4; // 유물뽑기권
+            }
+            
+            if(result == 1)     //꽝
+            {
+                SoundManager.Instance.click_get_item_sound();  //꽝
+                var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
+                clone.GetComponent<FloatingText>().text.text = " 꽝 ";
+                clone.transform.SetParent(tranform_canvas);
+            }
+
+            if(result == 2)    //음식X10
+            {
+                SoundManager.Instance.click_get_item_sound();
+                int i = UnityEngine.Random.Range(0, 4); //0~3
+
+                for(int n =0; n < 10; n++)
+                {
+                    inventory.AddItem(i);
+                }
+                
+                string item = inventory.database.FetchItemByID(i).Title;
+                Sprite image = inventory.database.FetchItemByID(i).Sprite;
+
+                var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
+                clone.GetComponent<FloatingText>().text.text = "            " + item + " X10";
+                clone.transform.SetParent(tranform_canvas);
+
+                clone.transform.GetChild(0).gameObject.SetActive(true);
+                clone.GetComponentInChildren<Image>().sprite = image;
+            }
+
+            if(result == 3)
+            {
+                SoundManager.Instance.click_get_item_sound();
+                int i = 4;
+
+                inventory.AddItem(i);
+                string item = inventory.database.FetchItemByID(i).Title;
+                Sprite image = inventory.database.FetchItemByID(i).Sprite;
+
+                var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
+                clone.GetComponent<FloatingText>().text.text = "            " + item;
+                clone.transform.SetParent(tranform_canvas);
+
+                clone.transform.GetChild(0).gameObject.SetActive(true);
+                clone.GetComponentInChildren<Image>().sprite = image;
+            }
+
+            if(result == 4)
+            {
+                SoundManager.Instance.click_get_item_sound();
+                
+                DataController.Instance.artifact_ticket++;
+                var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
+                clone.GetComponent<FloatingText>().text.text = "            " + "유물 뽑기권+1";
+                clone.transform.SetParent(tranform_canvas);
+            }
+            DataController.Instance.diamond -= require_diamond;
         }
         
-        if(result == 1)     //경험치 포션 ( 코드 아직 안 바꿈)
+    }
+
+    public void epic_summon()
+    {
+        require_diamond = 2000;
+        if(DataController.Instance.diamond >= require_diamond)
         {
-            SoundManager.Instance.click_get_item_sound();
-            int i =Random.Range(0,4); // 0~3
+            int number = UnityEngine.Random.Range(1, 1001); //1~1000 사이의 숫자
+            // 0=에러 1=C 2=B 3=A 4=S 5=??
 
-            inventory.AddItem(i);
-            string item = inventory.database.FetchItemByID(i).Title;
-            Sprite image = inventory.database.FetchItemByID(i).Sprite;
-
-            var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
-            clone.GetComponent<FloatingText>().text.text = "  " + item;
-            clone.transform.SetParent(tranform_canvas);
-
-            clone.transform.GetChild(0).gameObject.SetActive(true);
-            clone.GetComponentInChildren<Image>().sprite = image;
-        }
-
-        if(result == 2)
-        {
-            SoundManager.Instance.click_get_item_sound();
-            int i = 4;
-
-            inventory.AddItem(i);
-            string item = inventory.database.FetchItemByID(i).Title;
-            Sprite image = inventory.database.FetchItemByID(i).Sprite;
-
-            var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
-            clone.GetComponent<FloatingText>().text.text = "            " + item;
-            clone.transform.SetParent(tranform_canvas);
-
-            clone.transform.GetChild(0).gameObject.SetActive(true);
-            clone.GetComponentInChildren<Image>().sprite = image;
-        }
-
-        if(result == 3)
-        {
-            int count = 0;
-            while(true)
+            if(number > 0 && number <=500) //50%
             {
-                //C_power_list asdsd = (C_power_list)1;
-                hero_list ThisResult_C = (hero_list)Random.Range(0,3); // 0~2
-                bool get = false;
-                
-                for(int i = 0; i < 3; i++)
-                {
-                    if(ThisResult_C == (hero_list)i)
-                    {
-                        hero_list b = (hero_list)i;
-                        if(PowerController.check_list.Load(b.ToString()) == 0) //새로운걸 얻을떄
-                            {
-                                if(i == 0) //knight
-                                {
-                                    PowerController.check_list.Save(b.ToString(), 1);
-                                    get = true;
-                                    Debug.Log("0");
-                                    var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
-                                    clone.GetComponent<FloatingText>().text.text = "knight 흭득";
-                                    clone.transform.SetParent(tranform_canvas);
-                                    break;
-                                }
-                                if(i == 1) //archer 
-                                {
-
-                                    PowerController.check_list.Save(b.ToString(), 1);
-                                    get = true;
-                                    Debug.Log("1");
-                                    var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
-                                    clone.GetComponent<FloatingText>().text.text = "Archer 흭득";
-                                    clone.transform.SetParent(tranform_canvas);
-                                    break;
-                                }
-                                if(i == 2) //eClickExp_300,
-                                {
-                                    get =true;
-                                    var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
-                                    clone.GetComponent<FloatingText>().text.text = "꽝";
-                                    clone.transform.SetParent(tranform_canvas);
-                                    
-                                    break;
-                                }
-                            }
-                    } 
-                }
-                count++;
-                if(get == true)
-                {
-                    break;
-                }
-                if(count == 50)
-                {
-                    result = result + 1; //4개 전부다 보유중이므로 다른거 
-                    Debug.Log("네 개 다 보유중");
-                    break;
-                }
+                result = 1; // 음식X30
             }
+            else if(number > 0 && number <=800) // 30%
+            {
+                result = 2; // 경험치포션X10
+            }
+            else if(number > 0 && number <=970) // 17%
+            {
+                result = 3; // 유물뽑기권
+            }
+            else if(number > 0 && number <=1000) // 3%
+            {
+                result = 4; // 권능해방
+            }
+            
+            if(result == 1)     //음식X30
+            {
+                SoundManager.Instance.click_get_item_sound();
+                int i = UnityEngine.Random.Range(0, 4); //0~3
+
+                for(int n =0; n < 30; n++)
+                {
+                    inventory.AddItem(i);
+                }
+                
+                string item = inventory.database.FetchItemByID(i).Title;
+                Sprite image = inventory.database.FetchItemByID(i).Sprite;
+
+                var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
+                clone.GetComponent<FloatingText>().text.text = "            " + item + " X30";
+                clone.transform.SetParent(tranform_canvas);
+
+                clone.transform.GetChild(0).gameObject.SetActive(true);
+                clone.GetComponentInChildren<Image>().sprite = image;
+            }
+
+            if(result == 2)    //경험치포션X10
+            {
+                SoundManager.Instance.click_get_item_sound();
+                int i = 4;
+
+                for(int n =0; n < 10; n++)
+                {
+                    inventory.AddItem(i);
+                }
+                
+                string item = inventory.database.FetchItemByID(i).Title;
+                Sprite image = inventory.database.FetchItemByID(i).Sprite;
+
+                var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
+                clone.GetComponent<FloatingText>().text.text = "            " + item + " X10";
+                clone.transform.SetParent(tranform_canvas);
+
+                clone.transform.GetChild(0).gameObject.SetActive(true);
+                clone.GetComponentInChildren<Image>().sprite = image;
+            }
+
+            if(result == 3)  //유물뽑기권
+            {
+                SoundManager.Instance.click_get_item_sound();
+                
+                DataController.Instance.artifact_ticket++;
+                var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
+                clone.GetComponent<FloatingText>().text.text = "            " + "유물 뽑기권+1";
+                clone.transform.SetParent(tranform_canvas);
+            }
+
+            if(result == 4)
+            {
+                SoundManager.Instance.click_get_item_sound();
+                
+                DataController.Instance.power_ticket++;
+                var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
+                clone.GetComponent<FloatingText>().text.text = "            " + "권능 해방+1";
+                clone.transform.SetParent(tranform_canvas);
+            }
+            DataController.Instance.diamond -= require_diamond;
         }
+
+        
     }
     
 
 
 
-    public void initiaze_hero()
+    public void initiaze_hero()     //캐릭터조각 기능 넣을때 만든건데 캐릭터조각이 없으뮤ㅠ
     {
         for (int i = 0; i < 2; i++) //초기화 기능 넣기
         {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 
 public class CharacterStateController : MonoBehaviour
@@ -38,6 +39,11 @@ public class CharacterStateController : MonoBehaviour
     public Image Exp_Bar;
 
     //UI
+    public GameObject skillContent0;
+    public GameObject skillContent1;
+    public GameObject skillContent2;
+
+
     public Text Exp_Percent_text;
     public GameObject SelectFrame;  //skill
     public GameObject charSelectFrame;  //char
@@ -48,8 +54,16 @@ public class CharacterStateController : MonoBehaviour
     //skill 목록
     public Text skill_explain;
 
+    List<string> skill_name = new List<string>();
+    List<string> skill_effect = new List<string>();
+
+    List<string> skill1_name = new List<string>();
+    List<string> skill1_effect = new List<string>();
+
+
     public static int skill_size = 15;
     public GameObject[]skill = new GameObject[skill_size];
+    public GameObject[]skill1 = new GameObject[2];
 
     public static void SetBool(string key, bool value)
     {
@@ -60,6 +74,7 @@ public class CharacterStateController : MonoBehaviour
     }
 
     public string []skill_id = new string[skill_size];
+    public string []skill1_id = new string[2];
 
     public GameObject select_character_prefabs;  //empty
 
@@ -72,7 +87,90 @@ public class CharacterStateController : MonoBehaviour
     void Start()
     {
         select_knight();
+        insert_skill_name_toList();
+        insert_skill_effect_toList();
+        insert_skill1_name_toList();
+        insert_skill1_effect_toList();
         StartCoroutine("SomeCoroutine");
+    }
+
+    void insert_skill_name_toList()
+    {
+        skill_name.Add("경건한 몸");
+        skill_name.Add("상급 방패술");
+        skill_name.Add("최상급 방패술");
+        skill_name.Add("수호자의 자질");
+
+        skill_name.Add("전사의 분노");
+        skill_name.Add("사무라이의 일섬");
+        skill_name.Add("일격필살");
+        skill_name.Add("검의 달인");
+
+        skill_name.Add("암살의 길");
+        skill_name.Add("숙련된 암살자");
+        skill_name.Add("돈이 필요해");
+        skill_name.Add("동화");
+
+        skill_name.Add("마나의 존재");
+        skill_name.Add("마나의 정수");
+        skill_name.Add("마법진 그리기");
+        skill_name.Add("영감");
+    }
+
+    void insert_skill_effect_toList()
+    {
+        skill_effect.Add("체력+20, 근력+10, 민첩+10, 마력+10, 클릭골드 2배");
+        skill_effect.Add("체력+50 근력+30, 클릭골드 3배");
+        skill_effect.Add("체력+100 클릭골드 4배");
+        skill_effect.Add("체력+200, 근력+100, 민첩+50, 마나+50 클릭골드 5배");
+
+        skill_effect.Add("체력+5, 근력+20, 민첩+10, 클릭골드 2배");
+        skill_effect.Add("근력+50, 민첩+20, 클릭골드 3배");
+        skill_effect.Add("근력+75 클릭골드 4배");
+        skill_effect.Add("체력+100 근력+250, 민첩+100, 마나+50, 클릭골드 5배");
+
+        skill_effect.Add("근력+5, 민첩+20, 마나+10, 클릭골드 2배");
+        skill_effect.Add("민첩+50, 마나+30, 클릭골드 3배");
+        skill_effect.Add("민첩+75 클릭골드 25배");
+        skill_effect.Add("체력+50, 근력+100, 민첩+200, 마나+100, 클릭골드 5배");
+
+        skill_effect.Add("체력+5, 민첩+10, 마나+20, 클릭골드 2배");
+        skill_effect.Add("민첩+30, 마나+50, 클릭골드 3배");
+        skill_effect.Add("마나+75, 클릭골드 4배");
+        skill_effect.Add("체력+100, 근력+50, 민첩+ 100, 마나+200, 클릭골드 5배");
+    }
+
+    void insert_skill1_name_toList()
+    {
+        skill1_name.Add("강타");
+        skill1_name.Add("속사");
+    }
+
+    void insert_skill1_effect_toList()
+    {
+        skill1_effect.Add("자신의 공격력의 200%의 일격을 2번 입힙니다.");
+        skill1_effect.Add("순식간에 적에게 2번의 기본공격을 합니다.");
+    }
+
+    void hide_all_skill_content() {
+        skillContent0.SetActive(false);
+        skillContent1.SetActive(false);
+        skillContent2.SetActive(false);
+    }
+
+    public void show_skill_content0() {
+        hide_all_skill_content();
+        skillContent0.SetActive(true);
+    }
+
+    public void show_skill_content1() {
+        hide_all_skill_content();
+        skillContent1.SetActive(true);
+    }
+
+    public void show_skill_content2() {
+        hide_all_skill_content();
+        skillContent2.SetActive(true);
     }
 
 
@@ -133,26 +231,42 @@ public class CharacterStateController : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.1f);
             
             check_exp();
             check_skill();
+            check_Skill_1();
 
-            for(int i = 0; i <= skill_size; i++) //checkskill_and_show
+            for(int i = 0; i <= skill.Length-1; i++) //skill.Length = 16
             {
                 if(PlayerPrefs.GetInt(skill_id[i]) == 1)
                 {
                     skill[i].SetActive(true);
-                    
                 }
                 else
                 {
                     skill[i].SetActive(false);
                 }
             }
+
+            for(int i = 0; i <= skill1.Length-1; i++) //checkskill_and_show
+            {
+                if(PlayerPrefs.GetInt(skill1_id[i]) == 1)
+                {
+                    skill1[i].SetActive(true);
+                    
+                }
+                else
+                {
+                    skill1[i].SetActive(false);
+                }
+            }
             
         }
     }
+
+    
+
 
     public void check_skill()
     {
@@ -394,8 +508,25 @@ public class CharacterStateController : MonoBehaviour
                 DataController.Instance.MultiplyGoldPerClick(5);
             }
         }
-        
+    }
 
+    public void check_Skill_1() 
+    {
+        if(goToPanel.Instance.charPanel.activeSelf == true)
+        {
+            if(skillContent1.activeSelf ==true) 
+            {
+                if(DataController.Instance.knight_level >= 2) //전사 스킬 조건:전사 보유
+                {
+                    PlayerPrefs.SetInt(skill1_id[0], 1);
+                }
+
+                if(DataController.Instance.archer_level >= 2) //전사 스킬 조건:전사 보유
+                {
+                    PlayerPrefs.SetInt(skill1_id[1], 1);
+                }
+            }
+        }
     }
 
     public void check_exp()
@@ -417,75 +548,29 @@ public class CharacterStateController : MonoBehaviour
         }
     }
 
-    
-
-    public void get_expp()
+    public void show_skill_inform()
     {
-        DataController.Instance.current_exp += 10;
+        for(int i = 0; i <= skill.Length-1; i++)
+        {
+            if(EventSystem.current.currentSelectedGameObject == skill[i])
+            {
+                skill_explain.text = skill_name[i] + "\n효과: " + skill_effect[i];
+            }
+        }
+        for(int i = 0; i <= skill1.Length-1; i++)
+        {
+            if(EventSystem.current.currentSelectedGameObject == skill1[i])
+            {
+                skill_explain.text = skill1_name[i] + "\n효과: " + skill1_effect[i];
+            }
+        }
+        
+        
     }
 
 
-    public void select_skill0()
-    {
-        skill_explain.text = "0번유물\n권능\n치명타 확률 100%증가";
-    }
 
-    public void select_skill1()
-    {
-        //hide_select_tool();
-       // SelectFrame1.SetActive(true);
-        skill_explain.text = "무한의 대검\n권능\n치명타 확률 100%증가";
-    }
-    public void select_skill2()
-    {
-        skill_explain.text = "홍옥의 오브\n권능\n클릭 당 흭득 골드량 2배";
-    }
-    public void select_skill3()
-    {
-        skill_explain.text = "보라색 오브\n권능\n초당 골드 흭득량 10배";
-    }
-    public void select_skill4()
-    {
-        skill_explain.text = "황금 방사능병\n권능\n초당 골드 흭득량 10배";
-    }
-    public void select_skill5()
-    {
-        skill_explain.text = "마기가 담긴 병\n권능\n초당 골드 흭득량 10배";
-    }
-
-    public void select_skill6()
-    {
-        skill_explain.text = "화염의 병\n권능\n초당 골드 흭득량 10배";
-    }
-
-    public void select_skill7()
-    {
-        skill_explain.text = "얼음의 병\n권능\n초당 골드 흭득량 10배";
-    }
-
-    public void select_skill8()
-    {
-        skill_explain.text = "죽음의 병\n권능\n초당 골드 흭득량 10배";
-    }
-
-    public void select_skill9()
-    {
-        skill_explain.text = "슈퍼 망원경\n권능\n초당 골드 흭득량 10배";
-    }
-
-    public void select_skill10()
-    {
-        skill_explain.text = "구원\n권능\n초당 골드 흭득량 10배";
-    }
-
-    public void select_skill11()
-    {
-        skill_explain.text = "마나 스톤\n권능\n초당 골드 흭득량 10배";
-    }
-    public void select_skill12()
-    {
-        skill_explain.text = "풍요의 북\n권능\n초당 골드 흭득량 10배";
-    }
+   
     public void MyPosition (Transform transform)
     {
         var tra = transform;
@@ -507,19 +592,12 @@ public class CharacterStateController : MonoBehaviour
 
     public void init_all_state()
     {
-        /*
-        PlayerPrefs.DeleteKey("Health");
-        PlayerPrefs.DeleteKey("attack");
-        PlayerPrefs.DeleteKey("mana");
-        PlayerPrefs.DeleteKey("special");
-        PlayerPrefs.DeleteKey("Freestate");
-        */
-        DataController.Instance.health = 1;
-        DataController.Instance.attack = 1;
-        DataController.Instance.mana = 1;
-        DataController.Instance.special = 1;
+        DataController.Instance.health = 5;
+        DataController.Instance.attack = 5;
+        DataController.Instance.mana = 5;
+        DataController.Instance.special = 5;
         DataController.Instance.freestate = 5;
-        for(int i = 0; i <= skill_size; i ++)
+        for(int i = 0; i <= skill.Length; i ++)
         {
             PlayerPrefs.SetInt(skill_id[i], 0);
         }

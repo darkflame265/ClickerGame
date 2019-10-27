@@ -9,6 +9,12 @@ public class EnemyController : MonoBehaviour
    public long Max_HP;
    public long current_HP;
    public long damage;
+   public float attackDistance;
+
+   public float health_ratio;
+    public float attack_ratio;
+   public float mana_ratio;
+   public float special_ratio;
 
    [Header("Unity Stuff")]
    public Image healthBar;

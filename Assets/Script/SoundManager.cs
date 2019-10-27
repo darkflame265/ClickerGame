@@ -10,6 +10,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip getItemSound0;
     public AudioClip getItemSound1;
     public AudioClip getItemSound2;
+    public AudioClip getChallengeReward;
 
     private static SoundManager instance;
 
@@ -76,6 +77,13 @@ public class SoundManager : MonoBehaviour
     public void upgrade_button_sound()
     {
         audioSource.clip = getItemSound2;
+        audioSource.volume = 0.369f;
+        audioSource.Play();
+    }
+
+    public void get_challenge_reward()
+    {
+        audioSource.clip = getChallengeReward;
         audioSource.volume = 0.369f;
         audioSource.Play();
     }

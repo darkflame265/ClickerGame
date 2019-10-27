@@ -102,14 +102,11 @@ public class ArtifactController : MonoBehaviour
     public void calculation_cost()
     {
 
-        if(DataController.Instance.diamond>= DataController.Instance.artifactCost)
+        if(DataController.Instance.artifact_ticket>= 1)
         {
-            DataController.Instance.diamond -= DataController.Instance.artifactCost;
-            DataController.Instance.artifactCost += 50;
-            DataController.Instance.goldPerClick = DataController.Instance.level * DataController.Instance.besu;
+            DataController.Instance.artifact_ticket--;
             goToPanel.Instance.show_get_artifact_panel();
         }
-        
     }
 
     public void init_artifact()
@@ -128,13 +125,13 @@ public class ArtifactController : MonoBehaviour
     {
         
         int itemNum = Random.Range(0, 13); //0~12 13제외
-        if(DataController.Instance.diamond < DataController.Instance.artifactCost)
+        if(DataController.Instance.artifact_ticket == 0)
         {
             goToPanel.Instance.show_noticePanel();
-            goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "다이아몬드가 부족합니다.";
+            goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "유물 뽑기권이 없습니다.";
         }
 
-        if(DataController.Instance.diamond>= DataController.Instance.artifactCost)
+        if(DataController.Instance.artifact_ticket>= 1)
         {
 
             if(check_artifact_full())  
@@ -436,17 +433,8 @@ public class ArtifactController : MonoBehaviour
         SelectFrame1.SetActive(true);
         SelectFrame1.transform.position = tra.position;
         SelectFrame1.transform.parent = tra.transform;
-        //클릭하고 아이템창을 움직이면 프레임이 따라서 안움직이는 버그가 나타남
-        //해결1 프레임의 위치를 실시간으로 아이템의 위치로 변경한다.
     }
-    /*
-    public void button(){
-        GameObject prefab = Resources.Load ("Artifact/purple_heart") as GameObject;
-        GameObject child = Instantiate(prefab) as GameObject;
-        child.transform.parent = content.transform;
-    }
-    */
-    
+
 
    
 }

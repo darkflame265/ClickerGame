@@ -25,6 +25,11 @@ public class goToPanel : MonoBehaviour
         }
     }
 
+    public static void SetBool(string name, bool booleanValue)
+    {
+        PlayerPrefs.SetInt(name, booleanValue ? 1 : 0);
+    }
+
     public Transform Canvas;
 
     //메인메뉴창
@@ -54,7 +59,8 @@ public class goToPanel : MonoBehaviour
     
     //??
     public GameObject char_state_panel;
-    public GameObject skill_panel;
+    //public GameObject skill_panel;
+    //public GameObject skill1_panel;
     public GameObject get_skill_panel;
     public GameObject get_artifact_panel;
     public GameObject reincarnation_panel;
@@ -76,6 +82,7 @@ public class goToPanel : MonoBehaviour
     public GameObject buff_text_panel;
 
     //배틀 관련
+    public BattleManager battleManager;
     public GameObject stage_explain_panel;
     public Text show_current_stage;
     public Text Stage_explain;
@@ -83,6 +90,8 @@ public class goToPanel : MonoBehaviour
     
     public GameObject camp_dispose_panel;
     public GameObject stage_1_panel;
+    public GameObject stage_2_panel;
+    public GameObject stage_3_panel;
     public GameObject battleScene_panel;
     public GameObject mapClone;
     public GameObject battle_pause_panel;
@@ -105,7 +114,6 @@ public class goToPanel : MonoBehaviour
         pvpPanel.SetActive(false);
         duengeonPanel.SetActive(false);
         char_state_panel.SetActive(false);
-        skill_panel.SetActive(false);
         get_artifact_panel.SetActive(false);
 
         
@@ -249,16 +257,9 @@ public class goToPanel : MonoBehaviour
         char_state_panel.SetActive(false);
     }
 
-
-    public void show_skill_panel()
-    {
-        skill_panel.SetActive(!skill_panel.active);
-    }
-
     public void hide_get_skill_panel()
     {
         get_skill_panel.SetActive(false);
-        
     }
 
 
@@ -383,6 +384,34 @@ public class goToPanel : MonoBehaviour
         Stage_explain.text = "";
     }
 
+    public void show_stage_2_panel()
+    {
+        stage_2_panel.SetActive(true);
+        //stage_explain_panel.SetActive(true);
+    }
+
+    public void hide_stage_2_panel()
+    {
+        stage_2_panel.SetActive(false);
+        stage_explain_panel.SetActive(false);
+        show_current_stage.text = "";
+        Stage_explain.text = "";
+    }
+
+    public void show_stage_3_panel()
+    {
+        stage_3_panel.SetActive(true);
+        //stage_explain_panel.SetActive(true);
+    }
+
+    public void hide_stage_3_panel()
+    {
+        stage_3_panel.SetActive(false);
+        stage_explain_panel.SetActive(false);
+        show_current_stage.text = "";
+        Stage_explain.text = "";
+    }
+
 
     public void show_battle_scene_panel()
     {
@@ -392,6 +421,7 @@ public class goToPanel : MonoBehaviour
 
     public void hide_battle_scene_panel()
     {
+        
         Destroy(mapClone);
         Time.timeScale = 1;
     }
@@ -404,11 +434,9 @@ public class goToPanel : MonoBehaviour
 
     public void hide_result_panel()
     {
-        
+        SetBool("getResult", true);
         Destroy(mapClone);
         result_panel.SetActive(false);
-        //Time.timeScale = 1;
-        //result_panel.SetActive(false); //꺼도 안꺼지는 버그가 있으서 한개 더
     }
 
     public void show_pause_panel()

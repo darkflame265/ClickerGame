@@ -150,6 +150,75 @@ public class DataController : MonoBehaviour
         }
     }
 
+    public long stateTotal
+    {
+        get
+        {
+            if(!PlayerPrefs.HasKey("stateTotal")) // 골드가 없을떄
+            {
+                return health + attack + mana + special;
+            }
+            string tmpstateTotal = PlayerPrefs.GetString("stateTotal");
+            return long.Parse(tmpstateTotal);
+        }
+        set
+        {
+            value = health + attack + mana + special;
+            PlayerPrefs.SetString("stateTotal", value.ToString()); 
+        }
+    }
+
+    public long maxDps
+    {
+        get
+        {
+            if(!PlayerPrefs.HasKey("maxDps")) // 골드가 없을떄
+            {
+                return 0;
+            }
+            string tmpmaxDps = PlayerPrefs.GetString("maxDps");
+            return long.Parse(tmpmaxDps);
+        }
+        set
+        {
+            PlayerPrefs.SetString("maxDps", value.ToString()); 
+        }
+    }
+
+    public long artifact_ticket
+    {
+        get
+        {
+            if(!PlayerPrefs.HasKey("artifact_ticket")) // 골드가 없을떄
+            {
+                return 0;
+            }
+            string tmpartifact_ticket = PlayerPrefs.GetString("artifact_ticket");
+            return long.Parse(tmpartifact_ticket);
+        }
+        set
+        {
+            PlayerPrefs.SetString("artifact_ticket", value.ToString()); 
+        }
+    }
+
+    public long power_ticket
+    {
+        get
+        {
+            if(!PlayerPrefs.HasKey("power_ticket")) // 골드가 없을떄
+            {
+                return 0;
+            }
+            string tmppower_ticket = PlayerPrefs.GetString("power_ticket");
+            return long.Parse(tmppower_ticket);
+        }
+        set
+        {
+            PlayerPrefs.SetString("power_ticket", value.ToString()); 
+        }
+    }
+
 
     public long gold
     {
@@ -384,7 +453,7 @@ public class DataController : MonoBehaviour
         {
             if(!PlayerPrefs.HasKey("Health1")) // 골드가 없을떄
             {
-                return 1;
+                return 5;
             }
             string tmpHealth = PlayerPrefs.GetString("Health1");
             return long.Parse(tmpHealth);
@@ -401,7 +470,7 @@ public class DataController : MonoBehaviour
         {
             if(!PlayerPrefs.HasKey("attack")) // 골드가 없을떄
             {
-                return 1;
+                return 5;
             }
             string tmpattack = PlayerPrefs.GetString("attack");
             return long.Parse(tmpattack);
@@ -419,7 +488,7 @@ public class DataController : MonoBehaviour
         {
             if(!PlayerPrefs.HasKey("mana")) // 골드가 없을떄
             {
-                return 1;
+                return 5;
             }
             string tmpmana = PlayerPrefs.GetString("mana");
             return long.Parse(tmpmana);
@@ -437,7 +506,7 @@ public class DataController : MonoBehaviour
         {
             if(!PlayerPrefs.HasKey("special")) // 골드가 없을떄
             {
-                return 1;
+                return 5;
             }
             string tmpspecial = PlayerPrefs.GetString("special");
             return long.Parse(tmpspecial);
@@ -906,6 +975,78 @@ public class DataController : MonoBehaviour
         set
         {
             PlayerPrefs.SetString("hero_spawn_0", value.ToString());
+        }
+    }
+
+    public long tower_stage
+    {
+        get
+        {
+            if(!PlayerPrefs.HasKey("tower_stage")) // 골드가 없을떄
+            {
+                return 1;
+            }
+            string tmptower_stage = PlayerPrefs.GetString("tower_stage");
+            return long.Parse(tmptower_stage);
+
+        }
+        set
+        {
+            PlayerPrefs.SetString("tower_stage", value.ToString());
+        }
+    }
+
+    public long tower_repeatCount
+    {
+        get
+        {
+            if(!PlayerPrefs.HasKey("tower_repeatCount")) // 골드가 없을떄
+            {
+                return 1;
+            }
+            string tmptower_repeatCount = PlayerPrefs.GetString("tower_repeatCount");
+            return long.Parse(tmptower_repeatCount);
+
+        }
+        set
+        {
+            PlayerPrefs.SetString("tower_repeatCount", value.ToString());
+        }
+    }
+
+    public long monster_hp
+    {
+        get
+        {
+            if(!PlayerPrefs.HasKey("monster_hp")) // 골드가 없을떄
+            {
+                return 0;
+            }
+            string tmpmonster_hp = PlayerPrefs.GetString("monster_hp");
+            return long.Parse(tmpmonster_hp);
+
+        }
+        set
+        {
+            PlayerPrefs.SetString("monster_hp", value.ToString());
+        }
+    }
+
+    public long monster_damage
+    {
+        get
+        {
+            if(!PlayerPrefs.HasKey("monster_damage")) // 골드가 없을떄
+            {
+                return 0;
+            }
+            string tmpmonster_damage = PlayerPrefs.GetString("monster_damage");
+            return long.Parse(tmpmonster_damage);
+
+        }
+        set
+        {
+            PlayerPrefs.SetString("monster_damage", value.ToString());
         }
     }
 

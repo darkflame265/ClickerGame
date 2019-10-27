@@ -24,9 +24,6 @@ public class Character : MonoBehaviour
     public float mana_ratio;
     public float special_ratio;
 
-   
-
-
     private static Character instance;
 
     public static Character Instance
@@ -60,30 +57,6 @@ public class Character : MonoBehaviour
 
     void Start()   //체력은 여기서 공격력은 DataController에서 관리
     {
-        /* 
-        if(typeOfHero == Slot.Knight)
-        {
-            //Debug.Log("it's knight");
-            
-
-            health_ratio = 1.5f;
-            attack_ratio = 0.8f;
-            mana_ratio = 1.1f;
-            special_ratio = 0.9f;
-            setState();
-        }
-        if(typeOfHero == Slot.Archer)
-        {
-            //Debug.Log("it's archer");
-
-            health_ratio = 0.7f;
-            attack_ratio = 1.5f;
-            mana_ratio = 0.9f;
-            special_ratio = 1.2f;
-
-            setState();
-        }
-        */
         setState();
         StartCoroutine("check_HP");
     }
