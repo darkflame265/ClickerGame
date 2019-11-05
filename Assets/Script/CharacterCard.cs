@@ -48,16 +48,16 @@ public class CharacterCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     
     void Start()
-    {
-        Hand = this.transform.parent.parent.GetChild(0);
-        Front = this.transform.parent.parent.GetChild(1);
-        Mid = this.transform.parent.parent.GetChild(2);
-        Back = this.transform.parent.parent.GetChild(3);
+    {                                   // 0,1,2, 는 카드 데코레이션 자리
+        Hand = this.transform.parent.parent.GetChild(3);
+        Front = this.transform.parent.parent.GetChild(4);
+        Mid = this.transform.parent.parent.GetChild(5);
+        Back = this.transform.parent.parent.GetChild(6);
         
         hero_name = this.transform.name;
         SetLocation();
 
-        StartCoroutine("check_char_exist");
+        //StartCoroutine("check_char_exist");
     }
 
     void SetLocation()

@@ -32,7 +32,6 @@ public class CardDropZone : MonoBehaviour, IDropHandler
                 checkBase(); //이건 카드를 드롭할때만 발동됨
             }
         }
-
     }
 
     public void checkBase()
@@ -67,17 +66,17 @@ public class CardDropZone : MonoBehaviour, IDropHandler
             PlayerPrefs.SetInt(HeroCard.name, 3);
         }
 
-        if(this.transform.parent.GetChild(1).childCount == 0)
+        if(this.transform.parent.GetChild(4).childCount == 0)  //0,1,2는 데코 3은 hand
         {
             Debug.Log("this.transform.parent.GetChild(1).name is " + this.transform.parent.GetChild(1).name);
             DataController.Instance.hero_0_ID = 0;  //dummy;
             Debug.Log("this.transform.parent.GetChild(1).childCount == 0 is " + this.transform.parent.GetChild(1).childCount);
         }
-        if(this.transform.parent.GetChild(2).childCount == 0)
+        if(this.transform.parent.GetChild(5).childCount == 0)
         {
             DataController.Instance.hero_1_ID = 0;  //dummy;
         }
-        if(this.transform.parent.GetChild(3).childCount == 0)
+        if(this.transform.parent.GetChild(6).childCount == 0)
         {
             DataController.Instance.hero_2_ID = 0;  //dummy;
         }

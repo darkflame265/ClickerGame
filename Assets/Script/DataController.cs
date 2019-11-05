@@ -554,16 +554,23 @@ public class DataController : MonoBehaviour
         }
     }
 
+    public void richbutton()
+    {
+        gold = 10000000000;
+        diamond = 1000000000;
+    }
+
 
     public void superbutton()
     {
-        gold =    1000000000000000;
+
         level =   50;
-        diamond = 1000000;
-        besu = 500000000000000;
+        besu = 500000000000;
+        health = 500;
+        attack = 500;
+        mana = 500;
+        special = 500;
         freestate = 10000;
-
-
     }
 
     public void MultiplyGoldPerClick(int be)
@@ -683,9 +690,7 @@ public class DataController : MonoBehaviour
         PlayerPrefs.SetString(key + "_goldPerSec", itemButton.goldPerSec.ToString());
         PlayerPrefs.SetString(key + "_currentQuestGold", itemButton.currentQuestGold.ToString());
         PlayerPrefs.SetString(key + "_MaxQuestGold", itemButton.MaxQuestGold.ToString());
-
         PlayerPrefs.SetString(key + "_currentCost", itemButton.currentCost.ToString());
-
         if(itemButton.isPurchased == true)//true, false
         {
             PlayerPrefs.SetInt(key + "_isPurchased", 1);

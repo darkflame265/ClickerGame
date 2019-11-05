@@ -99,7 +99,7 @@ public class KnightController : MonoBehaviour
                 allAnimatorStop();
                 animator.SetBool("isDeath", true);
                 yield return new WaitForSeconds(1f); //1초 기다리고 캐릭터 비활성화
-                this.gameObject.SetActive(false);
+                Destroy(this.gameObject);
             }
             Move();
         }

@@ -91,7 +91,7 @@ public class blueDragonicController : MonoBehaviour
                 allAnimatorStop();
                 animator.SetBool("isDeath", true);
                 yield return new WaitForSeconds(1f);
-                this.gameObject.SetActive(false);
+                Destroy(this.gameObject);
                 
             }
 

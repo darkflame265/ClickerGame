@@ -12,6 +12,9 @@ public class SummonSystem : MonoBehaviour
 
     int result = 0;
 
+    public Text gold_text;
+    public Text crystal_text;
+
     public GameObject prefab_floating_text;
     public Transform tranform_canvas;
 
@@ -77,6 +80,11 @@ public class SummonSystem : MonoBehaviour
         }
     }
 
+    public void init()
+    {
+        current_heart = 10;
+    }
+
     void Start()
     {
         LimitTime = common_summon_limit_time - DataController.Instance.timeAfterLastPlay;
@@ -90,6 +98,8 @@ public class SummonSystem : MonoBehaviour
     {
         while(true)
         {
+            gold_text.text = UiManager.ToStringKR(DataController.Instance.gold);
+            crystal_text.text = UiManager.ToStringKR(DataController.Instance.diamond);
             while(LimitTime < 0)
                 {
 
@@ -193,9 +203,11 @@ public class SummonSystem : MonoBehaviour
             {
                 SoundManager.Instance.click_get_item_sound();
 
+                long gold = DataController.Instance.goldPerClick * 1000;
+                DataController.Instance.gold += gold;
 
                 var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
-                clone.GetComponent<FloatingText>().text.text = " 10000골드 흭득";
+                clone.GetComponent<FloatingText>().text.text = "               " + UiManager.ToStringKR(gold);
                 clone.transform.SetParent(tranform_canvas);
 
                 clone.transform.GetChild(0).gameObject.SetActive(true);
@@ -229,7 +241,7 @@ public class SummonSystem : MonoBehaviour
                 Sprite image = inventory.database.FetchItemByID(i).Sprite;
 
                 var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
-                clone.GetComponent<FloatingText>().text.text = "  " + item;
+                clone.GetComponent<FloatingText>().text.text = "              " + item;
                 clone.transform.SetParent(tranform_canvas);
 
                 clone.transform.GetChild(0).gameObject.SetActive(true);

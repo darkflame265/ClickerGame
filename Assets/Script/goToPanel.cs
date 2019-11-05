@@ -292,11 +292,7 @@ public class goToPanel : MonoBehaviour
 
     public void show_option_panel()
     {
-        if(option_panel.activeSelf == false)
-        {
-            hide_without_panel();
-        }
-        option_panel.SetActive(!option_panel.active);
+        option_panel.SetActive(true);
     }
 
     public void hide_option_panel()
@@ -307,6 +303,7 @@ public class goToPanel : MonoBehaviour
     public void show_store_panel()
     {
         store_panel.SetActive(true);
+        QuestController.Instance.set_start_position();
     }
 
     public void hide_store_panel()
@@ -362,6 +359,19 @@ public class goToPanel : MonoBehaviour
     public void hide_camp_dispose_panel()
     {
         camp_dispose_panel.SetActive(false);
+    }
+
+    void return_position_dispose_panel()
+    {
+        camp_dispose_panel.transform.position = new Vector2(0, 0);
+    }
+
+    public void turn_on_and_off_dispose_panel()
+    {
+        camp_dispose_panel.transform.position = new Vector2(4000, 4000);
+        camp_dispose_panel.SetActive(true);
+        Invoke("hide_camp_dispose_panel", 1f);
+        Invoke("return_position_dispose_panel", 1.2f);
     }
 
     public void show_exp_percent_panel()

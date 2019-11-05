@@ -209,7 +209,7 @@ public class ItemButton : MonoBehaviour
                 if(currentQuestGold >= MaxQuestGold)  //currentQuestGold가 꽉찰시
                 {
                     currentQuestGold = 2 * MaxQuestGold;
-                    GetGoldButton.GetComponentInChildren<Text>().text = "골드&다이아 수령하기";
+                    GetGoldButton.GetComponentInChildren<Text>().text = "수령하기";
                     GetGoldButton.GetComponentInChildren<Text>().fontSize = 43;
                     GetGoldButton.GetComponent<Image>().color = Color.cyan;
                     QuestGoldIsFull = true;

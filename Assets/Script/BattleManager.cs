@@ -7,25 +7,6 @@ using UnityEngine.EventSystems;
 
 public class BattleManager : MonoBehaviour
 {
-    // private static BattleManager instance;
-
-    // public static BattleManager Instance
-    // {
-    //     get{
-    //         if(instance == null)
-    //         {
-    //             instance = FindObjectOfType<BattleManager>();
-
-    //             if(instance == null)
-    //             {
-    //                 GameObject container = new GameObject("BattleManager");
-
-    //                 instance = container.AddComponent<BattleManager>();
-    //             }
-    //         }
-    //         return instance;
-    //     }
-    // }
 
     bool IsPause;
     bool getResult = false;
@@ -58,6 +39,22 @@ public class BattleManager : MonoBehaviour
 
     public GameObject Map1;
     public GameObject mapImage;
+
+    public GameObject Front;
+    public GameObject Mid;
+    public GameObject Back;
+
+    public Image hero_0_img;
+    public Text hero_0_hp_text;
+    public Text hero_0_atk_text;
+
+    public Image hero_1_img;
+    public Text hero_1_hp_text;
+    public Text hero_1_atk_text;
+
+    public Image hero_2_img;
+    public Text hero_2_hp_text;
+    public Text hero_2_atk_text;
 
     //hero
     public GameObject dummy;
@@ -232,6 +229,58 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    void show_state_in_windows()
+    {
+        //hero
+        if(Front.transform.childCount != 0)
+        {
+            hero_2_img.GetComponent<Image>().sprite = Front.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite;
+        } else  hero_2_img.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/UI/simple UI & icons/button/button_exit");
+
+        if(Mid.transform.childCount != 0)
+        {
+            hero_1_img.GetComponent<Image>().sprite = Mid.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite;
+        } else  hero_1_img.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/UI/simple UI & icons/button/button_exit");
+        if(Back.transform.childCount != 0)
+        {
+            hero_0_img.GetComponent<Image>().sprite = Back.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite;
+        } else  hero_0_img.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/UI/simple UI & icons/button/button_exit");
+
+        if(hero_spawn_point0.transform.childCount != 0)
+        {
+            //hero_0_img.GetComponent<Image>().sprite = Back.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite;
+            hero_0_hp_text.GetComponent<Text>().text = "HP: " + hero_spawn_point0.GetComponentInChildren<Character>().current_HP.ToString();
+            hero_0_atk_text.GetComponent<Text>().text = "ATK: " + hero_spawn_point0.GetComponentInChildren<Character>().striking_power.ToString();
+            if(hero_spawn_point0.GetComponentInChildren<Character>().current_HP <= 0)
+            {
+                hero_0_hp_text.GetComponent<Text>().text = "HP: " + "<color=#ff0000>" + 0 + "</color>";
+            }
+        }
+        Debug.Log("hero_spawn_point1.transform.childCount is " + hero_spawn_point1.transform.childCount);
+        if(hero_spawn_point1.transform.childCount != 0)
+        {
+            //hero_1_img.GetComponent<Image>().sprite = Mid.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite;
+
+            hero_1_hp_text.GetComponent<Text>().text = "HP: " + hero_spawn_point1.GetComponentInChildren<Character>().current_HP.ToString();
+            hero_1_atk_text.GetComponent<Text>().text = "ATK: " + hero_spawn_point1.GetComponentInChildren<Character>().striking_power.ToString();
+            if(hero_spawn_point1.GetComponentInChildren<Character>().current_HP <= 0)
+            {
+                hero_1_hp_text.GetComponent<Text>().text = "HP: " + "<color=#ff0000>" + 0 + "</color>";
+            }
+        }
+        if(hero_spawn_point2.transform.childCount != 0)
+        {
+        
+
+            hero_2_hp_text.GetComponent<Text>().text = "HP: " + hero_spawn_point2.GetComponentInChildren<Character>().current_HP.ToString();
+            hero_2_atk_text.GetComponent<Text>().text = "ATK: " + hero_spawn_point2.GetComponentInChildren<Character>().striking_power.ToString();
+            if(hero_spawn_point2.GetComponentInChildren<Character>().current_HP <= 0)
+            {
+                hero_2_hp_text.GetComponent<Text>().text = "HP: " + "<color=#ff0000>" + 0 + "</color>";
+            }
+        }
+    }
+
     
     IEnumerator Timer()
     {   
@@ -288,6 +337,8 @@ public class BattleManager : MonoBehaviour
 
             if(this.gameObject.activeSelf == true)
             {
+                show_state_in_windows();
+
                 if(DataController.Instance.current_stage == 0)  //dps측정
                 {
                     total_damage = enemies[0].GetComponent<EnemyController>().Max_HP - enemies[0].GetComponent<EnemyController>().current_HP;
@@ -430,7 +481,7 @@ public class BattleManager : MonoBehaviour
         check_hero_level();
         switch(hero_0_name){
             case 0: 
-                hero_0 = dummy;
+                 hero_0 = null;
                 break;
             case 1:
                 hero_0 = knight;
@@ -439,12 +490,12 @@ public class BattleManager : MonoBehaviour
                 hero_0 = archer;
                 break;
             default:
-                hero_0 = dummy;
+                 hero_0 = null;
                 break;
         }
         switch(hero_1_name){
             case 0:
-                hero_1 = dummy;
+                 hero_1 =null;
                 break;
             case 1:
                 hero_1 = knight;
@@ -453,12 +504,12 @@ public class BattleManager : MonoBehaviour
                 hero_1 = archer;
                 break;
             default:
-                hero_1 = dummy;
+                 hero_1 = null;
                 break;
         }
         switch(hero_2_name){
             case 0:
-                hero_2 = dummy;
+                 hero_2 = null;
                 break;
             case 1:
                 hero_2 = knight;
@@ -467,7 +518,7 @@ public class BattleManager : MonoBehaviour
                 hero_2 = archer;
                 break;
             default:
-                hero_2 = dummy;
+                 hero_2 = null;
                 break;
         }
         
@@ -518,7 +569,7 @@ public class BattleManager : MonoBehaviour
                 break;
             
             default:
-                monster_0 = dummy;
+                monster_0 = null;
                 break;
         }
         switch(monster_1_name)
@@ -567,7 +618,7 @@ public class BattleManager : MonoBehaviour
                 break;
 
             default:
-                monster_1 = dummy;
+                monster_1 = null;
                 break;
            
         }
@@ -616,8 +667,8 @@ public class BattleManager : MonoBehaviour
                 monster_2 = blueDragonic;
                 break;
 
-            default:
-                monster_2 = dummy;
+             default:
+                monster_2 = null;
                 break;
             
         }
@@ -628,22 +679,57 @@ public class BattleManager : MonoBehaviour
         set_background_image();
         set_hero_monster();
 
-        GameObject clone_player0 = Instantiate(hero_0, hero_spawn_point0);
-        GameObject clone_player1 = Instantiate(hero_1, hero_spawn_point1);
-        GameObject clone_player2 = Instantiate(hero_2, hero_spawn_point2);
-        
-        GameObject clone_enemy0 = Instantiate(monster_0, Spawn_point0);
-        GameObject clone_enemy1 = Instantiate(monster_1, Spawn_point1);
-        GameObject clone_enemy2 = Instantiate(monster_2, Spawn_point2);
-        clone_enemy0.GetComponent<EnemyController>().Max_HP = (long)(DataController.Instance.monster_hp * (long)clone_enemy0.GetComponent<EnemyController>().health_ratio);
-        clone_enemy0.GetComponent<EnemyController>().damage = (long)(DataController.Instance.monster_damage * clone_enemy0.GetComponent<EnemyController>().attack_ratio);
-        clone_enemy1.GetComponent<EnemyController>().Max_HP = (long)(DataController.Instance.monster_hp * (long)clone_enemy1.GetComponent<EnemyController>().health_ratio);
-        clone_enemy1.GetComponent<EnemyController>().damage = (long)(DataController.Instance.monster_damage * clone_enemy1.GetComponent<EnemyController>().attack_ratio);
-        clone_enemy2.GetComponent<EnemyController>().Max_HP = (long)(DataController.Instance.monster_hp * (long)clone_enemy2.GetComponent<EnemyController>().health_ratio);
-        clone_enemy2.GetComponent<EnemyController>().damage =(long)(DataController.Instance.monster_damage * clone_enemy2.GetComponent<EnemyController>().attack_ratio);
+        goToPanel.Instance.turn_on_and_off_dispose_panel();
 
-    
+        GameObject clone_player0 = null;
+        GameObject clone_player1 = null;
+        GameObject clone_player2 = null;
         
+        GameObject clone_enemy0 = null;
+        GameObject clone_enemy1 = null;
+        GameObject clone_enemy2 = null;
+        
+        if(hero_0 != null)
+        {
+            clone_player0 = Instantiate(hero_0, hero_spawn_point0);
+            
+        }
+
+        if(hero_1 != null)
+        {
+            clone_player1 = Instantiate(hero_1, hero_spawn_point1);
+            
+        }
+
+        if(hero_2 != null)
+        {
+            clone_player2 = Instantiate(hero_2, hero_spawn_point2);
+            
+        }
+
+        if(monster_0 != null)
+        {
+            clone_enemy0 = Instantiate(monster_0, Spawn_point0);
+            clone_enemy0.GetComponent<EnemyController>().Max_HP = (long)(DataController.Instance.monster_hp * (long)clone_enemy0.GetComponent<EnemyController>().health_ratio);
+            clone_enemy0.GetComponent<EnemyController>().damage = (long)(DataController.Instance.monster_damage * clone_enemy0.GetComponent<EnemyController>().attack_ratio);
+        }
+
+        if(monster_1 != null)
+        {
+            clone_enemy1 = Instantiate(monster_1, Spawn_point1);
+            clone_enemy1.GetComponent<EnemyController>().Max_HP = (long)(DataController.Instance.monster_hp * (long)clone_enemy1.GetComponent<EnemyController>().health_ratio);
+            clone_enemy1.GetComponent<EnemyController>().damage = (long)(DataController.Instance.monster_damage * clone_enemy1.GetComponent<EnemyController>().attack_ratio);
+            
+        }
+
+        if(monster_2 != null)
+        {
+            clone_enemy2 = Instantiate(monster_2, Spawn_point2);
+            clone_enemy2.GetComponent<EnemyController>().Max_HP = (long)(DataController.Instance.monster_hp * (long)clone_enemy2.GetComponent<EnemyController>().health_ratio);
+            clone_enemy2.GetComponent<EnemyController>().damage =(long)(DataController.Instance.monster_damage * clone_enemy2.GetComponent<EnemyController>().attack_ratio);
+            
+        }
+
         goToPanel.Instance.show_battle_scene_panel();
 
         Destroy(clone_player0);
@@ -652,6 +738,35 @@ public class BattleManager : MonoBehaviour
         Destroy(clone_enemy0);
         Destroy(clone_enemy1);
         Destroy(clone_enemy2);
+
+        
+
+        // GameObject clone_player0 = Instantiate(hero_0, hero_spawn_point0);
+        // GameObject clone_player1 = Instantiate(hero_1, hero_spawn_point1);
+        // GameObject clone_player2 = Instantiate(hero_2, hero_spawn_point2);
+        
+        // GameObject clone_enemy0 = Instantiate(monster_0, Spawn_point0);
+        // GameObject clone_enemy1 = Instantiate(monster_1, Spawn_point1);
+        // GameObject clone_enemy2 = Instantiate(monster_2, Spawn_point2);
+
+        // clone_enemy0.GetComponent<EnemyController>().Max_HP = (long)(DataController.Instance.monster_hp * (long)clone_enemy0.GetComponent<EnemyController>().health_ratio);
+        // clone_enemy0.GetComponent<EnemyController>().damage = (long)(DataController.Instance.monster_damage * clone_enemy0.GetComponent<EnemyController>().attack_ratio);
+        // clone_enemy1.GetComponent<EnemyController>().Max_HP = (long)(DataController.Instance.monster_hp * (long)clone_enemy1.GetComponent<EnemyController>().health_ratio);
+        // clone_enemy1.GetComponent<EnemyController>().damage = (long)(DataController.Instance.monster_damage * clone_enemy1.GetComponent<EnemyController>().attack_ratio);
+        // clone_enemy2.GetComponent<EnemyController>().Max_HP = (long)(DataController.Instance.monster_hp * (long)clone_enemy2.GetComponent<EnemyController>().health_ratio);
+        // clone_enemy2.GetComponent<EnemyController>().damage =(long)(DataController.Instance.monster_damage * clone_enemy2.GetComponent<EnemyController>().attack_ratio);
+
+    
+        
+        //goToPanel.Instance.show_battle_scene_panel();
+
+        // Destroy(clone_player0);
+        // Destroy(clone_player1);
+        // Destroy(clone_player2);
+
+        // Destroy(clone_enemy0);
+        // Destroy(clone_enemy1);
+        // Destroy(clone_enemy2);
     }
     public void monster_init()
     {

@@ -29,7 +29,8 @@ public class MagicTowerController : MonoBehaviour
         }
     }
 
-    public VideoPlayer videoPlayer;
+    public Text gold_text;
+    public Text crystal_text;
 
     public CharacterStateController characterStateController;
 
@@ -60,6 +61,21 @@ public class MagicTowerController : MonoBehaviour
     string text_special;
 
     public long power_up_cost;
+
+    void Start()
+    {
+        StartCoroutine("Auto");
+    }
+
+    IEnumerator Auto()
+    {
+        while(true)
+        {   
+            yield return new WaitForSeconds(0.1f);
+            gold_text.text = UiManager.ToStringKR(DataController.Instance.gold);
+            crystal_text.text = UiManager.ToStringKR(DataController.Instance.diamond);
+        }
+    }
 
     public void power_up()
     {
