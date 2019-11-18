@@ -5,6 +5,7 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+
 public class BattleManager : MonoBehaviour
 {
 
@@ -83,6 +84,7 @@ public class BattleManager : MonoBehaviour
     public GameObject warm_monster;
     public GameObject stoneFighter;
     public GameObject blueDragonic;
+    public GameObject meduza;
 
     //timer
     long current_heart = 2;
@@ -108,6 +110,8 @@ public class BattleManager : MonoBehaviour
     string monster_0_name;
     string monster_1_name;
     string monster_2_name;
+
+    public FightController fightController;
  
     // Use this for initialization
     void Start () {
@@ -226,6 +230,18 @@ public class BattleManager : MonoBehaviour
             Map1.SetActive(false);
             mapImage.SetActive(true);
             mapImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Background/fightMap/DistantCity") as Sprite;
+        }
+        if(DataController.Instance.current_stage >= 60)
+        {
+            Map1.SetActive(false);
+            mapImage.SetActive(true);
+            mapImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Background/fightMap/ForestNightDark") as Sprite;
+        }
+        if(DataController.Instance.current_stage >= 80)
+        {
+            Map1.SetActive(false);
+            mapImage.SetActive(true);
+            mapImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Background/fightMap/Forest_1") as Sprite;
         }
     }
 
@@ -376,7 +392,8 @@ public class BattleManager : MonoBehaviour
                     }
                     if(DataController.Instance.current_stage == -1)
                     {
-                        DataController.Instance.tower_stage = tower_previous_stage + 1;
+                        DataController.Instance.tower_stage++; //tower_previous_stage + 1;
+                        DataController.Instance.current_stage = -4;
                     }
 
                 }
@@ -567,6 +584,9 @@ public class BattleManager : MonoBehaviour
             case "blueDragonic":
                 monster_0 = blueDragonic;
                 break;
+            case "meduza":
+                monster_0 = meduza;
+                break;
             
             default:
                 monster_0 = null;
@@ -615,6 +635,9 @@ public class BattleManager : MonoBehaviour
                 break;
             case "blueDragonic":
                 monster_1 = blueDragonic;
+                break;
+            case "meduza":
+                monster_1 = meduza;
                 break;
 
             default:
@@ -665,6 +688,9 @@ public class BattleManager : MonoBehaviour
                 break;
             case "blueDragonic":
                 monster_2 = blueDragonic;
+                break;
+            case "meduza":
+                monster_2 = meduza;
                 break;
 
              default:
@@ -822,7 +848,7 @@ public class BattleManager : MonoBehaviour
         if(DataController.Instance.current_stage == 1)
         {
             monster_init();  //get_stage_gold, exp도 초기화
-            DataController.Instance.monster_2_ID = "blueDragonic";  //Bat
+            DataController.Instance.monster_2_ID = "meduza";  //Bat
             DataController.Instance.monster_damage = 2;      //3
             DataController.Instance.monster_hp = 10000;       //100
             Set_Hero_Base();
@@ -1995,19 +2021,137 @@ public class BattleManager : MonoBehaviour
         set_explanation_panel();
     }
 
+    private long[] ms_2 = {3, 4};
+
+    public enum monster_list
+    {
+        Bat,
+        Bat_2,
+        Spider,
+        Gorem,
+        BigGorem,
+        skeleton_rancer,
+        summon_portal,
+        goblin_general,
+        plant_monster,
+        ice_gorem,
+        warm_monster,
+        stoneFighter,
+        blueDragonic,
+        meduza,
+    }
+
+
+    public void over_60()
+    {
+
+        for(int i = 0; i < 100; i++)
+        {
+            if(fightController.stageCh1[i] == EventSystem.current.currentSelectedGameObject
+            && DataController.Instance.current_stage == i+1)
+            {
+                Set_Hero_Base();
+                set_fight_reward();
+                break;
+            }    
+
+            if(fightController.stageCh1[i] == EventSystem.current.currentSelectedGameObject 
+            && DataController.Instance.current_stage != i+1)
+            {
+                monster_init();
+                DataController.Instance.current_stage = i+1;
+                long x = (DataController.Instance.current_stage / 20)*3;
+                monster_list list_0 = (monster_list)x;
+                monster_list list_1 = (monster_list)x+1;
+                monster_list list_2 = (monster_list)x+2;
+                DataController.Instance.monster_0_ID = list_0.ToString();
+                if(DataController.Instance.current_stage % 2 == 0)
+                {
+                    DataController.Instance.monster_0_ID = list_1.ToString();
+                }
+                if(DataController.Instance.current_stage % 3 == 0)
+                {
+                    DataController.Instance.monster_0_ID = list_2.ToString();
+                }
+
+                if(DataController.Instance.current_stage % 20 > 5)
+                {
+                    DataController.Instance.monster_1_ID = list_1.ToString();
+                    if(DataController.Instance.current_stage % 2 == 0)
+                    {
+                        string tmp = DataController.Instance.monster_0_ID;
+                        DataController.Instance.monster_0_ID = DataController.Instance.monster_1_ID;
+                        DataController.Instance.monster_1_ID = tmp;
+                    }
+                }
+
+                if(DataController.Instance.current_stage % 20 > 15)
+                {
+                    DataController.Instance.monster_2_ID = list_2.ToString();
+                    if(DataController.Instance.current_stage % 3 == 0)
+                    {
+                        string tmp = DataController.Instance.monster_1_ID;
+                        DataController.Instance.monster_1_ID = DataController.Instance.monster_2_ID;
+                        DataController.Instance.monster_2_ID = tmp;
+                    }
+                }
+                
+                if (x == 0) x = 1;
+                DataController.Instance.monster_hp = DataController.Instance.current_stage * 4;
+                DataController.Instance.monster_damage = DataController.Instance.current_stage * 4;
+                set_hero_monster();
+                set_explanation_panel();
+                break;
+            }
+        }
+
+        // DataController.Instance.monster_0_ID = "goblin_general"; 
+        // DataController.Instance.monster_1_ID = "plant_monster";
+        // DataController.Instance.monster_2_ID = "Spider";
+        // DataController.Instance.monster_hp = 200;
+        // DataController.Instance.monster_damage = 200;
+        // set_hero_monster();
+
+        // if(DataController.Instance.current_stage == 60)
+        // {  
+        //     Set_Hero_Base();
+        //     set_fight_reward();
+        // }
+        // DataController.Instance.current_stage = 60;
+        // set_explanation_panel();
+    }
+
     void set_explanation_panel()
     {
-        long m_0_hp = DataController.Instance.monster_hp * (long)monster_0.GetComponent<EnemyController>().health_ratio;
-        long m_1_hp = DataController.Instance.monster_hp * (long)monster_1.GetComponent<EnemyController>().health_ratio;
-        long m_2_hp = DataController.Instance.monster_hp * (long)monster_2.GetComponent<EnemyController>().health_ratio;
+        long m_0_hp = 0;
+        long m_0_dm = 0;
+        long m_1_hp = 0;
+        long m_1_dm = 0;
+        long m_2_hp = 0;
+        long m_2_dm = 0;
+        int count = 0;
 
-        long m_0_dm = DataController.Instance.monster_damage * (long)monster_0.GetComponent<EnemyController>().attack_ratio;
-        long m_1_dm = DataController.Instance.monster_damage * (long)monster_1.GetComponent<EnemyController>().attack_ratio;
-        long m_2_dm = DataController.Instance.monster_damage * (long)monster_2.GetComponent<EnemyController>().attack_ratio;
-
+        if(monster_0 != null)
+        {
+            m_0_hp = DataController.Instance.monster_hp * (long)monster_0.GetComponent<EnemyController>().health_ratio;
+            m_0_dm = DataController.Instance.monster_damage * (long)monster_0.GetComponent<EnemyController>().attack_ratio;
+            count++;
+        }
+        if(monster_1 != null)
+        {
+            m_1_hp = DataController.Instance.monster_hp * (long)monster_1.GetComponent<EnemyController>().health_ratio;
+            m_1_dm = DataController.Instance.monster_damage * (long)monster_1.GetComponent<EnemyController>().attack_ratio;
+            count++;
+        }
+        if(monster_2 != null)
+        {
+            m_2_hp = DataController.Instance.monster_hp * (long)monster_2.GetComponent<EnemyController>().health_ratio;
+            m_2_dm = DataController.Instance.monster_damage * (long)monster_2.GetComponent<EnemyController>().attack_ratio;
+            count++;
+        }
         
-        String avg_hp = "" + ((m_0_hp + m_1_hp + m_2_hp) / 3);
-        String avg_dm = "" + ((m_0_dm + m_1_dm + m_2_dm) / 3);
+        String avg_hp = "" + ((m_0_hp + m_1_hp + m_2_hp) / count);
+        String avg_dm = "" + ((m_0_dm + m_1_dm + m_2_dm) / count);
 
         show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
         Stage_explain.text = "몹 평균 체력\n" + avg_hp + "\n몹 평균 공격력\n" + avg_dm;
@@ -2018,83 +2162,98 @@ public class BattleManager : MonoBehaviour
 
     public void tower_of_diamond()
     {
-        int monster_kindCount = 20;
-        long tower_stage = DataController.Instance.tower_stage;
-        long repeatCount = tower_stage / monster_kindCount;
-        if(repeatCount == 0)
-        {
-            repeatCount = 1;
+        int monster_kindCount = 13;
+            long tower_stage = DataController.Instance.tower_stage;
+            long repeatCount = tower_stage / monster_kindCount;
+            if(repeatCount == 0)
+            {
+                repeatCount = 1;
+            }
+            DataController.Instance.tower_repeatCount = repeatCount;
+            tower_previous_stage = DataController.Instance.tower_stage;
+        if(DataController.Instance.current_stage == -1)
+        { 
+            Set_Hero_Base();
         }
-        DataController.Instance.tower_repeatCount = repeatCount;
-        tower_previous_stage = DataController.Instance.tower_stage;
-        
 
-        monster_init();
-        if(tower_stage % monster_kindCount == 1)
+        if(DataController.Instance.current_stage != -1)
         {
-            DataController.Instance.monster_2_ID = "Bat"; 
-        }
-        else if(tower_stage % monster_kindCount == 2)
-        {
-            DataController.Instance.monster_2_ID = "Bat_2"; 
-        }
-        else if(tower_stage % monster_kindCount == 3)
-        {
-            DataController.Instance.monster_2_ID = "Gorem"; 
-        }
-        else if(tower_stage % monster_kindCount == 4)
-        {
-            DataController.Instance.monster_2_ID = "Gorem"; 
-        }
-        else if(tower_stage % monster_kindCount == 5)
-        {
-            DataController.Instance.monster_2_ID = "BigGorem"; 
-        }
-        else if(tower_stage % monster_kindCount == 6)
-        {
-            DataController.Instance.monster_2_ID = "skeleton_rancer"; 
-        }
-        else if(tower_stage % monster_kindCount == 7)
-        {
-            DataController.Instance.monster_2_ID = "goblin_general"; 
-        }
-        else if(tower_stage % monster_kindCount == 8)
-        {
-            DataController.Instance.monster_2_ID = "summon_portal"; 
-        }
-        else if(tower_stage % monster_kindCount == 9)
-        {
-            DataController.Instance.monster_2_ID = "plant_monster"; 
-        }
-        else if(tower_stage % monster_kindCount == 10)
-        {
-            DataController.Instance.monster_2_ID = "ice_gorem"; 
-        }
-        else if(tower_stage % monster_kindCount == 11)
-        {
-            DataController.Instance.monster_2_ID = "warm_monster"; 
-        }
-        else if(tower_stage % monster_kindCount == 12)
-        {
-            DataController.Instance.monster_2_ID = "stoneFighter"; 
-        }
-        else if(tower_stage % monster_kindCount == 13)
-        {
-            DataController.Instance.monster_2_ID = "blueDragonic"; 
-        }
-        else {
-            DataController.Instance.monster_2_ID = "Bat"; 
-        }
-        
-        DataController.Instance.monster_hp = repeatCount * 100;
-        DataController.Instance.monster_damage = repeatCount * 100;
-        Set_Hero_Base();
-        
-        DataController.Instance.get_stage_gold = tower_stage * 10000000 * repeatCount;
-        DataController.Instance.get_stage_exp = tower_stage * 5000 * repeatCount;
-        DataController.Instance.get_stage_crystal = (tower_stage * 10) * repeatCount;
-        DataController.Instance.current_stage = -1;
+            
+            
+            monster_init();
+            
+            if(tower_stage % monster_kindCount == 1)
+            {
+                DataController.Instance.monster_2_ID = "Bat"; 
+            }
+            else if(tower_stage % monster_kindCount == 2)
+            {
+                DataController.Instance.monster_2_ID = "Bat_2"; 
+            }
+            else if(tower_stage % monster_kindCount == 3)
+            {
+                DataController.Instance.monster_2_ID = "Gorem"; 
+            }
+            else if(tower_stage % monster_kindCount == 4)
+            {
+                DataController.Instance.monster_2_ID = "Gorem"; 
+            }
+            else if(tower_stage % monster_kindCount == 5)
+            {
+                DataController.Instance.monster_2_ID = "BigGorem"; 
+            }
+            else if(tower_stage % monster_kindCount == 6)
+            {
+                DataController.Instance.monster_2_ID = "skeleton_rancer"; 
+            }
+            else if(tower_stage % monster_kindCount == 7)
+            {
+                DataController.Instance.monster_2_ID = "goblin_general"; 
+            }
+            else if(tower_stage % monster_kindCount == 8)
+            {
+                DataController.Instance.monster_2_ID = "summon_portal"; 
+            }
+            else if(tower_stage % monster_kindCount == 9)
+            {
+                DataController.Instance.monster_2_ID = "plant_monster"; 
+            }
+            else if(tower_stage % monster_kindCount == 10)
+            {
+                DataController.Instance.monster_2_ID = "ice_gorem"; 
+            }
+            else if(tower_stage % monster_kindCount == 11)
+            {
+                DataController.Instance.monster_2_ID = "warm_monster"; 
+            }
+            else if(tower_stage % monster_kindCount == 12)
+            {
+                DataController.Instance.monster_2_ID = "stoneFighter"; 
+            }
+            else if(tower_stage % monster_kindCount == 13)
+            {
+                DataController.Instance.monster_2_ID = "blueDragonic"; 
+            }
+            else if(tower_stage % monster_kindCount == 14)
+            {
+                DataController.Instance.monster_2_ID = "meduza"; 
+            }
+            else {
+                DataController.Instance.monster_2_ID = "Bat"; 
+            }
+            
+            DataController.Instance.monster_hp = repeatCount * 500;
+            DataController.Instance.monster_damage = repeatCount * 500;
 
+            DataController.Instance.get_stage_gold = tower_stage * (long)Mathf.Pow(10, repeatCount);
+            DataController.Instance.get_stage_exp = tower_stage * (long)Mathf.Pow(7, repeatCount);
+            DataController.Instance.get_stage_crystal = (tower_stage * 10) * repeatCount;
+            DataController.Instance.current_stage = -1;
+
+            goToPanel.Instance.stage_explain_panel.SetActive(true);
+            show_current_stage.text = "Special " + DataController.Instance.tower_stage.ToString();
+            Stage_explain.text = "몹 평균 체력\n" + DataController.Instance.monster_hp + "\n몹 평균 공격력\n" + DataController.Instance.monster_damage;
+        }
     }
     
 

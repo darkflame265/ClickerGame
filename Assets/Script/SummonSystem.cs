@@ -194,7 +194,7 @@ public class SummonSystem : MonoBehaviour
             {
                 SoundManager.Instance.click_get_item_sound();  //꽝
 
-                var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
+                var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
                 clone.GetComponent<FloatingText>().text.text = " 꽝 ";
                 clone.transform.SetParent(tranform_canvas);
             }
@@ -206,8 +206,8 @@ public class SummonSystem : MonoBehaviour
                 long gold = DataController.Instance.goldPerClick * 1000;
                 DataController.Instance.gold += gold;
 
-                var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
-                clone.GetComponent<FloatingText>().text.text = "               " + UiManager.ToStringKR(gold);
+                var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
+                clone.GetComponent<FloatingText>().text.text = UiManager.ToStringKR(gold);
                 clone.transform.SetParent(tranform_canvas);
 
                 clone.transform.GetChild(0).gameObject.SetActive(true);
@@ -223,8 +223,8 @@ public class SummonSystem : MonoBehaviour
                 string item = inventory.database.FetchItemByID(i).Title;
                 Sprite image = inventory.database.FetchItemByID(i).Sprite;
 
-                var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
-                clone.GetComponent<FloatingText>().text.text = "  " + item;
+                var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
+                clone.GetComponent<FloatingText>().text.text = item;
                 clone.transform.SetParent(tranform_canvas);
 
                 clone.transform.GetChild(0).gameObject.SetActive(true);
@@ -240,8 +240,8 @@ public class SummonSystem : MonoBehaviour
                 string item = inventory.database.FetchItemByID(i).Title;
                 Sprite image = inventory.database.FetchItemByID(i).Sprite;
 
-                var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
-                clone.GetComponent<FloatingText>().text.text = "              " + item;
+                var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
+                clone.GetComponent<FloatingText>().text.text = item;
                 clone.transform.SetParent(tranform_canvas);
 
                 clone.transform.GetChild(0).gameObject.SetActive(true);
@@ -249,6 +249,13 @@ public class SummonSystem : MonoBehaviour
             }
             current_heart--;
         }
+        else 
+        {
+            goToPanel.Instance.show_noticePanel();
+            goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "뽑기 기회를 모두 소진하셨습니다.";
+        }
+        gold_text.text = UiManager.ToStringKR(DataController.Instance.gold);
+        crystal_text.text = UiManager.ToStringKR(DataController.Instance.diamond);
         
     }
 
@@ -280,7 +287,7 @@ public class SummonSystem : MonoBehaviour
             if(result == 1)     //꽝
             {
                 SoundManager.Instance.click_get_item_sound();  //꽝
-                var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
+                var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
                 clone.GetComponent<FloatingText>().text.text = " 꽝 ";
                 clone.transform.SetParent(tranform_canvas);
             }
@@ -298,8 +305,8 @@ public class SummonSystem : MonoBehaviour
                 string item = inventory.database.FetchItemByID(i).Title;
                 Sprite image = inventory.database.FetchItemByID(i).Sprite;
 
-                var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
-                clone.GetComponent<FloatingText>().text.text = "            " + item + " X10";
+                var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
+                clone.GetComponent<FloatingText>().text.text = item + " X10";
                 clone.transform.SetParent(tranform_canvas);
 
                 clone.transform.GetChild(0).gameObject.SetActive(true);
@@ -315,8 +322,8 @@ public class SummonSystem : MonoBehaviour
                 string item = inventory.database.FetchItemByID(i).Title;
                 Sprite image = inventory.database.FetchItemByID(i).Sprite;
 
-                var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
-                clone.GetComponent<FloatingText>().text.text = "            " + item;
+                var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
+                clone.GetComponent<FloatingText>().text.text = item;
                 clone.transform.SetParent(tranform_canvas);
 
                 clone.transform.GetChild(0).gameObject.SetActive(true);
@@ -328,12 +335,19 @@ public class SummonSystem : MonoBehaviour
                 SoundManager.Instance.click_get_item_sound();
                 
                 DataController.Instance.artifact_ticket++;
-                var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
-                clone.GetComponent<FloatingText>().text.text = "            " + "유물 뽑기권+1";
+                var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
+                clone.GetComponent<FloatingText>().text.text = "유물 뽑기권+1";
                 clone.transform.SetParent(tranform_canvas);
             }
             DataController.Instance.diamond -= require_diamond;
         }
+        else 
+        {
+            goToPanel.Instance.show_noticePanel();
+            goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "돈이 부족합니다.";
+        }
+        gold_text.text = UiManager.ToStringKR(DataController.Instance.gold);
+        crystal_text.text = UiManager.ToStringKR(DataController.Instance.diamond);
         
     }
 
@@ -375,8 +389,8 @@ public class SummonSystem : MonoBehaviour
                 string item = inventory.database.FetchItemByID(i).Title;
                 Sprite image = inventory.database.FetchItemByID(i).Sprite;
 
-                var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
-                clone.GetComponent<FloatingText>().text.text = "            " + item + " X30";
+                var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
+                clone.GetComponent<FloatingText>().text.text = item + " X30";
                 clone.transform.SetParent(tranform_canvas);
 
                 clone.transform.GetChild(0).gameObject.SetActive(true);
@@ -396,8 +410,8 @@ public class SummonSystem : MonoBehaviour
                 string item = inventory.database.FetchItemByID(i).Title;
                 Sprite image = inventory.database.FetchItemByID(i).Sprite;
 
-                var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
-                clone.GetComponent<FloatingText>().text.text = "            " + item + " X10";
+                var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
+                clone.GetComponent<FloatingText>().text.text = item + " X10";
                 clone.transform.SetParent(tranform_canvas);
 
                 clone.transform.GetChild(0).gameObject.SetActive(true);
@@ -409,8 +423,8 @@ public class SummonSystem : MonoBehaviour
                 SoundManager.Instance.click_get_item_sound();
                 
                 DataController.Instance.artifact_ticket++;
-                var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
-                clone.GetComponent<FloatingText>().text.text = "            " + "유물 뽑기권+1";
+                var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
+                clone.GetComponent<FloatingText>().text.text = "유물 뽑기권+1";
                 clone.transform.SetParent(tranform_canvas);
             }
 
@@ -419,13 +433,19 @@ public class SummonSystem : MonoBehaviour
                 SoundManager.Instance.click_get_item_sound();
                 
                 DataController.Instance.power_ticket++;
-                var clone = Instantiate(prefab_floating_text, new Vector3(-7, 0), Quaternion.Euler(Vector3.zero));
-                clone.GetComponent<FloatingText>().text.text = "            " + "권능 해방+1";
+                var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
+                clone.GetComponent<FloatingText>().text.text = "권능 해방+1";
                 clone.transform.SetParent(tranform_canvas);
             }
             DataController.Instance.diamond -= require_diamond;
         }
-
+        else 
+        {
+            goToPanel.Instance.show_noticePanel();
+            goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "돈이 부족합니다.";
+        }
+        gold_text.text = UiManager.ToStringKR(DataController.Instance.gold);
+        crystal_text.text = UiManager.ToStringKR(DataController.Instance.diamond);
         
     }
     

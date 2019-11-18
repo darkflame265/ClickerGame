@@ -49,9 +49,7 @@ public class Inventory : MonoBehaviour
         database = GetComponent<ItemDataBase>();
         itemdata = GetComponent<ItemData>();
         slotAmount = 18;
-        //inventoryPanel = GameObject.Find("Inventory_Panel");
-        //slotPanel = inventoryPanel.transform.Find("Slot_Panel").gameObject;
-        for(int i = 0; i < slotAmount; i++)
+        for(int i = 0; i < slotAmount+15; i++)
         {
             Items.Add(new Item());
             slots.Add(Instantiate(inventorySlot)); //
@@ -62,8 +60,41 @@ public class Inventory : MonoBehaviour
         }
         InitItem();
         LoadItem();
-       
-  
+        //StartCoroutine("repeat_load_item");
+    }
+
+    IEnumerator repeat_load_item()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds (0.5f);
+            for(int i = 0; i < database.database.Count; i++) //Items.Count
+            {
+                Item itemToAdd = database.FetchItemByID(i);
+                
+                string key = itemToAdd.Title;
+
+                    Items[i] = itemToAdd;
+                    GameObject itemObj = Instantiate(inventoryItem); //아이템 생성
+                    itemObj.GetComponent<ItemData>().item = itemToAdd;
+                    itemObj.GetComponent<ItemData>().slot = i;
+                    itemObj.transform.SetParent(slots[i].transform); //부모를 [i]번째 슬릇으로 설정
+                    itemObj.transform.position = Vector2.zero;
+                    itemObj.transform.localScale = Vector3.one;
+                    itemObj.GetComponent<Image>().sprite = itemToAdd.Sprite; //아이템 이미지 가져오기
+                    itemObj.name = itemToAdd.Title;
+                    ItemData data = slots[i].transform.GetChild(1).GetComponent<ItemData>();
+                    data.transform.GetChild(0).GetComponent<Text>().text = data.amount.ToString();
+                if(PlayerPrefs.GetInt(key + "_amount") < 1) //아이템의 amount수가 1이하가 될시
+                {
+                    GameObject parents = itemObj.transform.parent.gameObject;
+                    parents.SetActive(false);
+                } else {
+                    GameObject parents = itemObj.transform.parent.gameObject;
+                    parents.SetActive(true);
+                }
+            }
+        }
     }
 
     public void InitItem()
@@ -87,10 +118,13 @@ public class Inventory : MonoBehaviour
                 //itemObj.gameObject.SetActive(false);
                 ItemData data = slots[i].transform.GetChild(1).GetComponent<ItemData>();
                 //data.amount++;
+                data.amount = 0;
                 data.transform.GetChild(0).GetComponent<Text>().text = data.amount.ToString();
             if(PlayerPrefs.GetInt(key + "_amount") < 1) //아이템의 amount수가 1이하가 될시
             {
-                itemObj.gameObject.SetActive(false);
+                //itemObj.gameObject.SetActive(false);
+                GameObject parents = itemObj.transform.parent.gameObject;
+                parents.SetActive(false);
             }
         }
     }    
@@ -164,6 +198,10 @@ public class Inventory : MonoBehaviour
                     data.amount++;
                     data.transform.GetChild(0).GetComponent<Text>().text = data.amount.ToString();
                     data.gameObject.SetActive(true);
+
+                    GameObject parents = data.transform.parent.gameObject;
+                    parents.SetActive(true);
+
                     PlayerPrefs.SetInt(key + "_amount", data.amount); //아이템 amount 저장
                     break;
                 }
@@ -187,6 +225,10 @@ public class Inventory : MonoBehaviour
                     itemObj.name = itemToAdd.Title;
                     ItemData data = slots[i].transform.GetChild(1).GetComponent<ItemData>();
                     data.amount++;
+
+                    GameObject parents = data.transform.parent.gameObject;
+                    parents.SetActive(true);
+                    
                     data.transform.GetChild(0).GetComponent<Text>().text = data.amount.ToString();
                     
                     itemObj.transform.position = Vector3.zero;
@@ -233,8 +275,10 @@ public class Inventory : MonoBehaviour
             {
 
                 Transform this_item = slots[selected_item_id].transform.GetChild(1); //transform형식으로 아이템을 받아옴
-                this_item.gameObject.SetActive(false);
-                //data.amount--;
+                //this_item.gameObject.SetActive(false);   //방금 주석처리함
+                GameObject parents = this_item.transform.parent.gameObject;
+                parents.SetActive(false);
+
                 PlayerPrefs.SetInt(selected_item.Title + "_amount", data.amount);
                 //Items[selected_item_id].ID = -2;      //ID를 -1로 바꿔야 Slot.cs에서 다 쓴 아이템 자리를 빈 자리(-1)로 인식한다.
                 //Destroy(this_item.gameObject); //받아온 transform형식의 아이템을 gameobject형식으로 바꾸고 제거
@@ -265,11 +309,11 @@ public class Inventory : MonoBehaviour
                 DataController.Instance.current_exp += DataController.Instance.max_exp;
                 break;
             case 5: //보석
-                DataController.Instance.current_exp += DataController.Instance.max_exp;
+                DataController.Instance.health += 100;
+                DataController.Instance.attack += 100;
+                DataController.Instance.special += 100;
                 break;
-            case 6: //빨간 포션
-                DataController.Instance.current_exp += DataController.Instance.max_exp;
-                break;
+
         }
     }
 }

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Video;
+using UnityEngine.EventSystems;
+
 
 public class MagicTowerController : MonoBehaviour
 {
@@ -42,14 +43,17 @@ public class MagicTowerController : MonoBehaviour
 
     public string current_select_hero;
 
-    public GameObject knight01;
-    public GameObject knight02;
+    public GameObject[]knight = new GameObject[0];
+    public GameObject[]archer = new GameObject[0];
 
-    public GameObject archer01;
-    public GameObject archer02;
+
+    int index = 0;
+    public GameObject SelectFrame;
 
 
     //각성에 필요한 능력치 설정
+    public long[] knight_require_helth = {50, 100, 150, 200, 300, 500, 600, 800, 1000, 1200, 1400, 1700, 2000};
+    public long[] archer_require_helth = {50, 100, 150, 200, 300, 500, 600, 800, 1000, 1200, 1400, 1700, 2000};
     public long require_health;
     public long require_attack;
     public long require_mana;
@@ -61,6 +65,8 @@ public class MagicTowerController : MonoBehaviour
     string text_special;
 
     public long power_up_cost;
+
+    private long[] knight_req = {100};
 
     void Start()
     {
@@ -109,6 +115,7 @@ public class MagicTowerController : MonoBehaviour
                     }
                     select_archer();
                 }
+                SoundManager.Instance.upgrade_button_sound();
             }
             else {
                 goToPanel.Instance.show_noticePanel();
@@ -162,46 +169,34 @@ public class MagicTowerController : MonoBehaviour
         }
     }
 
-    public void select_knight()
+    public void show_ratio_increase()
     {
-        current_select_hero = "knight";
-        if(DataController.Instance.knight_level == 1)  //knight 1차 각성
+        if(current_select_hero == "knight")
         {
-            power_up_cost = 100000;
+            show_how_increase_ability_text.text = 
+            "레벨:" + knight[index].GetComponent<Character>().level + " ->" + knight[index+1].GetComponent<Character>().level
+            + "\n체력:" + knight[index].GetComponent<Character>().health_ratio + " ->" + knight[index+1].GetComponent<Character>().health_ratio
+            + "\n공격력: " + knight[index].GetComponent<Character>().attack_ratio + " ->" + knight[index+1].GetComponent<Character>().attack_ratio
+            + "\n마나: " + knight[index].GetComponent<Character>().mana_ratio + " ->" + knight[index+1].GetComponent<Character>().mana_ratio
+            + "\n특성: " + knight[index].GetComponent<Character>().special_ratio + " ->" + knight[index+1].GetComponent<Character>().special_ratio;
 
-            require_health = 150;
-            require_attack = 100;
-            require_mana = 90;
-            require_special = 80;
-            check_ability_and_set_color();
-            
-            show_how_increase_ability_text.text ="체력:" + knight01.GetComponent<Character>().health_ratio + " ->" + knight02.GetComponent<Character>().health_ratio
-            + "\n공격력: " + knight01.GetComponent<Character>().attack_ratio + " ->" + knight02.GetComponent<Character>().attack_ratio
-            + "\n마나: " + knight01.GetComponent<Character>().mana_ratio + " ->" + knight02.GetComponent<Character>().mana_ratio
-            + "\n특성: " + knight01.GetComponent<Character>().special_ratio + " ->" + knight02.GetComponent<Character>().special_ratio;
-
-            char_inform_text.text = "LV.1 \n" + "체력: " + DataController.Instance.health + "    (" + text_health +")"
+            char_inform_text.text =  "기사" + " LV." + DataController.Instance.knight_level + "\n" + "체력: " + DataController.Instance.health + "    (" + text_health +")"
             + "\n공격력: " + DataController.Instance.attack + "    (" + text_attack +")"
             + "\n마나: " + DataController.Instance.mana + "    (" + text_mana +")"
             + "\n특성: " + DataController.Instance.special + "    (" + text_special +")";
             buy_text.text = "각성    " + UiManager.ToStringKR(power_up_cost) + "  골드";
         }
-        else if(DataController.Instance.knight_level == 2)
+
+         else if(current_select_hero == "archer")
         {
-            power_up_cost = 1000000;
+            show_how_increase_ability_text.text = 
+            "레벨:" + archer[index].GetComponent<Character>().level + " ->" + archer[index+1].GetComponent<Character>().level
+            +"\n체력:" + archer[index].GetComponent<Character>().health_ratio + " ->" + archer[index+1].GetComponent<Character>().health_ratio
+            + "\n공격력: " + archer[index].GetComponent<Character>().attack_ratio + " ->" + archer[index+1].GetComponent<Character>().attack_ratio
+            + "\n마나: " + archer[index].GetComponent<Character>().mana_ratio + " ->" + archer[index+1].GetComponent<Character>().mana_ratio
+            + "\n특성: " + archer[index].GetComponent<Character>().special_ratio + " ->" + archer[index+1].GetComponent<Character>().special_ratio;
 
-            require_health = 500;
-            require_attack = 300;
-            require_mana = 200;
-            require_special = 250;
-            check_ability_and_set_color();
-            
-            show_how_increase_ability_text.text ="체력:" + knight02.GetComponent<Character>().health_ratio + " ->" + knight02.GetComponent<Character>().health_ratio
-            + "\n공격력: " + knight02.GetComponent<Character>().attack_ratio + " ->" + knight02.GetComponent<Character>().attack_ratio
-            + "\n마나: " + knight02.GetComponent<Character>().mana_ratio + " ->" + knight02.GetComponent<Character>().mana_ratio
-            + "\n특성: " + knight02.GetComponent<Character>().special_ratio + " ->" + knight02.GetComponent<Character>().special_ratio;
-
-            char_inform_text.text = "LV.2 \n" + "체력: " + DataController.Instance.health + "    (" + text_health +")"
+            char_inform_text.text =  "궁수" + " LV." + DataController.Instance.archer_level + "\n" + "체력: " + DataController.Instance.health + "    (" + text_health +")"
             + "\n공격력: " + DataController.Instance.attack + "    (" + text_attack +")"
             + "\n마나: " + DataController.Instance.mana + "    (" + text_mana +")"
             + "\n특성: " + DataController.Instance.special + "    (" + text_special +")";
@@ -210,51 +205,53 @@ public class MagicTowerController : MonoBehaviour
         
     }
 
+    public void select_knight()
+    {
+        current_select_hero = "knight";  
+        for(index = 0; index < knight.Length; index++)
+        {
+            if(DataController.Instance.knight_level == index+1)
+            {
+                power_up_cost = (long)Mathf.Pow(10, index);
+                require_health = knight_require_helth[index];
+                require_attack = 30 * index;
+                require_mana = 30 * index;
+                require_special = 30 * index;
+                check_ability_and_set_color();
+                show_ratio_increase();
+                break;
+            }
+        }
+        GameObject currentChar = EventSystem.current.currentSelectedGameObject.transform.gameObject;
+    }
+
     public void select_archer()
     {
         current_select_hero = "archer";
-        if(DataController.Instance.archer_level == 1)  //knight 1차 각성
+        for(index = 0; index < archer.Length; index++)
         {
-            power_up_cost = 100000;
-
-            require_health = 100;
-            require_attack = 200;
-            require_mana = 120;
-            require_special = 100;
-            check_ability_and_set_color();
-            
-            show_how_increase_ability_text.text ="체력:" + archer01.GetComponent<Character>().health_ratio + " ->" + archer02.GetComponent<Character>().health_ratio
-            + "\n공격력: " + archer01.GetComponent<Character>().attack_ratio + " ->" + archer02.GetComponent<Character>().attack_ratio
-            + "\n마나: " + archer01.GetComponent<Character>().mana_ratio + " ->" + archer02.GetComponent<Character>().mana_ratio
-            + "\n특성: " + archer01.GetComponent<Character>().special_ratio + " ->" + archer02.GetComponent<Character>().special_ratio;
-
-            char_inform_text.text = "LV.1 \n" + "체력: " + DataController.Instance.health + "    (" + text_health +")"
-            + "\n공격력: " + DataController.Instance.attack + "    (" + text_attack +")"
-            + "\n마나: " + DataController.Instance.mana + "    (" + text_mana +")"
-            + "\n특성: " + DataController.Instance.special + "    (" + text_special +")";
-            buy_text.text = "각성    " + UiManager.ToStringKR(power_up_cost) + "  골드";
+            if(DataController.Instance.archer_level == index+1)
+            {
+                power_up_cost = (long)Mathf.Pow(10, index);
+                require_health = 30 * index;
+                require_attack = knight_require_helth[index];
+                require_mana = 30 * index;
+                require_special = 30 * index;
+                check_ability_and_set_color();
+                show_ratio_increase();
+                break;
+            }
         }
-        else if(DataController.Instance.archer_level == 2)
-        {
-            power_up_cost = 1000000;
+        GameObject currentChar = EventSystem.current.currentSelectedGameObject.transform.gameObject;
 
-            require_health = 300;
-            require_attack = 600;
-            require_mana = 300;
-            require_special = 240;
-            check_ability_and_set_color();
-            
-            show_how_increase_ability_text.text ="체력:" + archer02.GetComponent<Character>().health_ratio + " ->" + archer02.GetComponent<Character>().health_ratio
-            + "\n공격력: " + archer02.GetComponent<Character>().attack_ratio + " ->" + archer02.GetComponent<Character>().attack_ratio
-            + "\n마나: " + archer02.GetComponent<Character>().mana_ratio + " ->" + archer02.GetComponent<Character>().mana_ratio
-            + "\n특성: " + archer02.GetComponent<Character>().special_ratio + " ->" + archer02.GetComponent<Character>().special_ratio;
+    }
 
-            char_inform_text.text = "LV.2 \n" + "체력: " + DataController.Instance.health + "    (" + text_health +")"
-            + "\n공격력: " + DataController.Instance.attack + "    (" + text_attack +")"
-            + "\n마나: " + DataController.Instance.mana + "    (" + text_mana +")"
-            + "\n특성: " + DataController.Instance.special + "    (" + text_special +")";
-            buy_text.text = "각성    " + UiManager.ToStringKR(power_up_cost) + "  골드";
-        }
+    public void setT_char_selectFrame(Transform transform)
+    {
+        var tra = transform;
+        SelectFrame.SetActive(true);
+        SelectFrame.transform.position = tra.position;
+        SelectFrame.transform.parent = tra.transform;
     }
 
 }

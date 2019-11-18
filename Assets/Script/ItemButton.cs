@@ -133,31 +133,12 @@ public class ItemButton : MonoBehaviour
     {
          
         var clone = Instantiate(prefab_floating_text, new Vector3(0, 2), Quaternion.Euler(Vector3.zero));
-        Debug.Log(UiManager.ToStringKR(currentQuestGold).Length);
-        if(UiManager.ToStringKR(currentQuestGold).Length >= 10)
-        {
-            clone.GetComponent<FloatingText>().text.text = "                   " + UiManager.ToStringKR(currentQuestGold);
-        }
-        else if(UiManager.ToStringKR(currentQuestGold).Length >= 8)
-        {
-            clone.GetComponent<FloatingText>().text.text = "                " + UiManager.ToStringKR(currentQuestGold);
-        }
-        else if(UiManager.ToStringKR(currentQuestGold).Length >= 6)
-        {
-            clone.GetComponent<FloatingText>().text.text = "             " + UiManager.ToStringKR(currentQuestGold);
-        }
-        else if(UiManager.ToStringKR(currentQuestGold).Length >= 4)
-        {
-            clone.GetComponent<FloatingText>().text.text = "       " + UiManager.ToStringKR(currentQuestGold);
-        }
-        else
-        {
-            clone.GetComponent<FloatingText>().text.text = "        " + UiManager.ToStringKR(currentQuestGold);
-        }
+
+        clone.GetComponent<FloatingText>().text.text = UiManager.ToStringKR(currentQuestGold);
+
         
         clone.transform.SetParent(this.transform);
         clone.transform.GetChild(0).gameObject.SetActive(true);
-        //clone.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>("Image/UI/Freeui/ZOSMA/Main/Cristal");
         clone.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>("Image/UI/Freeui/ZOSMA/Main/Coin");
 
         DataController.Instance.gold += currentQuestGold;
@@ -168,27 +149,9 @@ public class ItemButton : MonoBehaviour
     public void getAllQuestGold()
     {
         var clone = Instantiate(prefab_floating_text, new Vector3(0, 2), Quaternion.Euler(Vector3.zero));
-        //clone.GetComponent<FloatingText>().text.text = "       " + UiManager.ToStringKR(DataController.Instance.countgold);
-        if(UiManager.ToStringKR(DataController.Instance.countgold).Length >= 10)
-        {
-            clone.GetComponent<FloatingText>().text.text = "                   " + UiManager.ToStringKR(DataController.Instance.countgold);
-        }
-        else if(UiManager.ToStringKR(DataController.Instance.countgold).Length >= 8)
-        {
-            clone.GetComponent<FloatingText>().text.text = "                " + UiManager.ToStringKR(DataController.Instance.countgold);
-        }
-        else if(UiManager.ToStringKR(DataController.Instance.countgold).Length >= 6)
-        {
-            clone.GetComponent<FloatingText>().text.text = "             " + UiManager.ToStringKR(DataController.Instance.countgold);
-        }
-        else if(UiManager.ToStringKR(DataController.Instance.countgold).Length >= 4)
-        {
-            clone.GetComponent<FloatingText>().text.text = "       " + UiManager.ToStringKR(DataController.Instance.countgold);
-        }
-        else
-        {
-            clone.GetComponent<FloatingText>().text.text = "        " + UiManager.ToStringKR(DataController.Instance.countgold);
-        }
+
+        clone.GetComponent<FloatingText>().text.text = UiManager.ToStringKR(DataController.Instance.countgold);
+        
         clone.transform.SetParent(this.transform);
         clone.transform.GetChild(0).gameObject.SetActive(true);
 

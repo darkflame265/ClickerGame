@@ -92,6 +92,7 @@ public class goToPanel : MonoBehaviour
     public GameObject stage_1_panel;
     public GameObject stage_2_panel;
     public GameObject stage_3_panel;
+    public GameObject stage_4_panel;
     public GameObject battleScene_panel;
     public GameObject mapClone;
     public GameObject battle_pause_panel;
@@ -417,6 +418,20 @@ public class goToPanel : MonoBehaviour
     public void hide_stage_3_panel()
     {
         stage_3_panel.SetActive(false);
+        stage_explain_panel.SetActive(false);
+        show_current_stage.text = "";
+        Stage_explain.text = "";
+    }
+
+    public void show_stage_4_panel()
+    {
+        stage_4_panel.SetActive(true);
+        //stage_explain_panel.SetActive(true);
+    }
+
+    public void hide_stage_4_panel()
+    {
+        stage_4_panel.SetActive(false);
         stage_explain_panel.SetActive(false);
         show_current_stage.text = "";
         Stage_explain.text = "";

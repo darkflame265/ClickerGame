@@ -51,6 +51,9 @@ public class CharacterStateController : MonoBehaviour
     public GameObject knightBtn;
     public GameObject archerBtn;
 
+    public GameObject[]knight = new GameObject[0];
+    public GameObject[]archer = new GameObject[0];
+
     //skill 목록
     public Text skill_explain;
 
@@ -201,27 +204,26 @@ public class CharacterStateController : MonoBehaviour
 
     public void select_knight()
     {
-        if(DataController.Instance.knight_level == 1)
+        for(int i = 0; i < knight.Length; i++)
         {
-            select_character_prefabs = knight01;
-        }
-        else if(DataController.Instance.knight_level == 2)
-        {
-            select_character_prefabs = knight02;
+            if(DataController.Instance.knight_level == i+1)
+            {
+                select_character_prefabs = knight[i];
+                break;
+            }
         }
     }
 
     public void select_archer()
     {
-        if(DataController.Instance.archer_level == 1)
+        for(int i = 0; i < archer.Length; i++)
         {
-            select_character_prefabs = archer01;
+            if(DataController.Instance.archer_level == i+1)
+            {
+                select_character_prefabs = archer[i];
+                break;
+            }
         }
-        else if(DataController.Instance.archer_level == 2)
-        {
-            select_character_prefabs = archer02;
-        }
-        
     }
 
     
@@ -237,7 +239,7 @@ public class CharacterStateController : MonoBehaviour
             check_skill();
             check_Skill_1();
 
-            for(int i = 0; i <= skill.Length-1; i++) //skill.Length = 16
+            for(int i = 0; i < skill.Length; i++) //skill.Length = 16
             {
                 if(PlayerPrefs.GetInt(skill_id[i]) == 1)
                 {
@@ -249,7 +251,7 @@ public class CharacterStateController : MonoBehaviour
                 }
             }
 
-            for(int i = 0; i <= skill1.Length-1; i++) //checkskill_and_show
+            for(int i = 0; i < skill1.Length; i++) //checkskill_and_show
             {
                 if(PlayerPrefs.GetInt(skill1_id[i]) == 1)
                 {
@@ -277,7 +279,7 @@ public class CharacterStateController : MonoBehaviour
                 PlayerPrefs.SetInt(skill_id[0], 1);
                 //스킬얻음페널 Text 바꾸기
                 get_skill_text.text = "체력 50달성 스킬 흭득";
-                get_skill_image.sprite = Resources.Load<Sprite>("Image/Skill/Skill icons Guardian/Icons/Filled/Shoulder_2") as Sprite;
+                get_skill_image.sprite = skill[0].GetComponent<Image>().sprite;
                 get_skill_name.text = "경건한 몸";
                 get_skill_explain.text = "체력+20, 근력+10, 민첩+10, 마력+10, 클릭골드 2배";
                 goToPanel.Instance.get_skill_panel.SetActive(true);
@@ -294,7 +296,7 @@ public class CharacterStateController : MonoBehaviour
                 PlayerPrefs.SetInt(skill_id[1], 1);
                 //스킬얻음페널 Text 바꾸기
                 get_skill_text.text = "체력 100달성 스킬 흭득";
-                get_skill_image.sprite = Resources.Load<Sprite>("Image/Skill/Skill icons Guardian/Icons/Filled/Shields_2") as Sprite;
+                get_skill_image.sprite = skill[1].GetComponent<Image>().sprite;
                 get_skill_name.text = "상급 방패술";
                 get_skill_explain.text = "체력+50 근력+30, 클릭골드 3배";
                 goToPanel.Instance.get_skill_panel.SetActive(true);
@@ -309,7 +311,7 @@ public class CharacterStateController : MonoBehaviour
                 PlayerPrefs.SetInt(skill_id[2], 1);
                 //스킬얻음페널 Text 바꾸기
                 get_skill_text.text = "체력 300달성 스킬 흭득";
-                get_skill_image.sprite = Resources.Load<Sprite>("Image/Skill/Skill icons Guardian/Icons/Filled/Quake_2") as Sprite;
+                get_skill_image.sprite = skill[2].GetComponent<Image>().sprite;
                 get_skill_name.text = "최상급 방패술";
                 get_skill_explain.text = "체력+100 클릭골드 4배";//방어력 10배
                 goToPanel.Instance.get_skill_panel.SetActive(true);
@@ -323,7 +325,7 @@ public class CharacterStateController : MonoBehaviour
                 PlayerPrefs.SetInt(skill_id[3], 1);
                 //스킬얻음페널 Text 바꾸기
                 get_skill_text.text = "체력 500달성 스킬 흭득";
-                get_skill_image.sprite = Resources.Load<Sprite>("Image/Skill/Skill icons Guardian/Icons/Filled/CoverUp_2") as Sprite;
+                get_skill_image.sprite = skill[3].GetComponent<Image>().sprite;
                 get_skill_name.text = "수호자의 자질";
                 get_skill_explain.text = "체력+200, 근력+100, 민첩+50, 마나+50 클릭골드 5배";//방어력 25배
                 goToPanel.Instance.get_skill_panel.SetActive(true);
@@ -340,7 +342,7 @@ public class CharacterStateController : MonoBehaviour
                 PlayerPrefs.SetInt(skill_id[4], 1);
                 //스킬얻음페널 Text 바꾸기
                 get_skill_text.text = "근력 50달성 스킬 흭득";
-                get_skill_image.sprite = Resources.Load<Sprite>("Image/Skill/Skill icons Guardian/Icons/Filled/CoverUp_2") as Sprite;
+                get_skill_image.sprite = skill[4].GetComponent<Image>().sprite;
                 get_skill_name.text = "전사의 분노";
                 get_skill_explain.text = "체력+5, 근력+20, 민첩+10, 클릭골드 2배";
                 goToPanel.Instance.get_skill_panel.SetActive(true);
@@ -356,7 +358,7 @@ public class CharacterStateController : MonoBehaviour
                 PlayerPrefs.SetInt(skill_id[5], 1);
                 //스킬얻음페널 Text 바꾸기
                 get_skill_text.text = "근력 100달성 스킬 흭득";
-                get_skill_image.sprite = Resources.Load<Sprite>("Image/Skill/Skill icons Guardian/Icons/Filled/CoverUp_2") as Sprite;
+                get_skill_image.sprite = skill[5].GetComponent<Image>().sprite;
                 get_skill_name.text = "사무라이의 일섬";
                 get_skill_explain.text = "근력+50, 민첩+20, 클릭골드 3배";
                 goToPanel.Instance.get_skill_panel.SetActive(true);
@@ -371,7 +373,7 @@ public class CharacterStateController : MonoBehaviour
                 PlayerPrefs.SetInt(skill_id[6], 1);
                 //스킬얻음페널 Text 바꾸기
                 get_skill_text.text = "근력 300달성 스킬 흭득";
-                get_skill_image.sprite = Resources.Load<Sprite>("Image/Skill/Skill icons Guardian/Icons/Filled/CoverUp_2") as Sprite;
+                get_skill_image.sprite = skill[6].GetComponent<Image>().sprite;
                 get_skill_name.text = "일격필살";
                 get_skill_explain.text = "근력+75 클릭골드 4배";//공격력 10배
                 goToPanel.Instance.get_skill_panel.SetActive(true);
@@ -385,7 +387,7 @@ public class CharacterStateController : MonoBehaviour
                 PlayerPrefs.SetInt(skill_id[7], 1);
                 //스킬얻음페널 Text 바꾸기
                 get_skill_text.text = "근력 500달성 스킬 흭득";
-                get_skill_image.sprite = Resources.Load<Sprite>("Image/Skill/Skill icons Guardian/Icons/Filled/CoverUp_2") as Sprite;
+                get_skill_image.sprite = skill[7].GetComponent<Image>().sprite;
                 get_skill_name.text = "검의달인";
                 get_skill_explain.text = "체력+100 근력+250, 민첩+100, 마나+50, 클릭골드 5배";//공격력 20배
                 goToPanel.Instance.get_skill_panel.SetActive(true);
@@ -402,7 +404,7 @@ public class CharacterStateController : MonoBehaviour
                 PlayerPrefs.SetInt(skill_id[8], 1);
                 //스킬얻음페널 Text 바꾸기
                 get_skill_text.text = "민첩 50달성 스킬 흭득";
-                get_skill_image.sprite = Resources.Load<Sprite>("Image/Skill/Skill icons Guardian/Icons/Filled/CoverUp_2") as Sprite;
+                get_skill_image.sprite = skill[8].GetComponent<Image>().sprite;
                 get_skill_name.text = "암살의 길";
                 get_skill_explain.text = "근력+5, 민첩+20, 마나+10, 클릭골드 2배";
                 goToPanel.Instance.get_skill_panel.SetActive(true);
@@ -417,7 +419,7 @@ public class CharacterStateController : MonoBehaviour
                 PlayerPrefs.SetInt(skill_id[9], 1);
                 //스킬얻음페널 Text 바꾸기
                 get_skill_text.text = "민첩 100달성 스킬 흭득";
-                get_skill_image.sprite = Resources.Load<Sprite>("Image/Skill/Skill icons Guardian/Icons/Filled/CoverUp_2") as Sprite;
+                get_skill_image.sprite = skill[9].GetComponent<Image>().sprite;
                 get_skill_name.text = "숙련된 암살자";
                 get_skill_explain.text = "민첩+50, 마나+30, 클릭골드 3배";
                 goToPanel.Instance.get_skill_panel.SetActive(true);
@@ -430,7 +432,7 @@ public class CharacterStateController : MonoBehaviour
                 PlayerPrefs.SetInt(skill_id[10], 1);
                 //스킬얻음페널 Text 바꾸기
                 get_skill_text.text = "민첩 300달성 스킬 흭득";
-                get_skill_image.sprite = Resources.Load<Sprite>("Image/Skill/Skill icons Guardian/Icons/Filled/CoverUp_2") as Sprite;
+                get_skill_image.sprite = skill[10].GetComponent<Image>().sprite;
                 get_skill_name.text = "돈이 필요해";
                 get_skill_explain.text = "민첩+75 클릭골드 25배";//크리티컬확률 6%
                 goToPanel.Instance.get_skill_panel.SetActive(true);
@@ -443,7 +445,7 @@ public class CharacterStateController : MonoBehaviour
                 PlayerPrefs.SetInt(skill_id[11], 1);
                 //스킬얻음페널 Text 바꾸기
                 get_skill_text.text = "민첩 500달성 스킬 흭득";
-                get_skill_image.sprite = Resources.Load<Sprite>("Image/Skill/Skill icons Guardian/Icons/Filled/CoverUp_2") as Sprite;
+                get_skill_image.sprite = skill[11].GetComponent<Image>().sprite;
                 get_skill_name.text = "동화";
                 get_skill_explain.text = "주변에 사물에 동화되어 눈에 띄지 않습니다.\n체력+50, 근력+100, 민첩+200, 마나+100, 클릭골드 5배";//크리티컬확률 9% 회피율 5%
                 goToPanel.Instance.get_skill_panel.SetActive(true);
@@ -458,7 +460,7 @@ public class CharacterStateController : MonoBehaviour
                 PlayerPrefs.SetInt(skill_id[12], 1);
                 //스킬얻음페널 Text 바꾸기
                 get_skill_text.text = "마나 50달성 스킬 흭득";
-                get_skill_image.sprite = Resources.Load<Sprite>("Image/Skill/Skill icons Guardian/Icons/Filled/CoverUp_2") as Sprite;
+                get_skill_image.sprite = skill[12].GetComponent<Image>().sprite;
                 get_skill_name.text = "마나의 존재";
                 get_skill_explain.text = "마나를 느낄수 있습니다.\n체력+5, 민첩+10, 마나+20, 클릭골드 2배";
                 goToPanel.Instance.get_skill_panel.SetActive(true);
@@ -472,7 +474,7 @@ public class CharacterStateController : MonoBehaviour
                 PlayerPrefs.SetInt(skill_id[13], 1);
                 //스킬얻음페널 Text 바꾸기
                 get_skill_text.text = "마나 100달성 스킬 흭득";
-                get_skill_image.sprite = Resources.Load<Sprite>("Image/Skill/Skill icons Guardian/Icons/Filled/CoverUp_2") as Sprite;
+                get_skill_image.sprite = skill[13].GetComponent<Image>().sprite;
                 get_skill_name.text = "마나의 정수";
                 get_skill_explain.text = "마나의 정수를 보았습니다. 좀 더 발전했군요.\n민첩+30, 마나+50, 클릭골드 3배";
                 goToPanel.Instance.get_skill_panel.SetActive(true);
@@ -485,19 +487,19 @@ public class CharacterStateController : MonoBehaviour
                 PlayerPrefs.SetInt(skill_id[14], 1);
                 //스킬얻음페널 Text 바꾸기
                 get_skill_text.text = "마나 300달성 스킬 흭득";
-                get_skill_image.sprite = Resources.Load<Sprite>("Image/Skill/Skill icons Guardian/Icons/Filled/CoverUp_2") as Sprite;
+                get_skill_image.sprite = skill[14].GetComponent<Image>().sprite;
                 get_skill_name.text = "마법진 그리기";
                 get_skill_explain.text = "마법진을 그릴수 있습니다.\n마나+75, 클릭골드 4배";//연금술 성공확률 5%증가
                 goToPanel.Instance.get_skill_panel.SetActive(true);
                 DataController.Instance.special += 70;
                 DataController.Instance.MultiplyGoldPerClick(4);
             }
-            if(DataController.Instance.special >= 500 && PlayerPrefs.GetInt(skill_id[14]) == 0 && goToPanel.Instance.get_skill_panel.activeSelf == false)
+            if(DataController.Instance.special >= 500 && PlayerPrefs.GetInt(skill_id[15]) == 0 && goToPanel.Instance.get_skill_panel.activeSelf == false)
             {
                 PlayerPrefs.SetInt(skill_id[15], 1);
                 //스킬얻음페널 Text 바꾸기
                 get_skill_text.text = "마나 500달성 스킬 흭득";
-                get_skill_image.sprite = Resources.Load<Sprite>("Image/Skill/Skill icons Guardian/Icons/Filled/CoverUp_2") as Sprite;
+                get_skill_image.sprite = skill[15].GetComponent<Image>().sprite;
                 get_skill_name.text = "영감";
                 get_skill_explain.text = "깨달음을 얻었습니다.\n이는 당신을 더 높은 곳으로 이끌어줍니다.\n체력+100, 근력+50, 민첩+ 100, 마나+200, 클릭골드 5배";//연금술 성공확률 5%증가
                 goToPanel.Instance.get_skill_panel.SetActive(true);
@@ -574,7 +576,7 @@ public class CharacterStateController : MonoBehaviour
     public void MyPosition (Transform transform)
     {
         var tra = transform;
-        Debug.Log("Clicked button pos:" + tra.position);
+        //Debug.Log("Clicked button pos:" + tra.position);
         SelectFrame.SetActive(true);
         SelectFrame.transform.position = tra.position;
         SelectFrame.transform.parent = tra.transform;
@@ -597,7 +599,7 @@ public class CharacterStateController : MonoBehaviour
         DataController.Instance.mana = 5;
         DataController.Instance.special = 5;
         DataController.Instance.freestate = 5;
-        for(int i = 0; i <= skill.Length; i ++)
+        for(int i = 0; i < skill.Length; i++)
         {
             PlayerPrefs.SetInt(skill_id[i], 0);
         }

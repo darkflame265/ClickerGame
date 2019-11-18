@@ -36,22 +36,7 @@ public class SoundManager : MonoBehaviour
     
     void Start()
     {
-         /* 
-        audioSource = GetComponent<AudioSource>();
-        
-        audioSource.clip = bgm;
 
-        audioSource.volume = 1.0f;
-        audioSource.loop = true;
-        audioSource.mute = false;
-
-        audioSource.Play();
-        //audioSource.Stop();
-
-        audioSource.playOnAwake = true;
-
-        audioSource.priority = 0; //오디오소스중 현재 오디오 소스의 우선순위를 최우선
-        */
     }
 
     public void click_sound()
@@ -87,4 +72,5 @@ public class SoundManager : MonoBehaviour
         audioSource.volume = 0.369f;
         audioSource.Play();
     }
+
 }

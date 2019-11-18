@@ -43,6 +43,11 @@ public class QuestController : MonoBehaviour
 
     float questProgress;
 
+    public Inventory inventory;
+    public Transform tranform_canvas;
+
+    Sprite item_image;
+
     
     // Start is called before the first frame update
     void Start()
@@ -52,7 +57,10 @@ public class QuestController : MonoBehaviour
         insert_quest_cost_toList();
         insert_quest_effect_toList();
         //DataController.Instance.LoadQuestButton(this);
-        StartCoroutine("Auto");
+
+
+        //StartCoroutine("Auto");
+        check_quest_and_change_image();
     }
 
 
@@ -98,7 +106,7 @@ public class QuestController : MonoBehaviour
         quest_effect.Add("체력 +50");
         quest_effect.Add("공격력 +50");
         quest_effect.Add("스킬공격력 +50");
-        quest_effect.Add("황금사과 +1");
+        quest_effect.Add("현자의돌 +1");
         quest_effect.Add("체력 +100");
         quest_effect.Add("공격력 +100");
         quest_effect.Add("스킬공격력 +100");
@@ -137,6 +145,35 @@ public class QuestController : MonoBehaviour
                         }
                 }
         }
+    }
+
+    void check_quest_and_change_image()
+    {
+        for(int i = 0; i < quest.Length - 1; i++)
+                {
+                    if(UiManager.GetBool("QuestPurchased" + 0) == false)
+                    {
+                        //quest[0].transform.GetChild(0).GetComponentInChildren<Text>().text = UiManager.ToStringKR(quest_cost[0]);
+                        quest[0].GetComponentInChildren<Button>().interactable = true;
+                    }
+                    if(UiManager.GetBool("QuestPurchased" + i)  == true)
+                    {
+                        quest[i].transform.GetChild(0).GetComponentInChildren<Text>().text = "구매 완료";
+                        quest[i].GetComponentInChildren<Button>().interactable = false;
+                    }
+
+                        if(UiManager.GetBool("QuestPurchased" + i) == false && UiManager.GetBool("QuestPurchased" + (i+1)) == false)
+                        {
+                            //quest[i+1].transform.GetChild(0).GetComponentInChildren<Text>().text = "구매 불가";
+                            quest[i+1].GetComponentInChildren<Button>().interactable = false;
+                        }
+                        else if(UiManager.GetBool("QuestPurchased" + i) == true && UiManager.GetBool("QuestPurchased" + (i+1)) == false)
+                        {
+                            //quest[i+1].transform.GetChild(0).GetComponentInChildren<Text>().text = UiManager.ToStringKR(quest_cost[i]);;
+                            quest[i+1].GetComponentInChildren<Button>().interactable = true;
+                            
+                        }
+                }
     }
 
     public void init() 
@@ -185,6 +222,7 @@ public class QuestController : MonoBehaviour
                 {
                     if(UiManager.GetBool("QuestPurchased" + index) == false)
                     {
+                        SoundManager.Instance.get_challenge_reward();
                         DataController.Instance.gold -= quest_cost[index];
                         get_effect();
                         show_floating_text();
@@ -194,6 +232,7 @@ public class QuestController : MonoBehaviour
                 }
             }
         }
+        check_quest_and_change_image();
     }
 
     public void get_effect()
@@ -214,6 +253,11 @@ public class QuestController : MonoBehaviour
             DataController.Instance.special += 50;
         } else if(index == 7) {
             DataController.Instance.attack += 3000;           //황금 사과 가 없음
+            int i = 5;
+
+            inventory.AddItem(i);
+            item_image = inventory.database.FetchItemByID(i).Sprite;
+
         } else if(index == 8) {
             DataController.Instance.health += 100;
         } else if(index == 9) {       
@@ -233,8 +277,12 @@ public class QuestController : MonoBehaviour
         var clone = Instantiate(prefab_floating_text, new Vector3(0, 2), Quaternion.Euler(Vector3.zero));
         clone.GetComponent<Text>().text = quest_effect[index];
         clone.transform.SetParent(quest[index].transform.parent.parent.parent);
-        //clone.transform.GetChild(0).gameObject.SetActive(true); 이미지를 원하면
-        //clone.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>("Image/UI/Freeui/ZOSMA/Main/Coin");
+        if(item_image != null)
+        {
+            clone.transform.GetChild(0).gameObject.SetActive(true); 
+            //clone.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>("Image/UI/Freeui/ZOSMA/Main/Coin");
+            clone.GetComponentInChildren<Image>().sprite = item_image;
+        }
     }
 
 }

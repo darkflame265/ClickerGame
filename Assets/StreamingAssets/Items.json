@@ -47,10 +47,21 @@
     "id": 4,
     "title": "레벨업 포션",
     "value": 543,
-    "description": "현재 레벨에 필요한 양 만큼 경험치를 얻습니다.",
+    "description": "현재 레벨에서 레벨업에 필요한 양 만큼 경험치를 얻습니다.",
     "stackable": true,
     "rarity": 2,
     "slug": "mp",
+    "effect": "DataController.Instance.health += 5;"
+  },
+
+  {
+    "id": 5,
+    "title": "현자의 돌",
+    "value": 543,
+    "description": "신비한 힘이 깃든 돌.\n사용하면 모든스탯이 100증가합니다.",
+    "stackable": true,
+    "rarity": 2,
+    "slug": "Runestone",
     "effect": "DataController.Instance.health += 5;"
   }
 ]

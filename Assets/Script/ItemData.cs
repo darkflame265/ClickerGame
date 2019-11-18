@@ -101,7 +101,7 @@ public class ItemData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         //{
             for(int i =0; i < inv.Items.Count; i++)
             {
-                s[i].GetComponent<Image>().color = m_colopr;
+                //s[i].GetComponent<Image>().color = m_colopr;  //이거 주석처리함 방금
             }
             //s[inv.selected_item_id].GetComponent<Image>().color = m_colopr;
         //}

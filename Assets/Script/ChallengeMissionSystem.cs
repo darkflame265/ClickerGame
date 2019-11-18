@@ -62,14 +62,15 @@ public class ChallengeMissionSystem : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine("Auto");
+        //StartCoroutine("Auto");
+        checkMission();
     }
 
     IEnumerator Auto()
     {
         while(true)
         {
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(1f);
             checkMission();
             
         }
@@ -326,5 +327,6 @@ public class ChallengeMissionSystem : MonoBehaviour
             DataController.Instance.diamond += reward_crystal;
             gold_text(reward_crystal);
         }
+        checkMission();
     }
 }
