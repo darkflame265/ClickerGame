@@ -89,10 +89,17 @@ public class goToPanel : MonoBehaviour
     public GameObject BigNoticePanel;
     
     public GameObject camp_dispose_panel;
+
+    public Scrollbar battle_scrollbarr;
+    public Image chapter1_img;
+    public GameObject[] chapter1_panel;
+
     public GameObject stage_1_panel;
     public GameObject stage_2_panel;
     public GameObject stage_3_panel;
     public GameObject stage_4_panel;
+    public GameObject stage_5_panel;
+    public GameObject stage_6_panel;
     public GameObject battleScene_panel;
     public GameObject mapClone;
     public GameObject battle_pause_panel;
@@ -381,6 +388,23 @@ public class goToPanel : MonoBehaviour
         gold_amount_panel.SetActive(!gold_amount_panel.active);
     }
 
+    public void show_chapter1_panel()
+    {
+        for(int i = 0; i < chapter1_panel.Length; i++)
+        {
+            chapter1_panel[i].SetActive(!chapter1_panel[i].activeSelf);
+        }
+        if(chapter1_panel[0].activeSelf == false)
+        {
+            chapter1_img.sprite = Resources.Load<Sprite>("Image/UI/simple UI & icons/button/button_triangle_right") as Sprite;
+        } else {
+            chapter1_img.sprite = Resources.Load<Sprite>("Image/UI/simple UI & icons/button/button_triangle_left") as Sprite;
+        }
+        //battle_scrollbarr.GetComponent<Scrollbar>().value = 1f;
+    }
+
+    
+
     public void show_stage_1_panel()
     {
         stage_1_panel.SetActive(true);
@@ -432,6 +456,34 @@ public class goToPanel : MonoBehaviour
     public void hide_stage_4_panel()
     {
         stage_4_panel.SetActive(false);
+        stage_explain_panel.SetActive(false);
+        show_current_stage.text = "";
+        Stage_explain.text = "";
+    }
+
+    public void show_stage_5_panel()
+    {
+        stage_5_panel.SetActive(true);
+        //stage_explain_panel.SetActive(true);
+    }
+
+    public void hide_stage_5_panel()
+    {
+        stage_5_panel.SetActive(false);
+        stage_explain_panel.SetActive(false);
+        show_current_stage.text = "";
+        Stage_explain.text = "";
+    }
+
+    public void show_stage_6_panel()
+    {
+        stage_6_panel.SetActive(true);
+        //stage_explain_panel.SetActive(true);
+    }
+
+    public void hide_stage_6_panel()
+    {
+        stage_6_panel.SetActive(false);
         stage_explain_panel.SetActive(false);
         show_current_stage.text = "";
         Stage_explain.text = "";

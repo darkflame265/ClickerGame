@@ -15,7 +15,18 @@ public class CardDropZone : MonoBehaviour, IDropHandler
 
         CharacterCard d = eventData.pointerDrag.GetComponent<CharacterCard>();
         if(d != null) {
-            d.parentToReturnTo = this.transform;// 카드의 parent를 이 zone으로 변경
+            Debug.Log("this.transform.childCount: " + this.transform.childCount);
+            if(this.transform.childCount == 1 && this.transform.name != "Hand") //캐릭터 끼리 교체
+            {
+                Transform tmp = this.transform.GetChild(0);
+                tmp.SetParent(d.parentToReturnTo);
+                tmp.parent.GetComponent<CardDropZone>().checkBase();
+                //this.transform.GetChild(0).SetParent(d.parentToReturnTo);
+                d.parentToReturnTo = this.transform;// 카드의 parent를 이 zone으로 변경
+            }
+            else{ //hand또는 빈자리로
+                d.parentToReturnTo = this.transform;
+            }   
         }
         StartCoroutine("wait_by_exist_child");
     }
@@ -23,15 +34,22 @@ public class CardDropZone : MonoBehaviour, IDropHandler
     IEnumerator wait_by_exist_child()
     { //렉 떄문에 0.2초만에 자식위치를 못바꿀경우 반복해야함 count도 새면서
       //20번이상 반복해도 자식이 존재하지 않을 경우 탈출
-        yield return new WaitForSeconds(0.2f);
-
-        if(this.transform.GetChild(0) !=null) //자식이 존재할때까지 반복
+        while(true)
         {
-            if(this.transform.GetChild(0) !=null)
+            yield return new WaitForSeconds(0.2f);
+
+            if(this.transform.GetChild(0) !=null) //자식이 존재할때까지 반복
             {
-                checkBase(); //이건 카드를 드롭할때만 발동됨
+                Debug.Log("1");
+                if(this.transform.GetChild(0) !=null)
+                {
+                    Debug.Log("2");
+                    checkBase(); //이건 카드를 드롭할때만 발동됨
+                    break;
+                }
             }
         }
+        
     }
 
     public void checkBase()
@@ -80,11 +98,7 @@ public class CardDropZone : MonoBehaviour, IDropHandler
         {
             DataController.Instance.hero_2_ID = 0;  //dummy;
         }
-    
-        
-
     }
-
     public void OnlyDebug()
     {
         Debug.Log("hero_0 : " + DataController.Instance.hero_0_ID);
@@ -98,9 +112,4 @@ public class CardDropZone : MonoBehaviour, IDropHandler
         DataController.Instance.hero_1_ID = 0;
         DataController.Instance.hero_2_ID = 0;
     }
-
-    
-
-    
-
 }

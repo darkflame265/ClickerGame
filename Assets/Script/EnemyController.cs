@@ -16,6 +16,8 @@ public class EnemyController : MonoBehaviour
    public float mana_ratio;
    public float special_ratio;
 
+   public bool timestop = false;
+
    [Header("Unity Stuff")]
    public Image healthBar;
 
@@ -23,11 +25,11 @@ public class EnemyController : MonoBehaviour
    {
        current_HP = Max_HP;
        StartCoroutine("check_HP");
+       StartCoroutine("check_stop");
    }
 
    IEnumerator check_HP()
    {
-       
        while(true)
        {
             yield return new WaitForSeconds(0.1f);
@@ -42,7 +44,19 @@ public class EnemyController : MonoBehaviour
                 Destroy(this.gameObject);
             }
        }
-       
+   }
+
+   IEnumerator check_stop()
+   {
+       while(true)
+       {
+           yield return new WaitForSeconds(2f);
+
+           if(timestop == true) {
+               timestop = false;
+           }
+
+       }
    }
 
 

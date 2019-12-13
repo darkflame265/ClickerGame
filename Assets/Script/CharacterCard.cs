@@ -12,7 +12,7 @@ public class CharacterCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     //이 캐릭터를 소유하여서 카드가 보이는가
     //캐릭터카드를 통해 데이터베이스에 있는 영웅정보를 가져온다.
 
-    public enum Slot { dummy, knight, archer, mage };
+    public enum Slot { dummy, knight, archer, wizard };
     public Slot typeOfHero;
     public Transform Front;
     public Transform Mid;
@@ -42,11 +42,6 @@ public class CharacterCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
     }
 
- 
-
-    
-
-    
     void Start()
     {                                   // 0,1,2, 는 카드 데코레이션 자리
         Hand = this.transform.parent.parent.GetChild(3);
@@ -98,16 +93,17 @@ public class CharacterCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         
     }
 
-
     public void OnDrag(PointerEventData eventData)
     {
         Vector2 wp = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
 
         Vector2 touchPos = new Vector2(wp.x, wp.y); 
 
-        transform.position = touchPos;
+        this.transform.position = touchPos;
+
             
-        this.transform.position = transform.position; // - offset
+        //this.transform.position = transform.position; // - offset
+
         
     
     }
@@ -116,6 +112,7 @@ public class CharacterCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         //Debug.Log("end drag");
         this.transform.SetParent(parentToReturnTo);
+        this.transform.position = new Vector3(transform.position.x, transform.position.y, 700f);
         GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
 

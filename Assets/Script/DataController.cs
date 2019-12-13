@@ -1310,6 +1310,24 @@ public class DataController : MonoBehaviour
         }
     } 
 
+    public long wizard_level
+    {
+        get
+        {
+            if(!PlayerPrefs.HasKey("wizard_level")) // 골드가 없을떄
+            {
+                return 1;
+            }
+            string tmpwizard_level = PlayerPrefs.GetString("wizard_level");
+            return long.Parse(tmpwizard_level);
+
+        }
+        set
+        {
+            PlayerPrefs.SetString("wizard_level", value.ToString());
+        }
+    } 
+
     public long archer_current_cost
     {
         get

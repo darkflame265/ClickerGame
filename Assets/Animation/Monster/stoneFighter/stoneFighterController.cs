@@ -166,6 +166,7 @@ public class stoneFighterController : MonoBehaviour
         var clone = Instantiate(prefab_floating_text, close_enemy.transform.position, Quaternion.Euler(Vector3.zero));
         clone.transform.position += new Vector3(0, 2);
         clone.GetComponent<FloatingText>().text.text = "-" + this.damage;
+        clone.GetComponent<FloatingText>().text.color = Color.red;
         clone.transform.SetParent(this.transform);
     }
 }

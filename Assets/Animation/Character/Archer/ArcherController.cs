@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ArcherController : MonoBehaviour
 {
@@ -23,10 +24,43 @@ public class ArcherController : MonoBehaviour
 
     public long damage;
 
-    void Start(){
+    public Image skillBar;
+    int currentSkillPoint;
+    int maxSkillPoint = 3;
+
+    public GameObject arrow;
+    public GameObject skill_arrow;
+
+    bool deathbool = false;
+
+    public GameObject shadow_Archer;
+
+    void Start()
+    {
         animator = GetComponent<Animator>();
         StartCoroutine("char_position");
         damage = this.GetComponent<Character>().striking_power;
+        StartCoroutine("SkillUI");
+        currentSkillPoint = 0;
+
+        Transform pos;
+        pos = this.transform;
+        if(PowerController.Instance.return_power_list(17) == 1)
+        {
+            Debug.Log("ssssss");
+            shadow_Archer = Instantiate(shadow_Archer, pos);    
+            shadow_Archer.GetComponent<SpriteRenderer>().color = new Color(0,0,0,0.5f);
+            shadow_Archer.transform.SetParent(this.transform.parent);
+            shadow_Archer.transform.position = this.transform.position;
+            shadow_Archer.transform.position = new Vector3(pos.position.x-0.6f, pos.position.y, pos.position.z);
+            shadow_Archer.transform.localScale = this.transform.localScale;
+
+            shadow_Archer.GetComponent<Character>().current_HP = this.GetComponent<Character>().current_HP;
+            shadow_Archer.GetComponent<Character>().striking_power = this.GetComponent<Character>().striking_power;
+            shadow_Archer.GetComponent<Character>().special_ratio = this.GetComponent<Character>().special_ratio;
+        } else {
+            Debug.Log("false");
+        }
     }
     void Update() {
         
@@ -80,6 +114,12 @@ public class ArcherController : MonoBehaviour
                 movebool = false;
                 allAnimatorStop();
                 animator.SetBool("isDeath", true);
+                if(deathbool == false)
+                {
+                    //아래로 이동
+                    this.transform.position = new Vector3(transform.position.x, transform.position.y-0.1f, transform.position.z);
+                    deathbool = true;
+                }
                 yield return new WaitForSeconds(1f);
                 Destroy(this.gameObject);
             }
@@ -126,7 +166,13 @@ public class ArcherController : MonoBehaviour
             }
         }
 
-        if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 4f)
+        if(currentSkillPoint >= maxSkillPoint)  //스킬포인트가 차면
+        {
+            Invoke("skill", 0.2f);
+        }
+          
+
+        if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 10f)
         {
             movebool = false;
             allAnimatorStop();
@@ -147,17 +193,43 @@ public class ArcherController : MonoBehaviour
         }
     }
 
+    public void skill()
+    {
+        if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 10f)
+        {
+            
+            var skill_arrow_clone = Instantiate(skill_arrow, this.transform.position, Quaternion.Euler(Vector2.zero));
+            skill_arrow_clone.transform.SetParent(this.transform);
+        }
+        currentSkillPoint = 0;  //스킬포인트 초기화
+    }
+
     public void Attack()//애니메이션 이벤트 뒤에 배치
     {
-        if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 4f)
+        if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 10f)
         {
-            close_enemy.transform.GetComponent<EnemyController>().decreaseHP(this.GetComponent<Character>().striking_power);
-            var clone = Instantiate(prefab_floating_text, close_enemy.transform.position, Quaternion.Euler(Vector3.zero));
-            clone.transform.position += new Vector3(0, 2);
-            clone.GetComponent<FloatingText>().text.text = "-" + this.GetComponent<Character>().striking_power;
-            clone.transform.SetParent(this.transform);
+            // close_enemy.transform.GetComponent<EnemyController>().decreaseHP(this.GetComponent<Character>().striking_power);
+            // var clone = Instantiate(prefab_floating_text, close_enemy.transform.position, Quaternion.Euler(Vector3.zero));
+            // clone.transform.position += new Vector3(0, 2);
+            // clone.GetComponent<FloatingText>().text.text = "-" + this.GetComponent<Character>().striking_power;
+            // clone.transform.SetParent(this.transform);
+            var arrow_clone = Instantiate(arrow, this.transform.position, Quaternion.Euler(Vector2.zero));
+            arrow_clone.transform.SetParent(this.transform);
+            if(DataController.Instance.archer_level > 2)
+            {
+                currentSkillPoint++;
+            }
         }
-        
+    }
+
+    IEnumerator SkillUI()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(0.1f);
+            float skillPercent =  (float)currentSkillPoint / (float)maxSkillPoint;
+            skillBar.fillAmount = skillPercent;    
+        }
     }
 
     IEnumerator WaitFotIt()

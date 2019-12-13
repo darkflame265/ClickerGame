@@ -169,8 +169,8 @@ public class UiManager : MonoBehaviour
             //캐릭터
             health.text = "체력 : " + "(" + characterStateController.select_character_prefabs.GetComponent<Character>().health_ratio + ")" + " * " + DataController.Instance.health + " = " + characterStateController.select_character_prefabs.GetComponent<Character>().health_ratio * DataController.Instance.health; 
             attack.text = "공격력 : " + "(" + characterStateController.select_character_prefabs.GetComponent<Character>().attack_ratio + ")" + " * " + DataController.Instance.attack + " = " + characterStateController.select_character_prefabs.GetComponent<Character>().attack_ratio * DataController.Instance.attack; 
-            mana.text = "마나 : " + "(" + characterStateController.select_character_prefabs.GetComponent<Character>().mana_ratio + ")" + " * " + DataController.Instance.mana + " = " +characterStateController.select_character_prefabs.GetComponent<Character>().mana_ratio * DataController.Instance.mana; 
-            special.text = "스킬효과 : " + "(" + characterStateController.select_character_prefabs.GetComponent<Character>().special_ratio + ")" + " * " + DataController.Instance.special + " = " + characterStateController.select_character_prefabs.GetComponent<Character>().special_ratio * DataController.Instance.special; ;
+            mana.text = "민첩 : " + "(" + characterStateController.select_character_prefabs.GetComponent<Character>().mana_ratio + ")" + " * " + DataController.Instance.mana + " = " +characterStateController.select_character_prefabs.GetComponent<Character>().mana_ratio * DataController.Instance.mana; 
+            special.text = "스킬공격력 : " + "(" + characterStateController.select_character_prefabs.GetComponent<Character>().special_ratio + ")" + " * " + DataController.Instance.special + " = " + characterStateController.select_character_prefabs.GetComponent<Character>().special_ratio * DataController.Instance.special; 
             freestats.text = "프리스탯 : " + DataController.Instance.freestate;
             charLevel.text = "lv." + characterStateController.select_character_prefabs.GetComponent<Character>().level;
 

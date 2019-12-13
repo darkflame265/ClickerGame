@@ -32,6 +32,7 @@ public class FightController : MonoBehaviour
     public GameObject ch_2_check_img;
     public GameObject ch_3_check_img;
     public GameObject ch_4_check_img;
+    public GameObject ch_5_check_img;
  
     // Use this for initialization
     void Start () {       //원래 스테이지 관련 기능은 여기다해야되는데 귀찮아서
@@ -102,6 +103,12 @@ public class FightController : MonoBehaviour
                 ch_4_check_img.GetComponent<Image>().color = new Color(1,1,1,1);
             }
             else ch_4_check_img.GetComponent<Image>().color = new Color(1,1,1,0);
+
+            if(GetBool("ch1" + 99) == true)  //20~39
+            {
+                ch_5_check_img.GetComponent<Image>().color = new Color(1,1,1,1);
+            }
+            else ch_5_check_img.GetComponent<Image>().color = new Color(1,1,1,0);
         }
         
         

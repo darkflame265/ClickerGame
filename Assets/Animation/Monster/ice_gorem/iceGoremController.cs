@@ -136,11 +136,16 @@ public class iceGoremController : MonoBehaviour
             foreach(GameObject target in enemies) {
                 float distance = Vector3.Distance(target.transform.position, this.transform.position);
                 if(distance < 1f)
-            {
-                target.transform.GetComponent<Character>().decreaseHP(damage);
-                //var clone = Instantiate(prefab_floating_text, close_enemy.transform.position, Quaternion.Euler(Vector3.zero));
-
-            }
+                {
+                    target.transform.GetComponent<Character>().decreaseHP(damage);
+                    //var clone = Instantiate(prefab_floating_text, close_enemy.transform.position, Quaternion.Euler(Vector3.zero));
+                    target.transform.GetComponent<Character>().decreaseHP(this.damage);
+                    var clone = Instantiate(prefab_floating_text, target.transform.position, Quaternion.Euler(Vector3.zero));
+                    clone.transform.position += new Vector3(0, 2);
+                    clone.GetComponent<FloatingText>().text.text = "-" + this.damage;
+                    clone.GetComponent<FloatingText>().text.color = Color.red;
+                    clone.transform.SetParent(this.transform);
+                }
             }
     }
 

@@ -113,5 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9054d892db6f3c749a3e5f06fb268dc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  StoneDamage: 0
   Stone: {fileID: 5291699872426223139}
+  prefab_floating_text: {fileID: 5954360500128425662, guid: ec7c961f77ddb894a8a00885a94ac4e2,
+    type: 3}

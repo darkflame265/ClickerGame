@@ -206,8 +206,8 @@ public class QuestController : MonoBehaviour
             }
         }
         questProgress = (float)clear_quest_length / max_quest_length;
-        scrollbarr.GetComponent<Scrollbar>().value = 0;
-        scrollbarr.GetComponent<Scrollbar>().value = questProgress;
+        //scrollbarr.GetComponent<Scrollbar>().value = 0;
+        //scrollbarr.GetComponent<Scrollbar>().value = questProgress;
         Debug.Log(questProgress + 0.05f);
     }
 

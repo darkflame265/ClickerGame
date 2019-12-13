@@ -27,6 +27,8 @@ public class BattleManager : MonoBehaviour
     public GameObject Fight_SelectFrame;
     public Text show_current_stage;
     public Text Stage_explain;
+    public GameObject probability_panel;
+    public GameObject tower_btn;
 
     public Transform BattleScene_panel;
 
@@ -57,16 +59,28 @@ public class BattleManager : MonoBehaviour
     public Text hero_2_hp_text;
     public Text hero_2_atk_text;
 
+    public Image monster_0_img;
+    public Text monster_0_hp_text;
+    public Text monster_0_atk_text;
+
+    public Image monster_1_img;
+    public Text monster_1_hp_text;
+    public Text monster_1_atk_text;
+
+    public Image monster_2_img;
+    public Text monster_2_hp_text;
+    public Text monster_2_atk_text;
+
     //hero
     public GameObject dummy;
+
     public GameObject knight;
     public GameObject archer;
+    public GameObject wizard;
 
-    public GameObject knight_01;
-    public GameObject knight_02;
-
-    public GameObject archer_01;
-    public GameObject archer_02;
+    public GameObject[] knight_pack = new GameObject[0];
+    public GameObject[] archer_pack = new GameObject[0];
+    public GameObject[] wizard_pack = new GameObject[0];
 
     //Enemy
     public GameObject Scarecrow;     //dpstest   
@@ -85,6 +99,7 @@ public class BattleManager : MonoBehaviour
     public GameObject stoneFighter;
     public GameObject blueDragonic;
     public GameObject meduza;
+    public GameObject minotaurse;
 
     //timer
     long current_heart = 2;
@@ -174,6 +189,25 @@ public class BattleManager : MonoBehaviour
             }
     }
 
+    public void debug_monster_despose()
+    {
+        if(DataController.Instance.monster_0_ID != null)
+        {
+            Debug.Log("spawn 0 is " + DataController.Instance.monster_0_ID);
+        }
+
+        if(DataController.Instance.monster_1_ID != null)
+        {
+            Debug.Log("spawn 1 is " + DataController.Instance.monster_1_ID);
+        }
+
+        if(DataController.Instance.monster_2_ID != null)
+        {
+            Debug.Log("spawn 2 is " + DataController.Instance.monster_2_ID);
+        }
+
+    }
+
     public int require_max_stage()
     {
         int a = 0;
@@ -219,29 +253,36 @@ public class BattleManager : MonoBehaviour
             Map1.SetActive(true);
             mapImage.SetActive(false);
         }
-        if(DataController.Instance.current_stage >= 20)
+        if(DataController.Instance.current_stage > 20)
         {
             Map1.SetActive(false);
             mapImage.SetActive(true);
+            mapImage.GetComponent<RectTransform>().offsetMax = new Vector2(mapImage.GetComponent<RectTransform>().offsetMax.x, 330f);
+            mapImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Background/fightMap/Forest_1") as Sprite;
+        }
+        if(DataController.Instance.current_stage > 40)
+        {
+            Map1.SetActive(false);
+            mapImage.SetActive(true);           
             mapImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Background/fightMap/ForestDayLight") as Sprite;
         }
-        if(DataController.Instance.current_stage >= 40)
+        if(DataController.Instance.current_stage > 60)
+        {
+            Map1.SetActive(false);
+            mapImage.SetActive(true);                           
+            mapImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Background/fightMap/DistantCity") as Sprite;
+        }
+        if(DataController.Instance.current_stage > 80)
         {
             Map1.SetActive(false);
             mapImage.SetActive(true);
-            mapImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Background/fightMap/DistantCity") as Sprite;
+            mapImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Background/fightMap/Forest_2") as Sprite;
         }
-        if(DataController.Instance.current_stage >= 60)
+        if(DataController.Instance.current_stage > 100)
         {
             Map1.SetActive(false);
             mapImage.SetActive(true);
             mapImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Background/fightMap/ForestNightDark") as Sprite;
-        }
-        if(DataController.Instance.current_stage >= 80)
-        {
-            Map1.SetActive(false);
-            mapImage.SetActive(true);
-            mapImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Background/fightMap/Forest_1") as Sprite;
         }
     }
 
@@ -272,7 +313,7 @@ public class BattleManager : MonoBehaviour
                 hero_0_hp_text.GetComponent<Text>().text = "HP: " + "<color=#ff0000>" + 0 + "</color>";
             }
         }
-        Debug.Log("hero_spawn_point1.transform.childCount is " + hero_spawn_point1.transform.childCount);
+        //Debug.Log("hero_spawn_point1.transform.childCount is " + hero_spawn_point1.transform.childCount);
         if(hero_spawn_point1.transform.childCount != 0)
         {
             //hero_1_img.GetComponent<Image>().sprite = Mid.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite;
@@ -295,6 +336,58 @@ public class BattleManager : MonoBehaviour
                 hero_2_hp_text.GetComponent<Text>().text = "HP: " + "<color=#ff0000>" + 0 + "</color>";
             }
         }
+
+
+
+        //monster
+        //monster_2_img.GetComponent<Image>().sprite == null && 
+        if(Spawn_point0.transform.childCount != 0)
+        {
+            monster_0_img.GetComponent<Image>().sprite = Spawn_point0.GetComponentInChildren<SpriteRenderer>().sprite;
+        } else  monster_0_img.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/UI/simple UI & icons/button/button_exit");
+        if(Spawn_point1.transform.childCount != 0)
+        {
+            monster_1_img.GetComponent<Image>().sprite = Spawn_point1.GetComponentInChildren<SpriteRenderer>().sprite;
+        } else  monster_1_img.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/UI/simple UI & icons/button/button_exit");
+        if(Spawn_point2.transform.childCount != 0)
+        {
+            monster_2_img.GetComponent<Image>().sprite = Spawn_point2.GetComponentInChildren<SpriteRenderer>().sprite;
+        } else  monster_2_img.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/UI/simple UI & icons/button/button_exit");
+
+        if(Spawn_point0.transform.childCount != 0)
+        {
+            //hero_0_img.GetComponent<Image>().sprite = Back.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite;
+            monster_0_hp_text.GetComponent<Text>().text = "HP: " + Spawn_point0.GetComponentInChildren<EnemyController>().current_HP.ToString();
+            monster_0_atk_text.GetComponent<Text>().text = "ATK: " + Spawn_point0.GetComponentInChildren<EnemyController>().damage.ToString();
+            if(Spawn_point0.GetComponentInChildren<EnemyController>().current_HP <= 0)
+            {
+                monster_0_hp_text.GetComponent<Text>().text = "HP: " + "<color=#ff0000>" + 0 + "</color>";
+            }
+        }
+
+        if(Spawn_point1.transform.childCount != 0)
+        {
+            //hero_0_img.GetComponent<Image>().sprite = Back.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite;
+            monster_1_hp_text.GetComponent<Text>().text = "HP: " + Spawn_point1.GetComponentInChildren<EnemyController>().current_HP.ToString();
+            monster_1_atk_text.GetComponent<Text>().text = "ATK: " + Spawn_point1.GetComponentInChildren<EnemyController>().damage.ToString();
+            if(Spawn_point1.GetComponentInChildren<EnemyController>().current_HP <= 0)
+            {
+                monster_1_hp_text.GetComponent<Text>().text = "HP: " + "<color=#ff0000>" + 0 + "</color>";
+            }
+        }
+
+        if(Spawn_point2.transform.childCount != 0)
+        {
+            //hero_0_img.GetComponent<Image>().sprite = Back.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite;
+            monster_2_hp_text.GetComponent<Text>().text = "HP: " + Spawn_point2.GetComponentInChildren<EnemyController>().current_HP.ToString();
+            monster_2_atk_text.GetComponent<Text>().text = "ATK: " + Spawn_point2.GetComponentInChildren<EnemyController>().damage.ToString();
+            if(Spawn_point2.GetComponentInChildren<EnemyController>().current_HP <= 0)
+            {
+                monster_2_hp_text.GetComponent<Text>().text = "HP: " + "<color=#ff0000>" + 0 + "</color>";
+            }
+        }
+
+
     }
 
     
@@ -303,6 +396,14 @@ public class BattleManager : MonoBehaviour
         LimitTime = 30;
         while(true)
         {
+            if(DataController.Instance.current_stage == -1) 
+            {
+                tower_btn.GetComponent<Image>().color = Color.red;
+            } else 
+            {
+                tower_btn.GetComponent<Image>().color = Color.blue;
+            }
+            
             if(DataController.Instance.current_stage == 0)
             {
 
@@ -320,16 +421,37 @@ public class BattleManager : MonoBehaviour
                     {
                         DataController.Instance.get_stage_gold = 30000;
                         DataController.Instance.get_stage_exp = 300;
+                        DataController.Instance.get_stage_crystal = 10;
                     }
                     if(total_damage >= 10000)
                     {
-                        DataController.Instance.get_stage_gold = 2000000;
+                        DataController.Instance.get_stage_gold = 200000;
                         DataController.Instance.get_stage_exp = 2000;
+                        DataController.Instance.get_stage_crystal = 50;
+                    }
+                    if(total_damage >= 100000)
+                    {
+                        DataController.Instance.get_stage_gold = 20000000;
+                        DataController.Instance.get_stage_exp = 20000;
+                        DataController.Instance.get_stage_crystal = 100;
+                    }
+                    if(total_damage >= 1000000)
+                    {
+                        DataController.Instance.get_stage_gold = 500000000;
+                        DataController.Instance.get_stage_exp = 500000;
+                        DataController.Instance.get_stage_crystal = 300;
                     }
                     if(total_damage >= 10000000)
                     {
-                        DataController.Instance.get_stage_gold = 9999999;
-                        DataController.Instance.get_stage_exp = 9999;
+                        DataController.Instance.get_stage_gold = 3500000000;
+                        DataController.Instance.get_stage_exp = 3000000;
+                        DataController.Instance.get_stage_crystal = 500;
+                    }
+                    if(total_damage >= 100000000)
+                    {
+                        DataController.Instance.get_stage_gold = 300000000000;
+                        DataController.Instance.get_stage_exp = 20000000;
+                        DataController.Instance.get_stage_crystal = 1000;
                     }
                     Debug.Log("it's DPS STAGE!!");
                     goToPanel.Instance.show_result_panel();       //결과창에 데미지 몇 돌파했는지 표시하기: 자신이 왜 이 만큼의 보상을 얻었는가 설명
@@ -431,6 +553,11 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    public void show_probability()
+    {
+        probability_panel.SetActive(!probability_panel.active);
+    }
+
     public void pause_button()
     {
         if (IsPause == false)
@@ -465,25 +592,9 @@ public class BattleManager : MonoBehaviour
 
     void check_hero_level()
     {
-        //knight
-        if(DataController.Instance.knight_level == 1)
-        {
-            knight = knight_01;
-        }
-        else if(DataController.Instance.knight_level == 2)
-        {
-            knight = knight_02;
-        }
-
-        //archer
-        if(DataController.Instance.archer_level == 1)
-        {
-            archer = archer_01;
-        }
-        else if(DataController.Instance.archer_level == 2)
-        {
-            archer = archer_02;
-        }
+        knight = knight_pack[DataController.Instance.knight_level-1];
+        archer = archer_pack[DataController.Instance.archer_level-1];
+        wizard = wizard_pack[DataController.Instance.wizard_level-1];
     }
 
     public void set_hero_monster()
@@ -506,6 +617,9 @@ public class BattleManager : MonoBehaviour
             case 2:
                 hero_0 = archer;
                 break;
+            case 3:
+                hero_0 = wizard;
+                break;
             default:
                  hero_0 = null;
                 break;
@@ -520,6 +634,9 @@ public class BattleManager : MonoBehaviour
             case 2:
                 hero_1 = archer;
                 break;
+            case 3:
+                hero_1 = wizard;
+                break;
             default:
                  hero_1 = null;
                 break;
@@ -533,6 +650,9 @@ public class BattleManager : MonoBehaviour
                 break;
             case 2:
                 hero_2 = archer;
+                break;
+            case 3:
+                hero_2 = wizard;
                 break;
             default:
                  hero_2 = null;
@@ -587,6 +707,9 @@ public class BattleManager : MonoBehaviour
             case "meduza":
                 monster_0 = meduza;
                 break;
+            case "minotaurse":
+                monster_0 = minotaurse;
+                break;
             
             default:
                 monster_0 = null;
@@ -638,6 +761,9 @@ public class BattleManager : MonoBehaviour
                 break;
             case "meduza":
                 monster_1 = meduza;
+                break;
+            case "minotaurse":
+                monster_1 = minotaurse;
                 break;
 
             default:
@@ -691,6 +817,9 @@ public class BattleManager : MonoBehaviour
                 break;
             case "meduza":
                 monster_2 = meduza;
+                break;
+            case "minotaurse":
+                monster_2 = minotaurse;
                 break;
 
              default:
@@ -832,9 +961,9 @@ public class BattleManager : MonoBehaviour
             DataController.Instance.monster_hp = 10000000;       //100
             Set_Hero_Base();
             //보상        //dps_test는 입힌 데미지량에 따라 보상이 겨렁됨
-            DataController.Instance.get_stage_gold = 500;
-            DataController.Instance.get_stage_exp = 3;
-            DataController.Instance.get_stage_crystal = 3;
+            // DataController.Instance.get_stage_gold = 500;
+            // DataController.Instance.get_stage_exp = 3;
+            // DataController.Instance.get_stage_crystal = 3;
         
         
         DataController.Instance.current_stage = 0;
@@ -848,7 +977,7 @@ public class BattleManager : MonoBehaviour
         if(DataController.Instance.current_stage == 1)
         {
             monster_init();  //get_stage_gold, exp도 초기화
-            DataController.Instance.monster_2_ID = "meduza";  //Bat
+            DataController.Instance.monster_2_ID = "minotaurse";  //Bat
             DataController.Instance.monster_damage = 2;      //3
             DataController.Instance.monster_hp = 10000;       //100
             Set_Hero_Base();
@@ -968,8 +1097,8 @@ public class BattleManager : MonoBehaviour
             monster_init();
 
             DataController.Instance.monster_1_ID = "Spider";
-            DataController.Instance.monster_hp = 800;
-            DataController.Instance.monster_damage = 30;
+            DataController.Instance.monster_hp = 25;
+            DataController.Instance.monster_damage = 15;
 
             Set_Hero_Base();
 
@@ -1091,8 +1220,8 @@ public class BattleManager : MonoBehaviour
             monster_init();
 
             DataController.Instance.monster_1_ID = "Gorem";
-            DataController.Instance.monster_hp = 1000;
-            DataController.Instance.monster_damage = 70;
+            DataController.Instance.monster_hp = 130;
+            DataController.Instance.monster_damage = 20;
 
             Set_Hero_Base();
 
@@ -1110,8 +1239,8 @@ public class BattleManager : MonoBehaviour
         {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
             monster_init();
             DataController.Instance.monster_2_ID = "Gorem";
-            DataController.Instance.monster_hp = 1300;
-            DataController.Instance.monster_damage = 70;
+            DataController.Instance.monster_hp = 140;
+            DataController.Instance.monster_damage = 20;
 
             Set_Hero_Base();
 
@@ -2039,13 +2168,14 @@ public class BattleManager : MonoBehaviour
         stoneFighter,
         blueDragonic,
         meduza,
+        minotaurse,
     }
 
 
     public void over_60()
     {
 
-        for(int i = 0; i < 100; i++)
+        for(int i = 0; i < 121; i++)
         {
             if(fightController.stageCh1[i] == EventSystem.current.currentSelectedGameObject
             && DataController.Instance.current_stage == i+1)
@@ -2083,6 +2213,7 @@ public class BattleManager : MonoBehaviour
                         DataController.Instance.monster_0_ID = DataController.Instance.monster_1_ID;
                         DataController.Instance.monster_1_ID = tmp;
                     }
+                    
                 }
 
                 if(DataController.Instance.current_stage % 20 > 15)
@@ -2095,6 +2226,16 @@ public class BattleManager : MonoBehaviour
                         DataController.Instance.monster_2_ID = tmp;
                     }
                 }
+
+                if(DataController.Instance.current_stage % 20 > 5 && DataController.Instance.monster_2_ID == "dummy")
+                {
+                    if(DataController.Instance.current_stage % 3 == 0)
+                    {
+                        string tmp = DataController.Instance.monster_2_ID;
+                        DataController.Instance.monster_2_ID = DataController.Instance.monster_1_ID;
+                        DataController.Instance.monster_1_ID = tmp;
+                    }
+                }
                 
                 if (x == 0) x = 1;
                 DataController.Instance.monster_hp = DataController.Instance.current_stage * 4;
@@ -2105,20 +2246,6 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        // DataController.Instance.monster_0_ID = "goblin_general"; 
-        // DataController.Instance.monster_1_ID = "plant_monster";
-        // DataController.Instance.monster_2_ID = "Spider";
-        // DataController.Instance.monster_hp = 200;
-        // DataController.Instance.monster_damage = 200;
-        // set_hero_monster();
-
-        // if(DataController.Instance.current_stage == 60)
-        // {  
-        //     Set_Hero_Base();
-        //     set_fight_reward();
-        // }
-        // DataController.Instance.current_stage = 60;
-        // set_explanation_panel();
     }
 
     void set_explanation_panel()
@@ -2238,6 +2365,10 @@ public class BattleManager : MonoBehaviour
             {
                 DataController.Instance.monster_2_ID = "meduza"; 
             }
+            else if(tower_stage % monster_kindCount == 14)
+            {
+                DataController.Instance.monster_2_ID = "minotaurse"; 
+            }
             else {
                 DataController.Instance.monster_2_ID = "Bat"; 
             }
@@ -2253,6 +2384,8 @@ public class BattleManager : MonoBehaviour
             goToPanel.Instance.stage_explain_panel.SetActive(true);
             show_current_stage.text = "Special " + DataController.Instance.tower_stage.ToString();
             Stage_explain.text = "몹 평균 체력\n" + DataController.Instance.monster_hp + "\n몹 평균 공격력\n" + DataController.Instance.monster_damage;
+            tower_btn.GetComponent<Image>().color = Color.red;
+            
         }
     }
     

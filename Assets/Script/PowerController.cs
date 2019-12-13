@@ -8,12 +8,39 @@ public class PowerController : MonoBehaviour
     public GameObject SelectFrame;
 
     public GameObject[]power = new GameObject[0];
+    public GameObject[]before_power = new GameObject[0];
 
+
+    public GameObject powerExplainPanel;  // floatingText 위치 전용
     public Text PowerExplain;
 
+    public GameObject prefab_floating_text;
 
+    public string power_name;
+    public string power_grade;
 
     int result = 0;
+
+    private static PowerController instance;
+
+    public static PowerController Instance
+    {
+        get{
+            if(instance == null)
+            {
+                instance = FindObjectOfType<PowerController>();
+
+                if(instance == null)
+                {
+                    GameObject container = new GameObject("PowerController");
+
+                    instance = container.AddComponent<PowerController>();
+                }
+            }
+            return instance;
+        }
+    }
+    
 
     void Start()
     {
@@ -33,10 +60,12 @@ public class PowerController : MonoBehaviour
                 {
                     //Debug.Log("answer is " + a.ToString());
                     power[i].SetActive(true);
+                    before_power[i].SetActive(false);
                 }
                 else
                 {
                     power[i].SetActive(false);
+                    before_power[i].SetActive(true);
                     //Debug.Log("Instpertor length:  " + power.Length);
                 }
             }
@@ -48,25 +77,32 @@ public class PowerController : MonoBehaviour
 
     public enum power_list
     {
-        eBonusState_50,  //0
-        eClickGold_100,
-        eClickExp_300,
-        eDamage_1000,
+        eHealth_100,  //0
+        eAttack_100,
+        eSpeed_100,
+        eSkill_100,
 
-        eBonusState_20,
-        eClickGold_40,
-        eClickExp_100,
-        eDamage_300,
+        eHealth_300,  //0
+        eAttack_300,
+        eSpeed_300,
+        eSkill_300,
 
-        eBonusState_8,
-        eClickGold_16,
-        eClickExp_40,
-        eDamage_100,
+        eHealth_500,  //0
+        eAttack_500,
+        eSpeed_500,
+        eSkill_500,
 
-        eBonusState_3,
-        eClickGold_6,
-        eClickExp_16,
-        eDamage_40,
+        eHealth_1000,  //0
+        eAttack_1000,
+        eSpeed_1000,
+        eSkill_1000,
+
+        eWarrior,
+        eArcher,
+        eWizard,
+        eGoldHand,
+        eTimeStop,
+        
     }
     
 //PlayerPrefs.GetString("reincarnation_count");
@@ -85,113 +121,138 @@ public class PowerController : MonoBehaviour
 
             return PlayerPrefs.GetInt(name);
         }
+    }
 
+    public int return_power_list(int i)
+    {
+        power_list a = (power_list)i;
+        return check_list.Load(a.ToString());
     }
 
     
 
     public void initiaze_power()
     {
-        for (int i = 0; i < 16; i++) //초기화 기능 넣기
+        for (int i = 0; i < 21; i++) //초기화 기능 넣기
         {
             power_list a = (power_list)i;
             if(check_list.Load(a.ToString()) == 1)
             {
                 if(i == 0)
                 {
-                    DataController.Instance.devideFreeStateBesu(50);
+                    DataController.Instance.health -= 100;
                     check_list.Save(a.ToString(), 0);
                     Debug.Log("S등급 보너스스탯 50배 제거 완료!!");
                 }
                 if(i == 1)
                 {
-                    DataController.Instance.DevideGoldPerClick(100);
+                    DataController.Instance.attack -= 100;
                     check_list.Save(a.ToString(), 0);
                     Debug.Log("S등급 클릭골드 100배 제거 완료!!");
                 }
                 if(i == 2)
                 {
-                    DataController.Instance.DevideExpBesu(300);
+                    DataController.Instance.mana -= 100;
                     check_list.Save(a.ToString(), 0);
                     Debug.Log("S등급 클릭경험치 300배 제거 완료!!");
                 }
                 if(i == 3)
                 {
-                    DataController.Instance.devideDamageBesu(1000);
+                    DataController.Instance.special -= 100;
                     check_list.Save(a.ToString(), 0);
                     Debug.Log("S등급 데미지 1000배 제거 완료!!");
                 }
                 if(i == 4)
                 {
-                    DataController.Instance.devideFreeStateBesu(20);
+                    DataController.Instance.health -= 300;
                     check_list.Save(a.ToString(), 0);
                     Debug.Log("A등급 보너스스탯 20배 제거 완료!!");
                 }
                 if(i == 5)
                 {
-                    DataController.Instance.DevideGoldPerClick(40);
+                    DataController.Instance.attack -= 300;
                     check_list.Save(a.ToString(), 0);
                     Debug.Log("A등급 클릭골드 40배 제거 완료!!");
                 }
                 if(i == 6)
                 {
-                    DataController.Instance.DevideExpBesu(100);
+                    DataController.Instance.mana -= 300;
                     check_list.Save(a.ToString(), 0);
                     Debug.Log("A등급 클릭경험치 100배 제거 완료!!");
                 }
                 if(i == 7)
                 {
-                    DataController.Instance.devideDamageBesu(300);
+                    DataController.Instance.special -= 300;
                     check_list.Save(a.ToString(), 0);
                     Debug.Log("A등급 데미지 300배 제거 완료!!");
                 }
                 if(i == 8)
                 {
-                    DataController.Instance.devideFreeStateBesu(8);
+                    DataController.Instance.health -= 500;
                     check_list.Save(a.ToString(), 0);
                     Debug.Log("B등급 보너스스탯 8배 제거 완료!!");
                 }
                 if(i == 9)
                 {
-                    DataController.Instance.DevideGoldPerClick(16);
+                    DataController.Instance.attack -= 500;
                     check_list.Save(a.ToString(), 0);
                     Debug.Log("B등급 클릭골드 16배 제거 완료!!");
                 }
                 if(i == 10)
                 {
-                    DataController.Instance.DevideExpBesu(40);
+                    DataController.Instance.mana -= 500;
                     check_list.Save(a.ToString(), 0);
                     Debug.Log("B등급 클릭경험치 40배 제거 완료!!");
                 }
                 if(i == 11)
                 {
-                    DataController.Instance.devideDamageBesu(100);
+                    DataController.Instance.special -= 500;
                     check_list.Save(a.ToString(), 0);
                     Debug.Log("B등급 데미지 100배 제거 완료!!");
                 }
                 if(i == 12)
                 {
-                    DataController.Instance.devideFreeStateBesu(3);
+                    DataController.Instance.health -= 1000;
                     check_list.Save(a.ToString(), 0);
                     Debug.Log("C등급 보너스스탯 3배 제거 완료!!");
                 }
                 if(i == 13)
                 {
-                    DataController.Instance.DevideGoldPerClick(6);
+                    DataController.Instance.attack -= 1000;;
                     check_list.Save(a.ToString(), 0);
                     Debug.Log("C등급 클릭골드 6배 제거 완료!!");
                 }
                 if(i == 14)
                 {
-                    DataController.Instance.DevideExpBesu(16);
+                    DataController.Instance.mana -= 1000;
                     check_list.Save(a.ToString(), 0);
                     Debug.Log("C등급 클릭경험치 16배 제거 완료!!");
                 }
                 if(i == 15)
                 {
-                    DataController.Instance.devideDamageBesu(40);
+                    DataController.Instance.special -= 1000;
                     check_list.Save(a.ToString(), 0);
                     Debug.Log("C등급 데미지 40배 제거 완료!!");
+                }
+                if(i == 16)
+                {
+                    check_list.Save(a.ToString(), 0);
+                }
+                if(i == 17)
+                {
+                    check_list.Save(a.ToString(), 0);
+                }
+                if(i == 18)
+                {
+                    check_list.Save(a.ToString(), 0);
+                }
+                if(i == 19)
+                {
+                    check_list.Save(a.ToString(), 0);
+                }
+                if(i == 20)
+                {
+                    check_list.Save(a.ToString(), 0);
                 }
             }
         }
@@ -232,10 +293,10 @@ public class PowerController : MonoBehaviour
                 while(true)
                 {
                     //C_power_list asdsd = (C_power_list)1;
-                    power_list ThisResult_C = (power_list)Random.Range(12,16); // 0~3
+                    power_list ThisResult_C = (power_list)Random.Range(0, 4); // 0~3
                     bool get = false;
                     
-                    for(int i = 12; i < 16; i++)
+                    for(int i = 0; i < 4; i++)
                     {
                         
                         if(ThisResult_C == (power_list)i)
@@ -243,36 +304,44 @@ public class PowerController : MonoBehaviour
                             power_list b = (power_list)i;
                             if(check_list.Load(b.ToString()) == 0) //새로운걸 얻을떄
                                 {
-                                    if(i == 12) //eBonusState_50,
+                                    if(i == 0) //eBonusState_50,
                                     {
-                                        DataController.Instance.MultiplyFreeStateBesu(3);
+                                        DataController.Instance.health += 100;
                                         check_list.Save(b.ToString(), 1);
-                                        Debug.Log("보너스스탯 3배수 적용 완료!!");
                                         get = true;
+                                        power_name = "체력 스탯 +100";
+                                        power_grade = "C";
+                                        show_floating_text();
                                         break;
                                     }
-                                    if(i == 13) //eClickGold_100,  
+                                    if(i == 1) //eClickGold_100,  
                                     {
-                                        DataController.Instance.MultiplyGoldPerClick(6);
+                                        DataController.Instance.attack += 100;
                                         check_list.Save(b.ToString(), 1);
-                                        Debug.Log("클릭골드 6배 적용!!");
                                         get = true;
+                                        power_name = "공격력 스탯 +100";
+                                        power_grade = "C";
+                                        show_floating_text();
                                         break;
                                     }
-                                    if(i == 14) //eClickExp_300,
+                                    if(i == 2) //eClickExp_300,
                                     {
-                                        DataController.Instance.MultiplyExpBesu(16);
+                                        DataController.Instance.mana += 100;
                                         check_list.Save(b.ToString(), 1);
-                                        Debug.Log("클릭경험치 16배 적용!!");
                                         get =true;
+                                        power_name = "민첩 스탯 +100";
+                                        power_grade = "C";
+                                        show_floating_text();
                                         break;
                                     }
-                                    if(i == 15) //eDamage_1000,
+                                    if(i == 3) //eDamage_1000,
                                     {
-                                        DataController.Instance.MultiplyDamageBesu(40);
+                                        DataController.Instance.special += 100;
                                         check_list.Save(b.ToString(), 1);
-                                        Debug.Log("데미지 40배 적용!!");
                                         get = true;
+                                        power_name = "스킬공격력 스탯 +100";
+                                        power_grade = "C";
+                                        show_floating_text();
                                         break;
                                     } 
                                 }
@@ -298,10 +367,10 @@ public class PowerController : MonoBehaviour
                 while(true)
                 {
                     //C_power_list asdsd = (C_power_list)1;
-                    power_list ThisResult_C = (power_list)Random.Range(8,12); // 0~3
+                    power_list ThisResult_C = (power_list)Random.Range(4,8); // 0~3
                     bool get = false;
                     
-                    for(int i = 8; i < 12; i++)
+                    for(int i = 4; i < 8; i++)
                     {
                         
                         if(ThisResult_C == (power_list)i)
@@ -309,36 +378,44 @@ public class PowerController : MonoBehaviour
                             power_list b = (power_list)i;
                             if(check_list.Load(b.ToString()) == 0) //새로운걸 얻을떄
                                 {
-                                    if(i == 8) //eBonusState_50,
+                                    if(i == 4) //eBonusState_50,
                                     {
-                                        DataController.Instance.MultiplyFreeStateBesu(8);
+                                        DataController.Instance.health += 300;
                                         check_list.Save(b.ToString(), 1);
-                                        Debug.Log("보너스스탯 8배수 적용 완료!!");
                                         get = true;
+                                        power_name = "체력 스탯 +300";
+                                        power_grade = "B";
+                                        show_floating_text();
                                         break;
                                     }
-                                    if(i == 9) //eClickGold_100,  
+                                    if(i == 5) //eClickGold_100,  
                                     {
-                                        DataController.Instance.MultiplyGoldPerClick(16);
-                                        check_list.Save(b.ToString(), 1);
-                                        Debug.Log("클릭골드 16배 적용!!");
+                                        DataController.Instance.attack += 300;
+                                        check_list.Save(b.ToString(), 1);                   
                                         get = true;
+                                        power_name = "공격력 스탯 +300";
+                                        power_grade = "B";
+                                        show_floating_text();
                                         break;
                                     }
-                                    if(i == 10) //eClickExp_300,
+                                    if(i == 6) //eClickExp_300,
                                     {
-                                        DataController.Instance.MultiplyExpBesu(40);
+                                        DataController.Instance.mana += 300;
                                         check_list.Save(b.ToString(), 1);
-                                        Debug.Log("클릭경험치 40배 적용!!");
                                         get =true;
+                                        power_name = "민첩 스탯 +300";
+                                        power_grade = "B";
+                                        show_floating_text();
                                         break;
                                     }
-                                    if(i == 11) //eDamage_1000,
+                                    if(i == 7) //eDamage_1000,
                                     {
-                                        DataController.Instance.MultiplyDamageBesu(100);
+                                        DataController.Instance.special += 300;
                                         check_list.Save(b.ToString(), 1);
-                                        Debug.Log("데미지 100배 적용!!");
                                         get = true;
+                                        power_name = "스킬 공격력 스탯 +300";
+                                        power_grade = "B";
+                                        show_floating_text();
                                         break;
                                     } 
                                 }
@@ -365,10 +442,10 @@ public class PowerController : MonoBehaviour
                 while(true)
                 {
                     //C_power_list asdsd = (C_power_list)1;
-                    power_list ThisResult_C = (power_list)Random.Range(4,8); // 0~3
+                    power_list ThisResult_C = (power_list)Random.Range(8,12); // 0~3
                     bool get = false;
                     
-                    for(int i = 4; i < 8; i++)
+                    for(int i = 8; i < 12; i++)
                     {
                         
                         if(ThisResult_C == (power_list)i)
@@ -376,36 +453,44 @@ public class PowerController : MonoBehaviour
                             power_list b = (power_list)i;
                             if(check_list.Load(b.ToString()) == 0) //새로운걸 얻을떄
                                 {
-                                    if(i == 4) //eBonusState_50,
+                                    if(i == 8) //eBonusState_50,
                                     {
-                                        DataController.Instance.MultiplyFreeStateBesu(20);
+                                        DataController.Instance.health += 500;
                                         check_list.Save(b.ToString(), 1);
-                                        Debug.Log("보너스스탯 20배수 적용 완료!!");
                                         get = true;
+                                        power_name = "체력 스탯 +500";
+                                        power_grade = "A";
+                                        show_floating_text();
                                         break;
                                     }
-                                    if(i == 5) //eClickGold_100,  
+                                    if(i == 9) //eClickGold_100,  
                                     {
-                                        DataController.Instance.MultiplyGoldPerClick(40);
+                                        DataController.Instance.attack += 500;
                                         check_list.Save(b.ToString(), 1);
-                                        Debug.Log("클릭골드 40배 적용!!");
                                         get = true;
+                                        power_name = "공격력 스탯 +500";
+                                        power_grade = "A";
+                                        show_floating_text();
                                         break;
                                     }
-                                    if(i == 6) //eClickExp_300,
+                                    if(i == 10) //eClickExp_300,
                                     {
-                                        DataController.Instance.MultiplyExpBesu(100);
+                                        DataController.Instance.mana += 500;
                                         check_list.Save(b.ToString(), 1);
-                                        Debug.Log("클릭경험치 100배 적용!!");
                                         get =true;
+                                        power_name = "민첩 스탯 +500";
+                                        power_grade = "A";
+                                        show_floating_text();
                                         break;
                                     }
-                                    if(i == 7) //eDamage_1000,
+                                    if(i == 11) //eDamage_1000,
                                     {
-                                        DataController.Instance.MultiplyDamageBesu(300);
+                                        DataController.Instance.special += 500;
                                         check_list.Save(b.ToString(), 1);
-                                        Debug.Log("데미지 300배 적용!!");
                                         get = true;
+                                        power_name = "스킬 공격력 스탯 +500";
+                                        power_grade = "A";
+                                        show_floating_text();
                                         break;
                                     } 
                                 }
@@ -432,10 +517,10 @@ public class PowerController : MonoBehaviour
                 while(true)
                 {
                     //C_power_list asdsd = (C_power_list)1;
-                    power_list ThisResult_C = (power_list)Random.Range(0,4); // 0~3
+                    power_list ThisResult_C = (power_list)Random.Range(12,21); // 0~3
                     bool get = false;
                     
-                    for(int i = 0; i < 4; i++)
+                    for(int i = 12; i < 21; i++)
                     {
                         
                         if(ThisResult_C == (power_list)i)
@@ -443,38 +528,92 @@ public class PowerController : MonoBehaviour
                             power_list b = (power_list)i;
                             if(check_list.Load(b.ToString()) == 0) //새로운걸 얻을떄
                                 {
-                                    if(i == 0) //eBonusState_50,
+                                    if(i == 12) //eBonusState_50,
                                     {
-                                        DataController.Instance.MultiplyFreeStateBesu(50);
+                                        DataController.Instance.health += 1000;
                                         check_list.Save(b.ToString(), 1);
-                                        Debug.Log("보너스스탯 50배수 적용 완료!!");
                                         get = true;
+                                        power_name = "체력 스탯 +1000";
+                                        power_grade = "S";
+                                        show_floating_text();
                                         break;
                                     }
-                                    if(i == 1) //eClickGold_100,  
+                                    if(i == 13) //eClickGold_100,  
                                     {
-                                        DataController.Instance.MultiplyGoldPerClick(100);
+                                        DataController.Instance.attack += 1000;
                                         check_list.Save(b.ToString(), 1);
-                                        Debug.Log("클릭골드 100배 적용!!");
                                         get = true;
+                                        power_name = "공격력 스탯 +1000";
+                                        power_grade = "S";
+                                        show_floating_text();
                                         break;
                                     }
-                                    if(i == 2) //eClickExp_300,
+                                    if(i == 14) //eClickExp_300,
                                     {
-                                        DataController.Instance.MultiplyExpBesu(300);
+                                        DataController.Instance.mana += 1000;
                                         check_list.Save(b.ToString(), 1);
-                                        Debug.Log("클릭경험치 300배 적용!!");
                                         get =true;
+                                        power_name = "민첩 스탯 +1000";
+                                        power_grade = "S";
+                                        show_floating_text();
                                         break;
                                     }
-                                    if(i == 3) //eDamage_1000,
+                                    if(i == 15) //eDamage_1000,
                                     {
-                                        DataController.Instance.MultiplyDamageBesu(1000);
+                                        DataController.Instance.special += 1000;
                                         check_list.Save(b.ToString(), 1);
-                                        Debug.Log("데미지 1000배 적용!!");
                                         get = true;
+                                        power_name = "스킬 공격력 스탯 +1000";
+                                        power_grade = "S";
+                                        show_floating_text();
                                         break;
-                                    } 
+                                    }
+                                    if(i == 16) //warrior
+                                    {
+                                        check_list.Save(b.ToString(), 1);
+                                        get = true;
+                                        power_name = "전사의 권능";
+                                        power_grade = "S";
+                                        show_floating_text();
+                                        break;
+                                    }
+                                    if(i == 17) //archer
+                                    {
+                                        check_list.Save(b.ToString(), 1);
+                                        get = true;
+                                        power_name = "궁수의 권능";
+                                        power_grade = "S";
+                                        show_floating_text();
+                                        break;
+                                    }
+                                    if(i == 18) //wizard
+                                    {
+                                        check_list.Save(b.ToString(), 1);
+                                        get = true;
+                                        power_name = "마법사의 권능";
+                                        power_grade = "S";
+                                        show_floating_text();
+                                        break;
+                                    }
+                                    if(i == 19) //goldhand
+                                    {
+                                        DataController.Instance.MultiplyGoldPerClick(50);
+                                        check_list.Save(b.ToString(), 1);
+                                        get = true;
+                                        power_name = "황금의 손";
+                                        power_grade = "S";
+                                        show_floating_text();
+                                        break;
+                                    }
+                                    if(i == 20) //timestop
+                                    {
+                                        check_list.Save(b.ToString(), 1);
+                                        get = true;
+                                        power_name = "시간의 권능";
+                                        power_grade = "S";
+                                        show_floating_text();
+                                        break;
+                                    }
                                 }
                         } 
                     }
@@ -500,6 +639,41 @@ public class PowerController : MonoBehaviour
         //DataController.Instance.goldPerClick = DataController.Instance.level * DataController.Instance.besu;
     }
 
+
+
+    void show_floating_text()
+    {
+        var clone = Instantiate(prefab_floating_text, new Vector3(0, 2), Quaternion.Euler(Vector3.zero));
+        if(power_grade == "C")
+        {
+            clone.GetComponent<Text>().color = Color.gray;
+            clone.GetComponent<Outline>().effectColor = Color.black;
+        }
+        else if(power_grade == "B")
+        {
+            clone.GetComponent<Text>().color = Color.green;
+            clone.GetComponent<Outline>().effectColor = Color.green;
+        }
+        else if(power_grade == "A")
+        {
+            clone.GetComponent<Text>().color = Color.red;
+            clone.GetComponent<Outline>().effectColor = Color.red;
+        }
+        else if(power_grade == "S")
+        {
+            clone.GetComponent<Text>().color = Color.yellow;
+            clone.GetComponent<Outline>().effectColor = Color.black;
+        }
+        else {
+            clone.GetComponent<Text>().color = Color.gray;
+            clone.GetComponent<Outline>().effectColor = Color.black;
+        }
+        clone.GetComponent<FloatingText>().destroyTime = 3f;
+        clone.GetComponent<Text>().text = power_name;
+        clone.transform.SetParent(powerExplainPanel.transform);
+
+    }
+
     public void only_debug()
     {
         //power_list ThisResult_C = (power_list)Random.Range(0,4); // 0~3
@@ -512,90 +686,123 @@ public class PowerController : MonoBehaviour
         }
     }
 
-
-
-
-
-
-    public void select_power_0()
+    public void ticket_charge()
     {
-        PowerExplain.text = "레벨업 당 얻는 보너스 스탯을 50배 올려준다.\n";
+        DataController.Instance.artifact_ticket = 100;
+        DataController.Instance.power_ticket = 100;
     }
 
-    public void select_power_1()
+
+
+
+
+
+    public void select_power_C_Health()
     {
-        PowerExplain.text = "클릭 당 얻는 골드를 100배 올려준다.\n";
+        PowerExplain.text = "체력 스탯을 100만큼 올려줍니다.\n";
     }
 
-    public void select_power_2()
+    public void select_power_C_Attack()
     {
-        PowerExplain.text = "클릭 당 얻는 경험치를 300배 올려준다.";
+        PowerExplain.text = "공격력 스탯을 100만큼 올려줍니다.\n";
     }
 
-    public void select_power_3()
+    public void select_power_C_Speed()
     {
-        PowerExplain.text = "캐릭터가 적에게 가하는 피해를 1000배 올려준다.\n by 아자토스";
+        PowerExplain.text = "민첩 스탯을 100만큼 올려줍니다.\n";
     }
 
-    public void select_power_4()
+    public void select_power_C_Skill()
     {
-        PowerExplain.text = "레벨업 당 얻는 보너스 스탯을 20배 올려준다.\n";
+        PowerExplain.text = "스킬 공격력 스탯을 100만큼 올려줍니다.\n";
     }
 
-    public void select_power_5()
+    public void select_power_B_Health()
     {
-        PowerExplain.text = "클릭 당 얻는 골드를 40배 올려준다.\n";
+        PowerExplain.text = "체력 스탯을 300만큼 올려줍니다.\n";
     }
 
-    public void select_power_6()
+    public void select_power_B_Attack()
     {
-        PowerExplain.text = "클릭 당 얻는 경험치를 100배 올려준다.";
+        PowerExplain.text = "공격력 스탯을 300만큼 올려줍니다.\n";
     }
 
-    public void select_power_7()
+    public void select_power_B_Speed()
     {
-        PowerExplain.text = "캐릭터가 적에게 가하는 피해를 300배 올려준다.\n by 아자토스";
+        PowerExplain.text = "민첩 스탯을 300만큼 올려줍니다.\n";
     }
 
-    public void select_power_8()
+    public void select_power_B_Skill()
     {
-        PowerExplain.text = "레벨업 당 얻는 보너스 스탯을 8배 올려준다.\n";
+        PowerExplain.text = "스킬 공격력 스탯을 300만큼 올려줍니다.\n";
     }
 
-    public void select_power_9()
+    public void select_power_A_Health()
     {
-        PowerExplain.text = "클릭 당 얻는 골드를 16배 올려준다.\n";
+        PowerExplain.text = "체력 스탯을 500만큼 올려줍니다.\n";
     }
 
-    public void select_power_10()
+    public void select_power_A_Attack()
     {
-        PowerExplain.text = "클릭 당 얻는 경험치를 40배 올려준다.";
+        PowerExplain.text = "공격력 스탯을 500만큼 올려줍니다.\n";
     }
 
-    public void select_power_11()
+    public void select_power_A_Speed()
     {
-        PowerExplain.text = "캐릭터가 적에게 가하는 피해를 100배 올려준다.\n by 아자토스";
+        PowerExplain.text = "민첩 스탯을 500만큼 올려줍니다.\n";
     }
 
-    public void select_power_12()
+    public void select_power_A_Skill()
     {
-        PowerExplain.text = "레벨업 당 얻는 보너스 스탯을 3배 올려준다.\n";
+        PowerExplain.text = "스킬 공격력 스탯을 500만큼 올려줍니다.\n";
     }
 
-    public void select_power_13()
+    public void select_power_S_Health()
     {
-        PowerExplain.text = "클릭 당 얻는 골드를 6배 올려준다.\n";
+        PowerExplain.text = "체력 스탯을 1000만큼 올려줍니다.\n";
     }
 
-    public void select_power_14()
+    public void select_power_S_Attack()
     {
-        PowerExplain.text = "클릭 당 얻는 경험치를 16배 올려준다.";
+        PowerExplain.text = "공격력 스탯을 1000만큼 올려줍니다.\n";
     }
 
-    public void select_power_15()
+    public void select_power_S_Speed()
     {
-        PowerExplain.text = "캐릭터가 적에게 가하는 피해를 40배 올려준다.\n by 아자토스";
+        PowerExplain.text = "민첩 스탯을 1000만큼 올려줍니다.\n";
     }
+
+    public void select_power_S_Skill()
+    {
+        PowerExplain.text = "스킬 공격력 스탯을 1000만큼 올려줍니다.\n";
+    }
+
+    public void select_power_S_Warrior()
+    {
+        PowerExplain.text = "전사 영웅은 전투 시 적의 공격을 5회 막을 수 있습니다.\n";
+    }
+
+    public void select_power_S_Archer()
+    {
+        PowerExplain.text = "궁수 영웅뒤에 그림자가 생성되며 궁수 영웅과 함께 공격합니다.\n";
+    }
+
+    public void select_power_S_Wizard()
+    {
+        PowerExplain.text = "전투 시 스킬공격력의 x5 만큼의 보호막을 영웅 중 1명에게 부여합니다.\n";
+    }
+
+    public void select_power_S_GoldHand()
+    {
+        PowerExplain.text = "클릭 당 골드양을 50배 늘려줍니다.\n";
+    }
+
+    public void select_power_S_TimeStop()
+    {
+        PowerExplain.text = "일반공격 적중 시 10%확률로 적을 0~2초간 멈춥니다.\n";
+    }
+
+
 
     public void select_lock_power()
     {

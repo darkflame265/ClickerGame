@@ -26,7 +26,7 @@ public class goremController1 : MonoBehaviour
         {
             if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) == true)
             {
-                animator.SetBool("isRunning", true);
+                animator.SetBool("isWalk", true);
                 animator.SetBool("isIdle", false);
             }
             if(Input.GetKey(KeyCode.Space) == true)
@@ -41,7 +41,7 @@ public class goremController1 : MonoBehaviour
     public void allAnimatorStop()
     {
         animator.SetBool("isIdle", false);
-        animator.SetBool("isRunning", false);
+        animator.SetBool("isWalk", false);
         animator.SetBool("isAttack", false);
     }
 
@@ -96,7 +96,7 @@ public class goremController1 : MonoBehaviour
             
             this.transform.Translate(new Vector3(xMov, 0, 0));
             allAnimatorStop();
-            animator.SetBool("isRunning", true);
+            animator.SetBool("isWalk", true);
             
         }
         

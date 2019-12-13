@@ -119,7 +119,8 @@ MonoBehaviour:
   speed: 3
   other: {fileID: 0}
   damage: 0
-  prefab_floating_text: {fileID: 0}
+  prefab_floating_text: {fileID: 5954360500128425662, guid: ec7c961f77ddb894a8a00885a94ac4e2,
+    type: 3}
 --- !u!114 &1709389121058619991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,6 +141,7 @@ MonoBehaviour:
   attack_ratio: 1.8
   mana_ratio: 0
   special_ratio: 0
+  timestop: 0
   healthBar: {fileID: 1474090177183217009}
 --- !u!1 &2945793200351572931
 GameObject:

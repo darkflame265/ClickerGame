@@ -273,6 +273,7 @@ MonoBehaviour:
   attack_ratio: 1.5
   mana_ratio: 0
   special_ratio: 0
+  timestop: 0
   healthBar: {fileID: 8468992339182903167}
 --- !u!114 &-2407765752434145985
 MonoBehaviour:
@@ -289,6 +290,8 @@ MonoBehaviour:
   speed: 3
   other: {fileID: 0}
   damage: 1
+  prefab_floating_text: {fileID: 5954360500128425662, guid: ec7c961f77ddb894a8a00885a94ac4e2,
+    type: 3}
 --- !u!1 &6855038061555075129
 GameObject:
   m_ObjectHideFlags: 0

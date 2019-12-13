@@ -31,6 +31,8 @@ public class KnightController : MonoBehaviour
     int maxSkillPoint = 3;
     bool skilling = false;
 
+    int power_timestop = 0;
+
     
     
     void Start(){
@@ -38,6 +40,7 @@ public class KnightController : MonoBehaviour
         StartCoroutine("char_position");
         StartCoroutine("SkillUI");
         currentSkillPoint = 0;
+        power_timestop = PowerController.Instance.return_power_list(20);
     }
     void Update() {
         
@@ -192,13 +195,29 @@ public class KnightController : MonoBehaviour
     
  
     public void Attack()//애니메이션 이벤트 뒤에 배치
-    {
+    { 
+        if(power_timestop == 1)
+        {
+            int a = Random.Range(0, 10);
+            if(a == 1)
+            {
+
+                close_enemy.GetComponent<EnemyController>().timestop = true;
+            }
+        }
+
+        
+
         close_enemy.transform.GetComponent<EnemyController>().decreaseHP(this.GetComponent<Character>().striking_power);
         var clone = Instantiate(prefab_floating_text, close_enemy.transform.position, Quaternion.Euler(Vector3.zero));
         clone.transform.position += new Vector3(0, 2);
         clone.GetComponent<FloatingText>().text.text = "-" + this.GetComponent<Character>().striking_power;
         clone.transform.SetParent(this.transform);
-        currentSkillPoint++;
+        if(DataController.Instance.knight_level > 2)
+        {
+            currentSkillPoint++;
+        }
+        
     }
 
     public void SkillAtack()
@@ -206,7 +225,7 @@ public class KnightController : MonoBehaviour
         close_enemy.transform.GetComponent<EnemyController>().decreaseHP(this.GetComponent<Character>().striking_power*2);
         var clone = Instantiate(prefab_floating_text, close_enemy.transform.position, Quaternion.Euler(Vector3.zero));
         clone.transform.position += new Vector3(0, 2);
-        clone.GetComponent<FloatingText>().text.color = Color.red;
+        clone.GetComponent<FloatingText>().text.color = Color.blue;
         clone.GetComponent<FloatingText>().text.text = "-" + this.GetComponent<Character>().striking_power*2 + "!!";
         clone.transform.SetParent(this.transform);
     }

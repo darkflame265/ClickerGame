@@ -49,6 +49,8 @@ public class MeduzaController : MonoBehaviour
             }
         }
 
+        
+
     }
 
     public void allAnimatorStop()
@@ -106,10 +108,25 @@ public class MeduzaController : MonoBehaviour
         
         if(movebool == true)
         {
+            if(this.GetComponent<EnemyController>().timestop == false)
+            {
+                this.transform.Translate(new Vector3(xMov, 0, 0));
+                allAnimatorStop();
+                animator.SetBool("isRunning", true);
+
+                this.GetComponent<Animator>().speed = 1f;
+                this.GetComponent<SpriteRenderer>().color = Color.white;
+
+                
+            } else {
+                this.GetComponent<Animator>().speed = 0.0f;
+                this.GetComponent<SpriteRenderer>().color = new Color(123/255f, 123/255f, 123/255f);
+                allAnimatorStop();
+            }
             
-            this.transform.Translate(new Vector3(xMov, 0, 0));
-            allAnimatorStop();
-            animator.SetBool("isRunning", true);
+            // this.transform.Translate(new Vector3(xMov, 0, 0));
+            // allAnimatorStop();
+            // animator.SetBool("isRunning", true);
             
         }
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Player");
@@ -161,6 +178,7 @@ public class MeduzaController : MonoBehaviour
         var clone = Instantiate(prefab_floating_text, close_enemy.transform.position, Quaternion.Euler(Vector3.zero));
         clone.transform.position += new Vector3(0, 2);
         clone.GetComponent<FloatingText>().text.text = "-" + this.damage;
+        clone.GetComponent<FloatingText>().text.color = Color.red;
         clone.transform.SetParent(this.transform);
     }
 }
