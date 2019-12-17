@@ -277,6 +277,8 @@ MonoBehaviour:
     type: 3}
   shadow_Archer: {fileID: 1835634876392344191, guid: e95eb04cfab037a458aa533d68538ee8,
     type: 3}
+  thunder_effect: {fileID: 0}
+  light_effect: {fileID: 0}
 --- !u!114 &-8816651585679635225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,6 +304,10 @@ MonoBehaviour:
   attack_ratio: 3.8
   mana_ratio: 2.8
   special_ratio: 2.7
+  thunder_effect: {fileID: 100000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
+  light_effect: {fileID: 100004, guid: 757df604761b8ef42831192c70ee1099, type: 3}
+  prefab_floating_text: {fileID: 5954360500128425662, guid: ec7c961f77ddb894a8a00885a94ac4e2,
+    type: 3}
 --- !u!1 &1954188847564719195
 GameObject:
   m_ObjectHideFlags: 0

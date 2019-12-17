@@ -60,6 +60,10 @@ public class UiManager : MonoBehaviour
 
    public bool checkFloatingNotice;
    public GameObject floatingNoticePanel;
+
+   //설정창
+   public GameObject clickButton;
+   int background_count = 0;
    
 
 
@@ -101,6 +105,8 @@ public class UiManager : MonoBehaviour
 
     void Start()
     {
+        clickButton.GetComponent<Image>().sprite = background_pack[PlayerPrefs.GetInt("click_background")];
+        background_name_text.text = background_name[PlayerPrefs.GetInt("click_background")];
         StartCoroutine("UpdateCanvasUi");
     }
 
@@ -199,6 +205,48 @@ public class UiManager : MonoBehaviour
                 clone.GetComponentInChildren<Text>().text = DataController.Instance.float_notice_text; 
             }
         }
+    }
+
+    public Sprite[] background_pack = new Sprite [0];
+    public Text background_name_text;
+
+    string[] background_name = {
+        "왕궁",
+        "잡화점",
+        "마을",
+        "대장간",
+        "마법의 탑",
+        "주점",
+        "우주",
+        "던전입구",
+    };
+
+    public void set_background_left_btn()
+    {
+        int i = PlayerPrefs.GetInt("click_background");
+        i--;
+        if(i == -1)
+        {
+            PlayerPrefs.SetInt("click_background", background_pack.Length-1);
+        } else {
+            PlayerPrefs.SetInt("click_background", i);
+        }
+        clickButton.GetComponent<Image>().sprite = background_pack[PlayerPrefs.GetInt("click_background")];
+        background_name_text.text = background_name[PlayerPrefs.GetInt("click_background")];
+    }
+
+    public void set_background_right_btn()
+    {
+        int i = PlayerPrefs.GetInt("click_background");
+        i++;
+        if(i > background_pack.Length-1)
+        {
+            PlayerPrefs.SetInt("click_background", 0);
+        } else {
+            PlayerPrefs.SetInt("click_background", i);
+        }
+        clickButton.GetComponent<Image>().sprite = background_pack[PlayerPrefs.GetInt("click_background")];
+        background_name_text.text = background_name[PlayerPrefs.GetInt("click_background")];
     }
 
 

@@ -22,10 +22,7 @@ public class shadowArcherController : MonoBehaviour
 
     public GameObject prefab_floating_text;
 
-    public long damage;
-
     public GameObject arrow;
-
 
     bool deathbool = false;
 
@@ -33,10 +30,10 @@ public class shadowArcherController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         StartCoroutine("char_position");
-        damage = this.GetComponent<Character>().striking_power;
 
         Transform pos;
         pos = this.transform;
+        this.GetComponent<Character>().striking_power = this.transform.parent.GetChild(0).GetComponent<Character>().striking_power;
     }
     void Update() {
         
@@ -168,12 +165,8 @@ public class shadowArcherController : MonoBehaviour
     {
         if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 10f)
         {
-            // close_enemy.transform.GetComponent<EnemyController>().decreaseHP(this.GetComponent<Character>().striking_power);
-            // var clone = Instantiate(prefab_floating_text, close_enemy.transform.position, Quaternion.Euler(Vector3.zero));
-            // clone.transform.position += new Vector3(0, 2);
-            // clone.GetComponent<FloatingText>().text.text = "-" + this.GetComponent<Character>().striking_power;
-            // clone.transform.SetParent(this.transform);
             var arrow_clone = Instantiate(arrow, this.transform.position, Quaternion.Euler(Vector2.zero));
+            arrow_clone.GetComponent<SpriteRenderer>().color = Color.black;
             arrow_clone.transform.SetParent(this.transform);
         }
     }

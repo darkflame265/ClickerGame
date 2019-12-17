@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class warmMonsterController : MonoBehaviour
 {
     Animator animator;
@@ -15,6 +14,13 @@ public class warmMonsterController : MonoBehaviour
     public Transform other;
 
     bool wait = false;
+
+    List<GameObject> A = new List<GameObject>();
+    List<float> B = new List<float>();
+
+    float close_distance = 5f;
+    GameObject close_enemy;
+
 
     
     public long damage;
@@ -42,6 +48,8 @@ public class warmMonsterController : MonoBehaviour
                 animator.SetBool("isIdle", false);
             }
         }
+
+        
 
     }
 
@@ -80,6 +88,7 @@ public class warmMonsterController : MonoBehaviour
             {
                 movebool = false;
                 allAnimatorStop();
+                this.transform.position = new Vector2(this.transform.position.x + 1f, this.transform.position.y);
                 animator.SetBool("isDeath", true);
                 yield return new WaitForSeconds(1f);
                 Destroy(this.gameObject);
@@ -99,19 +108,53 @@ public class warmMonsterController : MonoBehaviour
         
         if(movebool == true)
         {
+            if(this.GetComponent<EnemyController>().timestop == false)
+            {
+                this.transform.Translate(new Vector3(xMov, 0, 0));
+                allAnimatorStop();
+                animator.SetBool("isWalk", true);
+
+                this.GetComponent<Animator>().speed = 1f;
+                this.GetComponent<SpriteRenderer>().color = Color.white;
+
+                
+            } else {
+                this.GetComponent<Animator>().speed = 0.0f;
+                this.GetComponent<SpriteRenderer>().color = new Color(123/255f, 123/255f, 123/255f);
+                allAnimatorStop();
+            }
             
-            this.transform.Translate(new Vector3(xMov, 0, 0));
-            allAnimatorStop();
-            animator.SetBool("isWalk", true);
+            // this.transform.Translate(new Vector3(xMov, 0, 0));
+            // allAnimatorStop();
+            // animator.SetBool("isWalk", true);
             
         }
-        
-        
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Player");
         foreach(GameObject target in enemies) {
             float distance = Vector3.Distance(target.transform.position, this.transform.position);
-            
-            if(distance < 1f)
+            //Debug.Log("Distance:  " + distance);
+            A.Add(target);
+            for(int i = 0; i < A.Count-1; i++)
+            {
+                if(A.Count == 1)
+                {
+                    break;
+                }
+                if(Vector3.Distance(A[i].transform.position, this.transform.position) > Vector3.Distance(A[i+1].transform.position, this.transform.position))
+                {
+                    GameObject tmp = A[i];
+                    A[i] = A[i+1];
+                    A[i+1] = tmp;
+                }
+            }
+            close_enemy = A[0];
+            //Debug.Log("close_enemy is " + close_enemy.name);
+            if(target.GetComponent<Character>().current_HP < 0)
+            {
+                A.Clear();
+            }
+
+            if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 1f)
             {
                 movebool = false;
                 allAnimatorStop();
@@ -126,26 +169,17 @@ public class warmMonsterController : MonoBehaviour
         {
             movebool = false;
         }
-
-        
     }
+    
 
     public void Attack()//애니메이션 이벤트 뒤에 배치
     {
-         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Player");
-            foreach(GameObject target in enemies) {
-                float distance = Vector3.Distance(target.transform.position, this.transform.position);
-                if(distance < 1f)
-            {
-                target.transform.GetComponent<Character>().decreaseHP(damage);;
-                var clone = Instantiate(prefab_floating_text, target.transform.position, Quaternion.Euler(Vector3.zero));
-                clone.transform.position += new Vector3(0, 2);
-                clone.GetComponent<FloatingText>().text.text = "-" + this.damage;
-                clone.GetComponent<FloatingText>().text.color = Color.red;
-                clone.transform.SetParent(this.transform);
-
-            }
-            }
+        close_enemy.transform.GetComponent<Character>().decreaseHP(this.damage);
+        var clone = Instantiate(prefab_floating_text, close_enemy.transform.position, Quaternion.Euler(Vector3.zero));
+        clone.transform.position += new Vector3(0, 2);
+        clone.GetComponent<FloatingText>().text.text = "-" + this.damage;
+        clone.GetComponent<FloatingText>().text.color = Color.red;
+        clone.transform.SetParent(this.transform);
     }
-
 }
+

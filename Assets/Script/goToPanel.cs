@@ -54,13 +54,10 @@ public class goToPanel : MonoBehaviour
     public GameObject black_smith_panel;
     public GameObject general_store;
     public GameObject magic_tower;
-    //public GameObject mage_top; //미완
     public GameObject bar_panel;
     
     //??
     public GameObject char_state_panel;
-    //public GameObject skill_panel;
-    //public GameObject skill1_panel;
     public GameObject get_skill_panel;
     public GameObject get_artifact_panel;
     public GameObject reincarnation_panel;
@@ -68,6 +65,7 @@ public class goToPanel : MonoBehaviour
     public GameObject NoticePanel;
     public GameObject exp_percent_panel;
     public GameObject gold_amount_panel;
+    public GameObject upgradeButton;
 
     //사이드 메뉴
     public GameObject option_panel;
@@ -84,6 +82,7 @@ public class goToPanel : MonoBehaviour
     //배틀 관련
     public BattleManager battleManager;
     public GameObject stage_explain_panel;
+    public GameObject stage_reward_explain_panel;
     public Text show_current_stage;
     public Text Stage_explain;
     public GameObject BigNoticePanel;
@@ -386,6 +385,7 @@ public class goToPanel : MonoBehaviour
     {
         exp_percent_panel.SetActive(!exp_percent_panel.active);
         gold_amount_panel.SetActive(!gold_amount_panel.active);
+        upgradeButton.SetActive(!upgradeButton.active);
     }
 
     public void show_chapter1_panel()
@@ -415,6 +415,7 @@ public class goToPanel : MonoBehaviour
     {
         stage_1_panel.SetActive(false);
         stage_explain_panel.SetActive(false);
+        stage_reward_explain_panel.SetActive(false);
         show_current_stage.text = "";
         Stage_explain.text = "";
     }
@@ -429,6 +430,7 @@ public class goToPanel : MonoBehaviour
     {
         stage_2_panel.SetActive(false);
         stage_explain_panel.SetActive(false);
+        stage_reward_explain_panel.SetActive(false);
         show_current_stage.text = "";
         Stage_explain.text = "";
     }
@@ -443,6 +445,7 @@ public class goToPanel : MonoBehaviour
     {
         stage_3_panel.SetActive(false);
         stage_explain_panel.SetActive(false);
+        stage_reward_explain_panel.SetActive(false);
         show_current_stage.text = "";
         Stage_explain.text = "";
     }
@@ -457,6 +460,7 @@ public class goToPanel : MonoBehaviour
     {
         stage_4_panel.SetActive(false);
         stage_explain_panel.SetActive(false);
+        stage_reward_explain_panel.SetActive(false);
         show_current_stage.text = "";
         Stage_explain.text = "";
     }
@@ -471,6 +475,7 @@ public class goToPanel : MonoBehaviour
     {
         stage_5_panel.SetActive(false);
         stage_explain_panel.SetActive(false);
+        stage_reward_explain_panel.SetActive(false);
         show_current_stage.text = "";
         Stage_explain.text = "";
     }
@@ -485,6 +490,7 @@ public class goToPanel : MonoBehaviour
     {
         stage_6_panel.SetActive(false);
         stage_explain_panel.SetActive(false);
+        stage_reward_explain_panel.SetActive(false);
         show_current_stage.text = "";
         Stage_explain.text = "";
     }

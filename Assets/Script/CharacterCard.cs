@@ -21,6 +21,9 @@ public class CharacterCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public string hero_name;
 
+    public int cardNum = 0;
+
+
     
     private static CharacterCard instance;
 
@@ -50,34 +53,65 @@ public class CharacterCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         Back = this.transform.parent.parent.GetChild(6);
         
         hero_name = this.transform.name;
+        if(hero_name == "KnightCard")
+        {
+            cardNum = 1;
+        }
+        else if(hero_name == "ArcherCard")
+        {
+            cardNum = 2;
+        }
+        else if(hero_name == "WizardCard")
+        {
+            cardNum = 3;
+        } 
+        else {
+            cardNum = 0;
+        }
         SetLocation();
 
         //StartCoroutine("check_char_exist");
     }
 
-    void SetLocation()
+    public void SetLocation()
     {
-        if(PlayerPrefs.GetInt(hero_name) == 0) //0 = front
+        // Debug.Log("this.transform.name: " + PlayerPrefs.GetInt(hero_name));
+        // if(PlayerPrefs.GetInt(hero_name) == 0) //0 = front
+        // {
+        //     this.transform.SetParent(Front);
+        //     Debug.Log(this.transform.name + " is in "+ Front.name);
+        // }
+        // else if(PlayerPrefs.GetInt(hero_name) == 1) //0 = front
+        // {
+        //     this.transform.SetParent(Mid);
+        //     Debug.Log(this.transform.name + " is in "+ Mid.name);
+        // }
+        // else if(PlayerPrefs.GetInt(hero_name) == 2) //0 = front
+        // {
+        //     this.transform.SetParent(Back);
+        //     Debug.Log(this.transform.name + " is in "+ Back.name);
+        // }
+        // else
+        // {
+        //     //this.transform.SetParent(Hand);
+        //     Debug.Log(this.transform.name + " is in "+ Hand.name);
+        // }
+
+        if(DataController.Instance.hero_0_ID == cardNum)
         {
             this.transform.SetParent(Front);
-            Debug.Log(this.transform.name + " is in "+ Front.name);
         }
-        if(PlayerPrefs.GetInt(hero_name) == 1) //0 = front
+        else if(DataController.Instance.hero_1_ID == cardNum)
         {
             this.transform.SetParent(Mid);
-            Debug.Log(this.transform.name + " is in "+ Mid.name);
         }
-        if(PlayerPrefs.GetInt(hero_name) == 2) //0 = front
+        else if(DataController.Instance.hero_2_ID == cardNum)
         {
             this.transform.SetParent(Back);
-            Debug.Log(this.transform.name + " is in "+ Back.name);
-        }
-        else
-        {
-            //this.transform.SetParent(Hand);
-            Debug.Log(this.transform.name + " is in "+ Hand.name);
         }
     }
+
+
     
 
 

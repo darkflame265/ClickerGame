@@ -14,6 +14,10 @@ public class BattleManager : MonoBehaviour
     bool getMoney = false;
     bool getExp = false;
     bool getCrystal = false;
+    bool getItem = false;
+
+    public Inventory inventory;
+    int ItemNum = 0;
 
     public long random_get_crystal = 0;
 
@@ -29,6 +33,10 @@ public class BattleManager : MonoBehaviour
     public Text Stage_explain;
     public GameObject probability_panel;
     public GameObject tower_btn;
+
+    public Text gold_result_text;
+    public Text exp_result_text;
+    public Text Item_result_text;
 
     public Transform BattleScene_panel;
 
@@ -100,6 +108,7 @@ public class BattleManager : MonoBehaviour
     public GameObject blueDragonic;
     public GameObject meduza;
     public GameObject minotaurse;
+    public GameObject Bat_Bose;
 
     //timer
     long current_heart = 2;
@@ -135,7 +144,9 @@ public class BattleManager : MonoBehaviour
         StartCoroutine("Timer");
 
         getResult = false;
+        ItemNum = DataController.Instance.itemNum;
         SetBool("getResult", false);
+
     }
 
     public static void SetBool(string name, bool booleanValue)
@@ -238,10 +249,13 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    
+
     void set_fight_reward()
     {
         DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 10000;
         DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 5;
+        //ItemNum = 0;
     }
 
 
@@ -305,8 +319,13 @@ public class BattleManager : MonoBehaviour
 
         if(hero_spawn_point0.transform.childCount != 0)
         {
-            //hero_0_img.GetComponent<Image>().sprite = Back.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite;
-            hero_0_hp_text.GetComponent<Text>().text = "HP: " + hero_spawn_point0.GetComponentInChildren<Character>().current_HP.ToString();
+            if(PowerController.Instance.return_power_list(18) == 1)
+            {
+                hero_0_hp_text.GetComponent<Text>().text = "HP: " + hero_spawn_point0.GetComponentInChildren<Character>().current_HP.ToString() + "<color=#8b33dd>" + "(+" + hero_spawn_point0.GetComponentInChildren<Character>().current_Shield.ToString() + ")" + "</color>";
+            }
+            else {
+                hero_0_hp_text.GetComponent<Text>().text = "HP: " + hero_spawn_point0.GetComponentInChildren<Character>().current_HP.ToString();
+            }
             hero_0_atk_text.GetComponent<Text>().text = "ATK: " + hero_spawn_point0.GetComponentInChildren<Character>().striking_power.ToString();
             if(hero_spawn_point0.GetComponentInChildren<Character>().current_HP <= 0)
             {
@@ -317,8 +336,13 @@ public class BattleManager : MonoBehaviour
         if(hero_spawn_point1.transform.childCount != 0)
         {
             //hero_1_img.GetComponent<Image>().sprite = Mid.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite;
-
-            hero_1_hp_text.GetComponent<Text>().text = "HP: " + hero_spawn_point1.GetComponentInChildren<Character>().current_HP.ToString();
+            if(PowerController.Instance.return_power_list(18) == 1)
+            {
+                hero_1_hp_text.GetComponent<Text>().text = "HP: " + hero_spawn_point1.GetComponentInChildren<Character>().current_HP.ToString() + "<color=#8b33dd>" + "(+" + hero_spawn_point1.GetComponentInChildren<Character>().current_Shield.ToString() + ")" + "</color>";
+            }
+            else {
+                hero_1_hp_text.GetComponent<Text>().text = "HP: " + hero_spawn_point1.GetComponentInChildren<Character>().current_HP.ToString();
+            }
             hero_1_atk_text.GetComponent<Text>().text = "ATK: " + hero_spawn_point1.GetComponentInChildren<Character>().striking_power.ToString();
             if(hero_spawn_point1.GetComponentInChildren<Character>().current_HP <= 0)
             {
@@ -329,7 +353,13 @@ public class BattleManager : MonoBehaviour
         {
         
 
-            hero_2_hp_text.GetComponent<Text>().text = "HP: " + hero_spawn_point2.GetComponentInChildren<Character>().current_HP.ToString();
+            if(PowerController.Instance.return_power_list(18) == 1)
+            {
+                hero_2_hp_text.GetComponent<Text>().text = "HP: " + hero_spawn_point2.GetComponentInChildren<Character>().current_HP.ToString() + "<color=#8b33dd>" + "(+" + hero_spawn_point2.GetComponentInChildren<Character>().current_Shield.ToString() + ")" + "</color>";
+            }
+            else {
+                hero_2_hp_text.GetComponent<Text>().text = "HP: " + hero_spawn_point2.GetComponentInChildren<Character>().current_HP.ToString();
+            }
             hero_2_atk_text.GetComponent<Text>().text = "ATK: " + hero_spawn_point2.GetComponentInChildren<Character>().striking_power.ToString();
             if(hero_spawn_point2.GetComponentInChildren<Character>().current_HP <= 0)
             {
@@ -547,6 +577,16 @@ public class BattleManager : MonoBehaviour
                     DataController.Instance.diamond += DataController.Instance.get_stage_crystal;
                     Debug.Log("You Got Crystal is " + DataController.Instance.get_stage_crystal);
                 }
+                if(getItem == false && enemies.Length == 0)
+                {
+                    getItem = true;
+                    if(ItemNum != 0)
+                    {
+                        inventory.AddItem(ItemNum);  //아이템 얻음
+                    }
+                    
+
+                }
             }
             
             
@@ -556,6 +596,38 @@ public class BattleManager : MonoBehaviour
     public void show_probability()
     {
         probability_panel.SetActive(!probability_panel.active);
+    }
+
+    String item_name = null;
+
+    public void show_fight_result_to_Text()
+    {
+        
+        if(DataController.Instance.current_stage < 20)
+        {
+            item_name = "박쥐 날개";
+            ItemNum = 30;
+        } else if(DataController.Instance.current_stage < 40) {
+            item_name = "일반 골렘의 돌";  //스켈레톤 써서 스켈레톤 뼈 가자
+            ItemNum = 31;
+        } else if(DataController.Instance.current_stage < 60) {
+            item_name = "오우거의 이빨";
+            ItemNum = 32;
+        } else if(DataController.Instance.current_stage < 80) {
+            item_name = "바위 골렘의 핵";
+            ItemNum = 33;
+        } else if(DataController.Instance.current_stage < 100) {
+            item_name = "미노타우르스의 뿔";
+            ItemNum = 34;
+        }
+        else {
+            item_name = "없음";
+            ItemNum = 0;
+        }
+        DataController.Instance.itemNum = ItemNum;
+        gold_result_text.text = "<color=#fffb00>" + "Gold: " + UiManager.ToStringKR(DataController.Instance.get_stage_gold) + "</Color>";
+        exp_result_text.text = "<color=#00ff3a>" + "Exp: " + UiManager.ToStringKR(DataController.Instance.get_stage_exp) + "</Color>";
+        Item_result_text.text = "<color=#ff8300>" + "Item: " + item_name + "</Color>";
     }
 
     public void pause_button()
@@ -710,6 +782,9 @@ public class BattleManager : MonoBehaviour
             case "minotaurse":
                 monster_0 = minotaurse;
                 break;
+            case "Bat_Bose":
+                monster_0 = Bat_Bose;
+                break;
             
             default:
                 monster_0 = null;
@@ -764,6 +839,9 @@ public class BattleManager : MonoBehaviour
                 break;
             case "minotaurse":
                 monster_1 = minotaurse;
+                break;
+            case "Bat_Bose":
+                monster_1 = Bat_Bose;
                 break;
 
             default:
@@ -820,6 +898,9 @@ public class BattleManager : MonoBehaviour
                 break;
             case "minotaurse":
                 monster_2 = minotaurse;
+                break;
+            case "Bat_Bose":
+                monster_2 = Bat_Bose;
                 break;
 
              default:
@@ -2013,10 +2094,12 @@ public class BattleManager : MonoBehaviour
         if(DataController.Instance.current_stage == 53)
         {  
             Set_Hero_Base();
-            set_fight_reward();
         }
         DataController.Instance.current_stage = 53;
+
+        set_fight_reward();
         set_explanation_panel();
+        show_fight_result_to_Text();
     }
 
     public void stage1_54()
@@ -2181,7 +2264,7 @@ public class BattleManager : MonoBehaviour
             && DataController.Instance.current_stage == i+1)
             {
                 Set_Hero_Base();
-                set_fight_reward();
+                
                 break;
             }    
 
@@ -2241,10 +2324,41 @@ public class BattleManager : MonoBehaviour
                 DataController.Instance.monster_hp = DataController.Instance.current_stage * 4;
                 DataController.Instance.monster_damage = DataController.Instance.current_stage * 4;
                 set_hero_monster();
+                set_fight_reward();
                 set_explanation_panel();
+                show_fight_result_to_Text();
                 break;
             }
         }
+    }
+
+    public void stage1_100()
+    {
+        monster_init();
+        DataController.Instance.monster_0_ID = "Bat_Bose"; 
+        DataController.Instance.monster_hp = 5000;
+        DataController.Instance.monster_damage = 500;
+        set_hero_monster();
+
+        if(DataController.Instance.current_stage == 100)
+        {  
+            Set_Hero_Base();
+            
+            if(PlayerPrefs.GetInt("stage_100_reward") == 0)
+            {
+                //보상지급
+                PlayerPrefs.SetInt("stage_100_reward", 1);
+            }
+        }
+        DataController.Instance.current_stage = 100;
+        set_fight_reward();
+        set_explanation_panel();
+        show_fight_result_to_Text();
+        if(PlayerPrefs.GetInt("stage_100_reward") == 0)
+        {
+            Item_result_text.text = "Item: 권능 뽑기권 x3";
+        } else { Item_result_text.text = "Item: 권능 뽑기권 x3(얻음)"; }
+        
 
     }
 
@@ -2382,6 +2496,8 @@ public class BattleManager : MonoBehaviour
             DataController.Instance.current_stage = -1;
 
             goToPanel.Instance.stage_explain_panel.SetActive(true);
+            goToPanel.Instance.stage_reward_explain_panel.SetActive(true);
+            show_fight_result_to_Text();
             show_current_stage.text = "Special " + DataController.Instance.tower_stage.ToString();
             Stage_explain.text = "몹 평균 체력\n" + DataController.Instance.monster_hp + "\n몹 평균 공격력\n" + DataController.Instance.monster_damage;
             tower_btn.GetComponent<Image>().color = Color.red;
@@ -2399,6 +2515,7 @@ public class BattleManager : MonoBehaviour
         Fight_SelectFrame.transform.position = tra.position;
         Fight_SelectFrame.transform.parent = tra.transform;
         goToPanel.Instance.stage_explain_panel.SetActive(true);
+        goToPanel.Instance.stage_reward_explain_panel.SetActive(true);
     }
 
     

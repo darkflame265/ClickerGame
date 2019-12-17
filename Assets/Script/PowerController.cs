@@ -102,6 +102,8 @@ public class PowerController : MonoBehaviour
         eWizard,
         eGoldHand,
         eTimeStop,
+
+        eEtertiny
         
     }
     
@@ -142,115 +144,103 @@ public class PowerController : MonoBehaviour
                 {
                     DataController.Instance.health -= 100;
                     check_list.Save(a.ToString(), 0);
-                    Debug.Log("S등급 보너스스탯 50배 제거 완료!!");
                 }
-                if(i == 1)
+                else if(i == 1)
                 {
                     DataController.Instance.attack -= 100;
                     check_list.Save(a.ToString(), 0);
-                    Debug.Log("S등급 클릭골드 100배 제거 완료!!");
                 }
-                if(i == 2)
+                else if(i == 2)
                 {
                     DataController.Instance.mana -= 100;
                     check_list.Save(a.ToString(), 0);
-                    Debug.Log("S등급 클릭경험치 300배 제거 완료!!");
                 }
-                if(i == 3)
+                else if(i == 3)
                 {
                     DataController.Instance.special -= 100;
                     check_list.Save(a.ToString(), 0);
-                    Debug.Log("S등급 데미지 1000배 제거 완료!!");
                 }
-                if(i == 4)
+                else if(i == 4)
                 {
                     DataController.Instance.health -= 300;
                     check_list.Save(a.ToString(), 0);
-                    Debug.Log("A등급 보너스스탯 20배 제거 완료!!");
                 }
-                if(i == 5)
+                else if(i == 5)
                 {
                     DataController.Instance.attack -= 300;
                     check_list.Save(a.ToString(), 0);
-                    Debug.Log("A등급 클릭골드 40배 제거 완료!!");
                 }
-                if(i == 6)
+                else if(i == 6)
                 {
                     DataController.Instance.mana -= 300;
                     check_list.Save(a.ToString(), 0);
-                    Debug.Log("A등급 클릭경험치 100배 제거 완료!!");
                 }
-                if(i == 7)
+                else if(i == 7)
                 {
                     DataController.Instance.special -= 300;
                     check_list.Save(a.ToString(), 0);
-                    Debug.Log("A등급 데미지 300배 제거 완료!!");
                 }
-                if(i == 8)
+                else if(i == 8)
                 {
                     DataController.Instance.health -= 500;
                     check_list.Save(a.ToString(), 0);
-                    Debug.Log("B등급 보너스스탯 8배 제거 완료!!");
                 }
-                if(i == 9)
+                else if(i == 9)
                 {
                     DataController.Instance.attack -= 500;
                     check_list.Save(a.ToString(), 0);
-                    Debug.Log("B등급 클릭골드 16배 제거 완료!!");
                 }
-                if(i == 10)
+                else if(i == 10)
                 {
                     DataController.Instance.mana -= 500;
                     check_list.Save(a.ToString(), 0);
-                    Debug.Log("B등급 클릭경험치 40배 제거 완료!!");
                 }
-                if(i == 11)
+                else if(i == 11)
                 {
                     DataController.Instance.special -= 500;
                     check_list.Save(a.ToString(), 0);
-                    Debug.Log("B등급 데미지 100배 제거 완료!!");
                 }
-                if(i == 12)
+                else if(i == 12)
                 {
                     DataController.Instance.health -= 1000;
                     check_list.Save(a.ToString(), 0);
-                    Debug.Log("C등급 보너스스탯 3배 제거 완료!!");
                 }
-                if(i == 13)
+                else if(i == 13)
                 {
                     DataController.Instance.attack -= 1000;;
                     check_list.Save(a.ToString(), 0);
-                    Debug.Log("C등급 클릭골드 6배 제거 완료!!");
                 }
-                if(i == 14)
+                else if(i == 14)
                 {
                     DataController.Instance.mana -= 1000;
                     check_list.Save(a.ToString(), 0);
-                    Debug.Log("C등급 클릭경험치 16배 제거 완료!!");
                 }
-                if(i == 15)
+                else if(i == 15)
                 {
                     DataController.Instance.special -= 1000;
                     check_list.Save(a.ToString(), 0);
-                    Debug.Log("C등급 데미지 40배 제거 완료!!");
                 }
-                if(i == 16)
+                else if(i == 16)
                 {
                     check_list.Save(a.ToString(), 0);
                 }
-                if(i == 17)
+                else if(i == 17)
                 {
                     check_list.Save(a.ToString(), 0);
                 }
-                if(i == 18)
+                else if(i == 18)
                 {
                     check_list.Save(a.ToString(), 0);
                 }
-                if(i == 19)
+                else if(i == 19)
                 {
                     check_list.Save(a.ToString(), 0);
                 }
-                if(i == 20)
+                else if(i == 20)
+                {
+                    check_list.Save(a.ToString(), 0);
+                }
+                else if(i == 21)
                 {
                     check_list.Save(a.ToString(), 0);
                 }
@@ -517,10 +507,10 @@ public class PowerController : MonoBehaviour
                 while(true)
                 {
                     //C_power_list asdsd = (C_power_list)1;
-                    power_list ThisResult_C = (power_list)Random.Range(12,21); // 0~3
+                    power_list ThisResult_C = (power_list)Random.Range(12,22); // 0~3
                     bool get = false;
                     
-                    for(int i = 12; i < 21; i++)
+                    for(int i = 12; i < 22; i++)
                     {
                         
                         if(ThisResult_C == (power_list)i)
@@ -614,6 +604,15 @@ public class PowerController : MonoBehaviour
                                         show_floating_text();
                                         break;
                                     }
+                                    if(i == 21) //timestop
+                                    {
+                                        check_list.Save(b.ToString(), 1);
+                                        get = true;
+                                        power_name = "불멸자";
+                                        power_grade = "EX";
+                                        show_floating_text();
+                                        break;
+                                    }
                                 }
                         } 
                     }
@@ -662,6 +661,11 @@ public class PowerController : MonoBehaviour
         else if(power_grade == "S")
         {
             clone.GetComponent<Text>().color = Color.yellow;
+            clone.GetComponent<Outline>().effectColor = Color.black;
+        }
+        else if(power_grade == "EX")
+        {
+            clone.GetComponent<Text>().color = Color.magenta;
             clone.GetComponent<Outline>().effectColor = Color.black;
         }
         else {
@@ -779,7 +783,7 @@ public class PowerController : MonoBehaviour
 
     public void select_power_S_Warrior()
     {
-        PowerExplain.text = "전사 영웅은 전투 시 적의 공격을 5회 막을 수 있습니다.\n";
+        PowerExplain.text = "전투 시 모든 영웅의 체력을 10배 증가시키고\n3초마다 자신의 체력의 50%를 회복하는 빛을 생성합니다.\n";
     }
 
     public void select_power_S_Archer()
@@ -789,7 +793,7 @@ public class PowerController : MonoBehaviour
 
     public void select_power_S_Wizard()
     {
-        PowerExplain.text = "전투 시 스킬공격력의 x5 만큼의 보호막을 영웅 중 1명에게 부여합니다.\n";
+        PowerExplain.text = "전투 시 스킬공격력의 5배 만큼의 보호막을 영웅마다 25% 확률로 부여합니다.\n";
     }
 
     public void select_power_S_GoldHand()
@@ -800,6 +804,11 @@ public class PowerController : MonoBehaviour
     public void select_power_S_TimeStop()
     {
         PowerExplain.text = "일반공격 적중 시 10%확률로 적을 0~2초간 멈춥니다.\n";
+    }
+
+    public void select_power_EX_Eternity()
+    {
+        PowerExplain.text = "영웅이 죽을시 35%확률로 2명으로 늘어나서 부활합니다.\n(최대 6명)\n";
     }
 
 

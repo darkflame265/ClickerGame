@@ -522,3 +522,7 @@ MonoBehaviour:
   attack_ratio: 2.3
   mana_ratio: 2.6
   special_ratio: 3.3
+  thunder_effect: {fileID: 100000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
+  light_effect: {fileID: 100004, guid: 757df604761b8ef42831192c70ee1099, type: 3}
+  prefab_floating_text: {fileID: 5954360500128425662, guid: ec7c961f77ddb894a8a00885a94ac4e2,
+    type: 3}

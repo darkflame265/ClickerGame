@@ -311,6 +311,7 @@ public class Inventory : MonoBehaviour
             case 5: //보석
                 DataController.Instance.health += 100;
                 DataController.Instance.attack += 100;
+                DataController.Instance.mana += 100;
                 DataController.Instance.special += 100;
                 break;
 

@@ -308,6 +308,23 @@ public class DataController : MonoBehaviour
         }
     }
 
+    public int itemNum
+    {
+        get
+        {
+            if(!PlayerPrefs.HasKey("itemNum")) // 골드가 없을떄
+            {
+                return 0;
+            }
+            string tmpitemNum = PlayerPrefs.GetString("itemNum");
+            return int.Parse(tmpitemNum);
+        }
+        set
+        {
+            PlayerPrefs.SetString("itemNum", value.ToString()); 
+        }
+    }
+
     public long level
     {
         get

@@ -66,10 +66,9 @@ public class FightController : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.5f);
             for(int i = 0; i < stageCh1.Length; i++)
             {
-
                 if(GetBool("ch1" + i) == true)
                 {
                     stageCh1[i].GetComponent<Button>().interactable = true;
@@ -109,8 +108,6 @@ public class FightController : MonoBehaviour
                 ch_5_check_img.GetComponent<Image>().color = new Color(1,1,1,1);
             }
             else ch_5_check_img.GetComponent<Image>().color = new Color(1,1,1,0);
-        }
-        
-        
+        } 
     }
 }

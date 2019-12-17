@@ -67,7 +67,23 @@ public class wizardController : MonoBehaviour
 
     IEnumerator char_position()
     {   
-        yield return new WaitForSeconds(2f);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject close_e = null;
+ 
+        if(Vector3.Distance(enemies[0].transform.position, this.transform.position) > Vector3.Distance(enemies[enemies.Length-1].transform.position, this.transform.position))
+        {
+            close_e = enemies[enemies.Length-1];
+        } else { 
+            close_e = enemies[0];
+        }
+
+        if(Vector3.Distance(close_e.transform.position, this.transform.position) < 3f)
+        {
+            Debug.Log("ene is close");
+        }
+        else {
+            yield return new WaitForSeconds(2f); //2f = 게임 대기 시간 2초 줌
+        }
         while(true)
         {
             yield return new WaitForSeconds(0.01f);
@@ -93,6 +109,19 @@ public class wizardController : MonoBehaviour
                 allAnimatorStop();
                 animator.SetBool("isDeath", true);
                 yield return new WaitForSeconds(1f);
+                int eternityOn = Random.Range(1,100);
+                GameObject[] gos = GameObject.FindGameObjectsWithTag("Player");
+               
+                if(PowerController.Instance.return_power_list(21) == 1 && eternityOn < 36 &&  gos.Length < 8)
+                {
+                    Vector3 loc = new Vector3(this.transform.position.x-1 ,this.transform.position.y, this.transform.position.z);
+                    var clone = Instantiate(this.gameObject, loc, Quaternion.Euler(Vector2.zero));
+                    clone.transform.localScale = new Vector3(1.38f,1.38f,1.38f);
+                    clone.transform.SetParent(this.transform.parent);
+                    var clone1 = Instantiate(this.gameObject, this.transform.position, Quaternion.Euler(Vector2.zero));
+                    clone1.transform.localScale = new Vector3(1.38f,1.38f,1.38f);
+                    clone1.transform.SetParent(this.transform.parent);
+                }
                 Destroy(this.gameObject);
             }
             Move();

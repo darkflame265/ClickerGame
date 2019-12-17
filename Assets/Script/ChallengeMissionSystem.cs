@@ -63,6 +63,12 @@ public class ChallengeMissionSystem : MonoBehaviour
     void Start()
     {
         //StartCoroutine("Auto");
+        ms1 = ms_1[0];
+        ms2 = ms_2[0];
+        ms3 = ms_3[0];
+        ms4 = ms_4[0];
+        ms5 = ms_5[0];
+        ms6 = ms_6[0];
         checkMission();
     }
 
@@ -121,45 +127,129 @@ public class ChallengeMissionSystem : MonoBehaviour
     void checkMission()
     {
         //mission 1
-        ms1 = ms_1[0];
-        ms2 = ms_2[0];
-        ms3 = ms_3[0];
-        ms4 = ms_4[0];
-        ms5 = ms_5[0];
-        ms6 = ms_6[0];
+        // ms1 = ms_1[0];
+        // ms2 = ms_2[0];
+        // ms3 = ms_3[0];
+        // ms4 = ms_4[0];
+        // ms5 = ms_5[0];
+        // ms6 = ms_6[0];
 
-        for(int i =0; i < reward_list.Length; i++)    //for 목적지가 ms_1.length는 좀...
-        {
-            if(GetBool("ms1" + i) == true)
+        // for(int i =0; i < reward_list.Length; i++)    //for 목적지가 ms_1.length는 좀...
+        // {
+        //     int count = 0;
+        //     if(GetBool("ms1" + i) == true)
+        //     {
+        //         ms1 = ms_1[i+1];
+        //         current1_i = i+1;
+        //         count++;
+        //     } 
+        //     if(GetBool("ms2" + i) == true)
+        //     {
+        //         ms2 = ms_2[i+1];
+        //         current2_i = i+1;
+        //         count++;
+        //     }
+        //     if(GetBool("ms3" + i) == true)
+        //     {
+        //         ms3 = ms_3[i+1];
+        //         current3_i = i+1;
+        //         count++;
+        //     }
+        //     if(GetBool("ms4" + i) == true)
+        //     {
+        //         ms4 = ms_4[i+1];
+        //         current4_i = i+1;
+        //         count++;
+        //     }
+        //     if(GetBool("ms5" + i) == true)
+        //     {
+        //         ms5 = ms_5[i+1];
+        //         current5_i = i+1;
+        //         count++;
+        //     }
+        //     if(GetBool("ms6" + i) == true)
+        //     {
+        //         ms6 = ms_6[i+1];
+        //         current6_i = i+1;
+        //         count++;
+        //     }
+        //     if(count == 0)
+        //     {
+        //         Debug.Log("i is " + i);
+        //         break;
+        //     }
+        // }
+        int i = 0;
+        while(true)
+        {   
+            if(GetBool("ms1" + i) == false)
             {
+                break;
+            } else {
                 ms1 = ms_1[i+1];
                 current1_i = i+1;
-            } 
-            if(GetBool("ms2" + i) == true)
+            }
+            i++;
+        }
+        i = 0;
+        while(true)
+        {   
+            if(GetBool("ms2" + i) == false)
             {
+                break;
+            } else {
                 ms2 = ms_2[i+1];
                 current2_i = i+1;
             }
-            if(GetBool("ms3" + i) == true)
+            i++;
+        }
+        i = 0;
+        while(true)
+        {   
+            if(GetBool("ms3" + i) == false)
             {
+                break;
+            } else {
                 ms3 = ms_3[i+1];
                 current3_i = i+1;
             }
-            if(GetBool("ms4" + i) == true)
+            i++;
+        }
+        i = 0;
+        while(true)
+        {   
+            if(GetBool("ms4" + i) == false)
             {
+                break;
+            } else {
                 ms4 = ms_4[i+1];
                 current4_i = i+1;
             }
-            if(GetBool("ms5" + i) == true)
+            i++;
+        }
+        i = 0;
+        while(true)
+        {   
+            if(GetBool("ms5" + i) == false)
             {
+                break;
+            } else {
                 ms5 = ms_5[i+1];
                 current5_i = i+1;
             }
-            if(GetBool("ms6" + i) == true)
+            i++;
+        }
+        i = 0;
+        while(true)
+        {   
+            if(GetBool("ms6" + i) == false)
             {
+                break;
+            } else {
                 ms6 = ms_6[i+1];
                 current6_i = i+1;
             }
+            i++;
         }
         missionList[0].GetComponentInChildren<Text>().text = UiManager.ToStringKR(DataController.Instance.clickCount) + " / " + ms1;
         missionList[0].transform.GetChild(2).GetComponent<Text>().text = "클릭" + ms_t[current1_i];
@@ -270,7 +360,6 @@ public class ChallengeMissionSystem : MonoBehaviour
 
         //string name =  EventSystem.current.currentSelectedGameObject.name;
         string name = EventSystem.current.currentSelectedGameObject.transform.parent.name;
-        Debug.Log("this btn parent is " + name);
 
         if(name == "clickMission(ms1)" && GetBool("ms1" + current1_i) == false)
         {   //코드 간소화함 => 보상이 골드면 간소화 간단한데 보상이 아이템이면?
@@ -281,9 +370,8 @@ public class ChallengeMissionSystem : MonoBehaviour
             gold_text(reward_crystal);
         }
 
-        if(name == "levelMission(ms2)" && GetBool("ms2" + current2_i) == false)
+        else if(name == "levelMission(ms2)" && GetBool("ms2" + current2_i) == false)
         {
-            Debug.Log("good job!!");
             SoundManager.Instance.get_challenge_reward();
             SetBool("ms2" + current2_i, true);
             reward_crystal = reward_list[current2_i];
@@ -291,7 +379,7 @@ public class ChallengeMissionSystem : MonoBehaviour
             gold_text(reward_crystal);
         }
 
-        if(name == "goldLevelMission(ms3)" && GetBool("ms3" + current3_i) == false)
+        else if(name == "goldLevelMission(ms3)" && GetBool("ms3" + current3_i) == false)
         {
             SoundManager.Instance.get_challenge_reward();
             SetBool("ms3" + current3_i, true);
@@ -300,9 +388,8 @@ public class ChallengeMissionSystem : MonoBehaviour
             gold_text(reward_crystal);
         }
 
-        if(name == "stateTotalMission(ms4)" && GetBool("ms4" + current4_i) == false)
+        else if(name == "stateTotalMission(ms4)" && GetBool("ms4" + current4_i) == false)
         {
-            Debug.Log("good job!!!!");
             SoundManager.Instance.get_challenge_reward();
             SetBool("ms4" + current4_i, true);
             reward_crystal = reward_list[current4_i];
@@ -310,7 +397,7 @@ public class ChallengeMissionSystem : MonoBehaviour
             gold_text(reward_crystal);
         }
 
-        if(name == "maxStageMission(ms5)" && GetBool("ms5" + current5_i) == false)
+        else if(name == "maxStageMission(ms5)" && GetBool("ms5" + current5_i) == false)
         {   //코드 간소화함 => 보상이 골드면 간소화 간단한데 보상이 아이템이면?
             SoundManager.Instance.get_challenge_reward();
             SetBool("ms5" + current5_i, true);
@@ -319,7 +406,7 @@ public class ChallengeMissionSystem : MonoBehaviour
             gold_text(reward_crystal);
         }
 
-        if(name == "maxDpsMission(ms6)" && GetBool("ms6" + current6_i) == false)
+        else if(name == "maxDpsMission(ms6)" && GetBool("ms6" + current6_i) == false)
         {   //코드 간소화함 => 보상이 골드면 간소화 간단한데 보상이 아이템이면?
             SoundManager.Instance.get_challenge_reward();
             SetBool("ms6" + current6_i, true);

@@ -12,16 +12,25 @@ public class SpiderController : MonoBehaviour
     public float speed = 3f;
     bool movebool = true;
     public Transform other;
-    public long damage;
 
     bool wait = false;
 
+    List<GameObject> A = new List<GameObject>();
+    List<float> B = new List<float>();
+
+    float close_distance = 5f;
+    GameObject close_enemy;
+
+
+    
+    public long damage;
     public GameObject prefab_floating_text;
+
 
     void Start(){
         animator = GetComponent<Animator>();
-        StartCoroutine("char_position");
         damage = GetComponent<EnemyController>().damage;
+        StartCoroutine("char_position");
     }
 
     void Update() {
@@ -30,7 +39,7 @@ public class SpiderController : MonoBehaviour
         {
             if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) == true)
             {
-                animator.SetBool("isRunning", true);
+                animator.SetBool("isWalk", true);
                 animator.SetBool("isIdle", false);
             }
             if(Input.GetKey(KeyCode.Space) == true)
@@ -40,12 +49,14 @@ public class SpiderController : MonoBehaviour
             }
         }
 
+        
+
     }
 
     public void allAnimatorStop()
     {
         animator.SetBool("isIdle", false);
-        animator.SetBool("isRunning", false);
+        animator.SetBool("isWalk", false);
         animator.SetBool("isAttack", false);
     }
 
@@ -77,6 +88,7 @@ public class SpiderController : MonoBehaviour
             {
                 movebool = false;
                 allAnimatorStop();
+                this.transform.position = new Vector2(this.transform.position.x + 1f, this.transform.position.y);
                 animator.SetBool("isDeath", true);
                 yield return new WaitForSeconds(1f);
                 Destroy(this.gameObject);
@@ -84,7 +96,6 @@ public class SpiderController : MonoBehaviour
             }
 
             Move();
-            
 
             
         }
@@ -97,68 +108,73 @@ public class SpiderController : MonoBehaviour
         
         if(movebool == true)
         {
-            
-            this.transform.Translate(new Vector3(xMov, 0, 0));
-            allAnimatorStop();
-            animator.SetBool("isRunning", true);
-            
-        }
+            if(this.GetComponent<EnemyController>().timestop == false)
+            {
+                this.transform.Translate(new Vector3(xMov, 0, 0));
+                allAnimatorStop();
+                animator.SetBool("isWalk", true);
 
-        /*   //겹침방지 근데 안 쓸듯 영웅의 단일공격기능이 있어서
-        GameObject[] friend = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach(GameObject target in friend) {
-            float distance = Vector3.Distance(target.transform.position, this.transform.position);
-                if(distance < 2f && distance != 0)
-                {
-                    movebool = false;
-                    allAnimatorStop();
-                    animator.SetBool("isIdle", true);
-                    wait = true;
-                }
+                this.GetComponent<Animator>().speed = 1f;
+                this.GetComponent<SpriteRenderer>().color = Color.white;
+
+                
+            } else {
+                this.GetComponent<Animator>().speed = 0.0f;
+                this.GetComponent<SpriteRenderer>().color = new Color(123/255f, 123/255f, 123/255f);
+                allAnimatorStop();
+            }
+            
         }
-        */
-        
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Player");
         foreach(GameObject target in enemies) {
             float distance = Vector3.Distance(target.transform.position, this.transform.position);
-            
-            
-            if(distance < 1f)
+            //Debug.Log("Distance:  " + distance);
+            A.Add(target);
+            for(int i = 0; i < A.Count-1; i++)
+            {
+                if(A.Count == 1)
+                {
+                    break;
+                }
+                if(Vector3.Distance(A[i].transform.position, this.transform.position) > Vector3.Distance(A[i+1].transform.position, this.transform.position))
+                {
+                    GameObject tmp = A[i];
+                    A[i] = A[i+1];
+                    A[i+1] = tmp;
+                }
+            }
+            close_enemy = A[0];
+            //Debug.Log("close_enemy is " + close_enemy.name);
+            if(target.GetComponent<Character>().current_HP < 0)
+            {
+                A.Clear();
+            }
+
+            if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 1f)
             {
                 movebool = false;
                 allAnimatorStop();
                 animator.SetBool("isAttack", true);
             }
-            else if(wait == false)       //공격 시 대기시간 넣기
+            else if(wait == false)
             {
                 movebool = true;
             }
         }
-        
         if(enemies.Length == 0)
         {
             movebool = false;
         }
-
-        
     }
+    
 
     public void Attack()//애니메이션 이벤트 뒤에 배치
     {
-         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Player");
-            foreach(GameObject target in enemies) {
-                float distance = Vector3.Distance(target.transform.position, this.transform.position);
-                if(distance < 1f)
-                {
-                    target.transform.GetComponent<Character>().decreaseHP(this.damage);
-                    var clone = Instantiate(prefab_floating_text, target.transform.position, Quaternion.Euler(Vector3.zero));
-                    clone.transform.position += new Vector3(0, 2);
-                    clone.GetComponent<FloatingText>().text.text = "-" + this.damage;
-                    clone.GetComponent<FloatingText>().text.color = Color.red;
-                    clone.transform.SetParent(this.transform);
-                }
-            }
+        close_enemy.transform.GetComponent<Character>().decreaseHP(this.damage);
+        var clone = Instantiate(prefab_floating_text, close_enemy.transform.position, Quaternion.Euler(Vector3.zero));
+        clone.transform.position += new Vector3(0, 2);
+        clone.GetComponent<FloatingText>().text.text = "-" + this.damage;
+        clone.GetComponent<FloatingText>().text.color = Color.red;
+        clone.transform.SetParent(this.transform);
     }
-
-    
 }

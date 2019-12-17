@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -8816651585679635225}
   m_Layer: 0
   m_Name: archer_Shadow
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,7 +117,6 @@ MonoBehaviour:
   speed: 5
   prefab_floating_text: {fileID: 5954360500128425662, guid: ec7c961f77ddb894a8a00885a94ac4e2,
     type: 3}
-  damage: 0
   arrow: {fileID: 2853753249247705987, guid: 634dafea89acd9240bacaf7d514da633, type: 3}
 --- !u!114 &-8816651585679635225
 MonoBehaviour:
@@ -144,3 +143,8 @@ MonoBehaviour:
   attack_ratio: 1.5
   mana_ratio: 0.9
   special_ratio: 1.2
+  thunder_effect: {fileID: 0}
+  light_effect: {fileID: 0}
+  prefab_floating_text: {fileID: 0}
+  speed_count: 0
+  avoid_attack: 0

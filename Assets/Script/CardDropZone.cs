@@ -49,9 +49,9 @@ public class CardDropZone : MonoBehaviour, IDropHandler
                 }
             }
         }
-        
     }
 
+    //FightPanelTimer에서 코루틴 10s주기로 반복
     public void checkBase()
     {  //영웅들의 위치정보를 어디로 옮기지 
         Transform HeroCard = this.transform.GetChild(0);
@@ -66,7 +66,7 @@ public class CardDropZone : MonoBehaviour, IDropHandler
             //현재 위치(front)와 영웅정보(hero1)을 보내기
             //애초에 위치 정보는 여기서 정할 필요 없지 애초에 배틀매니저에서 정함
         }
-        else if(typeOfBase == Slot.MID)
+        if(typeOfBase == Slot.MID)
         {
             DataController.Instance.hero_1_ID = num;
             PlayerPrefs.SetInt(HeroCard.name, 1);
@@ -74,7 +74,7 @@ public class CardDropZone : MonoBehaviour, IDropHandler
             //현재 위치(front)와 영웅정보(hero1)을 보내기
 
         }
-        else if (typeOfBase == Slot.BACK)
+        if (typeOfBase == Slot.BACK)
         {
             DataController.Instance.hero_2_ID = num;
             PlayerPrefs.SetInt(HeroCard.name, 2);
@@ -86,9 +86,7 @@ public class CardDropZone : MonoBehaviour, IDropHandler
 
         if(this.transform.parent.GetChild(4).childCount == 0)  //0,1,2는 데코 3은 hand
         {
-            Debug.Log("this.transform.parent.GetChild(1).name is " + this.transform.parent.GetChild(1).name);
             DataController.Instance.hero_0_ID = 0;  //dummy;
-            Debug.Log("this.transform.parent.GetChild(1).childCount == 0 is " + this.transform.parent.GetChild(1).childCount);
         }
         if(this.transform.parent.GetChild(5).childCount == 0)
         {

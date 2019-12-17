@@ -144,7 +144,6 @@ public class MinotaurseController : MonoBehaviour
             }   
         }
         else{
-            Debug.Log("it's stop");
             this.GetComponent<Animator>().speed = 0.0f;
             this.GetComponent<SpriteRenderer>().color = new Color(123/255f, 123/255f, 123/255f);
             allAnimatorStop();
@@ -205,10 +204,16 @@ public class MinotaurseController : MonoBehaviour
 
     public void Attack()//애니메이션 이벤트 뒤에 배치
     {
-        close_enemy.transform.GetComponent<Character>().decreaseHP(this.damage);
+         close_enemy.transform.GetComponent<Character>().decreaseHP(this.damage);
         var clone = Instantiate(prefab_floating_text, close_enemy.transform.position, Quaternion.Euler(Vector3.zero));
         clone.transform.position += new Vector3(0, 2);
-        clone.GetComponent<FloatingText>().text.text = "-" + this.damage;
+        if(close_enemy.transform.GetComponent<Character>().avoid_attack == true)
+        {
+            clone.GetComponent<FloatingText>().text.text = "회피";
+        } else {
+            clone.GetComponent<FloatingText>().text.text = "-" + this.damage;
+        }
+        
         clone.GetComponent<FloatingText>().text.color = Color.red;
         clone.transform.SetParent(this.transform);
     }

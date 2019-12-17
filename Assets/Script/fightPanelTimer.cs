@@ -86,12 +86,17 @@ public class fightPanelTimer : MonoBehaviour
     //btn
     public GameObject Test_damage_btn;
 
+    //영웅 진영 반복체크
+    public GameObject[] hero_cardDropZone = new GameObject[0];
+    public GameObject[] hero_card = new GameObject[0];
+
     void Start()
     {
         damage_test_LimitTime = damage_test_limit_time - DataController.Instance.timeAfterLastPlay;
         current_heart = damage_test_current_heart;
         max_heart = damage_test_max_heart;
         StartCoroutine("Timer");
+        StartCoroutine("repeat_hero_dispose_check");
     }
 
     IEnumerator Timer()
@@ -127,6 +132,36 @@ public class fightPanelTimer : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
     }
+
+    IEnumerator repeat_hero_dispose_check()
+    {
+        while(true)
+        {
+            for(int i = 0; i<3; i++)
+            {
+                hero_cardDropZone[i].GetComponent<CardDropZone>().checkBase();
+                
+            }
+            yield return new WaitForSeconds(10f);
+        }
+    }
+
+    public void location_debug()
+    {
+        for(int i = 0; i<3; i++)
+        {
+            Debug.Log((hero_card[i].GetComponent<CharacterCard>().hero_name) + " is " + PlayerPrefs.GetInt(hero_card[i].GetComponent<CharacterCard>().hero_name));
+        }
+    }
+
+    public void set_location_all()
+    {
+        for(int i = 0; i<3; i++)
+        {
+                hero_card[i].GetComponent<CharacterCard>().SetLocation();
+        }
+    }
+    
 
 
 }

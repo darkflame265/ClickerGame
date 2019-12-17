@@ -63,5 +63,60 @@
     "rarity": 2,
     "slug": "Runestone",
     "effect": "DataController.Instance.health += 5;"
+  },
+
+  {
+    "id": 30,
+    "title": "박쥐 날개",
+    "value": 543,
+    "description": "최하위 몬스터 눈알 박쥐를 처치하고 얻은 날개.\n신의 가호 교환 재료로 쓰인다",
+    "stackable": true,
+    "rarity": 2,
+    "slug": "tooth",
+    "effect": "metarial of exchange"
+  },
+
+  {
+    "id": 31,
+    "title": "스켈레톤의 뼈",
+    "value": 543,
+    "description": "최하위 몬스터 스켈레톤을 처치하고 얻은 뼈다귀.\n신의 가호 교환 재료로 쓰인다",
+    "stackable": true,
+    "rarity": 2,
+    "slug": "tooth",
+    "effect": "metarial of exchange"
+  },
+
+  {
+    "id": 32,
+    "title": "오우거의 이빨",
+    "value": 543,
+    "description": "중급 몬스터 오우거를 처치하고 얻은 이빨.\n신의 가호 교환 재료로 쓰인다",
+    "stackable": true,
+    "rarity": 2,
+    "slug": "tooth",
+    "effect": "metarial of exchange"
+  },
+
+  {
+    "id": 33,
+    "title": "바위골렘의 핵",
+    "value": 543,
+    "description": "중급 몬스터 바위골렘을 처치하고 얻은 골렘의 핵.\n신의 가호 교환 재료로 쓰인다",
+    "stackable": true,
+    "rarity": 2,
+    "slug": "tooth",
+    "effect": "metarial of exchange"
+  },
+
+  {
+    "id": 34,
+    "title": "미노타우르스의 뿔",
+    "value": 543,
+    "description": "고위 몬스터 미노타우르스를 처치하고 얻은 뿔.\n신의 가호 교환 재료로 쓰인다",
+    "stackable": true,
+    "rarity": 2,
+    "slug": "tooth",
+    "effect": "metarial of exchange"
   }
 ]

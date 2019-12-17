@@ -39,7 +39,7 @@ public class MeduzaController : MonoBehaviour
         {
             if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) == true)
             {
-                animator.SetBool("isRunning", true);
+                animator.SetBool("isWalk", true);
                 animator.SetBool("isIdle", false);
             }
             if(Input.GetKey(KeyCode.Space) == true)
@@ -56,7 +56,7 @@ public class MeduzaController : MonoBehaviour
     public void allAnimatorStop()
     {
         animator.SetBool("isIdle", false);
-        animator.SetBool("isRunning", false);
+        animator.SetBool("isWalk", false);
         animator.SetBool("isAttack", false);
     }
 
@@ -112,7 +112,7 @@ public class MeduzaController : MonoBehaviour
             {
                 this.transform.Translate(new Vector3(xMov, 0, 0));
                 allAnimatorStop();
-                animator.SetBool("isRunning", true);
+                animator.SetBool("isWalk", true);
 
                 this.GetComponent<Animator>().speed = 1f;
                 this.GetComponent<SpriteRenderer>().color = Color.white;
@@ -126,7 +126,7 @@ public class MeduzaController : MonoBehaviour
             
             // this.transform.Translate(new Vector3(xMov, 0, 0));
             // allAnimatorStop();
-            // animator.SetBool("isRunning", true);
+            // animator.SetBool("isWalk", true);
             
         }
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Player");
