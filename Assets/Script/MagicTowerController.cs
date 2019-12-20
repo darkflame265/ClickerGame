@@ -123,7 +123,7 @@ public class MagicTowerController : MonoBehaviour
                 }
                 if(current_select_hero == "wizard")
                 {
-                    if(DataController.Instance.archer_level == 10)
+                    if(DataController.Instance.wizard_level == 10)
                     {
                         goToPanel.Instance.show_noticePanel();
                         goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "영웅이 최고레벨입니다.";
@@ -201,18 +201,32 @@ public class MagicTowerController : MonoBehaviour
             else {
                 skill_panel.SetActive(false);
             }
-            show_how_increase_ability_text.text = 
-            "레벨:" + knight[index].GetComponent<Character>().level + " -> " + knight[index+1].GetComponent<Character>().level
-            + "\n체력:" + knight[index].GetComponent<Character>().health_ratio + " -> " + knight[index+1].GetComponent<Character>().health_ratio
-            + "\n공격력: " + knight[index].GetComponent<Character>().attack_ratio + " -> " + knight[index+1].GetComponent<Character>().attack_ratio
-            + "\n민첩: " + knight[index].GetComponent<Character>().mana_ratio + " -> " + knight[index+1].GetComponent<Character>().mana_ratio
-            + "\n스킬공격력: " + knight[index].GetComponent<Character>().special_ratio + " -> " + knight[index+1].GetComponent<Character>().special_ratio;
+            if(DataController.Instance.knight_level != 10)
+            {
+                show_how_increase_ability_text.text = 
+                "레벨:" + knight[index].GetComponent<Character>().level + " -> " + knight[index+1].GetComponent<Character>().level
+                + "\n체력:" + knight[index].GetComponent<Character>().health_ratio + " -> " + knight[index+1].GetComponent<Character>().health_ratio
+                + "\n공격력: " + knight[index].GetComponent<Character>().attack_ratio + " -> " + knight[index+1].GetComponent<Character>().attack_ratio
+                + "\n민첩: " + knight[index].GetComponent<Character>().mana_ratio + " -> " + knight[index+1].GetComponent<Character>().mana_ratio
+                + "\n스킬공격력: " + knight[index].GetComponent<Character>().special_ratio + " -> " + knight[index+1].GetComponent<Character>().special_ratio;
 
-            char_inform_text.text =  "기사 " + " LV." + DataController.Instance.knight_level + "\n" + "체력: " + DataController.Instance.health + "    (" + text_health +")"
-            + "\n공격력: " + DataController.Instance.attack + "    (" + text_attack +")"
-            + "\n민첩: " + DataController.Instance.mana + "    (" + text_mana +")"
-            + "\n스킬공격력: " + DataController.Instance.special + "    (" + text_special +")";
-            buy_text.text = "각성    " + UiManager.ToStringKR(power_up_cost) + "  골드";
+                char_inform_text.text =  "기사 " + " LV." + DataController.Instance.knight_level + "\n" + "체력: " + DataController.Instance.health + "    (" + text_health +")"
+                + "\n공격력: " + DataController.Instance.attack + "    (" + text_attack +")"
+                + "\n민첩: " + DataController.Instance.mana + "    (" + text_mana +")"
+                + "\n스킬공격력: " + DataController.Instance.special + "    (" + text_special +")";
+                buy_text.text = "각성    " + UiManager.ToStringKR(power_up_cost) + "  골드";
+            }   else {
+                show_how_increase_ability_text.text = 
+                "레벨:" + knight[index].GetComponent<Character>().level
+                + "\n체력:" + knight[index].GetComponent<Character>().health_ratio
+                + "\n공격력: " + knight[index].GetComponent<Character>().attack_ratio
+                + "\n민첩: " + knight[index].GetComponent<Character>().mana_ratio
+                + "\n스킬공격력: " + knight[index].GetComponent<Character>().special_ratio;
+
+                char_inform_text.text =  "기사 " + " LV." + "MAX(" + DataController.Instance.knight_level + ")";
+                buy_text.text = "각성 최고레벨";
+            }
+            
         }
 
         else if(current_select_hero == "archer")
@@ -226,18 +240,31 @@ public class MagicTowerController : MonoBehaviour
             else {
                 skill_panel.SetActive(false);
             }
-            show_how_increase_ability_text.text = 
-            "레벨:" + archer[index].GetComponent<Character>().level + " -> " + archer[index+1].GetComponent<Character>().level
-            +"\n체력:" + archer[index].GetComponent<Character>().health_ratio + " -> " + archer[index+1].GetComponent<Character>().health_ratio
-            + "\n공격력: " + archer[index].GetComponent<Character>().attack_ratio + " -> " + archer[index+1].GetComponent<Character>().attack_ratio
-            + "\n민첩: " + archer[index].GetComponent<Character>().mana_ratio + " -> " + archer[index+1].GetComponent<Character>().mana_ratio
-            + "\n스킬공격력: " + archer[index].GetComponent<Character>().special_ratio + " -> " + archer[index+1].GetComponent<Character>().special_ratio;
+            if(DataController.Instance.archer_level != 10)
+            {
+                show_how_increase_ability_text.text = 
+                "레벨:" + archer[index].GetComponent<Character>().level + " -> " + archer[index+1].GetComponent<Character>().level
+                +"\n체력:" + archer[index].GetComponent<Character>().health_ratio + " -> " + archer[index+1].GetComponent<Character>().health_ratio
+                + "\n공격력: " + archer[index].GetComponent<Character>().attack_ratio + " -> " + archer[index+1].GetComponent<Character>().attack_ratio
+                + "\n민첩: " + archer[index].GetComponent<Character>().mana_ratio + " -> " + archer[index+1].GetComponent<Character>().mana_ratio
+                + "\n스킬공격력: " + archer[index].GetComponent<Character>().special_ratio + " -> " + archer[index+1].GetComponent<Character>().special_ratio;
 
-            char_inform_text.text =  "궁수 " + " LV." + DataController.Instance.archer_level + "\n" + "체력: " + DataController.Instance.health + "    (" + text_health +")"
-            + "\n공격력: " + DataController.Instance.attack + "    (" + text_attack +")"
-            + "\n민첩: " + DataController.Instance.mana + "    (" + text_mana +")"
-            + "\n스킬공격력: " + DataController.Instance.special + "    (" + text_special +")";
-            buy_text.text = "각성    " + UiManager.ToStringKR(power_up_cost) + "  골드";
+                char_inform_text.text =  "궁수 " + " LV." + DataController.Instance.archer_level + "\n" + "체력: " + DataController.Instance.health + "    (" + text_health +")"
+                + "\n공격력: " + DataController.Instance.attack + "    (" + text_attack +")"
+                + "\n민첩: " + DataController.Instance.mana + "    (" + text_mana +")"
+                + "\n스킬공격력: " + DataController.Instance.special + "    (" + text_special +")";
+                buy_text.text = "각성    " + UiManager.ToStringKR(power_up_cost) + "  골드";
+            } else {
+                show_how_increase_ability_text.text = 
+                "레벨:" + archer[index].GetComponent<Character>().level
+                +"\n체력:" + archer[index].GetComponent<Character>().health_ratio
+                + "\n공격력: " + archer[index].GetComponent<Character>().attack_ratio
+                + "\n민첩: " + archer[index].GetComponent<Character>().mana_ratio
+                + "\n스킬공격력: " + archer[index].GetComponent<Character>().special_ratio;
+
+                char_inform_text.text =  "궁수 " + " LV." + "MAX(" + DataController.Instance.archer_level + ")";
+                buy_text.text = "각성 최고레벨";
+            }
         }
 
         else if(current_select_hero == "wizard")
@@ -251,18 +278,31 @@ public class MagicTowerController : MonoBehaviour
             else {
                 skill_panel.SetActive(false);
             }
-            show_how_increase_ability_text.text = 
-            "레벨:" + wizard[index].GetComponent<Character>().level + " -> " + wizard[index+1].GetComponent<Character>().level
-            +"\n체력:" + wizard[index].GetComponent<Character>().health_ratio + " -> " + wizard[index+1].GetComponent<Character>().health_ratio
-            + "\n공격력: " + wizard[index].GetComponent<Character>().attack_ratio + " -> " + wizard[index+1].GetComponent<Character>().attack_ratio
-            + "\n민첩: " + wizard[index].GetComponent<Character>().mana_ratio + " -> " + wizard[index+1].GetComponent<Character>().mana_ratio
-            + "\n스킬공격력: " + wizard[index].GetComponent<Character>().special_ratio + " -> " + wizard[index+1].GetComponent<Character>().special_ratio;
+            if(DataController.Instance.wizard_level != 10)
+            {
+                show_how_increase_ability_text.text = 
+                "레벨:" + wizard[index].GetComponent<Character>().level + " -> " + wizard[index+1].GetComponent<Character>().level
+                +"\n체력:" + wizard[index].GetComponent<Character>().health_ratio + " -> " + wizard[index+1].GetComponent<Character>().health_ratio
+                + "\n공격력: " + wizard[index].GetComponent<Character>().attack_ratio + " -> " + wizard[index+1].GetComponent<Character>().attack_ratio
+                + "\n민첩: " + wizard[index].GetComponent<Character>().mana_ratio + " -> " + wizard[index+1].GetComponent<Character>().mana_ratio
+                + "\n스킬공격력: " + wizard[index].GetComponent<Character>().special_ratio + " -> " + wizard[index+1].GetComponent<Character>().special_ratio;
 
-            char_inform_text.text =  "마법사 " + " LV." + DataController.Instance.wizard_level + "\n" + "체력: " + DataController.Instance.health + "    (" + text_health +")"
-            + "\n공격력: " + DataController.Instance.attack + "    (" + text_attack +")"
-            + "\n민첩: " + DataController.Instance.mana + "    (" + text_mana +")"
-            + "\n스킬공격력: " + DataController.Instance.special + "    (" + text_special +")";
-            buy_text.text = "각성    " + UiManager.ToStringKR(power_up_cost) + "  골드";
+                char_inform_text.text =  "마법사 " + " LV." + DataController.Instance.wizard_level + "\n" + "체력: " + DataController.Instance.health + "    (" + text_health +")"
+                + "\n공격력: " + DataController.Instance.attack + "    (" + text_attack +")"
+                + "\n민첩: " + DataController.Instance.mana + "    (" + text_mana +")"
+                + "\n스킬공격력: " + DataController.Instance.special + "    (" + text_special +")";
+                buy_text.text = "각성    " + UiManager.ToStringKR(power_up_cost) + "  골드";
+            } else {
+                show_how_increase_ability_text.text = 
+                "레벨:" + wizard[index].GetComponent<Character>().level
+                +"\n체력:" + wizard[index].GetComponent<Character>().health_ratio
+                + "\n공격력: " + wizard[index].GetComponent<Character>().attack_ratio
+                + "\n민첩: " + wizard[index].GetComponent<Character>().mana_ratio
+                + "\n스킬공격력: " + wizard[index].GetComponent<Character>().special_ratio;
+
+                char_inform_text.text =  "마법사 " + " LV." + "MAX(" + DataController.Instance.wizard_level + ")";
+                buy_text.text = "각성 최고레벨";
+            }   
         }
         
     }
@@ -274,7 +314,7 @@ public class MagicTowerController : MonoBehaviour
         {
             if(DataController.Instance.knight_level == index+1)
             {
-                power_up_cost = (long)Mathf.Pow(10, index);
+                power_up_cost = (long)Mathf.Pow(10, index) * 1000;
                 require_health = knight_require_helth[index];
                 require_attack = 30 * index;
                 require_mana = 30 * index;
@@ -294,7 +334,7 @@ public class MagicTowerController : MonoBehaviour
         {
             if(DataController.Instance.archer_level == index+1)
             {
-                power_up_cost = (long)Mathf.Pow(10, index);
+                power_up_cost = (long)Mathf.Pow(10, index) * 1000;
                 require_health = 30 * index;
                 require_attack = knight_require_helth[index];
                 require_mana = 30 * index;
@@ -315,7 +355,7 @@ public class MagicTowerController : MonoBehaviour
         {
             if(DataController.Instance.wizard_level == index+1)
             {
-                power_up_cost = (long)Mathf.Pow(10, index);
+                power_up_cost = (long)Mathf.Pow(10, index) * 1000;
                 require_health = 30 * index;
                 require_attack = 30 * index;
                 require_mana = 30 * index;

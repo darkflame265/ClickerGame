@@ -176,7 +176,6 @@ public class ItemButton : MonoBehaviour
                     GetGoldButton.GetComponentInChildren<Text>().fontSize = 43;
                     GetGoldButton.GetComponent<Image>().color = Color.cyan;
                     QuestGoldIsFull = true;
-
                 }
                 else
                 {

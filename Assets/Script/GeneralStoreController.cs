@@ -118,15 +118,23 @@ public class GeneralStoreController : MonoBehaviour
         content1.SetActive(false);
     }
 
-    public void show_another_product()
+    public void show_another_product() //왼쪽 일반 창
     {
         hide_all_product();
         content0.gameObject.SetActive(true);
     }
-    public void show_another_product1()
+    public void show_another_product1() //오른쪾 vip 창
     {
-        hide_all_product();
-        content1.gameObject.SetActive(true);
+        if(DataController.Instance.char_level >= 50)
+        {
+            hide_all_product();
+            content1.gameObject.SetActive(true);
+        } else {
+            //사용자 레벨이 50이하라 입장할수 없습니다.
+            goToPanel.Instance.show_noticePanel();
+            goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "VIP상점은 사용자 레벨 50 이상부터 입장 가능합니다.";
+            goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().fontSize = 73;
+        }
     }
 
     public void Buy_Product()

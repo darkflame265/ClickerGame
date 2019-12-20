@@ -135,9 +135,10 @@ MonoBehaviour:
   damage: 0
   attackDistance: 0
   health_ratio: 8
-  attack_ratio: 0.1
+  attack_ratio: 0.2
   mana_ratio: 1
   special_ratio: 1
+  timestop: 0
   healthBar: {fileID: 1754473935941808786}
 --- !u!1 &3091860008909741140
 GameObject:

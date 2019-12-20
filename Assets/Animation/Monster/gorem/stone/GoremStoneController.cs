@@ -29,7 +29,7 @@ public class GoremStoneController : MonoBehaviour
                     clone.GetComponent<FloatingText>().text.text = "-" + StoneDamage;
                     clone.GetComponent<FloatingText>().text.color = Color.red;
 
-                    clone.transform.SetParent(this.transform);
+                    clone.transform.SetParent(this.transform.parent);
                     target.transform.GetComponent<Character>().decreaseHP(StoneDamage);
                     Destroy(Stone);
                 }

@@ -35,6 +35,7 @@ public class wizardController : MonoBehaviour
 
     void Start(){
         animator = GetComponent<Animator>();
+        animator.SetFloat("attackSpeed", BlessingExchange.Instance.blessing_attackSpeed_ratio[PlayerPrefs.GetInt("bls_4")]);
         StartCoroutine("char_position");
         damage = this.GetComponent<Character>().striking_power;
         StartCoroutine("SkillUI");
@@ -221,11 +222,6 @@ public class wizardController : MonoBehaviour
             }
         else if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 8f)
         {
-            //close_enemy.transform.GetComponent<EnemyController>().decreaseHP(this.GetComponent<Character>().striking_power);
-            // var clone = Instantiate(prefab_floating_text, close_enemy.transform.position, Quaternion.Euler(Vector3.zero));
-            // clone.transform.position += new Vector3(0, 2);
-            // clone.GetComponent<FloatingText>().text.text = "-" + this.GetComponent<Character>().striking_power;
-            // clone.transform.SetParent(this.transform);
 
             var fire = Instantiate(fireball, this.transform.position, Quaternion.Euler(0, 0, -90));
             fire.transform.SetParent(this.transform);

@@ -12,7 +12,8 @@ public class explosionBallController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        ExplosionballDamage = this.transform.parent.GetComponent<Character>().striking_power * 10;
+        float a = (float)DataController.Instance.special * (this.transform.parent.GetComponent<Character>().special_ratio + BlessingExchange.Instance.blessing_0_to_3_ratio[PlayerPrefs.GetInt("bls_3")]) * 5f;
+        ExplosionballDamage = (long)a;
     } 
 
     void Update()

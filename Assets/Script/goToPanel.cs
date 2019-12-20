@@ -92,6 +92,8 @@ public class goToPanel : MonoBehaviour
     public Scrollbar battle_scrollbarr;
     public Image chapter1_img;
     public GameObject[] chapter1_panel;
+    public Image chapter2_img;
+    public GameObject[] chapter2_panel;
 
     public GameObject stage_1_panel;
     public GameObject stage_2_panel;
@@ -99,6 +101,10 @@ public class goToPanel : MonoBehaviour
     public GameObject stage_4_panel;
     public GameObject stage_5_panel;
     public GameObject stage_6_panel;
+    public GameObject stage_7_panel;
+    public GameObject stage_8_panel;
+    public GameObject stage_9_panel;
+    public GameObject stage_10_panel;
     public GameObject battleScene_panel;
     public GameObject mapClone;
     public GameObject battle_pause_panel;
@@ -228,6 +234,7 @@ public class goToPanel : MonoBehaviour
             hide_without_panel();
             pvpPanel.SetActive(true);
             pvpPanelButton.GetComponent<Image>().color = cleanColor;
+            BlessingExchange.Instance.right_panel.SetActive(false);
         }
         else if(pvpPanel.activeSelf == true)
         {
@@ -245,6 +252,7 @@ public class goToPanel : MonoBehaviour
             hide_without_panel();
             duengeonPanel.SetActive(true);
             duengeonPanelButton.GetComponent<Image>().color = cleanColor;
+            UiManager.Instance.tower_of_diamond.text = "시련의 탑" + "\n" + DataController.Instance.tower_stage + "층";
         }
         else if(duengeonPanel.activeSelf == true)
         {
@@ -403,6 +411,21 @@ public class goToPanel : MonoBehaviour
         //battle_scrollbarr.GetComponent<Scrollbar>().value = 1f;
     }
 
+    public void show_chapter2_panel()
+    {
+        for(int i = 0; i < chapter2_panel.Length; i++)
+        {
+            chapter2_panel[i].SetActive(!chapter2_panel[i].activeSelf);
+        }
+        if(chapter2_panel[0].activeSelf == false)
+        {
+            chapter2_img.sprite = Resources.Load<Sprite>("Image/UI/simple UI & icons/button/button_triangle_right") as Sprite;
+        } else {
+            chapter2_img.sprite = Resources.Load<Sprite>("Image/UI/simple UI & icons/button/button_triangle_left") as Sprite;
+        }
+        //battle_scrollbarr.GetComponent<Scrollbar>().value = 1f;
+    }
+
     
 
     public void show_stage_1_panel()
@@ -485,7 +508,6 @@ public class goToPanel : MonoBehaviour
         stage_6_panel.SetActive(true);
         //stage_explain_panel.SetActive(true);
     }
-
     public void hide_stage_6_panel()
     {
         stage_6_panel.SetActive(false);
@@ -494,6 +516,65 @@ public class goToPanel : MonoBehaviour
         show_current_stage.text = "";
         Stage_explain.text = "";
     }
+
+    public void show_stage_7_panel()
+    {
+        stage_7_panel.SetActive(true);
+        //stage_explain_panel.SetActive(true);
+    }
+    public void hide_stage_7_panel()
+    {
+        stage_7_panel.SetActive(false);
+        stage_explain_panel.SetActive(false);
+        stage_reward_explain_panel.SetActive(false);
+        show_current_stage.text = "";
+        Stage_explain.text = "";
+    }
+
+    public void show_stage_8_panel()
+    {
+        stage_8_panel.SetActive(true);
+        //stage_explain_panel.SetActive(true);
+    }
+    public void hide_stage_8_panel()
+    {
+        stage_8_panel.SetActive(false);
+        stage_explain_panel.SetActive(false);
+        stage_reward_explain_panel.SetActive(false);
+        show_current_stage.text = "";
+        Stage_explain.text = "";
+    }
+
+    public void show_stage_9_panel()
+    {
+        stage_9_panel.SetActive(true);
+        //stage_explain_panel.SetActive(true);
+    }
+    public void hide_stage_9_panel()
+    {
+        stage_9_panel.SetActive(false);
+        stage_explain_panel.SetActive(false);
+        stage_reward_explain_panel.SetActive(false);
+        show_current_stage.text = "";
+        Stage_explain.text = "";
+    }
+
+    public void show_stage_10_panel()
+    {
+        stage_10_panel.SetActive(true);
+        //stage_explain_panel.SetActive(true);
+    }
+    public void hide_stage_10_panel()
+    {
+        stage_10_panel.SetActive(false);
+        stage_explain_panel.SetActive(false);
+        stage_reward_explain_panel.SetActive(false);
+        show_current_stage.text = "";
+        Stage_explain.text = "";
+    }
+
+
+
 
 
     public void show_battle_scene_panel()

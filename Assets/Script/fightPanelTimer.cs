@@ -96,7 +96,7 @@ public class fightPanelTimer : MonoBehaviour
         current_heart = damage_test_current_heart;
         max_heart = damage_test_max_heart;
         StartCoroutine("Timer");
-        StartCoroutine("repeat_hero_dispose_check");
+        //StartCoroutine("repeat_hero_dispose_check");
     }
 
     IEnumerator Timer()

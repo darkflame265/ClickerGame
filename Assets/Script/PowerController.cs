@@ -52,7 +52,7 @@ public class PowerController : MonoBehaviour
         
         while(true)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.5f);
             for(int i =0; i < power.Length; i++)
             {//enum형식에 for 적용하려고 하는데 모르겠따.
                 power_list a = (power_list)i;
@@ -135,7 +135,7 @@ public class PowerController : MonoBehaviour
 
     public void initiaze_power()
     {
-        for (int i = 0; i < 21; i++) //초기화 기능 넣기
+        for (int i = 0; i < 22; i++) //초기화 기능 넣기
         {
             power_list a = (power_list)i;
             if(check_list.Load(a.ToString()) == 1)

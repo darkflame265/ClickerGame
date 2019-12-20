@@ -63,14 +63,14 @@ public class Character : MonoBehaviour
         if(PowerController.Instance.return_power_list(16) == 1)
         {
             float a;
-            a = (DataController.Instance.health * health_ratio) * 10;
+            a = (DataController.Instance.health * (health_ratio + BlessingExchange.Instance.blessing_0_to_3_ratio[PlayerPrefs.GetInt("bls_0")])) * 10;
             Max_HP = (long)a;
             current_HP = Max_HP;
         }
         else
         {
             float a;
-            a = DataController.Instance.health * health_ratio;
+            a = DataController.Instance.health * (health_ratio + BlessingExchange.Instance.blessing_0_to_3_ratio[PlayerPrefs.GetInt("bls_0")]);
             Max_HP = (long)a;
             current_HP = Max_HP;
         }
@@ -81,7 +81,8 @@ public class Character : MonoBehaviour
 
         if(PowerController.Instance.return_power_list(18) == 1 && shieldOn == 0) //쉴드 부여
         {
-            Max_Shield = DataController.Instance.special * 5;
+            float a = DataController.Instance.special * (special_ratio + BlessingExchange.Instance.blessing_0_to_3_ratio[PlayerPrefs.GetInt("bls_3")]) * 5;
+            Max_Shield = (long)a;
             current_Shield = Max_Shield;
 
             GameObject thunder = Instantiate(thunder_effect, this.transform);
@@ -91,7 +92,7 @@ public class Character : MonoBehaviour
             current_Shield = Max_Shield;
         }
 
-        float b = DataController.Instance.attack * attack_ratio;
+        float b = DataController.Instance.attack * (attack_ratio + BlessingExchange.Instance.blessing_0_to_3_ratio[PlayerPrefs.GetInt("bls_1")]);
         striking_power = (long)b;
     }
 
@@ -108,26 +109,27 @@ public class Character : MonoBehaviour
 
     void check_speed_ability()
     {
-        if(DataController.Instance.mana * this.mana_ratio >= 100)
+        float total_speed = DataController.Instance.mana * (this.mana_ratio + BlessingExchange.Instance.blessing_0_to_3_ratio[PlayerPrefs.GetInt("bls_2")]);
+        if((long)total_speed >= 100)
         {
             speed_count = 10;
         }
-        else if(DataController.Instance.mana * this.mana_ratio >= 300)
+        else if((long)total_speed >= 300)
         {
             speed_count = 15;
-        } else if(DataController.Instance.mana * this.mana_ratio >= 500) {
+        } else if((long)total_speed >= 500) {
             speed_count = 20;
-        } else if(DataController.Instance.mana * this.mana_ratio >= 700) {
+        } else if((long)total_speed >= 700) {
             speed_count = 25;
-        } else if(DataController.Instance.mana * this.mana_ratio >= 1000) {
+        } else if((long)total_speed >= 1000) {
             speed_count = 30;
-        } else if(DataController.Instance.mana * this.mana_ratio >= 2000) {
+        } else if((long)total_speed >= 2000) {
             speed_count = 35;
-        } else if(DataController.Instance.mana * this.mana_ratio >= 3000) {
+        } else if((long)total_speed >= 3000) {
             speed_count = 40;
-        } else if(DataController.Instance.mana * this.mana_ratio >= 4000) {
+        } else if((long)total_speed >= 4000) {
             speed_count = 45;
-        }else if(DataController.Instance.mana * this.mana_ratio >= 5000) {
+        }else if((long)total_speed >= 5000) {
             speed_count = 50;
         } else {
             speed_count = 1;

@@ -12,7 +12,7 @@ public class skillArrowController : MonoBehaviour
     {
         //ArrowDamage = this.transform.parent.GetComponent<Character>().striking_power;
         float a;
-        a = this.transform.parent.GetComponent<Character>().special_ratio * DataController.Instance.special;
+        a = (this.transform.parent.GetComponent<Character>().special_ratio + BlessingExchange.Instance.blessing_0_to_3_ratio[PlayerPrefs.GetInt("bls_3")]) * DataController.Instance.special;
         ArrowDamage = (long)a;
     } 
 

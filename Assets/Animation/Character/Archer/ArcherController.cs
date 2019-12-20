@@ -41,6 +41,7 @@ public class ArcherController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        animator.SetFloat("attackSpeed", BlessingExchange.Instance.blessing_attackSpeed_ratio[PlayerPrefs.GetInt("bls_4")]);
         StartCoroutine("char_position");
         damage = this.GetComponent<Character>().striking_power;
         StartCoroutine("SkillUI");
@@ -243,13 +244,18 @@ public class ArcherController : MonoBehaviour
 
     public void Attack()//애니메이션 이벤트 뒤에 배치
     {
+        // if(currentSkillPoint >= maxSkillPoint)
+        // {
+        //     if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 10f)
+        //     {
+                
+        //         var skill_arrow_clone = Instantiate(skill_arrow, this.transform.position, Quaternion.Euler(Vector2.zero));
+        //         skill_arrow_clone.transform.SetParent(this.transform);
+        //     }
+        //     currentSkillPoint = 0;  //스킬포인트 초기화
+        // }
         if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 10f)
         {
-            // close_enemy.transform.GetComponent<EnemyController>().decreaseHP(this.GetComponent<Character>().striking_power);
-            // var clone = Instantiate(prefab_floating_text, close_enemy.transform.position, Quaternion.Euler(Vector3.zero));
-            // clone.transform.position += new Vector3(0, 2);
-            // clone.GetComponent<FloatingText>().text.text = "-" + this.GetComponent<Character>().striking_power;
-            // clone.transform.SetParent(this.transform);
             var arrow_clone = Instantiate(arrow, this.transform.position, Quaternion.Euler(Vector2.zero));
             arrow_clone.transform.SetParent(this.transform);
             if(DataController.Instance.archer_level > 2)

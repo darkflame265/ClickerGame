@@ -36,6 +36,7 @@ public class BattleManager : MonoBehaviour
 
     public Text gold_result_text;
     public Text exp_result_text;
+    public Image Item_img;
     public Text Item_result_text;
 
     public Transform BattleScene_panel;
@@ -98,7 +99,7 @@ public class BattleManager : MonoBehaviour
     public GameObject Gorem;
     public GameObject T_Rex;
     public GameObject Big_Gorem;
-    public GameObject skeleton_rancer;
+    public GameObject Troll;
     public GameObject goblin_general;
     public GameObject summon_portal;
     public GameObject plant_monster;
@@ -181,6 +182,7 @@ public class BattleManager : MonoBehaviour
             }
         SetBool("ch1" + 0, true);    //ch1-1만 활성화
         DataController.Instance.tower_stage = 1;
+        FightController.Instance.check_stage();
     }
 
     public void clear_all_stage()
@@ -190,6 +192,7 @@ public class BattleManager : MonoBehaviour
                 SetBool("ch1" + i, true);
             }
         SetBool("ch1" + 0, true);    //ch1-1만 활성화
+        FightController.Instance.check_stage();
     }
 
     public void debug_stage()
@@ -198,6 +201,7 @@ public class BattleManager : MonoBehaviour
             {
                 Debug.Log("ch1 " + i + " is " + GetBool("ch1" + i));
             }
+        FightController.Instance.check_stage();
     }
 
     public void debug_monster_despose()
@@ -492,7 +496,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-
+    bool activate_one = false;
 
     IEnumerator Auto()
     {
@@ -517,7 +521,6 @@ public class BattleManager : MonoBehaviour
                     }
                 }
 
-                
                 if(enemies.Length == 0 && getResult == false)  //승리할시
                 {
                     getResult = true;
@@ -526,7 +529,7 @@ public class BattleManager : MonoBehaviour
                     {
                         result_crystal_panel.SetActive(false);
                     }
-                    for(int i = 0; i < 41; i++) // 21을 max_current_Stage추가해서 교체
+                    for(int i = 0; i < FightController.Instance.stageCh1.Length; i++) // 21을 max_current_Stage추가해서 교체
                     {
                         if(DataController.Instance.current_stage == i) //1스테이지를 꺠면 1번쨰 요소(2스테이지)가 true
                         {
@@ -582,15 +585,28 @@ public class BattleManager : MonoBehaviour
                     getItem = true;
                     if(ItemNum != 0)
                     {
-                        inventory.AddItem(ItemNum);  //아이템 얻음
+                        get_booty();
                     }
-                    
-
                 }
+
+                if(enemies.Length == 0 || player.Length == 0 && activate_one == false)
+                {
+                    FightController.Instance.check_stage();
+                    activate_one = true;
+                }
+                
             }
-            
-            
         }
+    }
+
+    public void get_booty()
+    {
+        int current_booty = PlayerPrefs.GetInt("booty_" + ItemNum);
+        int max = BlessingExchange.Instance.blessing_get_booty_ratio[PlayerPrefs.GetInt("bls_7")];
+        int get_booty_value = UnityEngine.Random.Range(1, max);
+        current_booty = current_booty + get_booty_value;
+        DataController.Instance.get_stage_resource = get_booty_value;
+        PlayerPrefs.SetInt("booty_" + ItemNum, current_booty);
     }
 
     public void show_probability()
@@ -605,28 +621,35 @@ public class BattleManager : MonoBehaviour
         
         if(DataController.Instance.current_stage < 20)
         {
-            item_name = "박쥐 날개";
-            ItemNum = 30;
+            item_name = "납 주괴";
+            ItemNum = 1;
+            Item_img.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Item/Icons/ingots");
         } else if(DataController.Instance.current_stage < 40) {
-            item_name = "일반 골렘의 돌";  //스켈레톤 써서 스켈레톤 뼈 가자
-            ItemNum = 31;
+            item_name = "철 주괴";  //스켈레톤 써서 스켈레톤 뼈 가자
+            ItemNum = 2;
+            Item_img.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Item/Icons/Iron");
         } else if(DataController.Instance.current_stage < 60) {
-            item_name = "오우거의 이빨";
-            ItemNum = 32;
+            item_name = "금 주괴";
+            ItemNum = 3;
+            Item_img.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Item/Icons/Gold");
         } else if(DataController.Instance.current_stage < 80) {
-            item_name = "바위 골렘의 핵";
-            ItemNum = 33;
+            item_name = "다이아몬드";
+            ItemNum = 4;
+            Item_img.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Item/Icons/Gem_03");
         } else if(DataController.Instance.current_stage < 100) {
-            item_name = "미노타우르스의 뿔";
-            ItemNum = 34;
+            item_name = "오리하르콘";
+            ItemNum = 5;
+            Item_img.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Item/Icons/Crystal_01");
         }
         else {
             item_name = "없음";
             ItemNum = 0;
+            Item_img.GetComponent<Image>().sprite = null;
         }
         DataController.Instance.itemNum = ItemNum;
         gold_result_text.text = "<color=#fffb00>" + "Gold: " + UiManager.ToStringKR(DataController.Instance.get_stage_gold) + "</Color>";
         exp_result_text.text = "<color=#00ff3a>" + "Exp: " + UiManager.ToStringKR(DataController.Instance.get_stage_exp) + "</Color>";
+        
         Item_result_text.text = "<color=#ff8300>" + "Item: " + item_name + "</Color>";
     }
 
@@ -752,8 +775,8 @@ public class BattleManager : MonoBehaviour
             case "BigGorem":
                 monster_0 = Big_Gorem;
                 break;
-            case "skeleton_rancer":
-                monster_0 = skeleton_rancer;
+            case "Troll":
+                monster_0 = Troll;
                 break;
             case "goblin_general":
                 monster_0 = goblin_general;
@@ -810,8 +833,8 @@ public class BattleManager : MonoBehaviour
             case "BigGorem":
                 monster_1 = Big_Gorem;
                 break;
-            case "skeleton_rancer":
-                monster_1 = skeleton_rancer;
+            case "Troll":
+                monster_1 = Troll;
                 break;
             case "goblin_general":
                 monster_1 = goblin_general;
@@ -869,8 +892,8 @@ public class BattleManager : MonoBehaviour
             case "BigGorem":
                 monster_2 = Big_Gorem;
                 break;
-            case "skeleton_rancer":
-                monster_2 = skeleton_rancer;
+            case "Troll":
+                monster_2 = Troll;
                 break;
             case "goblin_general":
                 monster_2= goblin_general;
@@ -1074,1145 +1097,6 @@ public class BattleManager : MonoBehaviour
         Stage_explain.text = "몹 평균 체력\n10\n몹 평균 공격력\n2";
     }
 
-    public void stage1_2()
-    {
-        if(DataController.Instance.current_stage == 2)
-        {
-            monster_init();
-            DataController.Instance.monster_0_ID = "Bat";
-            DataController.Instance.monster_hp = 12;
-            DataController.Instance.monster_damage = 3;
-
-            Set_Hero_Base();
-
-            DataController.Instance.get_stage_gold = 1000;
-            DataController.Instance.get_stage_exp = 6;
-
-        }
-        DataController.Instance.current_stage = 2;
-        Debug.Log("current_Stage is " + DataController.Instance.current_stage);
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n12\n몹 평균 공격력\n3";
-    }
-
-    public void stage1_3()
-    {
-        if(DataController.Instance.current_stage == 3)
-        {
-            monster_init();
-            DataController.Instance.monster_2_ID = "Bat";
-            DataController.Instance.monster_hp = 15;
-            DataController.Instance.monster_damage = 5;
-            Set_Hero_Base();
-
-            DataController.Instance.get_stage_gold = 2000;
-            DataController.Instance.get_stage_exp = 9;
-        
-        }
-        DataController.Instance.current_stage = 3;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n15\n몹 평균 공격력\n5";
-    }
-
-    public void stage1_4()
-    {
-        if(DataController.Instance.current_stage == 4)
-        {
-            monster_init();
-
-            DataController.Instance.monster_1_ID = "Bat";
-            DataController.Instance.monster_hp = 17;
-            DataController.Instance.monster_damage = 7;
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = 2500;
-            DataController.Instance.get_stage_exp = 12;
-
-        }
-        DataController.Instance.current_stage = 4;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n17\n몹 평균 공격력\n7";
-    }
-
-    public void stage1_5()
-    {
-        if(DataController.Instance.current_stage == 5)
-        {
-            monster_init();
-            DataController.Instance.monster_0_ID = "Spider";
-            DataController.Instance.monster_hp = 20;
-            DataController.Instance.monster_damage = 10;
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = 5000;
-            DataController.Instance.get_stage_exp = 15;
-
-        }
-        DataController.Instance.current_stage = 5;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n20\n몹 평균 공격력\n10";
-    }
-
-    public void stage1_6()
-    {
-        if(DataController.Instance.current_stage == 6)
-        {
-            monster_init();
-            DataController.Instance.monster_0_ID = "Spider";
-            DataController.Instance.monster_hp = 23;
-            DataController.Instance.monster_damage = 12;
-
-            Set_Hero_Base();
-
-            DataController.Instance.get_stage_gold = 6000;
-            DataController.Instance.get_stage_exp = 20;
-
-        }
-        DataController.Instance.current_stage = 6;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n23\n몹 평균 공격력\n12";
-    }
-
-    public void stage1_7()
-    {
-        if(DataController.Instance.current_stage == 7)
-        {
-            monster_init();
-
-            DataController.Instance.monster_1_ID = "Spider";
-            DataController.Instance.monster_hp = 25;
-            DataController.Instance.monster_damage = 15;
-
-            Set_Hero_Base();
-
-            DataController.Instance.get_stage_gold = 7000;
-            DataController.Instance.get_stage_exp = 25;
-
-        }
-        DataController.Instance.current_stage = 7;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n25\n몹 평균 공격력\n15";
-    }
-
-    public void stage1_8()
-    {
-        if(DataController.Instance.current_stage == 8)
-        {
-            monster_init();
-            DataController.Instance.monster_2_ID = "Spider";
-            DataController.Instance.monster_hp = 27;
-            DataController.Instance.monster_damage = 17;
-
-            Set_Hero_Base();
-
-            DataController.Instance.get_stage_gold = 8000;
-            DataController.Instance.get_stage_exp = 30;
-
-        }
-        DataController.Instance.current_stage = 8;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n27\n몹 평균 공격력\n17";
-    }
-
-    public void stage1_9()
-    {
-        if(DataController.Instance.current_stage == 9)
-        {
-            monster_init();
-            DataController.Instance.monster_2_ID = "Spider";
-            DataController.Instance.monster_hp = 30;
-            DataController.Instance.monster_damage = 20;
-
-            Set_Hero_Base();
-
-            DataController.Instance.get_stage_gold = 10000;
-            DataController.Instance.get_stage_exp = 35;
-        }
-        DataController.Instance.current_stage = 9;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n30\n몹 평균 공격력\n20";
-    }
-
-    public void stage1_10()
-    {
-        if(DataController.Instance.current_stage == 10)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-
-            DataController.Instance.monster_0_ID = "Gorem";
-            DataController.Instance.monster_hp = 100;
-            DataController.Instance.monster_damage = 7;
-            //DataController.Instance.summon_monster_ID = "Bat";
-            //DataController.Instance.summon_monster_hp = 1000;
-            //DataController.Instance.summon_monster_damage = 40;
-
-            Set_Hero_Base();
-
-            DataController.Instance.get_stage_gold = 20000;
-            DataController.Instance.get_stage_exp = 50;
-        }
-        DataController.Instance.current_stage = 10;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n100\n몹 평균 공격력\n7";
-    }
-
-    public void stage1_11()
-    {
-        if(DataController.Instance.current_stage == 11)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            DataController.Instance.monster_1_ID = "Gorem";
-            DataController.Instance.monster_hp = 110;
-            DataController.Instance.monster_damage = 10;
-            //DataController.Instance.summon_monster_ID = "Bat";
-            //DataController.Instance.summon_monster_hp = 1000;
-            //DataController.Instance.summon_monster_damage = 40;
-
-            Set_Hero_Base();
-
-            DataController.Instance.get_stage_gold = 30000;
-            DataController.Instance.get_stage_exp = 60;
-        }
-        DataController.Instance.current_stage = 11;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n110\n몹 평균 공격력\n10";
-    }
-
-    public void stage1_12()
-    {
-        if(DataController.Instance.current_stage == 12)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            DataController.Instance.monster_2_ID = "Gorem";
-            DataController.Instance.monster_hp = 120;
-            DataController.Instance.monster_damage = 15;
-            Set_Hero_Base();
-
-            DataController.Instance.get_stage_gold = 50000;
-            DataController.Instance.get_stage_exp = 70;
-        }
-        DataController.Instance.current_stage = 12;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n120\n몹 평균 공격력\n15";
-    }
-
-    public void stage1_13()
-    {
-        if(DataController.Instance.current_stage == 13)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-
-            DataController.Instance.monster_1_ID = "Gorem";
-            DataController.Instance.monster_hp = 130;
-            DataController.Instance.monster_damage = 20;
-
-            Set_Hero_Base();
-
-            DataController.Instance.get_stage_gold = 80000;
-            DataController.Instance.get_stage_exp = 70;
-        }
-        DataController.Instance.current_stage = 13;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n130\n몹 평균 공격력\n18";
-    }
-
-    public void stage1_14()
-    {
-        if(DataController.Instance.current_stage == 14)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            DataController.Instance.monster_2_ID = "Gorem";
-            DataController.Instance.monster_hp = 140;
-            DataController.Instance.monster_damage = 20;
-
-            Set_Hero_Base();
-
-            DataController.Instance.get_stage_gold = 100000;
-            DataController.Instance.get_stage_exp = 750;
-        }
-        DataController.Instance.current_stage = 14;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n140\n몹 평균 공격력\n18";
-    }
-
-    public void stage1_15()
-    {
-        if(DataController.Instance.current_stage == 15)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            DataController.Instance.monster_0_ID = "Bat_2";
-            DataController.Instance.monster_hp = 100;
-            DataController.Instance.monster_damage = 35;
-
-
-            Set_Hero_Base();
-
-            DataController.Instance.get_stage_gold = 100000;
-            DataController.Instance.get_stage_exp = 75;
-        }
-        DataController.Instance.current_stage = 15;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n100\n몹 평균 공격력\n35";
-    }
-
-    public void stage1_16()
-    {
-        if(DataController.Instance.current_stage == 16)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            DataController.Instance.monster_0_ID = "Bat_2";
-            DataController.Instance.monster_hp = 105;
-            DataController.Instance.monster_damage = 38;
-
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = 150000;
-            DataController.Instance.get_stage_exp = 80;
-        }
-        DataController.Instance.current_stage = 16;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n105\n몹 평균 공격력\n38";
-    }
-
-    public void stage1_17()
-    {
-        if(DataController.Instance.current_stage == 17)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-
-            DataController.Instance.monster_2_ID = "Bat_2";
-            DataController.Instance.monster_hp = 110;
-            DataController.Instance.monster_damage = 42;
-
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = 150000;
-            DataController.Instance.get_stage_exp = 80;
-        }
-        DataController.Instance.current_stage = 17;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n110\n몹 평균 공격력\n42";
-    }
-
-    public void stage1_18()
-    {
-        if(DataController.Instance.current_stage == 18)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            DataController.Instance.monster_0_ID = "Bat_2";
-            DataController.Instance.monster_hp = 120;
-            DataController.Instance.monster_damage = 45;
-
-
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = 180000;
-            DataController.Instance.get_stage_exp = 90;
-        }
-        DataController.Instance.current_stage = 18;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n120\n몹 평균 공격력\n45";
-    }
-
-    public void stage1_19()
-    {
-        if(DataController.Instance.current_stage == 19)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            DataController.Instance.monster_0_ID = "Bat_2";
-            DataController.Instance.monster_hp = 125;
-            DataController.Instance.monster_damage = 50;
-
-
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = 180000;
-            DataController.Instance.get_stage_exp = 90;
-        }
-        DataController.Instance.current_stage = 19;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n125\n몹 평균 공격력\n50";
-    }
-
-    public void stage1_20()
-    {
-        if(DataController.Instance.current_stage == 20)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            DataController.Instance.monster_1_ID = "Bat";
-            DataController.Instance.monster_2_ID = "Bat_2";
-            DataController.Instance.monster_2_hp = 100;
-            DataController.Instance.monster_2_damage = 50;
-
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = 200000;
-            DataController.Instance.get_stage_exp = 100;
-        }
-        DataController.Instance.current_stage = 20;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n82\n몹 평균 공격력\n35";
-    }
-
-    //stage-2 궁수개방!!
-    public void stage1_21()
-    {
-        if(DataController.Instance.current_stage == 21)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            DataController.Instance.monster_1_ID = "Bat";
-            DataController.Instance.monster_2_ID = "Bat_2";
-            DataController.Instance.monster_hp = 110;
-            DataController.Instance.monster_damage = 55;
-
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = 210000;
-            DataController.Instance.get_stage_exp = 100;
-        }
-        DataController.Instance.current_stage = 21;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n87\n몹 평균 공격력\n40";
-    }
-
-    public void stage1_22()
-    {
-        if(DataController.Instance.current_stage == 22)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            DataController.Instance.monster_0_ID = "Bat";
-            DataController.Instance.monster_1_ID = "Bat_2";
-            DataController.Instance.monster_1_hp = 80;
-            DataController.Instance.monster_1_damage = 80;
-
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = 210000;
-            DataController.Instance.get_stage_exp = 100;
-        }
-        DataController.Instance.current_stage = 22;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n89\n몹 평균 공격력\n42";
-    }
-
-    public void stage1_23()
-    {
-        if(DataController.Instance.current_stage == 23)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            DataController.Instance.monster_0_ID = "Bat";
-            DataController.Instance.monster_1_ID = "Bat_2";
-            DataController.Instance.monster_hp = 85;
-            DataController.Instance.monster_damage = 85;
-
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = 210000;
-            DataController.Instance.get_stage_exp = 100;
-        }
-        DataController.Instance.current_stage = 23;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n92\n몹 평균 공격력\n45";
-    }
-
-    public void stage1_24()
-    {
-        if(DataController.Instance.current_stage == 24)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            DataController.Instance.monster_0_ID = "Bat";
-            DataController.Instance.monster_2_ID = "Bat_2";
-            DataController.Instance.monster_hp = 90;
-            DataController.Instance.monster_damage = 90;
-
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = 210000;
-            DataController.Instance.get_stage_exp = 100;
-        }
-        DataController.Instance.current_stage = 24;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n97\n몹 평균 공격력\n50";
-    }
-
-    public void stage1_25()
-    {
-        if(DataController.Instance.current_stage == 25)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            DataController.Instance.monster_0_ID = "Spider";
-            DataController.Instance.monster_1_ID = "Bat";
-            DataController.Instance.monster_hp = 90;
-            DataController.Instance.monster_damage = 90;
-
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = 250000;
-            DataController.Instance.get_stage_exp = 120;
-        }
-        DataController.Instance.current_stage = 25;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n66\n몹 평균 공격력\n76";
-    }
-
-    public void stage1_26()
-    {
-        if(DataController.Instance.current_stage == 26)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            DataController.Instance.monster_0_ID = "Bat";
-            DataController.Instance.monster_1_ID = "Spider";
-            DataController.Instance.monster_hp = 95;
-            DataController.Instance.monster_damage = 95;
-            
-
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = 250000;
-            DataController.Instance.get_stage_exp = 120;
-        }
-        DataController.Instance.current_stage = 26;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n69\n몹 평균 공격력\n79";
-    }
-
-    public void stage1_27()
-    {
-        if(DataController.Instance.current_stage == 27)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            
-            DataController.Instance.monster_0_ID = "Spider";
-            DataController.Instance.monster_1_ID = "Bat_2"; 
-            DataController.Instance.monster_hp = 95;
-            DataController.Instance.monster_damage = 95;
-            
-
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = 260000;
-            DataController.Instance.get_stage_exp = 125;
-        }
-        DataController.Instance.current_stage = 27;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n87\n몹 평균 공격력\n92";
-    }
-
-    public void stage1_28()
-    {
-        if(DataController.Instance.current_stage == 28)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            
-            DataController.Instance.monster_0_ID = "Spider";
-            DataController.Instance.monster_2_ID = "Bat_2";  
-            DataController.Instance.monster_hp = 100;
-            DataController.Instance.monster_damage = 100;
-            
-
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = 260000;
-            DataController.Instance.get_stage_exp = 125;
-        }
-        DataController.Instance.current_stage = 28;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n89\n몹 평균 공격력\n94";
-    }
-
-    public void stage1_29()
-    {
-        if(DataController.Instance.current_stage == 29)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            
-            DataController.Instance.monster_0_ID = "Bat_2"; 
-            DataController.Instance.monster_1_ID = "Spider";
-            DataController.Instance.monster_1_hp = 105;
-            DataController.Instance.monster_1_damage = 105;
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = 280000;
-            DataController.Instance.get_stage_exp = 130;
-        }
-        DataController.Instance.current_stage = 29;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n91\n몹 평균 공격력\n96";
-    }
-
-    public void stage1_30()
-    {
-        if(DataController.Instance.current_stage == 30)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            
-            DataController.Instance.monster_0_ID = "Bat_2"; 
-            DataController.Instance.monster_1_ID = "Bat_2";
-            DataController.Instance.monster_hp = 105;
-            DataController.Instance.monster_damage = 105;
-            
-            
-
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = 300000;
-            DataController.Instance.get_stage_exp = 140;
-        }
-        DataController.Instance.current_stage = 30;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n104\n몹 평균 공격력\n74";
-    }
-
-    public void stage1_31()
-    {
-        if(DataController.Instance.current_stage == 31)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            
-            DataController.Instance.monster_0_ID = "Bat_2"; 
-            DataController.Instance.monster_1_ID = "Bat_2";
-            DataController.Instance.monster_hp = 110;
-            DataController.Instance.monster_damage = 110;
-            
-            
-
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = 300000;
-            DataController.Instance.get_stage_exp = 140;
-        }
-        DataController.Instance.current_stage = 31;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n106\n몹 평균 공격력\n76";
-    }
-
-    public void stage1_32()
-    {
-        if(DataController.Instance.current_stage == 32)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            
-            DataController.Instance.monster_0_ID = "Bat_2"; 
-            DataController.Instance.monster_1_ID = "Bat_2";
-            DataController.Instance.monster_hp = 115;
-            DataController.Instance.monster_damage = 115;
-            
-            
-
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = 320000;
-            DataController.Instance.get_stage_exp = 150;
-        }
-        DataController.Instance.current_stage = 32;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n108\n몹 평균 공격력\n78";
-    }
-
-    public void stage1_33()
-    {
-        if(DataController.Instance.current_stage == 33)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            
-            DataController.Instance.monster_0_ID = "Bat_2"; 
-            DataController.Instance.monster_2_ID = "Bat_2";
-            DataController.Instance.monster_hp = 120;
-            DataController.Instance.monster_damage = 120;
-            
-            
-
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 10000;
-            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 5;
-        }
-        DataController.Instance.current_stage = 33;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n150\n몹 평균 공격력\n76";
-    }
-
-    public void stage1_34()
-    {
-        if(DataController.Instance.current_stage == 34)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            
-            DataController.Instance.monster_0_ID = "Bat_2"; 
-            DataController.Instance.monster_2_ID = "Bat_2";
-            DataController.Instance.monster_hp = 125;
-            DataController.Instance.monster_damage = 125;
-            
-            
-
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 10000;
-            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 5;
-        }
-        DataController.Instance.current_stage = 34;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n300\n몹 평균 공격력\n50";
-    }
-
-    public void stage1_35()
-    {
-        if(DataController.Instance.current_stage == 35)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            
-            DataController.Instance.monster_0_ID = "Bat_2"; 
-            DataController.Instance.monster_1_ID = "Gorem";
-            DataController.Instance.monster_hp = 125;
-            DataController.Instance.monster_damage = 125;
-            
-            
-
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 10000;
-            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 5;
-        }
-        DataController.Instance.current_stage = 35;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n220\n몹 평균 공격력\n47";
-    }
-
-    public void stage1_36()
-    {
-        if(DataController.Instance.current_stage == 36)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            
-            DataController.Instance.monster_0_ID = "Bat_2"; 
-            DataController.Instance.monster_2_ID = "Gorem";
-            DataController.Instance.monster_hp = 130;
-            DataController.Instance.monster_damage = 130;
-            
-            
-
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 10000;
-            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 5;
-        }
-        DataController.Instance.current_stage = 36;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n223\n몹 평균 공격력\n50";
-    }
-
-    public void stage1_37()
-    {
-        if(DataController.Instance.current_stage == 37)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            
-            DataController.Instance.monster_0_ID = "Bat_2"; 
-            DataController.Instance.monster_1_ID = "Gorem";
-            DataController.Instance.monster_hp = 135;
-            DataController.Instance.monster_damage = 135;
-            
-            
-
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 10000;
-            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 5;
-        }
-        DataController.Instance.current_stage = 37;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n250\n몹 평균 공격력\n45";
-    }
-
-    public void stage1_38()
-    {
-        if(DataController.Instance.current_stage == 38)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            
-            DataController.Instance.monster_0_ID = "Bat_2"; 
-            DataController.Instance.monster_1_ID = "Gorem";
-            DataController.Instance.monster_hp = 135;
-            DataController.Instance.monster_damage = 135;
-            
-            
-
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 10000;
-            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 5;
-        }
-        DataController.Instance.current_stage = 38;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n1\n몹 평균 공격력\n100";
-    }
-
-    public void stage1_39()
-    {
-        if(DataController.Instance.current_stage == 39)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            
-            DataController.Instance.monster_0_ID = "Gorem";
-            DataController.Instance.monster_2_ID = "Bat_2"; 
-            DataController.Instance.monster_hp = 140;
-            DataController.Instance.monster_damage = 140;
-            
-            
-            
-
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 10000;
-            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 5;
-        }
-        DataController.Instance.current_stage = 39;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n600\n몹 평균 공격력\n40";
-    }
-
-    public void stage1_40()
-    {
-        if(DataController.Instance.current_stage == 40)
-        {  //문제점 가끔 골렘의 돌맹이가 영웅에게 안맞음
-            monster_init();
-            
-            
-            DataController.Instance.monster_0_ID = "Bat_2"; 
-            DataController.Instance.monster_2_ID = "Gorem";
-            DataController.Instance.monster_hp = 150;
-            DataController.Instance.monster_damage = 150;
-
-            Set_Hero_Base();
-            DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 10000;
-            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 5;
-        }
-        DataController.Instance.current_stage = 40;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n325\n몹 평균 공격력\n65";
-    }
-
-    public void stage1_41()
-    {
-        monster_init();
-        DataController.Instance.monster_0_ID = "plant_monster"; 
-        DataController.Instance.monster_2_ID = "Spider";
-        DataController.Instance.monster_hp = 155;
-        DataController.Instance.monster_damage = 155;
-        set_hero_monster();
-
-        if(DataController.Instance.current_stage == 41)
-        {  
-            Set_Hero_Base();
-            set_fight_reward();
-        }
-        DataController.Instance.current_stage = 41;
-        set_explanation_panel();
-    }
-
-    public void stage1_42()
-    {
-        monster_init();
-        DataController.Instance.monster_0_ID = "plant_monster"; 
-        DataController.Instance.monster_1_ID = "Spider";
-        DataController.Instance.monster_hp = 160;
-        DataController.Instance.monster_damage = 160;
-        set_hero_monster();
-
-        if(DataController.Instance.current_stage == 42)
-        {  
-            Set_Hero_Base();
-            set_fight_reward();
-        }
-        DataController.Instance.current_stage = 42;
-        set_explanation_panel();
-    }
-
-    public void stage1_43()
-    {
-        monster_init();
-        DataController.Instance.monster_0_ID = "Spider"; 
-        DataController.Instance.monster_1_ID = "plant_monster";
-        DataController.Instance.monster_hp = 165;
-        DataController.Instance.monster_damage = 165;
-        set_hero_monster();
-
-        if(DataController.Instance.current_stage == 43)
-        {  
-            Set_Hero_Base();
-            set_fight_reward();
-        }
-        DataController.Instance.current_stage = 43;
-        set_explanation_panel();
-    }
-
-    public void stage1_44()
-    {
-        monster_init();
-        DataController.Instance.monster_0_ID = "Spider"; 
-        DataController.Instance.monster_2_ID = "plant_monster";
-        DataController.Instance.monster_hp = 165;
-        DataController.Instance.monster_damage = 165;
-        set_hero_monster();
-
-        if(DataController.Instance.current_stage == 44)
-        {  
-            Set_Hero_Base();
-            set_fight_reward();
-        }
-        DataController.Instance.current_stage = 44;
-        set_explanation_panel();
-    }
-
-    public void stage1_45()
-    {
-        monster_init();
-        DataController.Instance.monster_0_ID = "Spider"; 
-        DataController.Instance.monster_2_ID = "plant_monster";
-        DataController.Instance.monster_hp = 170;
-        DataController.Instance.monster_damage = 170;
-        set_hero_monster();
-
-        if(DataController.Instance.current_stage == 45)
-        {  
-            Set_Hero_Base();
-            set_fight_reward();
-        }
-        DataController.Instance.current_stage = 45;
-        set_explanation_panel();
-    }
-
-    public void stage1_46()
-    {
-        monster_init();
-        DataController.Instance.monster_0_ID = "Spider"; 
-        DataController.Instance.monster_1_ID = "goblin_general";
-        DataController.Instance.monster_hp = 170;
-        DataController.Instance.monster_damage = 170;
-        set_hero_monster();
-
-        if(DataController.Instance.current_stage == 46)
-        {  
-            Set_Hero_Base();
-            set_fight_reward();
-        }
-        DataController.Instance.current_stage = 46;
-        set_explanation_panel();
-    }
-
-    public void stage1_47()
-    {
-        monster_init();
-        DataController.Instance.monster_0_ID = "Spider"; 
-        DataController.Instance.monster_2_ID = "Spider";
-        DataController.Instance.monster_hp = 175;
-        DataController.Instance.monster_damage = 175;
-        set_hero_monster();
-
-        if(DataController.Instance.current_stage == 47)
-        {  
-            Set_Hero_Base();
-            set_fight_reward();
-        }
-        DataController.Instance.current_stage = 47;
-        set_explanation_panel();
-    }
-
-    public void stage1_48()
-    {
-        monster_init();
-        DataController.Instance.monster_0_ID = "Spider"; 
-        DataController.Instance.monster_2_ID = "goblin_general";
-        DataController.Instance.monster_hp = 180;
-        DataController.Instance.monster_damage = 180;
-        set_hero_monster();
-
-        if(DataController.Instance.current_stage == 48)
-        {  
-            Set_Hero_Base();
-            set_fight_reward();
-        }
-        DataController.Instance.current_stage = 48;
-        set_explanation_panel();
-    }
-
-    public void stage1_49()
-    {
-        monster_init();
-        DataController.Instance.monster_0_ID = "goblin_general"; 
-        DataController.Instance.monster_2_ID = "goblin_general";
-        DataController.Instance.monster_hp = 180;
-        DataController.Instance.monster_damage = 180;
-        set_hero_monster();
-
-        if(DataController.Instance.current_stage == 49)
-        {  
-            Set_Hero_Base();
-            set_fight_reward();
-        }
-        DataController.Instance.current_stage = 49;
-        set_explanation_panel();
-    }
-
-    public void stage1_50()
-    {
-        monster_init();
-        DataController.Instance.monster_0_ID = "goblin_general"; 
-        DataController.Instance.monster_2_ID = "goblin_general";
-        DataController.Instance.monster_hp = 180;
-        DataController.Instance.monster_damage = 180;
-        set_hero_monster();
-
-        if(DataController.Instance.current_stage == 50)
-        {  
-            Set_Hero_Base();
-            set_fight_reward();
-        }
-        DataController.Instance.current_stage = 50;
-        set_explanation_panel();
-    }
-
-    public void stage1_51()
-    {
-        monster_init();
-        DataController.Instance.monster_0_ID = "plant_monster"; 
-        DataController.Instance.monster_2_ID = "goblin_general";
-        DataController.Instance.monster_hp = 185;
-        DataController.Instance.monster_damage = 185;
-        set_hero_monster();
-
-        if(DataController.Instance.current_stage == 51)
-        {  
-            Set_Hero_Base();
-            set_fight_reward();
-        }
-        DataController.Instance.current_stage = 51;
-        set_explanation_panel();
-    }
-
-    public void stage1_52()
-    {
-        monster_init();
-        DataController.Instance.monster_0_ID = "plant_monster"; 
-        DataController.Instance.monster_1_ID = "goblin_general";
-        DataController.Instance.monster_hp = 190;
-        DataController.Instance.monster_damage = 190;
-        set_hero_monster();
-
-        if(DataController.Instance.current_stage == 52)
-        {  
-            Set_Hero_Base();
-            set_fight_reward();
-        }
-        DataController.Instance.current_stage = 52;
-        set_explanation_panel();
-    }
-
-    public void stage1_53()
-    {
-        monster_init();
-        DataController.Instance.monster_0_ID = "plant_monster"; 
-        DataController.Instance.monster_1_ID = "Spider";
-        DataController.Instance.monster_hp = 195;
-        DataController.Instance.monster_damage = 195;
-        set_hero_monster();
-
-        if(DataController.Instance.current_stage == 53)
-        {  
-            Set_Hero_Base();
-        }
-        DataController.Instance.current_stage = 53;
-
-        set_fight_reward();
-        set_explanation_panel();
-        show_fight_result_to_Text();
-    }
-
-    public void stage1_54()
-    {
-        monster_init();
-        DataController.Instance.monster_0_ID = "plant_monster"; 
-        DataController.Instance.monster_1_ID = "plant_monster";
-        DataController.Instance.monster_hp = 200;
-        DataController.Instance.monster_damage = 200;
-        set_hero_monster();
-
-        if(DataController.Instance.current_stage == 54)
-        {  
-            Set_Hero_Base();
-            set_fight_reward();
-        }
-        DataController.Instance.current_stage = 54;
-        set_explanation_panel();
-    }
-
-    public void stage1_55()
-    {
-        monster_init();
-        DataController.Instance.monster_0_ID = "plant_monster"; 
-        DataController.Instance.monster_1_ID = "plant_monster";
-        DataController.Instance.monster_hp = 205;
-        DataController.Instance.monster_damage = 205;
-        set_hero_monster();
-
-        if(DataController.Instance.current_stage == 55)
-        {  
-            Set_Hero_Base();
-            set_fight_reward();
-        }
-        DataController.Instance.current_stage = 55;
-        set_explanation_panel();
-    }
-
-    public void stage1_56()
-    {
-        monster_init();
-        DataController.Instance.monster_0_ID = "plant_monster"; 
-        DataController.Instance.monster_1_ID = "plant_monster";
-        DataController.Instance.monster_2_ID = "plant_monster";
-        DataController.Instance.monster_hp = 170;
-        DataController.Instance.monster_damage = 170;
-        set_hero_monster();
-
-        if(DataController.Instance.current_stage == 56)
-        {  
-            Set_Hero_Base();
-            set_fight_reward();
-        }
-        DataController.Instance.current_stage = 56;
-        set_explanation_panel();
-    }
-
-    public void stage1_57()
-    {
-        monster_init();
-        DataController.Instance.monster_0_ID = "goblin_general"; 
-        DataController.Instance.monster_1_ID = "plant_monster";
-        DataController.Instance.monster_2_ID = "plant_monster";
-        DataController.Instance.monster_hp = 175;
-        DataController.Instance.monster_damage = 175;
-        set_hero_monster();
-
-        if(DataController.Instance.current_stage == 57)
-        {  
-            Set_Hero_Base();
-            set_fight_reward();
-        }
-        DataController.Instance.current_stage = 57;
-        set_explanation_panel();
-    }
-
-    public void stage1_58()
-    {
-        monster_init();
-        DataController.Instance.monster_0_ID = "goblin_general"; 
-        DataController.Instance.monster_1_ID = "plant_monster";
-        DataController.Instance.monster_2_ID = "plant_monster";
-        DataController.Instance.monster_hp = 180;
-        DataController.Instance.monster_damage = 180;
-        set_hero_monster();
-
-        if(DataController.Instance.current_stage == 58)
-        {  
-            Set_Hero_Base();
-            set_fight_reward();
-        }
-        DataController.Instance.current_stage = 58;
-        set_explanation_panel();
-    }
-
-    public void stage1_59()
-    {
-        monster_init();
-        DataController.Instance.monster_0_ID = "goblin_general"; 
-        DataController.Instance.monster_1_ID = "goblin_general";
-        DataController.Instance.monster_2_ID = "Spider";
-        DataController.Instance.monster_hp = 185;
-        DataController.Instance.monster_damage = 185;
-        set_hero_monster();
-
-        if(DataController.Instance.current_stage == 59)
-        {  
-            Set_Hero_Base();
-            set_fight_reward();
-        }
-        DataController.Instance.current_stage = 59;
-        set_explanation_panel();
-    }
 
     public void stage1_60()
     {
@@ -2242,7 +1126,7 @@ public class BattleManager : MonoBehaviour
         Spider,
         Gorem,
         BigGorem,
-        skeleton_rancer,
+        Troll,
         summon_portal,
         goblin_general,
         plant_monster,
@@ -2257,23 +1141,25 @@ public class BattleManager : MonoBehaviour
 
     public void over_60()
     {
-
-        for(int i = 0; i < 121; i++)
+        for(int i = 0; i < FightController.Instance.stageCh1.Length; i++)
         {
+            Debug.Log("i is " + i);
+
             if(fightController.stageCh1[i] == EventSystem.current.currentSelectedGameObject
-            && DataController.Instance.current_stage == i+1)
+            && DataController.Instance.current_stage == i+1)  //일치하면 전투화면
             {
                 Set_Hero_Base();
-                
+                Debug.Log("ffff");
                 break;
             }    
 
             if(fightController.stageCh1[i] == EventSystem.current.currentSelectedGameObject 
             && DataController.Instance.current_stage != i+1)
             {
+                Debug.Log("ssssssss");
                 monster_init();
                 DataController.Instance.current_stage = i+1;
-                long x = (DataController.Instance.current_stage / 20)*3;
+                long x = ((DataController.Instance.current_stage / 20)*3) % 15;
                 monster_list list_0 = (monster_list)x;
                 monster_list list_1 = (monster_list)x+1;
                 monster_list list_2 = (monster_list)x+2;
@@ -2286,7 +1172,6 @@ public class BattleManager : MonoBehaviour
                 {
                     DataController.Instance.monster_0_ID = list_2.ToString();
                 }
-
                 if(DataController.Instance.current_stage % 20 > 5)
                 {
                     DataController.Instance.monster_1_ID = list_1.ToString();
@@ -2296,9 +1181,7 @@ public class BattleManager : MonoBehaviour
                         DataController.Instance.monster_0_ID = DataController.Instance.monster_1_ID;
                         DataController.Instance.monster_1_ID = tmp;
                     }
-                    
                 }
-
                 if(DataController.Instance.current_stage % 20 > 15)
                 {
                     DataController.Instance.monster_2_ID = list_2.ToString();
@@ -2309,7 +1192,6 @@ public class BattleManager : MonoBehaviour
                         DataController.Instance.monster_2_ID = tmp;
                     }
                 }
-
                 if(DataController.Instance.current_stage % 20 > 5 && DataController.Instance.monster_2_ID == "dummy")
                 {
                     if(DataController.Instance.current_stage % 3 == 0)
@@ -2319,10 +1201,9 @@ public class BattleManager : MonoBehaviour
                         DataController.Instance.monster_1_ID = tmp;
                     }
                 }
-                
                 if (x == 0) x = 1;
-                DataController.Instance.monster_hp = DataController.Instance.current_stage * 4;
-                DataController.Instance.monster_damage = DataController.Instance.current_stage * 4;
+                DataController.Instance.monster_hp = DataController.Instance.current_stage * 10;
+                DataController.Instance.monster_damage = DataController.Instance.current_stage * 10;
                 set_hero_monster();
                 set_fight_reward();
                 set_explanation_panel();
@@ -2390,7 +1271,6 @@ public class BattleManager : MonoBehaviour
             m_2_dm = DataController.Instance.monster_damage * (long)monster_2.GetComponent<EnemyController>().attack_ratio;
             count++;
         }
-        
         String avg_hp = "" + ((m_0_hp + m_1_hp + m_2_hp) / count);
         String avg_dm = "" + ((m_0_dm + m_1_dm + m_2_dm) / count);
 
@@ -2445,7 +1325,7 @@ public class BattleManager : MonoBehaviour
             }
             else if(tower_stage % monster_kindCount == 6)
             {
-                DataController.Instance.monster_2_ID = "skeleton_rancer"; 
+                DataController.Instance.monster_2_ID = "Troll"; 
             }
             else if(tower_stage % monster_kindCount == 7)
             {

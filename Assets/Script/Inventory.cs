@@ -6,13 +6,14 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    GameObject inventoryPanel;
+    public GameObject inventoryPanel;
     public GameObject slotPanel;
     public ItemDataBase database;  //public 빼
     ItemData itemdata;
     Item item;
     public GameObject inventorySlot;
     public GameObject inventoryItem;
+    public GameObject prefab_floating_text;
 
     public Text current_item_name;
 
@@ -284,37 +285,121 @@ public class Inventory : MonoBehaviour
                 //Destroy(this_item.gameObject); //받아온 transform형식의 아이템을 gameobject형식으로 바꾸고 제거
             }
         }
-
-    
-        
     }
 
-    public void use_item_effect(int id)
+    public void useItem_all()
     {
+        Item selected_item = database.FetchItemByID(selected_item_id);
+
+        if(selected_item.Stackable && CheckIfItemIsInventory(selected_item) == true) //stackable이 true일때
+        {
+            ItemData data = slots[selected_item_id].transform.GetChild(1).GetComponent<ItemData>();
+
+
+            if(data.amount >= 1)
+            {
+                int count = 0;
+                while(data.amount >= 1)
+                {
+                    count++;
+                    data.amount--; 
+                    data.transform.GetChild(0).GetComponent<Text>().text = data.amount.ToString();
+                    PlayerPrefs.SetInt(selected_item.Title + "_amount", data.amount);
+                }
+                use_item_effect_count(selected_item_id, count); //아이템 id에 따른 아이템 효과 사용
+            }
+           
+            if(data.amount < 1) //아이템의 amount수가 1이하가 될시
+            {
+
+                Transform this_item = slots[selected_item_id].transform.GetChild(1); //transform형식으로 아이템을 받아옴
+                //this_item.gameObject.SetActive(false);   //방금 주석처리함
+                GameObject parents = this_item.transform.parent.gameObject;
+                parents.SetActive(false);
+
+                PlayerPrefs.SetInt(selected_item.Title + "_amount", data.amount);
+                //Items[selected_item_id].ID = -2;      //ID를 -1로 바꿔야 Slot.cs에서 다 쓴 아이템 자리를 빈 자리(-1)로 인식한다.
+                //Destroy(this_item.gameObject); //받아온 transform형식의 아이템을 gameobject형식으로 바꾸고 제거
+            }
+        }
+    }
+
+
+    void use_item_effect(int id)
+    {
+        var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
+        float a = 5.0f * BlessingExchange.Instance.blessing_consumEffect_ratio[PlayerPrefs.GetInt("bls_6")];
+        clone.transform.SetParent(inventoryPanel.transform);
         switch(id)
         {
             case 0: //사과
-                DataController.Instance.health += 5;
+                DataController.Instance.health += (int)a;
+                clone.GetComponent<FloatingText>().text.text = " 체력 +" + a;
                 break;
             case 1: //고기
-                DataController.Instance.attack += 5;
+                DataController.Instance.attack += (int)a;
+                clone.GetComponent<FloatingText>().text.text = " 공격력 +" + a;
                 break;
             case 2: //호박
-                DataController.Instance.mana += 5;
+                DataController.Instance.mana += (int)a;
+                clone.GetComponent<FloatingText>().text.text = " 민첩 +" + a;
                 break;
             case 3: //버섯
-                DataController.Instance.special += 5;
+                DataController.Instance.special += (int)a;
+                clone.GetComponent<FloatingText>().text.text = " 스킬공격력 +" + a;
                 break;
             case 4: //경험치 포션
-                DataController.Instance.current_exp += DataController.Instance.max_exp;
+                float b = (float)DataController.Instance.max_exp * BlessingExchange.Instance.blessing_consumEffect_ratio[PlayerPrefs.GetInt("bls_6")];
+                DataController.Instance.current_exp += (long)b;
+                clone.GetComponent<FloatingText>().text.text = " exp +" + b;
                 break;
             case 5: //보석
-                DataController.Instance.health += 100;
-                DataController.Instance.attack += 100;
-                DataController.Instance.mana += 100;
-                DataController.Instance.special += 100;
+                float c = 100.0f * BlessingExchange.Instance.blessing_consumEffect_ratio[PlayerPrefs.GetInt("bls_6")];
+                DataController.Instance.health += (int)c;
+                DataController.Instance.attack += (int)c;
+                DataController.Instance.mana += (int)c;
+                DataController.Instance.special += (int)c;
+                clone.GetComponent<FloatingText>().text.text = "체력 +" + c + "\n공격력 +" + c + "\n민첩 +" + c + "\n스킬공격력 +" + c;
                 break;
+        }
+    }
 
+    void use_item_effect_count(int id, int amount)
+    {
+        var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
+        float a = 5.0f * BlessingExchange.Instance.blessing_consumEffect_ratio[PlayerPrefs.GetInt("bls_6")] * (float)amount;
+        clone.transform.SetParent(inventoryPanel.transform);
+        switch(id)
+        {
+            case 0: //사과
+                DataController.Instance.health += (int)a;
+                clone.GetComponent<FloatingText>().text.text = " 체력 +" + a;
+                break;
+            case 1: //고기
+                DataController.Instance.attack += (int)a;
+                clone.GetComponent<FloatingText>().text.text = " 공격력 +" + a;
+                break;
+            case 2: //호박
+                DataController.Instance.mana += (int)a;
+                clone.GetComponent<FloatingText>().text.text = " 민첩 +" + a;
+                break;
+            case 3: //버섯
+                DataController.Instance.special += (int)a;
+                clone.GetComponent<FloatingText>().text.text = " 스킬공격력 +" + a;
+                break;
+            case 4: //경험치 포션
+                float b = (float)DataController.Instance.max_exp * BlessingExchange.Instance.blessing_consumEffect_ratio[PlayerPrefs.GetInt("bls_6")] * (float)amount;
+                DataController.Instance.current_exp += (long)b;
+                clone.GetComponent<FloatingText>().text.text = " exp +" + b;
+                break;
+            case 5: //보석
+                float c = 100.0f * BlessingExchange.Instance.blessing_consumEffect_ratio[PlayerPrefs.GetInt("bls_6")] * (float)amount;
+                DataController.Instance.health += (int)c;
+                DataController.Instance.attack += (int)c;
+                DataController.Instance.mana += (int)c;
+                DataController.Instance.special += (int)c;
+                clone.GetComponent<FloatingText>().text.text = "체력 +" + c + "\n공격력 +" + c + "\n민첩 +" + c + "\n스킬공격력 +" + c;
+                break;
         }
     }
 }

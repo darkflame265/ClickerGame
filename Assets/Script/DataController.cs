@@ -390,7 +390,11 @@ public class DataController : MonoBehaviour
         }
         set
         {
-            value = 1 * (long) Mathf.Pow(1.14f, level);
+            float b = (1 * Mathf.Pow(1.14f, level))
+            * BlessingExchange.Instance.blessing_gold_cost_ratio[PlayerPrefs.GetInt("bls_5")];
+            value = (long)b;
+
+            //value = 1 * (long) Mathf.Pow(1.14f, level);
             PlayerPrefs.SetString("CurrentCost", value.ToString()); 
         }
     }
@@ -666,8 +670,7 @@ public class DataController : MonoBehaviour
 
         
        
-        upgradeButton.goldByUpgrade = PlayerPrefs.GetInt(key + "_goldByUpgrade", 
-        upgradeButton.startGoldByUpgrade);
+        upgradeButton.goldByUpgrade = PlayerPrefs.GetInt(key + "_goldByUpgrade", upgradeButton.startGoldByUpgrade);
         
     }
 
@@ -904,6 +907,24 @@ public class DataController : MonoBehaviour
         set
         {
             PlayerPrefs.SetString("get_stage_crystal", value.ToString());
+        }
+    }
+
+    public long get_stage_resource
+    {
+        get
+        {
+            if(!PlayerPrefs.HasKey("get_stage_resource")) // 골드가 없을떄
+            {
+                return 0;
+            }
+            string tmpget_stage_resource = PlayerPrefs.GetString("get_stage_resource");
+            return long.Parse(tmpget_stage_resource);
+
+        }
+        set
+        {
+            PlayerPrefs.SetString("get_stage_resource", value.ToString());
         }
     }
 

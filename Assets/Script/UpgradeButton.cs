@@ -60,13 +60,22 @@ public class UpgradeButton : MonoBehaviour
        
             UpdateUpgrade();
             //DataController.Instance.SaveUpgradeButton(this);
+            
         }
     }
 
     public void UpdateUpgrade() //업그레이드 비용 증가
     {
+          //ui갱신
         goldByUpgrade = startGoldByUpgrade * (int)Mathf.Pow(upgradePow, DataController.Instance.level);
-        DataController.Instance.currentCost = startCurrentCost * (long) Mathf.Pow(costPow, DataController.Instance.level);
+        float a = (float)(startCurrentCost * Mathf.Pow(costPow, DataController.Instance.level))
+                             * (long)BlessingExchange.Instance.blessing_gold_cost_ratio[PlayerPrefs.GetInt("bls_5")];
+        DataController.Instance.currentCost = (long)a;
+
+        UiManager.Instance.goldDisplayer.text = UiManager.ToStringKR(DataController.Instance.gold) + "원";
+            UiManager.Instance.goldPerClickDisplayer.text = "터치골드획득 : " + UiManager.ToStringKR(DataController.Instance.goldPerClick);
+            UiManager.Instance.upgradeDisplayer.text = "강화비용 " + UiManager.ToStringKR(DataController.Instance.currentCost);
+            UiManager.Instance.GoldLevelDisplayer.text = "레벨  " + DataController.Instance.level + "   X" + UiManager.ToStringKR(DataController.Instance.besu); 
     }
 
     

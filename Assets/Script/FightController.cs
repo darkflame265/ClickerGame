@@ -33,14 +33,11 @@ public class FightController : MonoBehaviour
     public GameObject ch_3_check_img;
     public GameObject ch_4_check_img;
     public GameObject ch_5_check_img;
- 
-    // Use this for initialization
-    void Start () {       //원래 스테이지 관련 기능은 여기다해야되는데 귀찮아서
-                          //BattleManager에서 여기로 안 옮김
-
-        StartCoroutine("CheckStage");
-        
-    }
+    public GameObject ch_6_check_img;
+    public GameObject ch_7_check_img;
+    public GameObject ch_8_check_img;
+    public GameObject ch_9_check_img;
+    public GameObject ch_10_check_img;
 
     public static void SetBool(string name, bool booleanValue)
     {
@@ -62,12 +59,19 @@ public class FightController : MonoBehaviour
         return defaultValue;
     }
 
-    IEnumerator CheckStage()
+ 
+    // Use this for initialization
+    void Start () {       //원래 스테이지 관련 기능은 여기다해야되는데 귀찮아서
+                          //BattleManager에서 여기로 안 옮김
+
+        //StartCoroutine("CheckStage");
+        check_stage();
+    }
+
+
+    public void check_stage()
     {
-        while(true)
-        {
-            yield return new WaitForSeconds(0.5f);
-            for(int i = 0; i < stageCh1.Length; i++)
+        for(int i = 0; i < stageCh1.Length; i++)
             {
                 if(GetBool("ch1" + i) == true)
                 {
@@ -108,6 +112,37 @@ public class FightController : MonoBehaviour
                 ch_5_check_img.GetComponent<Image>().color = new Color(1,1,1,1);
             }
             else ch_5_check_img.GetComponent<Image>().color = new Color(1,1,1,0);
-        } 
-    }
+
+            if(GetBool("ch1" + 119) == true)  //20~39
+            {
+                ch_6_check_img.GetComponent<Image>().color = new Color(1,1,1,1);
+            }
+            else ch_6_check_img.GetComponent<Image>().color = new Color(1,1,1,0);
+
+            if(GetBool("ch1" + 139) == true)  //20~39
+            {
+                ch_7_check_img.GetComponent<Image>().color = new Color(1,1,1,1);
+            }
+            else ch_7_check_img.GetComponent<Image>().color = new Color(1,1,1,0);
+
+            if(GetBool("ch1" + 159) == true)  //20~39
+            {
+                ch_8_check_img.GetComponent<Image>().color = new Color(1,1,1,1);
+            }
+            else ch_8_check_img.GetComponent<Image>().color = new Color(1,1,1,0);
+
+            if(GetBool("ch1" + 179) == true)  //20~39
+            {
+                ch_9_check_img.GetComponent<Image>().color = new Color(1,1,1,1);
+            }
+            else ch_9_check_img.GetComponent<Image>().color = new Color(1,1,1,0);
+
+            if(GetBool("ch1" + 199) == true)  //20~39
+            {
+                ch_10_check_img.GetComponent<Image>().color = new Color(1,1,1,1);
+            }
+            else ch_10_check_img.GetComponent<Image>().color = new Color(1,1,1,0);
+    } 
+    
+    
 }

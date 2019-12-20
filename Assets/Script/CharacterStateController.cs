@@ -232,6 +232,7 @@ public class CharacterStateController : MonoBehaviour
                 break;
             }
         }
+        UiManager.Instance.char_ui();
     }
 
     public void select_archer()
@@ -244,6 +245,7 @@ public class CharacterStateController : MonoBehaviour
                 break;
             }
         }
+        UiManager.Instance.char_ui();
     }
 
     public void select_wizard()
@@ -256,6 +258,7 @@ public class CharacterStateController : MonoBehaviour
                 break;
             }
         }
+        UiManager.Instance.char_ui();
     }
 
     
@@ -265,7 +268,7 @@ public class CharacterStateController : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(1f);
             
             check_exp();
             check_skill();

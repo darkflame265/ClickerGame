@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfHero: 0
-  level: 8
+  level: 10
   Max_HP: 100
   current_HP: 0
   Max_Shield: 0
@@ -298,6 +298,8 @@ MonoBehaviour:
   light_effect: {fileID: 100004, guid: 757df604761b8ef42831192c70ee1099, type: 3}
   prefab_floating_text: {fileID: 5954360500128425662, guid: ec7c961f77ddb894a8a00885a94ac4e2,
     type: 3}
+  speed_count: 0
+  avoid_attack: 0
 --- !u!1 &1667326105244349037
 GameObject:
   m_ObjectHideFlags: 0

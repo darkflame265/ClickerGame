@@ -6,21 +6,22 @@ using UnityEngine.UI;
 
 public class UiManager : MonoBehaviour
 {
+
+
+    //Panel이 active상태인지 확인하기 위한 panel
+    public GameObject character_state_panel;
+    public GameObject fight_panel;
+
+
+    //메인화면 디스플레이
    public Text char_level_displayer;
    public Text current_max_exp_displayer; 
-
    public Text goldDisplayer;
-
    public Text goldPerClickDisplayer;
-
    public Text goldPerSecDisplayer;
-
    public Text diamondDisplayer;
-
    public Text upgradeDisplayer;
    public Text GoldLevelDisplayer;
-
-
 
     //캐릭터 스테이터스
    public CharacterStateController characterStateController;
@@ -56,6 +57,7 @@ public class UiManager : MonoBehaviour
    public Text stage_gold_result;
    public Text stage_exp_result;
    public Text stage_crystal_result;
+   public Text stage_resource_result;
    public Text tower_of_diamond;
 
    public bool checkFloatingNotice;
@@ -124,7 +126,13 @@ public class UiManager : MonoBehaviour
             string strTmp = bigInteger.ToString();
 
             output = strTmp.Substring(0, strTmp.Length - 1 - 3) + "만" +
-             strTmp.Substring(strTmp.Length -1 - 3);
+            strTmp.Substring(strTmp.Length -1 - 3);
+
+            if(strTmp.Substring(1, 1) == "0" || strTmp.Substring(2, 1) == "0" || strTmp.Substring(3, 1) == "0")
+            {
+                output = strTmp.Substring(0, strTmp.Length - 1 - 3) + "만";
+            }
+
         }
         else if (BigInteger.Compare(bigInteger, new BigInteger(1000000000000)) == -1)
         {
@@ -133,6 +141,10 @@ public class UiManager : MonoBehaviour
             output = strTmp.Substring(0, strTmp.Length - 8) + "억" + 
                         strTmp.Substring(strTmp.Length -8, 4) + "만";
                         /* + strTmp.Substring(strTmp.Length - 1 - 3);*/
+            if(strTmp.Substring(1, 1) == "0" || strTmp.Substring(2, 1) == "0" || strTmp.Substring(3, 1) == "0")
+            {
+                output = strTmp.Substring(0, strTmp.Length - 8) + "억";
+            }
         }
         else if (BigInteger.Compare(bigInteger, new BigInteger(10000000000000000)) == -1)
         {
@@ -142,6 +154,10 @@ public class UiManager : MonoBehaviour
                         strTmp.Substring(strTmp.Length -12, 4) + "억";
                        /*+ strTmp.Substring(strTmp.Length - 8, 4) + "만"
                         + strTmp.Substring(strTmp.Length - 4);*/
+            if(strTmp.Substring(1, 1) == "0" || strTmp.Substring(2, 1) == "0" || strTmp.Substring(3, 1) == "0")
+            {
+                output = strTmp.Substring(0, strTmp.Length - 12) + "조";
+            }
         }
         else if (BigInteger.Compare(bigInteger, new BigInteger(10000000000000000000)) == -1)
         {
@@ -152,6 +168,10 @@ public class UiManager : MonoBehaviour
                         /*+ strTmp.Substring(strTmp.Length - 12, 4) + "억"
                         + strTmp.Substring(strTmp.Length - 8, 4) + "만"
                         + strTmp.Substring(strTmp.Length - 4);*/
+            if(strTmp.Substring(1, 1) == "0" || strTmp.Substring(2, 1) == "0" || strTmp.Substring(3, 1) == "0")
+            {
+                output = strTmp.Substring(0, strTmp.Length - 16) + "경";
+            }
         }
         return output;
     }
@@ -162,6 +182,7 @@ public class UiManager : MonoBehaviour
         {
             yield return new WaitForSeconds(0.1f);
             goldDisplayer.text = ToStringKR(DataController.Instance.gold) + "원";
+            DataController.Instance.goldPerClick = DataController.Instance.goldPerClick;
             goldPerClickDisplayer.text = "터치골드획득 : " + ToStringKR(DataController.Instance.goldPerClick);
             goldPerSecDisplayer.text = "초당퀘스트골드 : " + ToStringKR(DataController.Instance.GetGoldPerSec());
             diamondDisplayer.text = "" + DataController.Instance.diamond;
@@ -172,31 +193,20 @@ public class UiManager : MonoBehaviour
             char_level_displayer.text = "" + DataController.Instance.char_level;
             current_max_exp_displayer.text = "EXP: " + DataController.Instance.current_exp + "/" + DataController.Instance.max_exp;
             
-            //캐릭터
-            health.text = "체력 : " + "(" + characterStateController.select_character_prefabs.GetComponent<Character>().health_ratio + ")" + " * " + DataController.Instance.health + " = " + characterStateController.select_character_prefabs.GetComponent<Character>().health_ratio * DataController.Instance.health; 
-            attack.text = "공격력 : " + "(" + characterStateController.select_character_prefabs.GetComponent<Character>().attack_ratio + ")" + " * " + DataController.Instance.attack + " = " + characterStateController.select_character_prefabs.GetComponent<Character>().attack_ratio * DataController.Instance.attack; 
-            mana.text = "민첩 : " + "(" + characterStateController.select_character_prefabs.GetComponent<Character>().mana_ratio + ")" + " * " + DataController.Instance.mana + " = " +characterStateController.select_character_prefabs.GetComponent<Character>().mana_ratio * DataController.Instance.mana; 
-            special.text = "스킬공격력 : " + "(" + characterStateController.select_character_prefabs.GetComponent<Character>().special_ratio + ")" + " * " + DataController.Instance.special + " = " + characterStateController.select_character_prefabs.GetComponent<Character>().special_ratio * DataController.Instance.special; 
-            freestats.text = "프리스탯 : " + DataController.Instance.freestate;
-            charLevel.text = "lv." + characterStateController.select_character_prefabs.GetComponent<Character>().level;
-
-            //상세스테이터스
-            HP_state.text = "HP : " + DataController.Instance.health+ " X " + "10" + " = " + DataController.Instance.HP;
-            //Damage_state.text = "데미지 : " + DataController.Instance.attack + " X " + DataController.Instance.damage_besu + " = " + DataController.Instance.char_damage;
-            mana_state.text = "속도 : " + DataController.Instance.mana;
-            special_state.text = "특성 : " + DataController.Instance.special;
-
-            clickgold_state.text = "클릭골드 : " + DataController.Instance.level + " X " + DataController.Instance.besu + " = " + DataController.Instance.goldPerClick;
-            clickExp_state.text = "클릭경험치 : ";
-            bonus_state.text = "보너스스탯 : " + DataController.Instance.freestate_besu;
-            guitar_etc.text = "기타등등 : ";
+            char_ui();
+            
+            if(fight_panel.activeSelf == true)
+            {
+                //전투
+                stage_gold_result.text = "" + DataController.Instance.get_stage_gold;
+                stage_exp_result.text = "" + DataController.Instance.get_stage_exp;
+                stage_crystal_result.text = "" + DataController.Instance.get_stage_crystal;
+                stage_resource_result.text = "" + DataController.Instance.get_stage_resource;
+                tower_of_diamond.text = "시련의 탑" + "\n" + DataController.Instance.tower_stage + "층";
+            }
             
 
-            //전투
-            stage_gold_result.text = "" + DataController.Instance.get_stage_gold;
-            stage_exp_result.text = "" + DataController.Instance.get_stage_exp;
-            stage_crystal_result.text = "" + DataController.Instance.get_stage_crystal;
-            tower_of_diamond.text = "시련의 탑" + "\n" + DataController.Instance.tower_stage + "층";
+            
 
             if(GetBool("floatnotice") == true)//check가 on이면 bool
             {
@@ -205,6 +215,31 @@ public class UiManager : MonoBehaviour
                 clone.GetComponentInChildren<Text>().text = DataController.Instance.float_notice_text; 
             }
         }
+    }
+
+    public void char_ui()
+    {
+        if(character_state_panel.activeSelf == true)
+            {
+                //캐릭터
+                health.text = "체력 : " + "(" + characterStateController.select_character_prefabs.GetComponent<Character>().health_ratio + "+"+ BlessingExchange.Instance.blessing_0_to_3_ratio[PlayerPrefs.GetInt("bls_0")] +")" + " * " + DataController.Instance.health + " = " + (characterStateController.select_character_prefabs.GetComponent<Character>().health_ratio + BlessingExchange.Instance.blessing_0_to_3_ratio[PlayerPrefs.GetInt("bls_0")]) * DataController.Instance.health; 
+                attack.text = "공격력 : " + "(" + characterStateController.select_character_prefabs.GetComponent<Character>().attack_ratio + "+"+ BlessingExchange.Instance.blessing_0_to_3_ratio[PlayerPrefs.GetInt("bls_1")] +")" + " * " + DataController.Instance.attack + " = " + (characterStateController.select_character_prefabs.GetComponent<Character>().attack_ratio + BlessingExchange.Instance.blessing_0_to_3_ratio[PlayerPrefs.GetInt("bls_1")]) * DataController.Instance.attack; 
+                mana.text = "민첩 : " + "(" + characterStateController.select_character_prefabs.GetComponent<Character>().mana_ratio + "+"+ BlessingExchange.Instance.blessing_0_to_3_ratio[PlayerPrefs.GetInt("bls_2")] +")" + " * " + DataController.Instance.mana + " = " + (characterStateController.select_character_prefabs.GetComponent<Character>().mana_ratio + BlessingExchange.Instance.blessing_0_to_3_ratio[PlayerPrefs.GetInt("bls_2")]) * DataController.Instance.mana; 
+                special.text = "스킬공격력 : " + "(" + characterStateController.select_character_prefabs.GetComponent<Character>().special_ratio + "+"+ BlessingExchange.Instance.blessing_0_to_3_ratio[PlayerPrefs.GetInt("bls_3")] +")" + " * " + DataController.Instance.special + " = " + (characterStateController.select_character_prefabs.GetComponent<Character>().special_ratio + BlessingExchange.Instance.blessing_0_to_3_ratio[PlayerPrefs.GetInt("bls_3")]) * DataController.Instance.special; 
+                freestats.text = "프리스탯 : " + DataController.Instance.freestate;
+                charLevel.text = "lv." + characterStateController.select_character_prefabs.GetComponent<Character>().level;
+
+                //상세스테이터스
+                HP_state.text = "HP : " + DataController.Instance.health+ " X " + "10" + " = " + DataController.Instance.HP;
+                //Damage_state.text = "데미지 : " + DataController.Instance.attack + " X " + DataController.Instance.damage_besu + " = " + DataController.Instance.char_damage;
+                mana_state.text = "속도 : " + DataController.Instance.mana;
+                special_state.text = "특성 : " + DataController.Instance.special;
+
+                clickgold_state.text = "클릭골드 : " + DataController.Instance.level + " X " + DataController.Instance.besu + " = " + DataController.Instance.goldPerClick;
+                clickExp_state.text = "클릭경험치 : ";
+                bonus_state.text = "보너스스탯 : " + DataController.Instance.freestate_besu;
+                guitar_etc.text = "기타등등 : ";
+            }
     }
 
     public Sprite[] background_pack = new Sprite [0];
@@ -253,50 +288,7 @@ public class UiManager : MonoBehaviour
 
    void Update()
    {
-    
-    //    goldDisplayer.text = ToStringKR(DataController.Instance.gold) + "원";
-    //    goldPerClickDisplayer.text = "터치골드획득 : " + ToStringKR(DataController.Instance.goldPerClick);
-    //    goldPerSecDisplayer.text = "초당퀘스트골드 : " + ToStringKR(DataController.Instance.GetGoldPerSec());
-    //    diamondDisplayer.text = "" + DataController.Instance.diamond;
-    //    artifact_ticket.text = "유물뽑기권: " + DataController.Instance.artifact_ticket;
-    //    power_ticket.text = "권능해방권: " + DataController.Instance.power_ticket;
-    //    upgradeDisplayer.text = "강화비용 " + ToStringKR(DataController.Instance.currentCost);
-    //    GoldLevelDisplayer.text = "레벨  " + DataController.Instance.level + "   X" + ToStringKR(DataController.Instance.besu); 
-    //    char_level_displayer.text = "" + DataController.Instance.char_level;
-    //    current_max_exp_displayer.text = "EXP: " + DataController.Instance.current_exp + "/" + DataController.Instance.max_exp;
-       
-    //    //캐릭터
-    //    health.text = "체력 : " + "(" + characterStateController.select_character_prefabs.GetComponent<Character>().health_ratio + ")" + " * " + DataController.Instance.health + " = " + characterStateController.select_character_prefabs.GetComponent<Character>().health_ratio * DataController.Instance.health; 
-    //    attack.text = "공격력 : " + "(" + characterStateController.select_character_prefabs.GetComponent<Character>().attack_ratio + ")" + " * " + DataController.Instance.attack + " = " + characterStateController.select_character_prefabs.GetComponent<Character>().attack_ratio * DataController.Instance.attack; 
-    //    mana.text = "마나 : " + "(" + characterStateController.select_character_prefabs.GetComponent<Character>().mana_ratio + ")" + " * " + DataController.Instance.mana + " = " +characterStateController.select_character_prefabs.GetComponent<Character>().mana_ratio * DataController.Instance.mana; 
-    //    special.text = "스킬효과 : " + "(" + characterStateController.select_character_prefabs.GetComponent<Character>().special_ratio + ")" + " * " + DataController.Instance.special + " = " + characterStateController.select_character_prefabs.GetComponent<Character>().special_ratio * DataController.Instance.special; ;
-    //    freestats.text = "프리스탯 : " + DataController.Instance.freestate;
-    //    charLevel.text = "lv." + characterStateController.select_character_prefabs.GetComponent<Character>().level;
 
-    //    //상세스테이터스
-    //    HP_state.text = "HP : " + DataController.Instance.health+ " X " + "10" + " = " + DataController.Instance.HP;
-    //    //Damage_state.text = "데미지 : " + DataController.Instance.attack + " X " + DataController.Instance.damage_besu + " = " + DataController.Instance.char_damage;
-    //    mana_state.text = "속도 : " + DataController.Instance.mana;
-    //    special_state.text = "특성 : " + DataController.Instance.special;
-
-    //    clickgold_state.text = "클릭골드 : " + DataController.Instance.level + " X " + DataController.Instance.besu + " = " + DataController.Instance.goldPerClick;
-    //    clickExp_state.text = "클릭경험치 : ";
-    //    bonus_state.text = "보너스스탯 : " + DataController.Instance.freestate_besu;
-    //    guitar_etc.text = "기타등등 : ";
-       
-
-    //    //전투
-    //    stage_gold_result.text = "" + DataController.Instance.get_stage_gold;
-    //    stage_exp_result.text = "" + DataController.Instance.get_stage_exp;
-    //    stage_crystal_result.text = "" + DataController.Instance.get_stage_crystal;
-    //    tower_of_diamond.text = "시련의 탑+" + DataController.Instance.tower_repeatCount + "\n" + DataController.Instance.tower_stage + "층";
-
-    //    if(GetBool("floatnotice") == true)//check가 on이면 bool
-    //    {
-    //        SetBool("floatnotice", false);
-    //        GameObject clone = Instantiate(floatingNoticePanel);
-    //        clone.GetComponentInChildren<Text>().text = DataController.Instance.float_notice_text; 
-    //    }
    }
 
 }

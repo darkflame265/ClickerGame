@@ -39,6 +39,7 @@ public class KnightController : MonoBehaviour
     
     void Start(){
         animator = GetComponent<Animator>();
+        animator.SetFloat("attackSpeed", BlessingExchange.Instance.blessing_attackSpeed_ratio[PlayerPrefs.GetInt("bls_4")]);
         StartCoroutine("char_position");
         StartCoroutine("SkillUI");
         currentSkillPoint = 0;

@@ -231,21 +231,27 @@ public class SummonSystem : MonoBehaviour
                 clone.GetComponentInChildren<Image>().sprite = image;
             }
 
-            if(result == 4) //경험치 포션
+            if(result == 4) //경험치 포션 => 랜덤 광물 3개
             {
                 SoundManager.Instance.click_get_item_sound();
-                int i = 4;
 
-                inventory.AddItem(i);
-                string item = inventory.database.FetchItemByID(i).Title;
-                Sprite image = inventory.database.FetchItemByID(i).Sprite;
+                int i = UnityEngine.Random.Range(1, 6);
+                int current_booty = PlayerPrefs.GetInt("booty_" + i);
+                PlayerPrefs.SetInt("booty_" + i, current_booty + 3);
+                String booty_name = null;
+                Sprite booty_img = null;
+                if(i == 1) { booty_name = "납 주괴"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/ingots"); }
+                else if(i == 2) { booty_name = "철 주괴"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/Iron"); }
+                else if(i == 3) { booty_name = "금 주괴"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/Gold"); }
+                else if(i == 4) { booty_name = "다이아몬드"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/Gem_03"); }
+                else if(i == 5) { booty_name = "오리하르콘"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/Crystal_01"); }
 
                 var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
-                clone.GetComponent<FloatingText>().text.text = item;
+                clone.GetComponent<FloatingText>().text.text = booty_name + " +3";
                 clone.transform.SetParent(tranform_canvas);
 
                 clone.transform.GetChild(0).gameObject.SetActive(true);
-                clone.GetComponentInChildren<Image>().sprite = image;
+                clone.GetComponentInChildren<Image>().sprite = booty_img;
             }
             current_heart--;
         }
@@ -297,7 +303,7 @@ public class SummonSystem : MonoBehaviour
                 SoundManager.Instance.click_get_item_sound();
                 int i = UnityEngine.Random.Range(0, 4); //0~3
 
-                for(int n =0; n < 10; n++)
+                for(int n =0; n < 3; n++)
                 {
                     inventory.AddItem(i);
                 }
@@ -306,7 +312,7 @@ public class SummonSystem : MonoBehaviour
                 Sprite image = inventory.database.FetchItemByID(i).Sprite;
 
                 var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
-                clone.GetComponent<FloatingText>().text.text = item + " X10";
+                clone.GetComponent<FloatingText>().text.text = item + " X3";
                 clone.transform.SetParent(tranform_canvas);
 
                 clone.transform.GetChild(0).gameObject.SetActive(true);
@@ -316,18 +322,24 @@ public class SummonSystem : MonoBehaviour
             if(result == 3)
             {
                 SoundManager.Instance.click_get_item_sound();
-                int i = 4;
 
-                inventory.AddItem(i);
-                string item = inventory.database.FetchItemByID(i).Title;
-                Sprite image = inventory.database.FetchItemByID(i).Sprite;
+                int i = UnityEngine.Random.Range(1, 6);
+                int current_booty = PlayerPrefs.GetInt("booty_" + i);
+                PlayerPrefs.SetInt("booty_" + i, current_booty + 5);
+                String booty_name = null;
+                Sprite booty_img = null;
+                if(i == 1) { booty_name = "납 주괴"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/ingots"); }
+                else if(i == 2) { booty_name = "철 주괴"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/Iron"); }
+                else if(i == 3) { booty_name = "금 주괴"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/Gold"); }
+                else if(i == 4) { booty_name = "다이아몬드"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/Gem_03"); }
+                else if(i == 5) { booty_name = "오리하르콘"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/Crystal_01"); }
 
                 var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
-                clone.GetComponent<FloatingText>().text.text = item;
+                clone.GetComponent<FloatingText>().text.text = booty_name + " +5";
                 clone.transform.SetParent(tranform_canvas);
 
                 clone.transform.GetChild(0).gameObject.SetActive(true);
-                clone.GetComponentInChildren<Image>().sprite = image;
+                clone.GetComponentInChildren<Image>().sprite = booty_img;
             }
 
             if(result == 4)
@@ -376,31 +388,10 @@ public class SummonSystem : MonoBehaviour
                 result = 4; // 권능해방
             }
             
-            if(result == 1)     //음식X30
+            if(result == 1)     //음식X10
             {
                 SoundManager.Instance.click_get_item_sound();
                 int i = UnityEngine.Random.Range(0, 4); //0~3
-
-                for(int n =0; n < 30; n++)
-                {
-                    inventory.AddItem(i);
-                }
-                
-                string item = inventory.database.FetchItemByID(i).Title;
-                Sprite image = inventory.database.FetchItemByID(i).Sprite;
-
-                var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
-                clone.GetComponent<FloatingText>().text.text = item + " X30";
-                clone.transform.SetParent(tranform_canvas);
-
-                clone.transform.GetChild(0).gameObject.SetActive(true);
-                clone.GetComponentInChildren<Image>().sprite = image;
-            }
-
-            if(result == 2)    //경험치포션X10
-            {
-                SoundManager.Instance.click_get_item_sound();
-                int i = 4;
 
                 for(int n =0; n < 10; n++)
                 {
@@ -416,6 +407,32 @@ public class SummonSystem : MonoBehaviour
 
                 clone.transform.GetChild(0).gameObject.SetActive(true);
                 clone.GetComponentInChildren<Image>().sprite = image;
+            }
+
+            if(result == 2)    //모든광물 10개
+            {
+                SoundManager.Instance.click_get_item_sound();
+
+                for(int i = 1; i < 6; i++)
+                {   
+                    int current_booty = PlayerPrefs.GetInt("booty_" + i);
+                    PlayerPrefs.SetInt("booty_" + i, current_booty + 10);
+                    String booty_name = null;
+                    Sprite booty_img = null;
+                    if(i == 1) { booty_name = "납 주괴"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/ingots"); }
+                    else if(i == 2) { booty_name = "철 주괴"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/Iron"); }
+                    else if(i == 3) { booty_name = "금 주괴"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/Gold"); }
+                    else if(i == 4) { booty_name = "다이아몬드"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/Gem_03"); }
+                    else if(i == 5) { booty_name = "오리하르콘"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/Crystal_01"); }
+
+                    var clone = Instantiate(prefab_floating_text, new Vector3(-6, i-2), Quaternion.Euler(Vector3.zero));
+                    clone.GetComponent<FloatingText>().text.text = booty_name + " +10";
+                    clone.transform.SetParent(tranform_canvas);
+
+                    clone.transform.GetChild(0).gameObject.SetActive(true);
+                    clone.GetComponentInChildren<Image>().sprite = booty_img;
+                }
+                
             }
 
             if(result == 3)  //유물뽑기권
