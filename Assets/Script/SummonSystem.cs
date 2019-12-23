@@ -365,7 +365,7 @@ public class SummonSystem : MonoBehaviour
 
     public void epic_summon()
     {
-        require_diamond = 2000;
+        require_diamond = 1000;
         if(DataController.Instance.diamond >= require_diamond)
         {
             int number = UnityEngine.Random.Range(1, 1001); //1~1000 사이의 숫자

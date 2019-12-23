@@ -15,6 +15,7 @@ public class BattleManager : MonoBehaviour
     bool getExp = false;
     bool getCrystal = false;
     bool getItem = false;
+    bool timer_operate = false;
 
     public Inventory inventory;
     int ItemNum = 0;
@@ -31,8 +32,15 @@ public class BattleManager : MonoBehaviour
     public GameObject Fight_SelectFrame;
     public Text show_current_stage;
     public Text Stage_explain;
-    public GameObject probability_panel;
+    public GameObject dps_probability_panel;
+    public GameObject infinity_probability_panel;
     public GameObject tower_btn;
+
+    public Text battle_result_title_text;
+    public Text stage_gold_result;
+    public Text stage_exp_result;
+    public Text stage_crystal_result;
+    public Text stage_resource_result;
 
     public Text gold_result_text;
     public Text exp_result_text;
@@ -80,6 +88,8 @@ public class BattleManager : MonoBehaviour
     public Text monster_2_hp_text;
     public Text monster_2_atk_text;
 
+    public Text infinity_grade_text;
+
     //hero
     public GameObject dummy;
 
@@ -91,13 +101,14 @@ public class BattleManager : MonoBehaviour
     public GameObject[] archer_pack = new GameObject[0];
     public GameObject[] wizard_pack = new GameObject[0];
 
+    public GameObject[] monster_pack = new GameObject[0];
+
     //Enemy
     public GameObject Scarecrow;     //dpstest   
     public GameObject Bat_level1;
     public GameObject Bat_level2;
     public GameObject Spider;
     public GameObject Gorem;
-    public GameObject T_Rex;
     public GameObject Big_Gorem;
     public GameObject Troll;
     public GameObject goblin_general;
@@ -137,12 +148,36 @@ public class BattleManager : MonoBehaviour
     string monster_2_name;
 
     public FightController fightController;
+
+    private static BattleManager instance;
+
+    public static BattleManager Instance
+    {
+        get{
+            if(instance == null)
+            {
+                instance = FindObjectOfType<BattleManager>();
+
+                if(instance == null)
+                {
+                    GameObject container = new GameObject("BattleManager");
+
+                    instance = container.AddComponent<BattleManager>();
+                }
+            }
+            return instance;
+        }
+    }
  
     // Use this for initialization
     void Start () {
         IsPause = false;
         StartCoroutine("Auto");
         StartCoroutine("Timer");
+        if(DataController.Instance.current_stage == -2)
+        {
+            StartCoroutine("infinity_mode_set");
+        }
 
         getResult = false;
         ItemNum = DataController.Instance.itemNum;
@@ -257,8 +292,57 @@ public class BattleManager : MonoBehaviour
 
     void set_fight_reward()
     {
-        DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 10000;
-        DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 5;
+        if(DataController.Instance.current_stage < 20)
+        {
+            DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 10000;
+            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 5;
+        }
+        else if(DataController.Instance.current_stage < 40)
+        {
+            DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 100000;
+            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 25;
+        }
+        else if(DataController.Instance.current_stage < 60)
+        {
+            DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 100000;
+            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 40;
+        }
+        else if(DataController.Instance.current_stage < 80)
+        {
+            DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 250000;
+            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 50;
+        }
+        else if(DataController.Instance.current_stage < 100)
+        {
+            DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 500000;
+            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 60;
+        }
+        else if(DataController.Instance.current_stage < 120)
+        {
+            DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 1000000;
+            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 80;
+        }
+        else if(DataController.Instance.current_stage < 140)
+        {
+            DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 2500000;
+            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 90;
+        }
+        else if(DataController.Instance.current_stage < 160)
+        {
+            DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 5000000;
+            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 100;
+        }
+        else if(DataController.Instance.current_stage < 180)
+        {
+            DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 7500000;
+            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 110;
+        }
+        else if(DataController.Instance.current_stage < 200)
+        {
+            DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 10000000;
+            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 120;
+        }
+        
         //ItemNum = 0;
     }
 
@@ -266,6 +350,19 @@ public class BattleManager : MonoBehaviour
 
     void set_background_image()
     {
+        if(DataController.Instance.current_stage == -1)
+        {
+            Map1.SetActive(false);
+            mapImage.SetActive(true);
+            mapImage.GetComponent<RectTransform>().offsetMax = new Vector2(mapImage.GetComponent<RectTransform>().offsetMax.x, 330f);
+            mapImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Background/fightMap/3_game_background") as Sprite;
+        }
+        if(DataController.Instance.current_stage == 0)
+        {
+            Map1.SetActive(false);
+            mapImage.SetActive(true);
+            mapImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Background/fightMap/1_game_background") as Sprite;
+        }
         if(DataController.Instance.current_stage >= 1)
         {
             Map1.SetActive(true);
@@ -297,6 +394,36 @@ public class BattleManager : MonoBehaviour
             mapImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Background/fightMap/Forest_2") as Sprite;
         }
         if(DataController.Instance.current_stage > 100)
+        {
+            Map1.SetActive(false);
+            mapImage.SetActive(true);
+            mapImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Background/fightMap/ForestNightDark") as Sprite;
+        }
+        if(DataController.Instance.current_stage > 120)
+        {
+            Map1.SetActive(false);
+            mapImage.SetActive(true);
+            mapImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Background/fightMap/BG_01") as Sprite;
+        }
+        if(DataController.Instance.current_stage > 140)
+        {
+            Map1.SetActive(false);
+            mapImage.SetActive(true);
+            mapImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Background/fightMap/BG_02") as Sprite;
+        }
+        if(DataController.Instance.current_stage > 160)
+        {
+            Map1.SetActive(false);
+            mapImage.SetActive(true);
+            mapImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Background/fightMap/3_game_background") as Sprite;
+        }
+        if(DataController.Instance.current_stage > 180)
+        {
+            Map1.SetActive(false);
+            mapImage.SetActive(true);
+            mapImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/Background/fightMap/Cartoon_Forest_BG_01") as Sprite;
+        }
+        if(DataController.Instance.current_stage > 200)
         {
             Map1.SetActive(false);
             mapImage.SetActive(true);
@@ -427,18 +554,11 @@ public class BattleManager : MonoBehaviour
     
     IEnumerator Timer()
     {   
+        timer_operate = true;
         LimitTime = 30;
         while(true)
         {
-            if(DataController.Instance.current_stage == -1) 
-            {
-                tower_btn.GetComponent<Image>().color = Color.red;
-            } else 
-            {
-                tower_btn.GetComponent<Image>().color = Color.blue;
-            }
-            
-            if(DataController.Instance.current_stage == 0)
+            if(DataController.Instance.current_stage == 0) //dps
             {
 
                 if(LimitTime > 0) //충전 1200초 = 20분
@@ -451,44 +571,54 @@ public class BattleManager : MonoBehaviour
                 }
                 else //시간이 다 지나면
                 {
-                    if(total_damage >= 1000)              //
+                    if(PlayerPrefs.GetInt("dpsResultBool") == 1)
                     {
-                        DataController.Instance.get_stage_gold = 30000;
-                        DataController.Instance.get_stage_exp = 300;
-                        DataController.Instance.get_stage_crystal = 10;
+                        if(total_damage >= 1000)              //
+                        {
+                            DataController.Instance.get_stage_gold = 30000;
+                            DataController.Instance.get_stage_exp = 300;
+                            DataController.Instance.get_stage_crystal = 10;
+                        }
+                        if(total_damage >= 10000)
+                        {
+                            DataController.Instance.get_stage_gold = 200000;
+                            DataController.Instance.get_stage_exp = 2000;
+                            DataController.Instance.get_stage_crystal = 50;
+                        }
+                        if(total_damage >= 100000)
+                        {
+                            DataController.Instance.get_stage_gold = 20000000;
+                            DataController.Instance.get_stage_exp = 20000;
+                            DataController.Instance.get_stage_crystal = 100;
+                        }
+                        if(total_damage >= 1000000)
+                        {
+                            DataController.Instance.get_stage_gold = 500000000;
+                            DataController.Instance.get_stage_exp = 500000;
+                            DataController.Instance.get_stage_crystal = 300;
+                        }
+                        if(total_damage >= 10000000)
+                        {
+                            DataController.Instance.get_stage_gold = 3500000000;
+                            DataController.Instance.get_stage_exp = 3000000;
+                            DataController.Instance.get_stage_crystal = 500;
+                        }
+                        if(total_damage >= 100000000)
+                        {
+                            DataController.Instance.get_stage_gold = 300000000000;
+                            DataController.Instance.get_stage_exp = 20000000;
+                            DataController.Instance.get_stage_crystal = 1000;
+                        }
+                    } else {
+                        DataController.Instance.get_stage_gold = 0;
+                        DataController.Instance.get_stage_exp = 0;
+                        DataController.Instance.get_stage_crystal = 0;
                     }
-                    if(total_damage >= 10000)
-                    {
-                        DataController.Instance.get_stage_gold = 200000;
-                        DataController.Instance.get_stage_exp = 2000;
-                        DataController.Instance.get_stage_crystal = 50;
-                    }
-                    if(total_damage >= 100000)
-                    {
-                        DataController.Instance.get_stage_gold = 20000000;
-                        DataController.Instance.get_stage_exp = 20000;
-                        DataController.Instance.get_stage_crystal = 100;
-                    }
-                    if(total_damage >= 1000000)
-                    {
-                        DataController.Instance.get_stage_gold = 500000000;
-                        DataController.Instance.get_stage_exp = 500000;
-                        DataController.Instance.get_stage_crystal = 300;
-                    }
-                    if(total_damage >= 10000000)
-                    {
-                        DataController.Instance.get_stage_gold = 3500000000;
-                        DataController.Instance.get_stage_exp = 3000000;
-                        DataController.Instance.get_stage_crystal = 500;
-                    }
-                    if(total_damage >= 100000000)
-                    {
-                        DataController.Instance.get_stage_gold = 300000000000;
-                        DataController.Instance.get_stage_exp = 20000000;
-                        DataController.Instance.get_stage_crystal = 1000;
-                    }
-                    Debug.Log("it's DPS STAGE!!");
+                    //PlayerPrefs.SetInt("dpsResultBool", 0);
+
                     goToPanel.Instance.show_result_panel();       //결과창에 데미지 몇 돌파했는지 표시하기: 자신이 왜 이 만큼의 보상을 얻었는가 설명
+                    timer_operate = false;
+                    StopCoroutine("Timer");
                 }
 
             }
@@ -498,12 +628,119 @@ public class BattleManager : MonoBehaviour
 
     bool activate_one = false;
 
+    int current_timer_second = 0;
+    Transform spawn_location;
+    IEnumerator infinity_mode_set()     //무한모드
+    {
+        StartCoroutine("infinity_timer");
+        int summon_time = 0;
+        int current_grade = 1;
+        int monster_num = 0;
+        int spawn_num = 0;
+        GameObject clone;
+        GameObject mob;
+
+        
+        clone = Instantiate(Scarecrow, Spawn_point0);
+        clone.transform.position = new Vector3(clone.transform.position.x, transform.position.y-10f, transform.position.z);
+        
+        while(true)           //몬스터 생성 조건 : 맵에 몬스터가 없을 떄, 생성 후 3초가 지났을 때
+        {
+            yield return new WaitForSeconds(0.1f);
+            GameObject[] player = GameObject.FindGameObjectsWithTag("Player");
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+            if(this.gameObject.activeSelf == true)
+            {
+                if(DataController.Instance.current_stage == -2)  
+                {
+                    current_grade = current_timer_second / 10;
+                    if(enemies.Length == 1)    //맵에 몬스터가 없을 떄
+                    {   
+                        
+                        if(current_grade == 0) { current_grade = 1; }
+                        summon_time = current_timer_second;
+                        //몬스터 생성
+
+                        
+                        monster_num = UnityEngine.Random.Range(0, 14);
+                        spawn_num = UnityEngine.Random.Range(0, 3);
+
+                        mob = monster_pack[monster_num];
+                        if(spawn_num == 0) { spawn_location = Spawn_point0; }
+                        else if(spawn_num == 1) { spawn_location = Spawn_point1; }
+                        else if(spawn_num == 2) { spawn_location = Spawn_point2; }
+                        else { spawn_location = Spawn_point2; }
+
+
+                        clone = Instantiate(mob, spawn_location);
+                        clone.GetComponent<EnemyController>().Max_HP = 5 * ((long)Mathf.Pow(3, current_grade));
+                        clone.GetComponent<EnemyController>().damage = 5 * ((long)Mathf.Pow(3, current_grade));
+                    }
+                    if((float)summon_time + (2f/current_grade) < (float)current_timer_second)      //생성 후 3초가 지났을 때
+                    {
+                        
+                        if(current_grade == 0) { current_grade = 1; }
+                        summon_time = current_timer_second;
+                        //몬스터 생성
+
+                        monster_num = UnityEngine.Random.Range(0, 14);
+                        spawn_num = UnityEngine.Random.Range(0, 3);
+
+                        mob = monster_pack[monster_num];
+                        if(spawn_num == 0) { spawn_location = Spawn_point0; }
+                        else if(spawn_num == 1) { spawn_location = Spawn_point1; }
+                        else if(spawn_num == 2) { spawn_location = Spawn_point2; }
+                        else { spawn_location = Spawn_point2; }
+
+
+                        clone = Instantiate(mob, spawn_location);
+                        clone.GetComponent<EnemyController>().Max_HP = 5 * ((long)Mathf.Pow(3, current_grade));
+                        clone.GetComponent<EnemyController>().damage = 5 * ((long)Mathf.Pow(3, current_grade));
+                    }
+                    infinity_grade_text.text = current_grade + "단계";
+                }
+            }
+            if(DataController.Instance.current_stage != -2)
+            {
+                StopCoroutine("infinity_mode_set");
+            }
+            //무한모드 단계에 따른 보상설정
+            if(PlayerPrefs.GetInt("infinityResultBool") == 1)
+            {
+                DataController.Instance.get_stage_gold = 50 * (long)Mathf.Pow(5, current_grade);
+                DataController.Instance.get_stage_exp = 2 * (long)Mathf.Pow(2, current_grade);
+                DataController.Instance.get_stage_crystal = 1 * (long)Mathf.Pow(2, current_grade);
+            } else {
+                DataController.Instance.get_stage_gold = 0;
+                DataController.Instance.get_stage_exp = 0;
+                DataController.Instance.get_stage_crystal = 0;
+            }
+             
+        }
+    }
+
+    IEnumerator infinity_timer()
+    {
+        
+        while(true)
+        {
+            yield return new WaitForSeconds(1f);
+            current_timer_second++;
+            text_Timer.text = current_timer_second + "초";
+            if(DataController.Instance.current_stage != -2)
+            {
+                StopCoroutine("infinity_timer");
+            }
+        }
+    }
+
     IEnumerator Auto()
     {
+        DataController.Instance.get_stage_resource = 0;
         while(true)
         {
             yield return new WaitForSeconds(0.1f);
-
             GameObject[] player = GameObject.FindGameObjectsWithTag("Player");
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
@@ -519,12 +756,28 @@ public class BattleManager : MonoBehaviour
                     {
                         DataController.Instance.maxDps = total_damage;
                     }
+                    if(getMoney == false && timer_operate == false)
+                    {
+                        Debug.Log("givemoney");
+                        getMoney = true;
+                        DataController.Instance.gold += DataController.Instance.get_stage_gold;
+                    }  
+                    if(getExp == false && timer_operate == false)
+                    {
+                        getExp = true;
+                        DataController.Instance.current_exp += DataController.Instance.get_stage_exp;
+                    }
+                    if(getCrystal == false && timer_operate == false)
+                    {
+                        getCrystal = true;
+                        DataController.Instance.diamond += DataController.Instance.get_stage_crystal;
+                    }
                 }
 
                 if(enemies.Length == 0 && getResult == false)  //승리할시
                 {
                     getResult = true;
-                    Debug.Log("Enemies are dead!!");
+                    battle_result_title_text.text = "승리";
                     if(DataController.Instance.get_stage_crystal == 0 )
                     {
                         result_crystal_panel.SetActive(false);
@@ -545,49 +798,68 @@ public class BattleManager : MonoBehaviour
                     {
                         PlayerPrefs.GetInt("archer", 1);
                     }
-                    if(DataController.Instance.current_stage == -1)
-                    {
-                        DataController.Instance.tower_stage++; //tower_previous_stage + 1;
-                        DataController.Instance.current_stage = -4;
-                    }
+                    
 
                 }
                 else if(player.Length == 0 && getResult == false)  //패배할 시
                 {
                     getResult = true;
+                    battle_result_title_text.text = "패배";
                     DataController.Instance.get_stage_gold = 0;
                     DataController.Instance.get_stage_exp = 0;
+                    DataController.Instance.get_stage_crystal = 0;
+                    DataController.Instance.get_stage_resource = 0;
                     //결과 문구를 "승리"에서 "패배"로 바꾸기
                     if(GetBool("getResult") == false)
                     {//결과창이 중복해서 뜨는걸 방지
                         goToPanel.Instance.show_result_panel();
                     }
+                    stage_gold_result.text = "" + UiManager.ToStringKR(DataController.Instance.get_stage_gold);
+                    stage_exp_result.text = "" + DataController.Instance.get_stage_exp;
+                    stage_crystal_result.text = "" + DataController.Instance.get_stage_crystal;
+                     stage_resource_result.text = "" + DataController.Instance.get_stage_resource;
                 }
                 if(getMoney == false && enemies.Length == 0)
                 {
                     getMoney = true;
                     DataController.Instance.gold += DataController.Instance.get_stage_gold;
-                    
+                    stage_gold_result.text = "" + UiManager.ToStringKR(DataController.Instance.get_stage_gold);
                 }  
                 if(getExp == false && enemies.Length == 0)
                 {
                     getExp = true;
                     DataController.Instance.current_exp += DataController.Instance.get_stage_exp;
+                    stage_exp_result.text = "" + DataController.Instance.get_stage_exp;
+                    
                 }
                 if(getCrystal == false && enemies.Length == 0)
                 {
                     getCrystal = true;
                     DataController.Instance.diamond += DataController.Instance.get_stage_crystal;
+                    stage_crystal_result.text = "" + DataController.Instance.get_stage_crystal;
                     Debug.Log("You Got Crystal is " + DataController.Instance.get_stage_crystal);
+                    
                 }
                 if(getItem == false && enemies.Length == 0)
                 {
                     getItem = true;
+                    if(DataController.Instance.current_stage == -1)
+                    {
+                        DataController.Instance.tower_stage++; //tower_previous_stage + 1;
+                        DataController.Instance.current_stage = -4;
+                        tower_of_diamond();
+                    }
                     if(ItemNum != 0)
                     {
                         get_booty();
                     }
+                    stage_resource_result.text = "" + DataController.Instance.get_stage_resource;
                 }
+
+                
+                
+                
+                
 
                 if(enemies.Length == 0 || player.Length == 0 && activate_one == false)
                 {
@@ -609,9 +881,14 @@ public class BattleManager : MonoBehaviour
         PlayerPrefs.SetInt("booty_" + ItemNum, current_booty);
     }
 
-    public void show_probability()
+    public void show_dps_probability()
     {
-        probability_panel.SetActive(!probability_panel.active);
+        dps_probability_panel.SetActive(!dps_probability_panel.active);
+    }
+
+    public void show_infinity_probability()
+    {
+        infinity_probability_panel.SetActive(!infinity_probability_panel.active);
     }
 
     String item_name = null;
@@ -1000,32 +1277,6 @@ public class BattleManager : MonoBehaviour
 
         
 
-        // GameObject clone_player0 = Instantiate(hero_0, hero_spawn_point0);
-        // GameObject clone_player1 = Instantiate(hero_1, hero_spawn_point1);
-        // GameObject clone_player2 = Instantiate(hero_2, hero_spawn_point2);
-        
-        // GameObject clone_enemy0 = Instantiate(monster_0, Spawn_point0);
-        // GameObject clone_enemy1 = Instantiate(monster_1, Spawn_point1);
-        // GameObject clone_enemy2 = Instantiate(monster_2, Spawn_point2);
-
-        // clone_enemy0.GetComponent<EnemyController>().Max_HP = (long)(DataController.Instance.monster_hp * (long)clone_enemy0.GetComponent<EnemyController>().health_ratio);
-        // clone_enemy0.GetComponent<EnemyController>().damage = (long)(DataController.Instance.monster_damage * clone_enemy0.GetComponent<EnemyController>().attack_ratio);
-        // clone_enemy1.GetComponent<EnemyController>().Max_HP = (long)(DataController.Instance.monster_hp * (long)clone_enemy1.GetComponent<EnemyController>().health_ratio);
-        // clone_enemy1.GetComponent<EnemyController>().damage = (long)(DataController.Instance.monster_damage * clone_enemy1.GetComponent<EnemyController>().attack_ratio);
-        // clone_enemy2.GetComponent<EnemyController>().Max_HP = (long)(DataController.Instance.monster_hp * (long)clone_enemy2.GetComponent<EnemyController>().health_ratio);
-        // clone_enemy2.GetComponent<EnemyController>().damage =(long)(DataController.Instance.monster_damage * clone_enemy2.GetComponent<EnemyController>().attack_ratio);
-
-    
-        
-        //goToPanel.Instance.show_battle_scene_panel();
-
-        // Destroy(clone_player0);
-        // Destroy(clone_player1);
-        // Destroy(clone_player2);
-
-        // Destroy(clone_enemy0);
-        // Destroy(clone_enemy1);
-        // Destroy(clone_enemy2);
     }
     public void monster_init()
     {
@@ -1058,21 +1309,24 @@ public class BattleManager : MonoBehaviour
     
     public void test_dps_stage()         //허수아비 필요함
     {
-        fightPanelTimer.Instance.current_heart--;
+        if(DataController.Instance.current_stage == 0)
+        {
+                      //하트 1개 사용하기
+            if(fightPanelTimer.Instance.current_heart == 1)
+            {
+                PlayerPrefs.SetInt("dpsResultBool", 1);
+                fightPanelTimer.Instance.current_heart = 0;
+            } else {
+                PlayerPrefs.SetInt("dpsResultBool", 0);
+            }
+            Set_Hero_Base();
+        }
             monster_init();  //get_stage_gold, exp도 초기화
             DataController.Instance.monster_0_ID = "Scarecrow";
             DataController.Instance.monster_damage = 0;      //3
-            DataController.Instance.monster_hp = 10000000;       //100
-            Set_Hero_Base();
-            //보상        //dps_test는 입힌 데미지량에 따라 보상이 겨렁됨
-            // DataController.Instance.get_stage_gold = 500;
-            // DataController.Instance.get_stage_exp = 3;
-            // DataController.Instance.get_stage_crystal = 3;
-        
-        
+            DataController.Instance.monster_hp = 100000000000;       //100
+
         DataController.Instance.current_stage = 0;
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n100\n몹 평균 공격력\n3";
     }
 
 
@@ -1090,11 +1344,7 @@ public class BattleManager : MonoBehaviour
             DataController.Instance.get_stage_exp = 3;
             DataController.Instance.get_stage_crystal = 3;
         }
-        
         DataController.Instance.current_stage = 1;
-        Debug.Log("current_Stage is " + DataController.Instance.current_stage);
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n10\n몹 평균 공격력\n2";
     }
 
 
@@ -1143,20 +1393,17 @@ public class BattleManager : MonoBehaviour
     {
         for(int i = 0; i < FightController.Instance.stageCh1.Length; i++)
         {
-            Debug.Log("i is " + i);
 
             if(fightController.stageCh1[i] == EventSystem.current.currentSelectedGameObject
             && DataController.Instance.current_stage == i+1)  //일치하면 전투화면
             {
                 Set_Hero_Base();
-                Debug.Log("ffff");
                 break;
             }    
 
             if(fightController.stageCh1[i] == EventSystem.current.currentSelectedGameObject 
             && DataController.Instance.current_stage != i+1)
             {
-                Debug.Log("ssssssss");
                 monster_init();
                 DataController.Instance.current_stage = i+1;
                 long x = ((DataController.Instance.current_stage / 20)*3) % 15;
@@ -1213,6 +1460,148 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    public void over_100()
+    {
+        for(int i = 100; i < FightController.Instance.stageCh1.Length; i++)
+        {
+
+            if(fightController.stageCh1[i] == EventSystem.current.currentSelectedGameObject
+            && DataController.Instance.current_stage == i+1)  //일치하면 전투화면
+            {
+                Set_Hero_Base();
+                break;
+            }    
+
+            if(fightController.stageCh1[i] == EventSystem.current.currentSelectedGameObject 
+            && DataController.Instance.current_stage != i+1)
+            {
+                monster_init();
+                DataController.Instance.current_stage = i+1;
+                long x = ((DataController.Instance.current_stage / 20)*3) % 15;
+                monster_list list_0 = (monster_list)x;
+                monster_list list_1 = (monster_list)x+1;
+                monster_list list_2 = (monster_list)x+2;
+                DataController.Instance.monster_0_ID = list_0.ToString();
+                if(DataController.Instance.current_stage % 2 == 0)
+                {
+                    DataController.Instance.monster_0_ID = list_1.ToString();
+                }
+                if(DataController.Instance.current_stage % 3 == 0)
+                {
+                    DataController.Instance.monster_0_ID = list_2.ToString();
+                }
+                if(DataController.Instance.current_stage % 20 > 5)
+                {
+                    DataController.Instance.monster_1_ID = list_1.ToString();
+                    if(DataController.Instance.current_stage % 2 == 0)
+                    {
+                        string tmp = DataController.Instance.monster_0_ID;
+                        DataController.Instance.monster_0_ID = DataController.Instance.monster_1_ID;
+                        DataController.Instance.monster_1_ID = tmp;
+                    }
+                }
+                if(DataController.Instance.current_stage % 20 > 15)
+                {
+                    DataController.Instance.monster_2_ID = list_2.ToString();
+                    if(DataController.Instance.current_stage % 3 == 0)
+                    {
+                        string tmp = DataController.Instance.monster_1_ID;
+                        DataController.Instance.monster_1_ID = DataController.Instance.monster_2_ID;
+                        DataController.Instance.monster_2_ID = tmp;
+                    }
+                }
+                if(DataController.Instance.current_stage % 20 > 5 && DataController.Instance.monster_2_ID == "dummy")
+                {
+                    if(DataController.Instance.current_stage % 3 == 0)
+                    {
+                        string tmp = DataController.Instance.monster_2_ID;
+                        DataController.Instance.monster_2_ID = DataController.Instance.monster_1_ID;
+                        DataController.Instance.monster_1_ID = tmp;
+                    }
+                }
+                if (x == 0) x = 1;
+                DataController.Instance.monster_hp = DataController.Instance.current_stage * 20;
+                DataController.Instance.monster_damage = DataController.Instance.current_stage * 20;
+                set_hero_monster();
+                set_fight_reward();
+                set_explanation_panel();
+                show_fight_result_to_Text();
+                break;
+            }
+        }
+    }
+
+    public void over_200()
+    {
+        for(int i = 200; i < FightController.Instance.stageCh1.Length; i++)
+        {
+
+            if(fightController.stageCh1[i] == EventSystem.current.currentSelectedGameObject
+            && DataController.Instance.current_stage == i+1)  //일치하면 전투화면
+            {
+                Set_Hero_Base();
+                break;
+            }    
+
+            if(fightController.stageCh1[i] == EventSystem.current.currentSelectedGameObject 
+            && DataController.Instance.current_stage != i+1)
+            {
+                monster_init();
+                DataController.Instance.current_stage = i+1;
+                long x = ((DataController.Instance.current_stage / 20)*3) % 15;
+                monster_list list_0 = (monster_list)x;
+                monster_list list_1 = (monster_list)x+1;
+                monster_list list_2 = (monster_list)x+2;
+                DataController.Instance.monster_0_ID = list_0.ToString();
+                if(DataController.Instance.current_stage % 2 == 0)
+                {
+                    DataController.Instance.monster_0_ID = list_1.ToString();
+                }
+                if(DataController.Instance.current_stage % 3 == 0)
+                {
+                    DataController.Instance.monster_0_ID = list_2.ToString();
+                }
+                if(DataController.Instance.current_stage % 20 > 5)
+                {
+                    DataController.Instance.monster_1_ID = list_1.ToString();
+                    if(DataController.Instance.current_stage % 2 == 0)
+                    {
+                        string tmp = DataController.Instance.monster_0_ID;
+                        DataController.Instance.monster_0_ID = DataController.Instance.monster_1_ID;
+                        DataController.Instance.monster_1_ID = tmp;
+                    }
+                }
+                if(DataController.Instance.current_stage % 20 > 15)
+                {
+                    DataController.Instance.monster_2_ID = list_2.ToString();
+                    if(DataController.Instance.current_stage % 3 == 0)
+                    {
+                        string tmp = DataController.Instance.monster_1_ID;
+                        DataController.Instance.monster_1_ID = DataController.Instance.monster_2_ID;
+                        DataController.Instance.monster_2_ID = tmp;
+                    }
+                }
+                if(DataController.Instance.current_stage % 20 > 5 && DataController.Instance.monster_2_ID == "dummy")
+                {
+                    if(DataController.Instance.current_stage % 3 == 0)
+                    {
+                        string tmp = DataController.Instance.monster_2_ID;
+                        DataController.Instance.monster_2_ID = DataController.Instance.monster_1_ID;
+                        DataController.Instance.monster_1_ID = tmp;
+                    }
+                }
+                if (x == 0) x = 1;
+                DataController.Instance.monster_hp = DataController.Instance.current_stage * 30;
+                DataController.Instance.monster_damage = DataController.Instance.current_stage * 30;
+                set_hero_monster();
+                set_fight_reward();
+                set_explanation_panel();
+                show_fight_result_to_Text();
+                break;
+            }
+        }
+    }
+
     public void stage1_100()
     {
         monster_init();
@@ -1239,9 +1628,10 @@ public class BattleManager : MonoBehaviour
         {
             Item_result_text.text = "Item: 권능 뽑기권 x3";
         } else { Item_result_text.text = "Item: 권능 뽑기권 x3(얻음)"; }
-        
-
     }
+
+    public String avg_hp;
+    public String avg_dm;
 
     void set_explanation_panel()
     {
@@ -1255,31 +1645,43 @@ public class BattleManager : MonoBehaviour
 
         if(monster_0 != null)
         {
-            m_0_hp = DataController.Instance.monster_hp * (long)monster_0.GetComponent<EnemyController>().health_ratio;
-            m_0_dm = DataController.Instance.monster_damage * (long)monster_0.GetComponent<EnemyController>().attack_ratio;
+            //m_0_hp = DataController.Instance.monster_hp * (long)monster_0.GetComponent<EnemyController>().health_ratio;
+            m_0_hp = (long)(DataController.Instance.monster_hp * monster_0.GetComponent<EnemyController>().health_ratio);
+            m_0_dm = (long)(DataController.Instance.monster_damage * monster_0.GetComponent<EnemyController>().attack_ratio);
             count++;
         }
         if(monster_1 != null)
         {
-            m_1_hp = DataController.Instance.monster_hp * (long)monster_1.GetComponent<EnemyController>().health_ratio;
-            m_1_dm = DataController.Instance.monster_damage * (long)monster_1.GetComponent<EnemyController>().attack_ratio;
+            m_1_hp = (long)(DataController.Instance.monster_hp * monster_1.GetComponent<EnemyController>().health_ratio);
+            m_1_dm = (long)(DataController.Instance.monster_damage * monster_1.GetComponent<EnemyController>().attack_ratio);
             count++;
         }
         if(monster_2 != null)
         {
-            m_2_hp = DataController.Instance.monster_hp * (long)monster_2.GetComponent<EnemyController>().health_ratio;
-            m_2_dm = DataController.Instance.monster_damage * (long)monster_2.GetComponent<EnemyController>().attack_ratio;
+            m_2_hp = (long)(DataController.Instance.monster_hp * monster_2.GetComponent<EnemyController>().health_ratio);
+            m_2_dm = (long)(DataController.Instance.monster_damage * monster_2.GetComponent<EnemyController>().attack_ratio);
             count++;
         }
-        String avg_hp = "" + ((m_0_hp + m_1_hp + m_2_hp) / count);
-        String avg_dm = "" + ((m_0_dm + m_1_dm + m_2_dm) / count);
+        Debug.Log("m_0_dm: " + m_0_dm);
+        Debug.Log("m_1_dm: " + m_1_dm);
+        Debug.Log("m_2_dm: " + m_2_dm);
+        Debug.Log("befavg_dm: " + avg_dm);
+        avg_hp = "" + ((m_0_hp + m_1_hp + m_2_hp) / count);
+        avg_dm = "" + ((m_0_dm + m_1_dm + m_2_dm) / count);
+        DataController.Instance.avg_hp = avg_hp;
+        DataController.Instance.avg_dg = avg_dm;
 
-        show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
-        Stage_explain.text = "몹 평균 체력\n" + avg_hp + "\n몹 평균 공격력\n" + avg_dm;
+        Debug.Log("aftavg_dm: " + avg_dm);
+
+
+
     }
 
 
     //stage-3 마법사 해방!!
+
+    String[] monster_string = {"Bat",  "Bat_2", "Spider", "Gorem", "BigGorem", "Troll", "goblin_general", "summon_portal", "plant_monster", "ice_gorem"
+    , "warm_monster", "stoneFighter", "blueDragonic", "meduza", "minotaurse"};
 
     public void tower_of_diamond()
     {
@@ -1296,13 +1698,22 @@ public class BattleManager : MonoBehaviour
         { 
             Set_Hero_Base();
         }
+        
 
-        if(DataController.Instance.current_stage != -1)
-        {
-            
-            
             monster_init();
-            
+
+            int i = UnityEngine.Random.Range(0, 15);
+            if(tower_stage >= 10)
+            {
+                DataController.Instance.monster_1_ID = monster_string[i];
+                if(tower_stage >= 20)
+                {
+                    int k = UnityEngine.Random.Range(0, 15);
+                    DataController.Instance.monster_0_ID = monster_string[k];
+                }
+                else { DataController.Instance.monster_0_ID = null; }
+            } else { DataController.Instance.monster_1_ID = null; }
+
             if(tower_stage % monster_kindCount == 1)
             {
                 DataController.Instance.monster_2_ID = "Bat"; 
@@ -1313,7 +1724,7 @@ public class BattleManager : MonoBehaviour
             }
             else if(tower_stage % monster_kindCount == 3)
             {
-                DataController.Instance.monster_2_ID = "Gorem"; 
+                DataController.Instance.monster_2_ID = "Spider"; 
             }
             else if(tower_stage % monster_kindCount == 4)
             {
@@ -1366,22 +1777,53 @@ public class BattleManager : MonoBehaviour
             else {
                 DataController.Instance.monster_2_ID = "Bat"; 
             }
-            
-            DataController.Instance.monster_hp = repeatCount * 500;
-            DataController.Instance.monster_damage = repeatCount * 500;
+            set_hero_monster();
 
-            DataController.Instance.get_stage_gold = tower_stage * (long)Mathf.Pow(10, repeatCount);
-            DataController.Instance.get_stage_exp = tower_stage * (long)Mathf.Pow(7, repeatCount);
-            DataController.Instance.get_stage_crystal = (tower_stage * 10) * repeatCount;
+            DataController.Instance.monster_hp = tower_stage * 100;
+            DataController.Instance.monster_damage = tower_stage * 100;
+
+            DataController.Instance.get_stage_gold = 10000 * (long)Mathf.Pow(2, (tower_stage/2));
+            DataController.Instance.get_stage_exp = tower_stage * 100;
+            DataController.Instance.get_stage_crystal = (tower_stage * 25);
             DataController.Instance.current_stage = -1;
 
             goToPanel.Instance.stage_explain_panel.SetActive(true);
             goToPanel.Instance.stage_reward_explain_panel.SetActive(true);
+            set_explanation_panel();
             show_fight_result_to_Text();
-            show_current_stage.text = "Special " + DataController.Instance.tower_stage.ToString();
-            Stage_explain.text = "몹 평균 체력\n" + DataController.Instance.monster_hp + "\n몹 평균 공격력\n" + DataController.Instance.monster_damage;
-            tower_btn.GetComponent<Image>().color = Color.red;
             
+        
+    }
+
+    public void infinity_mode()
+    {
+
+        if(fightPanelTimer.Instance.infinity_mode_heart == 1)
+        {
+            PlayerPrefs.SetInt("infinityResultBool", 1);
+            fightPanelTimer.Instance.infinity_mode_heart = 0;
+        } else {
+            PlayerPrefs.SetInt("infinityResultBool", 0);
+            fightPanelTimer.Instance.infinity_mode_heart = 0;
+        }
+
+        if(DataController.Instance.current_stage == -2)
+        { 
+            Set_Hero_Base();
+            
+        }
+
+        int monster_num = 0;
+
+        if(DataController.Instance.current_stage != -2)
+        {
+            
+            monster_init();
+            DataController.Instance.current_stage = -2;
+
+            goToPanel.Instance.stage_explain_panel.SetActive(true);
+            goToPanel.Instance.stage_reward_explain_panel.SetActive(true);
+            show_fight_result_to_Text();
         }
     }
     

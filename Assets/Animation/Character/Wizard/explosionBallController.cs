@@ -38,6 +38,10 @@ public class explosionBallController : MonoBehaviour
                     }
                 }
             }
+        if(Vector3.Distance(this.transform.parent.position, this.transform.position) > 20f)
+        {
+            Destroy(explosionball);
+        }
     }
 
     public void destroy_this()

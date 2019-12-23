@@ -37,5 +37,9 @@ public class skillArrowController : MonoBehaviour
                     }
                 }
             }
+        if(Vector3.Distance(this.transform.parent.position, this.transform.position) > 20f)
+        {
+            Destroy(arrow);
+        }
     }
 }

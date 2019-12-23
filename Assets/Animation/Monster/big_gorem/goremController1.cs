@@ -47,7 +47,10 @@ public class goremController1 : MonoBehaviour
 
     IEnumerator char_position()
     {   
-        yield return new WaitForSeconds(2f);
+        if(DataController.Instance.current_stage != -2)
+        {
+            yield return new WaitForSeconds(2f);
+        }
         while(true)
         {
             yield return new WaitForSeconds(0.01f);

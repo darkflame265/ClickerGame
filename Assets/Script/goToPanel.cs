@@ -71,6 +71,7 @@ public class goToPanel : MonoBehaviour
     public GameObject option_panel;
     public GameObject store_panel;
     public GameObject quest_panel;
+    public GameObject buyCash_panel;
     public GameObject gamble_panel;
     public GameObject challenge_panel;
     public GameObject inventory_panel;
@@ -252,12 +253,13 @@ public class goToPanel : MonoBehaviour
             hide_without_panel();
             duengeonPanel.SetActive(true);
             duengeonPanelButton.GetComponent<Image>().color = cleanColor;
-            UiManager.Instance.tower_of_diamond.text = "시련의 탑" + "\n" + DataController.Instance.tower_stage + "층";
+            DataController.Instance.current_stage = -77;
         }
         else if(duengeonPanel.activeSelf == true)
         {
             show_all_button();
             duengeonPanel.SetActive(false);
+            DataController.Instance.current_stage = -77;
         }
     
     }
@@ -334,6 +336,16 @@ public class goToPanel : MonoBehaviour
     public void hide_quest_panel()
     {
         quest_panel.SetActive(false);
+    }
+
+    public void show_buyCash_panel()
+    {
+        buyCash_panel.SetActive(true);
+    }
+
+    public void hide_buyCash_panel()
+    {
+        buyCash_panel.SetActive(false);
     }
 
     public void show_gamble_panel()

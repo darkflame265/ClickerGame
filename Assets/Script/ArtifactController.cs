@@ -134,7 +134,7 @@ public class ArtifactController : MonoBehaviour
     public void set_get_artifact_information(int i)
     {
         get_artifact_name.text = artifact_name[i];
-        get_artifact_explain.text = artifact_effect[i];
+        get_artifact_explain.text = artifact_effect[i]; 
 
         //get_artifact_image.sprite = EventSystem.current.currentSelectedGameObject.GetComponent<Image>().sprite;
         //"Image/Artifact/RPG icons/512X512/surihan"

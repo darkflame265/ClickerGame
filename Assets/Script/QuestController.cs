@@ -201,6 +201,7 @@ public class QuestController : MonoBehaviour
                     }
                     if(UiManager.GetBool("QuestPurchased" + i)  == true)
                     {
+                        quest[i].GetComponent<Image>().color = new Color(0.8f, 0.8f, 0.8f);
                         quest[i].transform.GetChild(0).GetComponentInChildren<Text>().text = "구매 완료";
                         quest[i].GetComponentInChildren<Button>().interactable = false;
                     }
@@ -231,6 +232,7 @@ public class QuestController : MonoBehaviour
                     }
                     if(UiManager.GetBool("QuestPurchased" + i)  == true)
                     {
+                        quest[i].GetComponent<Image>().color = new Color(0.8f, 0.8f, 0.8f);
                         quest[i].transform.GetChild(0).GetComponentInChildren<Text>().text = "구매 완료";
                         quest[i].GetComponentInChildren<Button>().interactable = false;
                     }

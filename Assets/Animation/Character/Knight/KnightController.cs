@@ -97,7 +97,10 @@ public class KnightController : MonoBehaviour
             Debug.Log("ene is close");
         }
         else {
-            yield return new WaitForSeconds(2f); //2f = 게임 대기 시간 2초 줌
+            if(DataController.Instance.current_stage != -2)
+            {
+                yield return new WaitForSeconds(2f);
+            }
         }
         
         while(true)
@@ -150,12 +153,16 @@ public class KnightController : MonoBehaviour
     public void Move()
     {
         float xMov = 0.05f;
-        if(movebool == true)
+        if(DataController.Instance.current_stage != -2)
         {
-            allAnimatorStop();
-            animator.SetBool("isWalk", true);
-            this.transform.Translate(new Vector3(xMov, 0, 0));
+            if(movebool == true)
+            {
+                allAnimatorStop();
+                animator.SetBool("isWalk", true);
+                this.transform.Translate(new Vector3(xMov, 0, 0));
+            }
         }
+        
         
          
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");

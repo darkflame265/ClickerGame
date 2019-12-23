@@ -1312,6 +1312,42 @@ public class DataController : MonoBehaviour
         }
     }
 
+    public String avg_hp
+    {
+        get
+        {
+            if(!PlayerPrefs.HasKey("avg_hp")) // 골드가 없을떄
+            {
+                return "0";
+            }
+            string tmpavg_hp = PlayerPrefs.GetString("avg_hp");
+            return tmpavg_hp;
+
+        }
+        set
+        {
+            PlayerPrefs.SetString("avg_hp", value.ToString());
+        }
+    }
+
+    public String avg_dg
+    {
+        get
+        {
+            if(!PlayerPrefs.HasKey("avg_dg")) // 골드가 없을떄
+            {
+                return "0";
+            }
+            string tmpavg_dg = PlayerPrefs.GetString("avg_dg");
+            return tmpavg_dg;
+
+        }
+        set
+        {
+            PlayerPrefs.SetString("avg_dg", value.ToString());
+        }
+    }
+
     public long knight_level
     {
         get

@@ -113,7 +113,10 @@ public class ArcherController : MonoBehaviour
             Debug.Log("ene is close");
         }
         else {
-            yield return new WaitForSeconds(2f); //2f = 게임 대기 시간 2초 줌
+            if(DataController.Instance.current_stage != -2)
+            {
+                yield return new WaitForSeconds(2f);
+            }
         }
         while(true)
         {
@@ -169,11 +172,14 @@ public class ArcherController : MonoBehaviour
     public void Move()
     {
         float xMov = 0.05f;
-        if(movebool == true)
+        if(DataController.Instance.current_stage != -2)
         {
-            this.transform.Translate(new Vector3(xMov, 0, 0));
-            allAnimatorStop();
-            animator.SetBool("isWalk", true);
+            if(movebool == true)
+            {
+                allAnimatorStop();
+                animator.SetBool("isWalk", true);
+                this.transform.Translate(new Vector3(xMov, 0, 0));
+            }
         }
         
         
@@ -229,6 +235,10 @@ public class ArcherController : MonoBehaviour
             allAnimatorStop();
             animator.SetBool("isWin", true);  
         }
+        if(this.transform.GetComponent<Character>().current_HP <=0)
+        {
+            Destroy(this);
+        }
     }
 
     public void skill()
@@ -254,15 +264,16 @@ public class ArcherController : MonoBehaviour
         //     }
         //     currentSkillPoint = 0;  //스킬포인트 초기화
         // }
-        if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 10f)
-        {
+        // if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 10f)
+        // {
             var arrow_clone = Instantiate(arrow, this.transform.position, Quaternion.Euler(Vector2.zero));
             arrow_clone.transform.SetParent(this.transform);
             if(DataController.Instance.archer_level > 2)
             {
                 currentSkillPoint++;
+                //currentSkillPoint = currentSkillPoint + 3;
             }
-        }
+        //}
     }
 
     IEnumerator SkillUI()

@@ -60,12 +60,14 @@ public class UiManager : MonoBehaviour
    public Text stage_resource_result;
    public Text tower_of_diamond;
 
+   public Text show_current_stage;
+   public Text Stage_explain;
+
    public bool checkFloatingNotice;
    public GameObject floatingNoticePanel;
 
    //설정창
    public GameObject clickButton;
-   int background_count = 0;
    
 
 
@@ -198,11 +200,33 @@ public class UiManager : MonoBehaviour
             if(fight_panel.activeSelf == true)
             {
                 //전투
-                stage_gold_result.text = "" + DataController.Instance.get_stage_gold;
-                stage_exp_result.text = "" + DataController.Instance.get_stage_exp;
-                stage_crystal_result.text = "" + DataController.Instance.get_stage_crystal;
-                stage_resource_result.text = "" + DataController.Instance.get_stage_resource;
-                tower_of_diamond.text = "시련의 탑" + "\n" + DataController.Instance.tower_stage + "층";
+                // stage_gold_result.text = "" + DataController.Instance.get_stage_gold;
+                // stage_exp_result.text = "" + DataController.Instance.get_stage_exp;
+                // stage_crystal_result.text = "" + DataController.Instance.get_stage_crystal;
+                // stage_resource_result.text = "" + DataController.Instance.get_stage_resource;
+                if(DataController.Instance.current_stage == 0) //dps 측정
+                {
+                    show_current_stage.text = "전투력 측정";
+                    Stage_explain.text = "몹 평균 체력\n" + 100000000000 + "\n몹 평균 공격력\n" + 0;
+                }
+                else if(DataController.Instance.current_stage == -1) //시련의 탑
+                {
+                    show_current_stage.text = "Special " + DataController.Instance.tower_stage.ToString();
+                    Stage_explain.text = "몹 평균 체력\n" + DataController.Instance.avg_hp + "\n몹 평균 공격력\n" + DataController.Instance.avg_dg;
+                }
+                else if(DataController.Instance.current_stage == -2)   //무한모드
+                {
+                    show_current_stage.text = "infinity mode";
+                    Stage_explain.text = "몹 평균 체력\n" + "0 -> infinity" + "\n몹 평균 공격력\n" + "0 -> infinity";
+                }
+                else {     //일반 스토리
+                    show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
+                    Stage_explain.text = "몹 평균 체력\n" + DataController.Instance.avg_hp + "\n몹 평균 공격력\n" + DataController.Instance.avg_dg;
+                }
+                
+
+                
+                tower_of_diamond.text = "시련의 탑" + " " + DataController.Instance.tower_stage + "층";
             }
             
 

@@ -9439,7 +9439,21 @@ MonoBehaviour:
   summon_cycle: 2
   monster_scale: {x: 0, y: 0, z: 0}
   Bat: {fileID: 2400466363115080160, guid: 3e4e2e8f87c6888459a75e112016b376, type: 3}
-  enemyController: {fileID: 0}
+  Bat_level2: {fileID: 6505171604493632869, guid: c0caa069012556d47b7050bbbbeb0871,
+    type: 3}
+  Spider: {fileID: 6352167951449174629, guid: 66be671768e1c8c489b940c42cd47ed0, type: 3}
+  Gorem: {fileID: 2390951728935649598, guid: a0a610b02f78fb647ae176b53b2e5eb0, type: 3}
+  Big_Gorem: {fileID: 6273490685261876978, guid: 97a1d08292e30fc42ba4ca4e3e7459a3,
+    type: 3}
+  Troll: {fileID: 7305079400007718746, guid: 77f1cb96da8256d4db5c91ef01e08769, type: 3}
+  goblin_general: {fileID: 9186848452891742658, guid: 17921269e5c0b9f4b9b4432e0508750e,
+    type: 3}
+  plant_monster: {fileID: 1709389121058619989, guid: aae8806b4f5963b41954da9b2d5533e7,
+    type: 3}
+  ice_gorem: {fileID: 7529773593560257305, guid: f898cd3e29216a44daf200332babcb3d,
+    type: 3}
+  warm_monster: {fileID: 5880126332547114790, guid: 77fd426ee3179054e981dc528f907d35,
+    type: 3}
 --- !u!114 &1729403476790564625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9457,9 +9471,10 @@ MonoBehaviour:
   damage: 0
   attackDistance: 0
   health_ratio: 1
-  attack_ratio: 0
+  attack_ratio: 1
   mana_ratio: 0
   special_ratio: 0
+  timestop: 0
   healthBar: {fileID: 6874291241650898007}
 --- !u!1 &7813442797839754039
 GameObject:

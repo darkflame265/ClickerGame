@@ -37,8 +37,6 @@ public class arrowController : MonoBehaviour
                             }
                         }
 
-                        
-
                         target.transform.GetComponent<EnemyController>().decreaseHP(ArrowDamage);
                         var clone = Instantiate(prefab_floating_text, new Vector2(target.transform.position.x+1, target.transform.position.y), Quaternion.Euler(Vector3.zero)); //  target.transform.position
                         clone.transform.position += new Vector3(0, 2);
@@ -48,5 +46,9 @@ public class arrowController : MonoBehaviour
                     }
                 }
             }
+        if(Vector3.Distance(this.transform.parent.position, this.transform.position) > 20f)
+        {
+            Destroy(arrow);
+        }
     }
 }

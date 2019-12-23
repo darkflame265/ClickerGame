@@ -83,7 +83,10 @@ public class wizardController : MonoBehaviour
             Debug.Log("ene is close");
         }
         else {
-            yield return new WaitForSeconds(2f); //2f = 게임 대기 시간 2초 줌
+            if(DataController.Instance.current_stage != -2)
+            {
+                yield return new WaitForSeconds(2f);
+            }
         }
         while(true)
         {
@@ -133,11 +136,14 @@ public class wizardController : MonoBehaviour
     public void Move()
     {
         float xMov = 0.05f;
-        if(movebool == true)
+        if(DataController.Instance.current_stage != -2)
         {
-            this.transform.Translate(new Vector3(xMov, 0, 0));
-            allAnimatorStop();
-            animator.SetBool("isWalk", true);
+            if(movebool == true)
+            {
+                allAnimatorStop();
+                animator.SetBool("isWalk", true);
+                this.transform.Translate(new Vector3(xMov, 0, 0));
+            }
         }
         
         
@@ -148,20 +154,26 @@ public class wizardController : MonoBehaviour
             A.Add(target);
             for(int i = 0; i < A.Count-1; i++)
             {
-                if(A.Count == 1)
+                // if(A[i] == null) { break; }
+                // if(A[i+1] == null) { break; }
+                // if(A.Count == 1)
+                // {
+                //     break;
+                // }
+                if(A[i+1] != null)
                 {
-                    break;
-                }
-                if(Vector3.Distance(A[i].transform.position, this.transform.position) > Vector3.Distance(A[i+1].transform.position, this.transform.position))
-                {
-                    GameObject tmp = A[i];
-                    A[i] = A[i+1];
-                    A[i+1] = tmp;
+                    if(Vector3.Distance(A[i].transform.position, this.transform.position) > Vector3.Distance(A[i+1].transform.position, this.transform.position))
+                    {
+                        GameObject tmp = A[i];
+                        A[i] = A[i+1];
+                        A[i+1] = tmp;
+                    }
                 }
             }
-            
+ 
+
             close_enemy = A[0];
-            //Debug.Log("close_enemy is " + close_enemy.name);
+
             if(target.GetComponent<EnemyController>().current_HP < 0)
             {
                 A.Clear();
@@ -220,7 +232,7 @@ public class wizardController : MonoBehaviour
                 }
                 currentSkillPoint = 0;  //스킬포인트 초기화
             }
-        else if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 8f)
+        else //if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 8f)
         {
 
             var fire = Instantiate(fireball, this.transform.position, Quaternion.Euler(0, 0, -90));

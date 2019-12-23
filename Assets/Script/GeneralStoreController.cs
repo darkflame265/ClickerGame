@@ -194,9 +194,9 @@ public class GeneralStoreController : MonoBehaviour
     public void select_product_4()
     {
         Product_Pay_Panel.SetActive(true);
-        ProductExplain.text = "레벨업 포션\n효과: 현재 레벨에 필요한 양 만큼 경험치를 얻습니다.\n가격: 100Crystal";
+        ProductExplain.text = "레벨업 포션\n효과: 현재 레벨에 필요한 양 만큼 경험치를 얻습니다.\n가격: 1000Crystal";
         Product_Cost = 0;
-        Product_Crystal = 100;
+        Product_Crystal = 1000;
         Product_ID = 4;
     }
 

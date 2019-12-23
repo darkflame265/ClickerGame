@@ -47,5 +47,9 @@ public class fireballController : MonoBehaviour
                    
                 }
             }
+        if(Vector3.Distance(this.transform.parent.position, this.transform.position) > 20f)
+        {
+            Destroy(fireball);
+        }
     }
 }

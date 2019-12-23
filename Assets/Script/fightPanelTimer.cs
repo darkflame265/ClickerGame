@@ -86,17 +86,40 @@ public class fightPanelTimer : MonoBehaviour
     //btn
     public GameObject Test_damage_btn;
 
+    //infinity
+    public long infinity_mode_heart = 1;
+    public float infinity_mode_LimitTime;
+    public Text infinity_text_timer;
+
     //영웅 진영 반복체크
     public GameObject[] hero_cardDropZone = new GameObject[0];
     public GameObject[] hero_card = new GameObject[0];
 
     void Start()
     {
+        //dps
         damage_test_LimitTime = damage_test_limit_time - DataController.Instance.timeAfterLastPlay;
         current_heart = damage_test_current_heart;
         max_heart = damage_test_max_heart;
         StartCoroutine("Timer");
+
+        infinity_mode_LimitTime = PlayerPrefs.GetFloat("infinity_mode_LimitTime") - DataController.Instance.timeAfterLastPlay;
+        infinity_mode_heart = PlayerPrefs.GetInt("infinity_mode_heart");
+        StartCoroutine("Timer2");
+
+
         //StartCoroutine("repeat_hero_dispose_check");
+    }
+
+    public void charge_heart()
+    {
+        current_heart = max_heart;
+        damage_test_LimitTime = 7200;
+        text_Timer.text = "보상 흭득가능";
+
+        infinity_mode_heart= 1;
+        infinity_mode_LimitTime = 7200;
+        infinity_text_timer.text = "보상 흭득가능";
     }
 
     IEnumerator Timer()
@@ -105,30 +128,53 @@ public class fightPanelTimer : MonoBehaviour
         {
             while(damage_test_LimitTime < 0)
                 {
-                    //int count = (int)LimitTime / DataController.Instance.timeAfterLastPlay;
-                    //current_heart += count;
-                   // count = 0;
                     damage_test_LimitTime += 7200;  //LifeTime - 지나간 시간 라이프타임 = 1200;  
                     current_heart += 1;
                 }
             if(current_heart < max_heart) //충전 1200초 = 20분
             {
-                Test_damage_btn.GetComponent<Button>().interactable = false;
                 damage_test_LimitTime -= 1;
-                //text_Timer.text = "충전시간 : " + Mathf.Round(LimitTime)/60 + "분 " + Mathf.Round(LimitTime)/60%60 + "초";
                 text_Timer.text = Math.Truncate(Mathf.Round(damage_test_LimitTime)/60)  + ":" + Math.Truncate(Mathf.Round(damage_test_LimitTime)%60%60);
                 
             }
             else //하트가 충전되면
             {
-                Test_damage_btn.GetComponent<Button>().interactable = true;
                 current_heart = max_heart;
                 damage_test_LimitTime = 7200;
+                text_Timer.text = "보상 흭득가능";
             }
 
             damage_test_limit_time = damage_test_LimitTime;
             damage_test_current_heart = current_heart;
             damage_test_max_heart = max_heart;
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    IEnumerator Timer2()
+    {
+        while(true)
+        {
+            while(infinity_mode_LimitTime < 0)
+                {
+                    infinity_mode_LimitTime += 7200;  //LifeTime - 지나간 시간 라이프타임 = 1200;  
+                    infinity_mode_heart = 1;
+                }
+            if(infinity_mode_heart < 1) //충전 1200초 = 20분
+            {
+                infinity_mode_LimitTime --;
+                infinity_text_timer.text = Math.Truncate(Mathf.Round(infinity_mode_LimitTime)/60)  + ":" + Math.Truncate(Mathf.Round(infinity_mode_LimitTime)%60%60);
+                
+            }
+            else //하트가 충전되면
+            {
+                infinity_mode_heart = 1;
+                infinity_mode_LimitTime = 7200;
+                infinity_text_timer.text = "보상 흭득가능";
+            }
+
+            PlayerPrefs.SetFloat("infinity_mode_LimitTime", infinity_mode_LimitTime);
+            PlayerPrefs.SetInt("infinity_mode_heart", (int)infinity_mode_heart);
             yield return new WaitForSeconds(1f);
         }
     }
