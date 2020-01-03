@@ -27,8 +27,17 @@ public class BatController : MonoBehaviour
     public long damage;
     public GameObject prefab_floating_text;
 
-
+    public float xMov;
     void Start(){
+
+        if(DataController.Instance.current_stage <= 100)
+        {
+            xMov = Random.Range(-0.05f, -0.10f);
+        } else if (DataController.Instance.current_stage <= 200) {
+            xMov = Random.Range(-0.10f, -0.15f);
+        } else if (DataController.Instance.current_stage <= 300) {
+            xMov = Random.Range(-0.20f, -0.30f);
+        } else xMov = -0.05f;
         animator = GetComponent<Animator>();
         damage = GetComponent<EnemyController>().damage;
         StartCoroutine("char_position");
@@ -105,7 +114,6 @@ public class BatController : MonoBehaviour
 
     public void Move()
     {
-        float xMov = -0.05f;
         //float distance = Vector3.Distance(other.position, this.transform.position);
         
         if(movebool == true)
@@ -157,32 +165,6 @@ public class BatController : MonoBehaviour
             movebool = false;
         }
     }
-        
-        /* 
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Player");
-        foreach(GameObject target in enemies) {
-            float distance = Vector3.Distance(target.transform.position, this.transform.position);
-            
-            if(distance < 1f)
-            {
-                movebool = false;
-                allAnimatorStop();
-                animator.SetBool("isAttack", true);
-            }
-            else if(wait == false)
-            {
-                movebool = true;
-            }
-        }
-        if(enemies.Length == 0)
-        {
-            movebool = false;
-        }
-
-        */
-    
-    
-    
 
     public void Attack()//애니메이션 이벤트 뒤에 배치
     {

@@ -75,28 +75,6 @@ public class CharacterCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void SetLocation()
     {
-        // Debug.Log("this.transform.name: " + PlayerPrefs.GetInt(hero_name));
-        // if(PlayerPrefs.GetInt(hero_name) == 0) //0 = front
-        // {
-        //     this.transform.SetParent(Front);
-        //     Debug.Log(this.transform.name + " is in "+ Front.name);
-        // }
-        // else if(PlayerPrefs.GetInt(hero_name) == 1) //0 = front
-        // {
-        //     this.transform.SetParent(Mid);
-        //     Debug.Log(this.transform.name + " is in "+ Mid.name);
-        // }
-        // else if(PlayerPrefs.GetInt(hero_name) == 2) //0 = front
-        // {
-        //     this.transform.SetParent(Back);
-        //     Debug.Log(this.transform.name + " is in "+ Back.name);
-        // }
-        // else
-        // {
-        //     //this.transform.SetParent(Hand);
-        //     Debug.Log(this.transform.name + " is in "+ Hand.name);
-        // }
-
         if(DataController.Instance.hero_0_ID == cardNum)
         {
             this.transform.SetParent(Front);
@@ -108,6 +86,10 @@ public class CharacterCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         else if(DataController.Instance.hero_2_ID == cardNum)
         {
             this.transform.SetParent(Back);
+        }
+        else 
+        {
+            this.transform.SetParent(Hand);
         }
     }
 

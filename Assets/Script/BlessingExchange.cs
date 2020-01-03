@@ -58,6 +58,10 @@ public class BlessingExchange : MonoBehaviour
                 current_bls_Lv = PlayerPrefs.GetInt("bls_" + current_select_blessing);
                 PlayerPrefs.SetInt("bls_" + current_select_blessing, current_bls_Lv+1);
                 PlayerPrefs.SetInt("booty_" + 1, current_booty - 5); 
+                SoundManager.Instance.upgrade_button_sound();
+            } else {
+                goToPanel.Instance.show_noticePanel();
+                goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "자원이 부족합니다.";
             }
         }
         else if(PlayerPrefs.GetInt("bls_" + current_select_blessing) == 1 && PlayerPrefs.GetInt("bls_" + current_select_blessing) != 10) //가호의 레벨이 1일 떄
@@ -68,87 +72,128 @@ public class BlessingExchange : MonoBehaviour
                 current_bls_Lv = PlayerPrefs.GetInt("bls_" + current_select_blessing);
                 PlayerPrefs.SetInt("bls_" + current_select_blessing, current_bls_Lv+1);
                 PlayerPrefs.SetInt("booty_" + 1, current_booty - 10); 
+                SoundManager.Instance.upgrade_button_sound();
+            } else {
+                goToPanel.Instance.show_noticePanel();
+                goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "자원이 부족합니다.";
             }
         }
         else if(PlayerPrefs.GetInt("bls_" + current_select_blessing) == 2 && PlayerPrefs.GetInt("bls_" + current_select_blessing) != 10) //가호의 레벨이 1일 떄
         {
-            if(PlayerPrefs.GetInt("booty_" + 2) >= 5)  //부산물 확인
+            if(PlayerPrefs.GetInt("booty_" + 2) >= 15)  //부산물 확인
             {
                 current_booty = PlayerPrefs.GetInt("booty_" + 2);
                 current_bls_Lv = PlayerPrefs.GetInt("bls_" + current_select_blessing);
                 PlayerPrefs.SetInt("bls_" + current_select_blessing, current_bls_Lv+1);
-                PlayerPrefs.SetInt("booty_" + 2, current_booty - 5); 
+                PlayerPrefs.SetInt("booty_" + 2, current_booty - 15); 
+                SoundManager.Instance.upgrade_button_sound();
+            } else {
+                goToPanel.Instance.show_noticePanel();
+                goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "자원이 부족합니다.";
             }
         }
         else if(PlayerPrefs.GetInt("bls_" + current_select_blessing) == 3 && PlayerPrefs.GetInt("bls_" + current_select_blessing) != 10) //가호의 레벨이 1일 떄
         {
-            if(PlayerPrefs.GetInt("booty_" + 2) >= 10)  //부산물 확인
+            if(PlayerPrefs.GetInt("booty_" + 2) >= 20)  //부산물 확인
             {
                 current_booty = PlayerPrefs.GetInt("booty_" + 2);
                 current_bls_Lv = PlayerPrefs.GetInt("bls_" + current_select_blessing);
                 PlayerPrefs.SetInt("bls_" + current_select_blessing, current_bls_Lv+1);
-                PlayerPrefs.SetInt("booty_" + 2, current_booty - 10); 
+                PlayerPrefs.SetInt("booty_" + 2, current_booty - 20); 
+                SoundManager.Instance.upgrade_button_sound();
+            } else {
+                goToPanel.Instance.show_noticePanel();
+                goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "자원이 부족합니다.";
             }
         }
         else if(PlayerPrefs.GetInt("bls_" + current_select_blessing) == 4 && PlayerPrefs.GetInt("bls_" + current_select_blessing) != 10) //가호의 레벨이 1일 떄
         {
-            if(PlayerPrefs.GetInt("booty_" + 3) >= 5)  //부산물 확인
+            if(PlayerPrefs.GetInt("booty_" + 3) >= 25)  //부산물 확인
             {
                 current_booty = PlayerPrefs.GetInt("booty_" + 3);
                 current_bls_Lv = PlayerPrefs.GetInt("bls_" + current_select_blessing);
                 PlayerPrefs.SetInt("bls_" + current_select_blessing, current_bls_Lv+1);
-                PlayerPrefs.SetInt("booty_" + 3, current_booty - 5); 
+                PlayerPrefs.SetInt("booty_" + 3, current_booty - 25); 
+                SoundManager.Instance.upgrade_button_sound();
+            } else {
+                goToPanel.Instance.show_noticePanel();
+                goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "자원이 부족합니다.";
             }
         }
         else if(PlayerPrefs.GetInt("bls_" + current_select_blessing) == 5 && PlayerPrefs.GetInt("bls_" + current_select_blessing) != 10) //가호의 레벨이 1일 떄
         {
-            if(PlayerPrefs.GetInt("booty_" +3) >= 10)  //부산물 확인
+            if(PlayerPrefs.GetInt("booty_" +3) >= 30)  //부산물 확인
             {
                 current_booty = PlayerPrefs.GetInt("booty_" + 3);
                 current_bls_Lv = PlayerPrefs.GetInt("bls_" + current_select_blessing);
                 PlayerPrefs.SetInt("bls_" + current_select_blessing, current_bls_Lv+1);
-                PlayerPrefs.SetInt("booty_" + 3, current_booty - 10); 
+                PlayerPrefs.SetInt("booty_" + 3, current_booty - 30); 
+                SoundManager.Instance.upgrade_button_sound();
+            } else {
+                goToPanel.Instance.show_noticePanel();
+                goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "자원이 부족합니다.";
             }
         }
         else if(PlayerPrefs.GetInt("bls_" + current_select_blessing) == 6 && PlayerPrefs.GetInt("bls_" + current_select_blessing) != 10) //가호의 레벨이 6일 떄
         {
-            if(PlayerPrefs.GetInt("booty_" + 4) >= 5)  //부산물 확인
+            if(PlayerPrefs.GetInt("booty_" + 4) >= 35)  //부산물 확인
             {
                 current_booty = PlayerPrefs.GetInt("booty_" + 4);
                 current_bls_Lv = PlayerPrefs.GetInt("bls_" + current_select_blessing);
                 PlayerPrefs.SetInt("bls_" + current_select_blessing, current_bls_Lv+1);
-                PlayerPrefs.SetInt("booty_" + 4, current_booty - 5); 
+                PlayerPrefs.SetInt("booty_" + 4, current_booty - 35); 
+                SoundManager.Instance.upgrade_button_sound();
+            } else {
+                goToPanel.Instance.show_noticePanel();
+                goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "자원이 부족합니다.";
             }
         }
         else if(PlayerPrefs.GetInt("bls_" + current_select_blessing) == 7 && PlayerPrefs.GetInt("bls_" + current_select_blessing) != 10) //가호의 레벨이 7일 떄
         {
-            if(PlayerPrefs.GetInt("booty_" +4) >= 10)  //부산물 확인
+            if(PlayerPrefs.GetInt("booty_" +4) >= 40)  //부산물 확인
             {
                 current_booty = PlayerPrefs.GetInt("booty_" + 4);
                 current_bls_Lv = PlayerPrefs.GetInt("bls_" + current_select_blessing);
                 PlayerPrefs.SetInt("bls_" + current_select_blessing, current_bls_Lv+1);
-                PlayerPrefs.SetInt("booty_" + 4, current_booty - 10); 
+                PlayerPrefs.SetInt("booty_" + 4, current_booty - 40); 
+                SoundManager.Instance.upgrade_button_sound();
+            } else {
+                goToPanel.Instance.show_noticePanel();
+                goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "자원이 부족합니다.";
             }
         }
         else if(PlayerPrefs.GetInt("bls_" + current_select_blessing) == 8 && PlayerPrefs.GetInt("bls_" + current_select_blessing) != 10) //가호의 레벨이 7일 떄
         {
-            if(PlayerPrefs.GetInt("booty_" +5) >= 5)  //부산물 확인
+            if(PlayerPrefs.GetInt("booty_" +5) >= 45)  //부산물 확인
             {
                 current_booty = PlayerPrefs.GetInt("booty_" + 5);
                 current_bls_Lv = PlayerPrefs.GetInt("bls_" + current_select_blessing);
                 PlayerPrefs.SetInt("bls_" + current_select_blessing, current_bls_Lv+1);
-                PlayerPrefs.SetInt("booty_" + 5, current_booty - 5); 
+                PlayerPrefs.SetInt("booty_" + 5, current_booty - 45); 
+                SoundManager.Instance.upgrade_button_sound();
+            } else {
+                goToPanel.Instance.show_noticePanel();
+                goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "자원이 부족합니다.";
             }
         }
         else if(PlayerPrefs.GetInt("bls_" + current_select_blessing) == 9 && PlayerPrefs.GetInt("bls_" + current_select_blessing) != 10) //가호의 레벨이 7일 떄
         {
-            if(PlayerPrefs.GetInt("booty_" +5) >= 10)  //부산물 확인
+            if(PlayerPrefs.GetInt("booty_" +5) >= 50)  //부산물 확인
             {
                 current_booty = PlayerPrefs.GetInt("booty_" + 5);
                 current_bls_Lv = PlayerPrefs.GetInt("bls_" + current_select_blessing);
                 PlayerPrefs.SetInt("bls_" + current_select_blessing, current_bls_Lv+1);
-                PlayerPrefs.SetInt("booty_" + 5, current_booty - 10); 
+                PlayerPrefs.SetInt("booty_" + 5, current_booty - 50); 
+                SoundManager.Instance.upgrade_button_sound();
+            } else {
+                goToPanel.Instance.show_noticePanel();
+                goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "자원이 부족합니다.";
             }
+        }
+        else 
+        {
+            goToPanel.Instance.show_noticePanel();
+            goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "최고레벨 입니다.";
         }
         UpgradeButton.Instance.UpdateUpgrade();   //ui에 바로 비용을 표시하기 위해 바로 db에 저장 set함
         show_require_booty(PlayerPrefs.GetInt("bls_" + current_select_blessing));
@@ -198,74 +243,74 @@ public class BlessingExchange : MonoBehaviour
         }
         else if(lv == 2)
         {   booty_name.text = "철 주괴";
-            if(PlayerPrefs.GetInt("booty_" + 2) >= 5)
+            if(PlayerPrefs.GetInt("booty_" + 2) >= 15)
             {
-                require_booty_text.text ="<color=#008000>" + PlayerPrefs.GetInt("booty_" + 2) + " / 5" + "</Color>";
+                require_booty_text.text ="<color=#008000>" + PlayerPrefs.GetInt("booty_" + 2) + " / 15" + "</Color>";
             } else {
-                require_booty_text.text ="<color=#ff0000>" + PlayerPrefs.GetInt("booty_" + 2) + " / 5" + "</Color>";
+                require_booty_text.text ="<color=#ff0000>" + PlayerPrefs.GetInt("booty_" + 2) + " / 15" + "</Color>";
             }  
         }
         else if(lv == 3)
         {   booty_name.text = "철 주괴";
-            if(PlayerPrefs.GetInt("booty_" + 2) >= 10)
+            if(PlayerPrefs.GetInt("booty_" + 2) >= 20)
             {
-                require_booty_text.text ="<color=#008000>" + PlayerPrefs.GetInt("booty_" + 2) + " / 10" + "</Color>";
+                require_booty_text.text ="<color=#008000>" + PlayerPrefs.GetInt("booty_" + 2) + " / 20" + "</Color>";
             } else {
-                require_booty_text.text ="<color=#ff0000>" + PlayerPrefs.GetInt("booty_" + 2) + " / 10" + "</Color>";
+                require_booty_text.text ="<color=#ff0000>" + PlayerPrefs.GetInt("booty_" + 2) + " / 20" + "</Color>";
             }  
         }
         else if(lv == 4)
         {   booty_name.text = "금 주괴";
-            if(PlayerPrefs.GetInt("booty_" + 3) >= 5)
+            if(PlayerPrefs.GetInt("booty_" + 3) >= 25)
             {
-                require_booty_text.text ="<color=#008000>" + PlayerPrefs.GetInt("booty_" + 3) + " / 5" + "</Color>";
+                require_booty_text.text ="<color=#008000>" + PlayerPrefs.GetInt("booty_" + 3) + " / 25" + "</Color>";
             } else {
-                require_booty_text.text ="<color=#ff0000>" + PlayerPrefs.GetInt("booty_" + 3) + " / 5" + "</Color>";
+                require_booty_text.text ="<color=#ff0000>" + PlayerPrefs.GetInt("booty_" + 3) + " / 25" + "</Color>";
             }  
         }
         else if(lv == 5)
         {   booty_name.text = "금 주괴";
-            if(PlayerPrefs.GetInt("booty_" + 3) >= 10)
+            if(PlayerPrefs.GetInt("booty_" + 3) >= 30)
             {
-                require_booty_text.text ="<color=#008000>" + PlayerPrefs.GetInt("booty_" + 3) + " / 10" + "</Color>";
+                require_booty_text.text ="<color=#008000>" + PlayerPrefs.GetInt("booty_" + 3) + " / 30" + "</Color>";
             } else {
-                require_booty_text.text ="<color=#ff0000>" + PlayerPrefs.GetInt("booty_" + 3) + " / 10" + "</Color>";
+                require_booty_text.text ="<color=#ff0000>" + PlayerPrefs.GetInt("booty_" + 3) + " / 30" + "</Color>";
             }  
         }
         else if(lv == 6)
         {   booty_name.text = "다이아몬드";
-            if(PlayerPrefs.GetInt("booty_" + 4) >= 5)
+            if(PlayerPrefs.GetInt("booty_" + 4) >= 35)
             {
-                require_booty_text.text ="<color=#008000>" + PlayerPrefs.GetInt("booty_" + 4) + " / 5" + "</Color>";
+                require_booty_text.text ="<color=#008000>" + PlayerPrefs.GetInt("booty_" + 4) + " / 35" + "</Color>";
             } else {
-                require_booty_text.text ="<color=#ff0000>" + PlayerPrefs.GetInt("booty_" + 4) + " / 5" + "</Color>";
+                require_booty_text.text ="<color=#ff0000>" + PlayerPrefs.GetInt("booty_" + 4) + " / 35" + "</Color>";
             }  
         }
         else if(lv == 7)
         {   booty_name.text = "다이아몬드";
-            if(PlayerPrefs.GetInt("booty_" + 4) >= 10)
+            if(PlayerPrefs.GetInt("booty_" + 4) >= 40)
             {
-                require_booty_text.text ="<color=#008000>" + PlayerPrefs.GetInt("booty_" + 4) + " / 10" + "</Color>";
+                require_booty_text.text ="<color=#008000>" + PlayerPrefs.GetInt("booty_" + 4) + " / 40" + "</Color>";
             } else {
-                require_booty_text.text ="<color=#ff0000>" + PlayerPrefs.GetInt("booty_" + 4) + " / 10" + "</Color>";
+                require_booty_text.text ="<color=#ff0000>" + PlayerPrefs.GetInt("booty_" + 4) + " / 40" + "</Color>";
             }  
         }
         else if(lv == 8)
         {   booty_name.text = "오리하르콘";
-            if(PlayerPrefs.GetInt("booty_" + 5) >= 5)
+            if(PlayerPrefs.GetInt("booty_" + 5) >= 45)
             {
-                require_booty_text.text ="<color=#008000>" + PlayerPrefs.GetInt("booty_" + 5) + " / 5" + "</Color>";
+                require_booty_text.text ="<color=#008000>" + PlayerPrefs.GetInt("booty_" + 5) + " / 45" + "</Color>";
             } else {
-                require_booty_text.text ="<color=#ff0000>" + PlayerPrefs.GetInt("booty_" + 5) + " / 5" + "</Color>";
+                require_booty_text.text ="<color=#ff0000>" + PlayerPrefs.GetInt("booty_" + 5) + " / 45" + "</Color>";
             }  
         }
         else if(lv == 9)
         {   booty_name.text = "오리하르콘";
-            if(PlayerPrefs.GetInt("booty_" + 5) >= 10)
+            if(PlayerPrefs.GetInt("booty_" + 5) >= 50)
             {
-                require_booty_text.text ="<color=#008000>" + PlayerPrefs.GetInt("booty_" + 5) + " / 10" + "</Color>";
+                require_booty_text.text ="<color=#008000>" + PlayerPrefs.GetInt("booty_" + 5) + " / 50" + "</Color>";
             } else {
-                require_booty_text.text ="<color=#ff0000>" + PlayerPrefs.GetInt("booty_" + 5) + " / 10" + "</Color>";
+                require_booty_text.text ="<color=#ff0000>" + PlayerPrefs.GetInt("booty_" + 5) + " / 50" + "</Color>";
             }  
         }
         else {

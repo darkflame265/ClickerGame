@@ -29,6 +29,11 @@ public class SummonSystem : MonoBehaviour
     public Text text_Timer;
     public Text text_Heart;
 
+    public Sprite[] booty_pack = new Sprite[0];
+    public Sprite coin_img;
+    public Sprite artifact_ticket_img;
+    public Sprite power_ticket_img;
+
     public long common_summon_current_heart   
     {
         get
@@ -90,7 +95,7 @@ public class SummonSystem : MonoBehaviour
         LimitTime = common_summon_limit_time - DataController.Instance.timeAfterLastPlay;
         current_heart = common_summon_current_heart;
         max_heart = common_summon_max_heart;
-        StartCoroutine("check_char_exist");
+        //StartCoroutine("check_char_exist");
         StartCoroutine("Timer");
     }
 
@@ -211,7 +216,7 @@ public class SummonSystem : MonoBehaviour
                 clone.transform.SetParent(tranform_canvas);
 
                 clone.transform.GetChild(0).gameObject.SetActive(true);
-                clone.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>("Image/UI/Freeui/ZOSMA/Main/Coin");
+                clone.GetComponentInChildren<Image>().sprite = coin_img;
             }
 
             if(result == 3)    //음식
@@ -240,11 +245,11 @@ public class SummonSystem : MonoBehaviour
                 PlayerPrefs.SetInt("booty_" + i, current_booty + 3);
                 String booty_name = null;
                 Sprite booty_img = null;
-                if(i == 1) { booty_name = "납 주괴"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/ingots"); }
-                else if(i == 2) { booty_name = "철 주괴"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/Iron"); }
-                else if(i == 3) { booty_name = "금 주괴"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/Gold"); }
-                else if(i == 4) { booty_name = "다이아몬드"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/Gem_03"); }
-                else if(i == 5) { booty_name = "오리하르콘"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/Crystal_01"); }
+                if(i == 1) { booty_name = "납 주괴"; booty_img = booty_pack[0]; }
+                else if(i == 2) { booty_name = "철 주괴"; booty_img = booty_pack[1]; }
+                else if(i == 3) { booty_name = "금 주괴"; booty_img = booty_pack[2]; }
+                else if(i == 4) { booty_name = "다이아몬드"; booty_img = booty_pack[3]; }
+                else if(i == 5) { booty_name = "오리하르콘"; booty_img = booty_pack[4]; }
 
                 var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
                 clone.GetComponent<FloatingText>().text.text = booty_name + " +3";
@@ -303,7 +308,7 @@ public class SummonSystem : MonoBehaviour
                 SoundManager.Instance.click_get_item_sound();
                 int i = UnityEngine.Random.Range(0, 4); //0~3
 
-                for(int n =0; n < 3; n++)
+                for(int n =0; n < 2; n++)
                 {
                     inventory.AddItem(i);
                 }
@@ -312,7 +317,7 @@ public class SummonSystem : MonoBehaviour
                 Sprite image = inventory.database.FetchItemByID(i).Sprite;
 
                 var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
-                clone.GetComponent<FloatingText>().text.text = item + " X3";
+                clone.GetComponent<FloatingText>().text.text = item + " X2";
                 clone.transform.SetParent(tranform_canvas);
 
                 clone.transform.GetChild(0).gameObject.SetActive(true);
@@ -328,11 +333,11 @@ public class SummonSystem : MonoBehaviour
                 PlayerPrefs.SetInt("booty_" + i, current_booty + 5);
                 String booty_name = null;
                 Sprite booty_img = null;
-                if(i == 1) { booty_name = "납 주괴"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/ingots"); }
-                else if(i == 2) { booty_name = "철 주괴"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/Iron"); }
-                else if(i == 3) { booty_name = "금 주괴"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/Gold"); }
-                else if(i == 4) { booty_name = "다이아몬드"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/Gem_03"); }
-                else if(i == 5) { booty_name = "오리하르콘"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/Crystal_01"); }
+                if(i == 1) { booty_name = "납 주괴"; booty_img = booty_pack[0]; }
+                else if(i == 2) { booty_name = "철 주괴"; booty_img = booty_pack[1]; }
+                else if(i == 3) { booty_name = "금 주괴"; booty_img = booty_pack[2]; }
+                else if(i == 4) { booty_name = "다이아몬드"; booty_img = booty_pack[3]; }
+                else if(i == 5) { booty_name = "오리하르콘"; booty_img = booty_pack[4]; }
 
                 var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
                 clone.GetComponent<FloatingText>().text.text = booty_name + " +5";
@@ -350,6 +355,9 @@ public class SummonSystem : MonoBehaviour
                 var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
                 clone.GetComponent<FloatingText>().text.text = "유물 뽑기권+1";
                 clone.transform.SetParent(tranform_canvas);
+
+                clone.transform.GetChild(0).gameObject.SetActive(true);
+                clone.GetComponentInChildren<Image>().sprite = artifact_ticket_img;
             }
             DataController.Instance.diamond -= require_diamond;
         }
@@ -388,12 +396,22 @@ public class SummonSystem : MonoBehaviour
                 result = 4; // 권능해방
             }
             
-            if(result == 1)     //음식X10
+            if(result == 1)     //꽝
+            {
+                SoundManager.Instance.click_get_item_sound();  //꽝
+                var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
+                clone.GetComponent<FloatingText>().text.text = " 꽝 ";
+                clone.transform.SetParent(tranform_canvas);
+
+                
+            }
+
+            if(result == 2)    //음식 3개
             {
                 SoundManager.Instance.click_get_item_sound();
                 int i = UnityEngine.Random.Range(0, 4); //0~3
 
-                for(int n =0; n < 10; n++)
+                for(int n =0; n < 3; n++)
                 {
                     inventory.AddItem(i);
                 }
@@ -402,40 +420,30 @@ public class SummonSystem : MonoBehaviour
                 Sprite image = inventory.database.FetchItemByID(i).Sprite;
 
                 var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
-                clone.GetComponent<FloatingText>().text.text = item + " X10";
+                clone.GetComponent<FloatingText>().text.text = item + " X3";
                 clone.transform.SetParent(tranform_canvas);
 
                 clone.transform.GetChild(0).gameObject.SetActive(true);
                 clone.GetComponentInChildren<Image>().sprite = image;
-            }
-
-            if(result == 2)    //모든광물 10개
-            {
-                SoundManager.Instance.click_get_item_sound();
-
-                for(int i = 1; i < 6; i++)
-                {   
-                    int current_booty = PlayerPrefs.GetInt("booty_" + i);
-                    PlayerPrefs.SetInt("booty_" + i, current_booty + 10);
-                    String booty_name = null;
-                    Sprite booty_img = null;
-                    if(i == 1) { booty_name = "납 주괴"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/ingots"); }
-                    else if(i == 2) { booty_name = "철 주괴"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/Iron"); }
-                    else if(i == 3) { booty_name = "금 주괴"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/Gold"); }
-                    else if(i == 4) { booty_name = "다이아몬드"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/Gem_03"); }
-                    else if(i == 5) { booty_name = "오리하르콘"; booty_img = Resources.Load<Sprite>("Image/Item/Icons/Crystal_01"); }
-
-                    var clone = Instantiate(prefab_floating_text, new Vector3(-6, i-2), Quaternion.Euler(Vector3.zero));
-                    clone.GetComponent<FloatingText>().text.text = booty_name + " +10";
-                    clone.transform.SetParent(tranform_canvas);
-
-                    clone.transform.GetChild(0).gameObject.SetActive(true);
-                    clone.GetComponentInChildren<Image>().sprite = booty_img;
-                }
                 
             }
 
             if(result == 3)  //유물뽑기권
+            {
+               SoundManager.Instance.click_get_item_sound();
+            
+                DataController.Instance.power_ticket++;
+                var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
+                clone.GetComponent<FloatingText>().text.text = "권능 해방+1";
+                clone.transform.SetParent(tranform_canvas);
+
+                clone.transform.GetChild(0).gameObject.SetActive(true);
+                clone.GetComponentInChildren<Image>().sprite = power_ticket_img;
+
+                
+            }
+
+            if(result == 4)
             {
                 SoundManager.Instance.click_get_item_sound();
                 
@@ -443,16 +451,9 @@ public class SummonSystem : MonoBehaviour
                 var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
                 clone.GetComponent<FloatingText>().text.text = "유물 뽑기권+1";
                 clone.transform.SetParent(tranform_canvas);
-            }
 
-            if(result == 4)
-            {
-                SoundManager.Instance.click_get_item_sound();
-                
-                DataController.Instance.power_ticket++;
-                var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
-                clone.GetComponent<FloatingText>().text.text = "권능 해방+1";
-                clone.transform.SetParent(tranform_canvas);
+                clone.transform.GetChild(0).gameObject.SetActive(true);
+                clone.GetComponentInChildren<Image>().sprite = artifact_ticket_img;
             }
             DataController.Instance.diamond -= require_diamond;
         }

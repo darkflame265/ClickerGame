@@ -12,11 +12,15 @@ public class SoundManager : MonoBehaviour
     public AudioClip getItemSound1;
     public AudioClip getItemSound2;
     public AudioClip getChallengeReward;
+    public AudioClip fight_panel_click_sound;
 
     public GameObject bgm_controller;
 
     public GameObject bgm_btn;
     public GameObject effect_btn;
+
+    public AudioClip victory_sound;
+    public AudioClip defeat_sound;
 
 
     private static SoundManager instance;
@@ -43,9 +47,24 @@ public class SoundManager : MonoBehaviour
     
     void Start()
     {
+        if(!PlayerPrefs.HasKey("bgmState"))
+        {
+            PlayerPrefs.SetInt("bgmState", 1);
+        }
+
+        if(!PlayerPrefs.HasKey("effectState"))
+        {
+            PlayerPrefs.SetInt("effectState", 1);
+        }
+
         if(PlayerPrefs.GetInt("bgmState") == 1)
         {
-            bgm_controller.GetComponent<AudioSource>().volume = 1f;
+            if(bgm_controller.GetComponent<BgmManager>().audioSource.clip == bgm_controller.GetComponent<BgmManager>().bgm_pack[2])
+            {
+                bgm_controller.GetComponent<AudioSource>().volume = 0.712f;
+            } else {
+                bgm_controller.GetComponent<AudioSource>().volume = 0.256f;
+            }
             bgm_btn.GetComponent<Image>().color = new Color(1f, 1f, 1f);
 
         } else {
@@ -102,6 +121,7 @@ public class SoundManager : MonoBehaviour
     public void click_get_item_sound()
     {
         audioSource.clip = getItemSound0;
+        audioSource.volume = 0.256f;
         audioSource.Play();
     }
 
@@ -115,14 +135,35 @@ public class SoundManager : MonoBehaviour
     public void upgrade_button_sound()
     {
         audioSource.clip = getItemSound2;
-        audioSource.volume = 0.369f;
+        audioSource.volume = 0.256f;
         audioSource.Play();
     }
 
     public void get_challenge_reward()
     {
         audioSource.clip = getChallengeReward;
-        audioSource.volume = 0.369f;
+        audioSource.volume = 0.8f;
+        audioSource.Play();
+    }
+
+    public void play_fight_panel_btn_sound()
+    {
+        audioSource.clip = fight_panel_click_sound;
+        audioSource.volume = 0.5f;
+        audioSource.Play();
+    }
+
+    public void play_victory_sound()
+    {
+        audioSource.clip = victory_sound;
+        audioSource.volume = 0.5f;
+        audioSource.Play();
+    }
+
+    public void play_defeat_sound()
+    {
+        audioSource.clip = defeat_sound;
+        audioSource.volume = 0.5f;
         audioSource.Play();
     }
 

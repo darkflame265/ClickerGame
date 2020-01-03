@@ -25,7 +25,16 @@ public class TrollController : MonoBehaviour
     public GameObject prefab_floating_text;
 
 
+    public float xMov;
     void Start(){
+        if(DataController.Instance.current_stage <= 100)
+        {
+            xMov = Random.Range(-0.05f, -0.10f);
+        } else if (DataController.Instance.current_stage <= 200) {
+            xMov = Random.Range(-0.10f, -0.15f);
+        } else if (DataController.Instance.current_stage <= 300) {
+            xMov = Random.Range(-0.20f, -0.30f);
+        } else xMov = -0.05f;
         animator = GetComponent<Animator>();
         damage = GetComponent<EnemyController>().damage;
         StartCoroutine("char_position");
@@ -104,9 +113,6 @@ public class TrollController : MonoBehaviour
 
     public void Move()
     {
-        float xMov = -0.05f;
-        //float distance = Vector3.Distance(other.position, this.transform.position);
-        
         if(movebool == true)
         {
             if(this.GetComponent<EnemyController>().timestop == false)
@@ -155,7 +161,7 @@ public class TrollController : MonoBehaviour
                 A.Clear();
             }
 
-            if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 1f)
+            if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 3f)
             {
                 movebool = false;
                 allAnimatorStop();
@@ -170,6 +176,28 @@ public class TrollController : MonoBehaviour
         {
             movebool = false;
         }
+    }
+
+    public void check_current_height()
+    {            //45 - > 165 y축]
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("walk") && this.transform.localPosition.y >= 100f)
+        {
+            Debug.Log("wwwwwwwwwwwww");
+            this.transform.position = new Vector3(transform.position.x, this.transform.position.y-1f, transform.position.z);
+        }
+        else if(animator.GetCurrentAnimatorStateInfo(0).IsName("attack") && this.transform.localPosition.y <= 46f)
+        {
+            Debug.Log("arrrrrrrrrrrrrrrr");
+            this.transform.position = new Vector3(transform.position.x, this.transform.position.y+1f, transform.position.z);
+        }
+        Debug.Log("this.transform.localPosition.y : " + this.transform.localPosition.y);
+        // if(this.transform.localPosition.y < 2f)
+        // {
+        //     Debug.Log("oraaaaa");
+        // }
+        // else {
+        //    Debug.Log("wrrrrrrrrrrrrrrrrrry");
+        // }
     }
     
 

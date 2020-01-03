@@ -71,25 +71,25 @@ public class checkPressedBtn : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     public void complate_point_up()
     {
-        if(DataController.Instance.freestate >= 1 && isHealthUp == true && pointerDownTimer > 1.5f)
+        if(DataController.Instance.freestate >= 1 && isHealthUp == true && pointerDownTimer > 1f)
         {
             DataController.Instance.health += 1;
             DataController.Instance.freestate -= 1;
         }
 
-        else if(DataController.Instance.freestate >= 1 && isAttackUp == true && pointerDownTimer > 1.5f)
+        else if(DataController.Instance.freestate >= 1 && isAttackUp == true && pointerDownTimer > 1f)
         {
             DataController.Instance.attack += 1;
             DataController.Instance.freestate -= 1;
         }
 
-        else if(DataController.Instance.freestate >= 1 && ismanaUp == true && pointerDownTimer > 1.5f)
+        else if(DataController.Instance.freestate >= 1 && ismanaUp == true && pointerDownTimer > 1f)
         {
             DataController.Instance.mana += 1;
             DataController.Instance.freestate -= 1;
         }
 
-        else if(DataController.Instance.freestate >= 1 && isSpecialUp == true && pointerDownTimer > 1.5f)
+        else if(DataController.Instance.freestate >= 1 && isSpecialUp == true && pointerDownTimer > 1f)
         {
             DataController.Instance.special += 1;
             DataController.Instance.freestate -= 1;

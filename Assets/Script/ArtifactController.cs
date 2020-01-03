@@ -8,9 +8,8 @@ using UnityEngine.EventSystems;
 public class ArtifactController : MonoBehaviour
 {
     public GameObject SelectFrame1;
-    public static int artifact_size = 13;
 
-    public GameObject[] artifact = new GameObject[artifact_size];
+    public GameObject[] artifact = new GameObject[0];
 
     public static void SetBool(string key, bool value)
     {
@@ -20,7 +19,7 @@ public class ArtifactController : MonoBehaviour
             PlayerPrefs.SetInt(key, 0);
     }
 
-    public string []artifact_id = new string[artifact_size];
+    public string []artifact_id = new string[0];
 
     public Text get_artifact_text;
     public Image get_artifact_image;
@@ -39,7 +38,8 @@ public class ArtifactController : MonoBehaviour
 
     List<string> artifact_name = new List<string>();
     List<string> artifact_effect = new List<string>();
-    List<string> artifact_image = new List<string>();
+
+    public Sprite[] artifact_image = new Sprite[0];
 
     private static ArtifactController instance;
 
@@ -64,7 +64,6 @@ public class ArtifactController : MonoBehaviour
         StartCoroutine("CheckArtifact");
         insert_artifact_name_toList();
         insert_artifact_effect_toList();
-        insert_artifact_Image_toList();
     }
 
     
@@ -74,7 +73,7 @@ public class ArtifactController : MonoBehaviour
         while(true)
         {
             yield return new WaitForSeconds(0.2f);
-            for(int i = 0; i < artifact_size; i++)
+            for(int i = 0; i < artifact.Length; i++)
             {
                 if(PlayerPrefs.GetInt(artifact_id[i]) == 1)
                 {
@@ -92,7 +91,7 @@ public class ArtifactController : MonoBehaviour
     public bool check_artifact_full()
     {
         int count = 0;
-        for(int i = 0; i < artifact_size; i++)
+        for(int i = 0; i < artifact.Length; i++)
             {
                 if(PlayerPrefs.GetInt(artifact_id[i]) == 1)
                 {
@@ -100,7 +99,7 @@ public class ArtifactController : MonoBehaviour
                 }
             }
 
-        if(count == artifact_size)
+        if(count == artifact.Length)
         {
             return true;
         }
@@ -121,13 +120,12 @@ public class ArtifactController : MonoBehaviour
 
     public void init_artifact()
     {
-        for(int i = 0; i < artifact_size; i++)
+        for(int i = 0; i < artifact.Length; i++)
         {
             PlayerPrefs.SetInt(artifact_id[i], 0);
         }
         DataController.Instance.artifactCost = 100;
         full = false;
-        Debug.Log("Artifact_Size = " + artifact_size);
     }
 
 
@@ -135,18 +133,14 @@ public class ArtifactController : MonoBehaviour
     {
         get_artifact_name.text = artifact_name[i];
         get_artifact_explain.text = artifact_effect[i]; 
-
-        //get_artifact_image.sprite = EventSystem.current.currentSelectedGameObject.GetComponent<Image>().sprite;
-        //"Image/Artifact/RPG icons/512X512/surihan"
-        //string image_address = artifact_image[i];
-        get_artifact_image.sprite = Resources.Load<Sprite>(artifact_image[i]) as Sprite;
+        get_artifact_image.sprite = artifact_image[i];
     }
 
    
     public void add_artifact()
     {
         
-        int itemNum = Random.Range(0, 13); //0~12 13제외
+        int itemNum = Random.Range(0, artifact.Length); //0~12 13제외
         if(DataController.Instance.artifact_ticket == 0)
         {
             goToPanel.Instance.show_noticePanel();
@@ -166,7 +160,7 @@ public class ArtifactController : MonoBehaviour
 
             else if(full == false)
             {
-                Debug.Log("random_artifact: " + itemNum);
+
                 if(itemNum == 0)
                 {
                     if(artifact[0].activeSelf == true)  //서리한
@@ -178,6 +172,7 @@ public class ArtifactController : MonoBehaviour
                         
                         SetBool("ar0", true);
                         DataController.Instance.attack += 500;
+                        DataController.Instance.MultiplyGoldPerClick(2);
                         set_get_artifact_information(0);
                         calculation_cost();
 
@@ -365,10 +360,63 @@ public class ArtifactController : MonoBehaviour
                         calculation_cost();
                     }
                 }
+
+                //여기서부터 유물 추가
+                else if(itemNum == 13)           //체력빨간돌
+                {
+                    if(artifact[13].activeSelf == true)
+                    {
+                        add_artifact();
+                    }
+                    else
+                    {
+                        
+                        SetBool("ar13", true);
+                        DataController.Instance.health += 500;
+                        DataController.Instance.MultiplyGoldPerClick(2);
+                        set_get_artifact_information(13);
+                        calculation_cost();
+                    }
+                }
+                else if(itemNum == 14)           //민첩초록돌
+                {
+                    if(artifact[14].activeSelf == true)
+                    {
+                        add_artifact();
+                    }
+                    else
+                    {
+                        
+                        SetBool("ar14", true);
+                        DataController.Instance.mana += 500;
+                        DataController.Instance.MultiplyGoldPerClick(2);
+                        set_get_artifact_information(14);
+                        calculation_cost();
+                    }
+                }
+
+                else if(itemNum == 15)           //스공돌
+                {
+                    if(artifact[15].activeSelf == true)
+                    {
+                        add_artifact();
+                    }
+                    else
+                    {
+                        
+                        SetBool("ar15", true);
+                        DataController.Instance.special += 500;
+                        DataController.Instance.MultiplyGoldPerClick(2);
+                        set_get_artifact_information(15);
+                        calculation_cost();
+                    }
+                }
+
+
                 else{
                     add_artifact();
-                    Debug.Log("에러남");
                 }
+                SoundManager.Instance.upgrade_button_sound();
             }
         }
     }
@@ -400,6 +448,10 @@ public class ArtifactController : MonoBehaviour
         artifact_name.Add("청룡 투구");
         artifact_name.Add("마나 링IV");
         artifact_name.Add("피어드 링");
+
+        artifact_name.Add("블러드 큐브");
+        artifact_name.Add("바람의 돌");
+        artifact_name.Add("마나 증폭제");
     }
 
     void insert_artifact_effect_toList()
@@ -422,28 +474,16 @@ public class ArtifactController : MonoBehaviour
         artifact_effect.Add("체력 +100");
         artifact_effect.Add("스킬공격력 +100");
         artifact_effect.Add("스킬공격력 +100");
-    }
 
-    void insert_artifact_Image_toList()
-    {
-        artifact_image.Add("Image/Artifact/RPG icons/512X512/surihan");
-        artifact_image.Add("Image/Artifact/RPG icons/512X512/rubynate");
-        artifact_image.Add("Image/Artifact/RPG icons/512X512/mana_abyss");
-        artifact_image.Add("Image/Artifact/RPG icons/512X512/doom");
-        artifact_image.Add("Image/Artifact/RPG icons/512X512/dragon_armor");
-        artifact_image.Add("Image/Artifact/RPG icons/512X512/blood_helverd");
-        artifact_image.Add("Image/Artifact/RPG icons/512X512/murder_axe");
-        artifact_image.Add("Image/Artifact/RPG icons/512X512/thunder_axe");
-        artifact_image.Add("Image/Artifact/RPG icons/512X512/gold_crossbow");
-        artifact_image.Add("Image/Artifact/RPG icons/512X512/romie_helmet");
-        artifact_image.Add("Image/Artifact/RPG icons/512X512/seaDragon_helmet");
-        artifact_image.Add("Image/Artifact/RPG icons/512X512/mana_ringIV");
-        artifact_image.Add("Image/Artifact/RPG icons/512X512/feered_ring");
+        artifact_effect.Add("체력 +500, 골드 흭득량 2배");
+        artifact_effect.Add("민첩 +500, 골드 흭득량 2배");
+        artifact_effect.Add("스킬공격력 +500, 골드 흭득량 2배");
     }
 
 
     public void show_artifact_inform()
     {
+
         for(int i = 0; i <= artifact.Length-1; i++)
         {
             if(EventSystem.current.currentSelectedGameObject == artifact[i])
@@ -457,7 +497,6 @@ public class ArtifactController : MonoBehaviour
     public void MyPosition (Transform transform)
     {
         var tra = transform;
-        Debug.Log("Clicked button pos:" + tra.position);
         SelectFrame1.SetActive(true);
         SelectFrame1.transform.position = tra.position;
         SelectFrame1.transform.parent = tra.transform;

@@ -95,6 +95,8 @@ public class goToPanel : MonoBehaviour
     public GameObject[] chapter1_panel;
     public Image chapter2_img;
     public GameObject[] chapter2_panel;
+    public Image chapter3_img;
+    public GameObject[] chapter3_panel;
 
     public GameObject stage_1_panel;
     public GameObject stage_2_panel;
@@ -106,10 +108,19 @@ public class goToPanel : MonoBehaviour
     public GameObject stage_8_panel;
     public GameObject stage_9_panel;
     public GameObject stage_10_panel;
+    public GameObject stage_11_panel;
+    public GameObject stage_12_panel;
+    public GameObject stage_13_panel;
+    public GameObject stage_14_panel;
+    public GameObject stage_15_panel;
+
     public GameObject battleScene_panel;
     public GameObject mapClone;
     public GameObject battle_pause_panel;
     public GameObject result_panel;
+
+    public Sprite triangle_left_sprite;
+    public Sprite triangle_right_sprite;
 
 
     bool IsPause;
@@ -361,6 +372,8 @@ public class goToPanel : MonoBehaviour
     public void show_challenge_panel()
     {
         challenge_panel.SetActive(true);
+        //ChallengeMissionSystem.Instance.set_chellenge_text();
+        ChallengeMissionSystem.Instance.first_Text();
     }
 
     public void hide_challenge_panel()
@@ -410,30 +423,48 @@ public class goToPanel : MonoBehaviour
 
     public void show_chapter1_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
         for(int i = 0; i < chapter1_panel.Length; i++)
         {
             chapter1_panel[i].SetActive(!chapter1_panel[i].activeSelf);
         }
         if(chapter1_panel[0].activeSelf == false)
         {
-            chapter1_img.sprite = Resources.Load<Sprite>("Image/UI/simple UI & icons/button/button_triangle_right") as Sprite;
+            chapter1_img.sprite = triangle_right_sprite;
         } else {
-            chapter1_img.sprite = Resources.Load<Sprite>("Image/UI/simple UI & icons/button/button_triangle_left") as Sprite;
+            chapter1_img.sprite = triangle_left_sprite;
         }
         //battle_scrollbarr.GetComponent<Scrollbar>().value = 1f;
     }
 
     public void show_chapter2_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
         for(int i = 0; i < chapter2_panel.Length; i++)
         {
             chapter2_panel[i].SetActive(!chapter2_panel[i].activeSelf);
         }
         if(chapter2_panel[0].activeSelf == false)
         {
-            chapter2_img.sprite = Resources.Load<Sprite>("Image/UI/simple UI & icons/button/button_triangle_right") as Sprite;
+            chapter2_img.sprite = triangle_right_sprite;
         } else {
-            chapter2_img.sprite = Resources.Load<Sprite>("Image/UI/simple UI & icons/button/button_triangle_left") as Sprite;
+            chapter2_img.sprite = triangle_left_sprite;
+        }
+        //battle_scrollbarr.GetComponent<Scrollbar>().value = 1f;
+    }
+
+    public void show_chapter3_panel()
+    {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+        for(int i = 0; i < chapter3_panel.Length; i++)
+        {
+            chapter3_panel[i].SetActive(!chapter3_panel[i].activeSelf);
+        }
+        if(chapter3_panel[0].activeSelf == false)
+        {
+            chapter3_img.sprite = triangle_right_sprite;
+        } else {
+            chapter3_img.sprite = triangle_left_sprite;
         }
         //battle_scrollbarr.GetComponent<Scrollbar>().value = 1f;
     }
@@ -574,7 +605,54 @@ public class goToPanel : MonoBehaviour
     public void show_stage_10_panel()
     {
         stage_10_panel.SetActive(true);
-        //stage_explain_panel.SetActive(true);
+    }
+
+    public void show_stage_11_panel()
+    {
+        stage_11_panel.SetActive(true);
+    }
+
+    public void show_stage_12_panel()
+    {
+        stage_12_panel.SetActive(true);
+    }
+
+    public void show_stage_13_panel()
+    {
+        stage_13_panel.SetActive(true);
+    }
+
+    public void show_stage_14_panel()
+    {
+        stage_14_panel.SetActive(true);
+    }
+
+    public void show_stage_15_panel()
+    {
+        stage_15_panel.SetActive(true);
+    }
+
+    public void hide_all_stage_panel()
+    {
+        stage_1_panel.SetActive(false);
+        stage_2_panel.SetActive(false);
+        stage_3_panel.SetActive(false);
+        stage_4_panel.SetActive(false);
+        stage_5_panel.SetActive(false);
+        stage_6_panel.SetActive(false);
+        stage_7_panel.SetActive(false);
+        stage_8_panel.SetActive(false);
+        stage_9_panel.SetActive(false);
+        stage_10_panel.SetActive(false);
+        stage_11_panel.SetActive(false);
+        stage_12_panel.SetActive(false);
+        stage_13_panel.SetActive(false);
+        stage_14_panel.SetActive(false);
+        stage_15_panel.SetActive(false);
+        stage_explain_panel.SetActive(false);
+        stage_reward_explain_panel.SetActive(false);
+        show_current_stage.text = "";
+        Stage_explain.text = "";
     }
     public void hide_stage_10_panel()
     {
@@ -605,7 +683,7 @@ public class goToPanel : MonoBehaviour
     public void show_result_panel()
     {
         result_panel.SetActive(true);
-        Time.timeScale = 1;
+        Time.timeScale = 0;
     }
 
     public void hide_result_panel()
@@ -613,6 +691,7 @@ public class goToPanel : MonoBehaviour
         SetBool("getResult", true);
         Destroy(mapClone);
         result_panel.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void show_pause_panel()

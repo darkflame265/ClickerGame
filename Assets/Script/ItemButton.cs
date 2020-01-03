@@ -65,8 +65,8 @@ public class ItemButton : MonoBehaviour
     void Start()
     {
         //시작시 데이터 불러오기
-        DataController.Instance.LoadItemButton(this);
-        StartCoroutine("AddGoldLoop");
+        //DataController.Instance.LoadItemButton(this);
+        //StartCoroutine("AddGoldLoop");
         UpdateUI();
     }
 

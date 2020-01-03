@@ -60,7 +60,7 @@ public class Character : MonoBehaviour
 
     void setState()
     {
-        if(PowerController.Instance.return_power_list(16) == 1)
+        if(PowerController.Instance.return_power_list(16) == 1)    //체력 설정 : 체력 * (체력비율 + 체력가호)
         {
             float a;
             a = (DataController.Instance.health * (health_ratio + BlessingExchange.Instance.blessing_0_to_3_ratio[PlayerPrefs.GetInt("bls_0")])) * 10;

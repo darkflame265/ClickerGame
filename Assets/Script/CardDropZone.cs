@@ -106,8 +106,8 @@ public class CardDropZone : MonoBehaviour, IDropHandler
 
     public void reset()
     {
-        DataController.Instance.hero_0_ID = 0;
-        DataController.Instance.hero_1_ID = 0;
+        DataController.Instance.hero_0_ID = 0;     //front
+        DataController.Instance.hero_1_ID = 0;      //mid
         DataController.Instance.hero_2_ID = 0;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class wizardController : MonoBehaviour
 {
@@ -16,9 +17,7 @@ public class wizardController : MonoBehaviour
 
     public float speed = 5f;
 
-    float close_distance = 5f;
     GameObject close_enemy;
-    bool enemy_is_die = false;
 
     public GameObject prefab_floating_text;
 
@@ -113,7 +112,7 @@ public class wizardController : MonoBehaviour
                 allAnimatorStop();
                 animator.SetBool("isDeath", true);
                 yield return new WaitForSeconds(1f);
-                int eternityOn = Random.Range(1,100);
+                int eternityOn = UnityEngine.Random.Range(1,100);
                 GameObject[] gos = GameObject.FindGameObjectsWithTag("Player");
                
                 if(PowerController.Instance.return_power_list(21) == 1 && eternityOn < 36 &&  gos.Length < 8)
@@ -160,7 +159,7 @@ public class wizardController : MonoBehaviour
                 // {
                 //     break;
                 // }
-                if(A[i+1] != null)
+                try
                 {
                     if(Vector3.Distance(A[i].transform.position, this.transform.position) > Vector3.Distance(A[i+1].transform.position, this.transform.position))
                     {
@@ -168,6 +167,12 @@ public class wizardController : MonoBehaviour
                         A[i] = A[i+1];
                         A[i+1] = tmp;
                     }
+                }
+                catch (MissingReferenceException ie)
+                {
+                    Debug.Log(ie);
+                    A.Clear();
+                    A.Add(enemies[0]);
                 }
             }
  
@@ -184,18 +189,23 @@ public class wizardController : MonoBehaviour
         {
             //skill();
         }
-
-        if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 8f)
-        {
-            movebool = false;
-            allAnimatorStop();
-            animator.SetBool("isAttack", true);
-            WaitFotIt();
+        try {
+            if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 8f)
+            {
+                movebool = false;
+                allAnimatorStop();
+                animator.SetBool("isAttack", true);
+                WaitFotIt();
+            }
+            else
+            {
+                movebool = true;
+            }
         }
-        else
-        {
+        catch(MissingReferenceException) {
             movebool = true;
         }
+        
         
 
         if(enemies.Length == 0)

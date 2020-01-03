@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class ArcherController : MonoBehaviour
 {
@@ -16,9 +17,8 @@ public class ArcherController : MonoBehaviour
 
     public float speed = 5f;
 
-    float close_distance = 5f;
     GameObject close_enemy;
-    bool enemy_is_die = false;
+
 
     public GameObject prefab_floating_text;
 
@@ -149,7 +149,7 @@ public class ArcherController : MonoBehaviour
                     deathbool = true;
                 }
                 yield return new WaitForSeconds(1f);
-                int eternityOn = Random.Range(1,100);
+                int eternityOn = UnityEngine.Random.Range(1,100);
                 GameObject[] gos = GameObject.FindGameObjectsWithTag("Player");
                 if(PowerController.Instance.return_power_list(21) == 1 && eternityOn < 36 && gos.Length < 8)
                 {
@@ -194,12 +194,23 @@ public class ArcherController : MonoBehaviour
                 {
                     break;
                 }
-                if(Vector3.Distance(A[i].transform.position, this.transform.position) > Vector3.Distance(A[i+1].transform.position, this.transform.position))
+
+                try
                 {
-                    GameObject tmp = A[i];
-                    A[i] = A[i+1];
-                    A[i+1] = tmp;
+                    if(Vector3.Distance(A[i].transform.position, this.transform.position) > Vector3.Distance(A[i+1].transform.position, this.transform.position))
+                    {
+                        GameObject tmp = A[i];
+                        A[i] = A[i+1];
+                        A[i+1] = tmp;
+                    }
                 }
+                catch (MissingReferenceException ie)
+                {
+                    Debug.Log(ie);
+                    A.Clear();
+                    A.Add(enemies[0]);
+                }
+                
             }
             
             close_enemy = A[0];
@@ -215,18 +226,25 @@ public class ArcherController : MonoBehaviour
             Invoke("skill", 0.2f);
         }
           
-
-        if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 10f)
+        try
         {
-            movebool = false;
-            allAnimatorStop();
-            animator.SetBool("isAttack", true);
-            WaitFotIt();
+            if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 10f)
+            {
+                movebool = false;
+                allAnimatorStop();
+                animator.SetBool("isAttack", true);
+                WaitFotIt();
+            }
+            else
+            {
+                movebool = true;
+            }
         }
-        else
-        {
+        catch(MissingReferenceException) {
+            //Debug.Log(ie);
             movebool = true;
         }
+        
         
 
         if(enemies.Length == 0)

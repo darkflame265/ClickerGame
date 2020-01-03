@@ -23,13 +23,8 @@ public class summonController : MonoBehaviour
     public GameObject ice_gorem;
     public GameObject warm_monster;
 
-
     string[] summon_list = { "Bat", "Bat_2", "Spider", "Gorem", "BigGorem", "Troll", "goblin_general", "plant_monster", "ice_gorem", "warm_monster"};
     string summon_id;
-
-    
-
-    
 
     void Start()
     {   
@@ -118,8 +113,8 @@ public class summonController : MonoBehaviour
                 summon_cycle = defalut_cycle;
                 creature_count -= 1;
                 //Debug.Log("it's working");
-                float time = Random.Range(1, 5);
-                yield return new WaitForSeconds(time);
+                //float time = Random.Range(1, 5);
+                yield return new WaitForSeconds(summon_cycle);
             }
         }
     }

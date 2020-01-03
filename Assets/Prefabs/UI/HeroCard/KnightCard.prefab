@@ -102,7 +102,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6365407933632360060}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.99984187, y: 0.99984187, z: 0.99984187}
   m_Children:
@@ -165,8 +165,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93bd11dafc696724785d840f2dcc1d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  location: {fileID: 0}
   parentToReturnTo: {fileID: 0}
+  exist: 0
   typeOfHero: 1
+  Front: {fileID: 0}
+  Mid: {fileID: 0}
+  Back: {fileID: 0}
+  Hand: {fileID: 0}
+  hero_name: 
+  cardNum: 0
 --- !u!114 &6365407933632360062
 MonoBehaviour:
   m_ObjectHideFlags: 0

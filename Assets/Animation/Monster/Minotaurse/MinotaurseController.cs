@@ -31,7 +31,16 @@ public class MinotaurseController : MonoBehaviour
     public GameObject localpos;
 
 
+    public float xMov;
     void Start(){
+        if(DataController.Instance.current_stage <= 100)
+        {
+            xMov = Random.Range(-0.05f, -0.10f);
+        } else if (DataController.Instance.current_stage <= 200) {
+            xMov = Random.Range(-0.10f, -0.15f);
+        } else if (DataController.Instance.current_stage <= 300) {
+            xMov = Random.Range(-0.20f, -0.30f);
+        } else xMov = -0.05f;
         animator = GetComponent<Animator>();
         damage = GetComponent<EnemyController>().damage;
         StartCoroutine("char_position");
@@ -108,9 +117,6 @@ public class MinotaurseController : MonoBehaviour
 
     public void Move()
     {
-        float xMov = -0.05f;
-        //float distance = Vector3.Distance(other.position, this.transform.position);
-        
         if(movebool == true)
         {
            

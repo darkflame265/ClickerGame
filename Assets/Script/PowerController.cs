@@ -258,11 +258,11 @@ public class PowerController : MonoBehaviour
         {
             result = 1; // C등급
         }
-        else if(number > 0 && number <=700) // 30%
+        else if(number > 0 && number <=600) // 30%
         {
             result = 2; // B등급
         }
-        else if(number > 0 && number <=900) // 20%
+        else if(number > 0 && number <=800) // 20%
         {
             result = 3; // A등급
         }
@@ -620,17 +620,25 @@ public class PowerController : MonoBehaviour
                     if(get == true)
                     {
                         break;
-                    }
+                    }      
                     if(count == 50)
                     {
                         result = result + 1; //4개 전부다 보유중이므로 다른거 
-                        Debug.Log("네 개 다 보유중");
+                        goToPanel.Instance.show_noticePanel();
+                        goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "뽑을 수 있는 권능이 없습니다.";
+                        DataController.Instance.power_ticket++;
                         break;
-                    }
+                    } 
+                      
 
                 }
             }
+            SoundManager.Instance.upgrade_button_sound();
             DataController.Instance.power_ticket--;
+        }
+        else {
+            goToPanel.Instance.show_noticePanel();
+            goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "권능 뽑기권이 부족합니다.";
         }
         
 
@@ -852,7 +860,7 @@ public class PowerController : MonoBehaviour
 
     public void select_probability()
     {
-        PowerExplain.text = "   권능 확률   \nS급 10%\nA급 20%\nB급 30%\nC급 40%";
+        PowerExplain.text = "   권능 확률   \nEX급 1%\nS급 9%\nA급 20%\nB급 30%\nC급 40%";
     }
 
     public void MyPosition (Transform transform)

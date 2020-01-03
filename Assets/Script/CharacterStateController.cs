@@ -68,7 +68,9 @@ public class CharacterStateController : MonoBehaviour
 
     public static int skill_size = 15;
     public GameObject[]skill = new GameObject[skill_size];
+    public GameObject[]skill_empty = new GameObject[0];
     public GameObject[]skill1 = new GameObject[2];
+    public GameObject[]skill1_empty = new GameObject[0];
 
     public static void SetBool(string key, bool value)
     {
@@ -126,25 +128,25 @@ public class CharacterStateController : MonoBehaviour
 
     void insert_skill_effect_toList()
     {
-        skill_effect.Add("체력+20, 근력+10, 민첩+10, 마력+10, 클릭골드 2배");
-        skill_effect.Add("체력+50 근력+30, 클릭골드 3배");
-        skill_effect.Add("체력+100 클릭골드 4배");
-        skill_effect.Add("체력+200, 근력+100, 민첩+50, 스킬공격력+50 클릭골드 5배");
+        skill_effect.Add("체력+20, 근력+10, 민첩+10, 마력+10");
+        skill_effect.Add("체력+50 근력+30");
+        skill_effect.Add("체력+100");
+        skill_effect.Add("체력+200, 근력+100, 민첩+50, 스킬공격력+50");
 
-        skill_effect.Add("체력+5, 근력+20, 민첩+10, 클릭골드 2배");
-        skill_effect.Add("근력+50, 민첩+20, 클릭골드 3배");
-        skill_effect.Add("근력+75 클릭골드 4배");
-        skill_effect.Add("체력+100 근력+250, 민첩+100, 스킬공격력+50, 클릭골드 5배");
+        skill_effect.Add("체력+5, 근력+20, 민첩+10");
+        skill_effect.Add("근력+50, 민첩+20");
+        skill_effect.Add("근력+75");
+        skill_effect.Add("체력+100 근력+250, 민첩+100, 스킬공격력+50");
 
         skill_effect.Add("근력+5, 민첩+20, 스킬공격력+10, 클릭골드 2배");
         skill_effect.Add("민첩+50, 스킬공격력+30, 클릭골드 3배");
-        skill_effect.Add("민첩+75 클릭골드 5배");
-        skill_effect.Add("체력+50, 근력+100, 민첩+200, 스킬공격력+100, 클릭골드 10배");
+        skill_effect.Add("민첩+75 클릭골드 4배");
+        skill_effect.Add("체력+50, 근력+100, 민첩+200, 스킬공격력+100, 클릭골드 5배");
 
-        skill_effect.Add("체력+5, 민첩+10, 스킬공격력+20, 클릭골드 2배");
-        skill_effect.Add("민첩+30, 스킬공격력+50, 클릭골드 3배");
-        skill_effect.Add("스킬공격력+75, 클릭골드 4배");
-        skill_effect.Add("체력+100, 근력+50, 민첩+ 100, 스킬공격력+200, 클릭골드 5배");
+        skill_effect.Add("체력+5, 민첩+10, 스킬공격력+20");
+        skill_effect.Add("민첩+30, 스킬공격력+50");
+        skill_effect.Add("스킬공격력+75");
+        skill_effect.Add("체력+100, 근력+50, 민첩+ 100, 스킬공격력+200");
     }
 
     void insert_skill1_name_toList()
@@ -268,7 +270,7 @@ public class CharacterStateController : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.1f);
             
             check_exp();
             check_skill();
@@ -279,10 +281,14 @@ public class CharacterStateController : MonoBehaviour
                 if(PlayerPrefs.GetInt(skill_id[i]) == 1)
                 {
                     skill[i].SetActive(true);
+                    skill_empty[i].SetActive(false);
+                    //skill[i].GetComponent<Image>().color = new Color(1f, 1f,1f);
                 }
                 else
                 {
                     skill[i].SetActive(false);
+                    skill_empty[i].SetActive(true);
+                   // skill[i].GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
                 }
             }
 
@@ -291,11 +297,14 @@ public class CharacterStateController : MonoBehaviour
                 if(PlayerPrefs.GetInt(skill1_id[i]) == 1)
                 {
                     skill1[i].SetActive(true);
-                    
+                    skill1_empty[i].SetActive(false);
+                    //skill1[i].GetComponent<Image>().color = new Color(1f, 1f,1f);
                 }
                 else
                 {
                     skill1[i].SetActive(false);
+                    skill1_empty[i].SetActive(true);
+                    //skill1[i].GetComponent<Image>().color = new Color(0.3f, 0.3f, 0.3f);
                 }
             }
             
@@ -316,14 +325,12 @@ public class CharacterStateController : MonoBehaviour
                 get_skill_text.text = "체력 50달성 스킬 흭득";
                 get_skill_image.sprite = skill[0].GetComponent<Image>().sprite;
                 get_skill_name.text = "경건한 몸";
-                get_skill_explain.text = "체력+20, 근력+10, 민첩+10, 마력+10, 클릭골드 2배";
+                get_skill_explain.text = "체력+20, 근력+10, 민첩+10, 마력+10";
                 goToPanel.Instance.get_skill_panel.SetActive(true);
                 DataController.Instance.health += 20;
                 DataController.Instance.attack += 10;
                 DataController.Instance.mana += 10;
                 DataController.Instance.special += 10;
-                DataController.Instance.MultiplyGoldPerClick(2);
-                
                
             }
             if(DataController.Instance.health >= 100 && PlayerPrefs.GetInt(skill_id[1]) == 0 && goToPanel.Instance.get_skill_panel.activeSelf == false)
@@ -333,12 +340,10 @@ public class CharacterStateController : MonoBehaviour
                 get_skill_text.text = "체력 100달성 스킬 흭득";
                 get_skill_image.sprite = skill[1].GetComponent<Image>().sprite;
                 get_skill_name.text = "상급 방패술";
-                get_skill_explain.text = "체력+50 근력+30, 클릭골드 3배";
+                get_skill_explain.text = "체력+50 근력+30";
                 goToPanel.Instance.get_skill_panel.SetActive(true);
                 DataController.Instance.health += 50;
                 DataController.Instance.attack += 30;
-                DataController.Instance.MultiplyGoldPerClick(3);
-                
             }
             
             if(DataController.Instance.health >= 300 && PlayerPrefs.GetInt(skill_id[2]) == 0 && goToPanel.Instance.get_skill_panel.activeSelf == false)
@@ -348,11 +353,9 @@ public class CharacterStateController : MonoBehaviour
                 get_skill_text.text = "체력 300달성 스킬 흭득";
                 get_skill_image.sprite = skill[2].GetComponent<Image>().sprite;
                 get_skill_name.text = "최상급 방패술";
-                get_skill_explain.text = "체력+100 클릭골드 4배";//방어력 10배
+                get_skill_explain.text = "체력+100";//방어력 10배
                 goToPanel.Instance.get_skill_panel.SetActive(true);
                 DataController.Instance.health += 100;
-                DataController.Instance.MultiplyGoldPerClick(4);
-                
             }
             
             if(DataController.Instance.health >= 500 && PlayerPrefs.GetInt(skill_id[3]) == 0 && goToPanel.Instance.get_skill_panel.activeSelf == false)
@@ -362,14 +365,12 @@ public class CharacterStateController : MonoBehaviour
                 get_skill_text.text = "체력 500달성 스킬 흭득";
                 get_skill_image.sprite = skill[3].GetComponent<Image>().sprite;
                 get_skill_name.text = "수호자의 자질";
-                get_skill_explain.text = "체력+200, 근력+100, 민첩+50, 스킬공격력+50 클릭골드 5배";//방어력 25배
+                get_skill_explain.text = "체력+200, 근력+100, 민첩+50, 스킬공격력+50";//방어력 25배
                 goToPanel.Instance.get_skill_panel.SetActive(true);
                 DataController.Instance.health += 200;
                 DataController.Instance.attack += 100;
                 DataController.Instance.mana += 50;
                 DataController.Instance.special += 50;
-                DataController.Instance.MultiplyGoldPerClick(5);
-                
             }
             
             if(DataController.Instance.attack >= 50 && PlayerPrefs.GetInt(skill_id[4]) == 0  && goToPanel.Instance.get_skill_panel.activeSelf == false)
@@ -379,13 +380,11 @@ public class CharacterStateController : MonoBehaviour
                 get_skill_text.text = "근력 50달성 스킬 흭득";
                 get_skill_image.sprite = skill[4].GetComponent<Image>().sprite;
                 get_skill_name.text = "전사의 분노";
-                get_skill_explain.text = "체력+5, 근력+20, 민첩+10, 클릭골드 2배";
+                get_skill_explain.text = "체력+5, 근력+20, 민첩+10";
                 goToPanel.Instance.get_skill_panel.SetActive(true);
                 DataController.Instance.health += 5;
                 DataController.Instance.attack += 20;
                 DataController.Instance.mana += 10;
-                DataController.Instance.MultiplyGoldPerClick(2);
-                
             }
             
             if(DataController.Instance.attack >= 100 && PlayerPrefs.GetInt(skill_id[5]) == 0  && goToPanel.Instance.get_skill_panel.activeSelf == false)
@@ -395,12 +394,10 @@ public class CharacterStateController : MonoBehaviour
                 get_skill_text.text = "근력 100달성 스킬 흭득";
                 get_skill_image.sprite = skill[5].GetComponent<Image>().sprite;
                 get_skill_name.text = "사무라이의 일섬";
-                get_skill_explain.text = "근력+50, 민첩+20, 클릭골드 3배";
+                get_skill_explain.text = "근력+50, 민첩+20";
                 goToPanel.Instance.get_skill_panel.SetActive(true);
                 DataController.Instance.attack += 50;
                 DataController.Instance.mana += 20;
-                DataController.Instance.MultiplyGoldPerClick(3);
-                
             }
             
             if(DataController.Instance.attack >= 300 && PlayerPrefs.GetInt(skill_id[6]) == 0  && goToPanel.Instance.get_skill_panel.activeSelf == false)
@@ -410,11 +407,9 @@ public class CharacterStateController : MonoBehaviour
                 get_skill_text.text = "근력 300달성 스킬 흭득";
                 get_skill_image.sprite = skill[6].GetComponent<Image>().sprite;
                 get_skill_name.text = "일격필살";
-                get_skill_explain.text = "근력+75 클릭골드 4배";//공격력 10배
+                get_skill_explain.text = "근력+75";//공격력 10배
                 goToPanel.Instance.get_skill_panel.SetActive(true);
                 DataController.Instance.attack += 75;
-                DataController.Instance.MultiplyGoldPerClick(4);
-                
             }
             
             if(DataController.Instance.attack >= 500 && PlayerPrefs.GetInt(skill_id[7]) == 0 && goToPanel.Instance.get_skill_panel.activeSelf == false)
@@ -424,14 +419,12 @@ public class CharacterStateController : MonoBehaviour
                 get_skill_text.text = "근력 500달성 스킬 흭득";
                 get_skill_image.sprite = skill[7].GetComponent<Image>().sprite;
                 get_skill_name.text = "검의달인";
-                get_skill_explain.text = "체력+100 근력+250, 민첩+100, 스킬공격력+50, 클릭골드 5배";//공격력 20배
+                get_skill_explain.text = "체력+100 근력+250, 민첩+100, 스킬공격력+50";//공격력 20배
                 goToPanel.Instance.get_skill_panel.SetActive(true);
                 DataController.Instance.health += 100;
                 DataController.Instance.attack += 250;
                 DataController.Instance.mana += 100;
                 DataController.Instance.special += 50;
-                DataController.Instance.MultiplyGoldPerClick(5);
-                
             }
             
             if(DataController.Instance.mana >= 50 && PlayerPrefs.GetInt(skill_id[8]) == 0 && goToPanel.Instance.get_skill_panel.activeSelf == false)
@@ -469,11 +462,10 @@ public class CharacterStateController : MonoBehaviour
                 get_skill_text.text = "민첩 300달성 스킬 흭득";
                 get_skill_image.sprite = skill[10].GetComponent<Image>().sprite;
                 get_skill_name.text = "돈이 필요해";
-                get_skill_explain.text = "민첩+75 클릭골드 25배";//크리티컬확률 6%
+                get_skill_explain.text = "민첩+75 클릭골드 4배";//크리티컬확률 6%
                 goToPanel.Instance.get_skill_panel.SetActive(true);
-                DataController.Instance.mana += 50;
-                DataController.Instance.special += 30;
-                DataController.Instance.MultiplyGoldPerClick(25);
+                DataController.Instance.mana += 75;
+                DataController.Instance.MultiplyGoldPerClick(4);
             }
             if(DataController.Instance.mana >= 500 && PlayerPrefs.GetInt(skill_id[11]) == 0 && goToPanel.Instance.get_skill_panel.activeSelf == false)
             {
@@ -497,12 +489,11 @@ public class CharacterStateController : MonoBehaviour
                 get_skill_text.text = "스킬공격력 50달성 스킬 흭득";
                 get_skill_image.sprite = skill[12].GetComponent<Image>().sprite;
                 get_skill_name.text = "스킬공격력의 존재";
-                get_skill_explain.text = "스킬공격력를 느낄수 있습니다.\n체력+5, 민첩+10, 스킬공격력+20, 클릭골드 2배";
+                get_skill_explain.text = "스킬공격력를 느낄수 있습니다.\n체력+5, 민첩+10, 스킬공격력+20";
                 goToPanel.Instance.get_skill_panel.SetActive(true);
                 DataController.Instance.health += 5;
                 DataController.Instance.mana += 10;
                 DataController.Instance.special += 20;
-                DataController.Instance.MultiplyGoldPerClick(2);
             }
             if(DataController.Instance.special >= 100 && PlayerPrefs.GetInt(skill_id[13]) == 0 && goToPanel.Instance.get_skill_panel.activeSelf == false)
             {
@@ -511,11 +502,10 @@ public class CharacterStateController : MonoBehaviour
                 get_skill_text.text = "스킬공격력 100달성 스킬 흭득";
                 get_skill_image.sprite = skill[13].GetComponent<Image>().sprite;
                 get_skill_name.text = "스킬공격력의 정수";
-                get_skill_explain.text = "스킬공격력의 정수를 보았습니다. 좀 더 발전했군요.\n민첩+30, 스킬공격력+50, 클릭골드 3배";
+                get_skill_explain.text = "스킬공격력의 정수를 보았습니다. 좀 더 발전했군요.\n민첩+30, 스킬공격력+50";
                 goToPanel.Instance.get_skill_panel.SetActive(true);
                 DataController.Instance.mana += 30;
                 DataController.Instance.special += 50;
-                DataController.Instance.MultiplyGoldPerClick(3);
             }
             if(DataController.Instance.special >= 300 && PlayerPrefs.GetInt(skill_id[14]) == 0 && goToPanel.Instance.get_skill_panel.activeSelf == false)
             {
@@ -524,10 +514,9 @@ public class CharacterStateController : MonoBehaviour
                 get_skill_text.text = "스킬공격력 300달성 스킬 흭득";
                 get_skill_image.sprite = skill[14].GetComponent<Image>().sprite;
                 get_skill_name.text = "마법진 그리기";
-                get_skill_explain.text = "마법진을 그릴수 있습니다.\n스킬공격력+75, 클릭골드 4배";//연금술 성공확률 5%증가
+                get_skill_explain.text = "마법진을 그릴수 있습니다.\n스킬공격력+75";//연금술 성공확률 5%증가
                 goToPanel.Instance.get_skill_panel.SetActive(true);
-                DataController.Instance.special += 70;
-                DataController.Instance.MultiplyGoldPerClick(4);
+                DataController.Instance.special += 75;
             }
             if(DataController.Instance.special >= 500 && PlayerPrefs.GetInt(skill_id[15]) == 0 && goToPanel.Instance.get_skill_panel.activeSelf == false)
             {
@@ -536,13 +525,12 @@ public class CharacterStateController : MonoBehaviour
                 get_skill_text.text = "스킬공격력 500달성 스킬 흭득";
                 get_skill_image.sprite = skill[15].GetComponent<Image>().sprite;
                 get_skill_name.text = "영감";
-                get_skill_explain.text = "깨달음을 얻었습니다.\n이는 당신을 더 높은 곳으로 이끌어줍니다.\n체력+100, 근력+50, 민첩+ 100, 스킬공격력+200, 클릭골드 5배";//연금술 성공확률 5%증가
+                get_skill_explain.text = "깨달음을 얻었습니다.\n이는 당신을 더 높은 곳으로 이끌어줍니다.\n체력+100, 근력+50, 민첩+ 100, 스킬공격력+200";//연금술 성공확률 5%증가
                 goToPanel.Instance.get_skill_panel.SetActive(true);
-                DataController.Instance.health += 50;
-                DataController.Instance.attack += 100;
+                DataController.Instance.health += 100;
+                DataController.Instance.attack += 50;
                 DataController.Instance.mana += 100;
                 DataController.Instance.special += 200;
-                DataController.Instance.MultiplyGoldPerClick(5);
             }
         }
     }
@@ -604,10 +592,18 @@ public class CharacterStateController : MonoBehaviour
             {
                 skill_explain.text = skill_name[i] + "\n효과: " + skill_effect[i];
             }
+            else if(EventSystem.current.currentSelectedGameObject == skill_empty[i])
+            {
+                skill_explain.text = skill_name[i] + "\n효과: " + skill_effect[i];
+            }
         }
         for(int i = 0; i <= skill1.Length-1; i++)
         {
             if(EventSystem.current.currentSelectedGameObject == skill1[i])
+            {
+                skill_explain.text = skill1_name[i] + "\n효과: " + skill1_effect[i];
+            }
+            else if(EventSystem.current.currentSelectedGameObject == skill1_empty[i])
             {
                 skill_explain.text = skill1_name[i] + "\n효과: " + skill1_effect[i];
             }
@@ -622,7 +618,6 @@ public class CharacterStateController : MonoBehaviour
     public void MyPosition (Transform transform)
     {
         var tra = transform;
-        //Debug.Log("Clicked button pos:" + tra.position);
         SelectFrame.SetActive(true);
         SelectFrame.transform.position = tra.position;
         SelectFrame.transform.parent = tra.transform;

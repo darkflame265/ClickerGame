@@ -720,6 +720,11 @@ public class DataController : MonoBehaviour
         }
     }
 
+    public void init_all_prefs()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
     public void InitGold()
     {
          gold = 1;
@@ -955,7 +960,7 @@ public class DataController : MonoBehaviour
         {
             if(!PlayerPrefs.HasKey("hero_0_ID")) // 골드가 없을떄
             {
-                return 0; //-1 = null
+                return 3; //-1 = null    1=knight
             }
             string tmphero_0_ID = PlayerPrefs.GetString("hero_0_ID");
             return long.Parse(tmphero_0_ID);
@@ -973,7 +978,7 @@ public class DataController : MonoBehaviour
         {
             if(!PlayerPrefs.HasKey("hero_1_ID")) // 골드가 없을떄
             {
-                return 0;
+                return 2; //2=archer
             }
             string tmphero_1_ID = PlayerPrefs.GetString("hero_1_ID");
             return long.Parse(tmphero_1_ID);
@@ -991,7 +996,7 @@ public class DataController : MonoBehaviour
         {
             if(!PlayerPrefs.HasKey("hero_2_ID")) // 골드가 없을떄
             {
-                return 0;
+                return 1;
             }
             string tmphero_2_ID = PlayerPrefs.GetString("hero_2_ID");
             return long.Parse(tmphero_2_ID);
@@ -1157,7 +1162,7 @@ public class DataController : MonoBehaviour
         {
             if(!PlayerPrefs.HasKey("monster_1_ID")) // 골드가 없을떄
             {
-                return null;
+                return "dummy";
             }
             string tmpmonster_1_ID = PlayerPrefs.GetString("monster_1_ID");
             return tmpmonster_1_ID;

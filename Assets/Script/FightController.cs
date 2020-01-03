@@ -28,16 +28,10 @@ public class FightController : MonoBehaviour
     public GameObject[] stageCh1 = new GameObject[0];
 
     //UI
-    public GameObject ch_1_check_img;
-    public GameObject ch_2_check_img;
-    public GameObject ch_3_check_img;
-    public GameObject ch_4_check_img;
-    public GameObject ch_5_check_img;
-    public GameObject ch_6_check_img;
-    public GameObject ch_7_check_img;
-    public GameObject ch_8_check_img;
-    public GameObject ch_9_check_img;
-    public GameObject ch_10_check_img;
+
+    public GameObject[] ch_check_img_pack = new GameObject[0];
+
+    public GameObject[] ch_btn = new GameObject[0];
 
     public static void SetBool(string name, bool booleanValue)
     {
@@ -71,7 +65,11 @@ public class FightController : MonoBehaviour
 
     public void check_stage()
     {
-        for(int i = 0; i < stageCh1.Length; i++)
+        if(!PlayerPrefs.HasKey("userMaxStage")) {
+            PlayerPrefs.SetInt("userMaxStage", 1);
+        };
+        
+        for(int i = PlayerPrefs.GetInt("userMaxStage"); i < stageCh1.Length; i++)
             {
                 if(GetBool("ch1" + i) == true)
                 {
@@ -82,66 +80,109 @@ public class FightController : MonoBehaviour
                     stageCh1[i].GetComponent<Button>().interactable = false;
                 }
             }
+        if(GetBool("ch1" + 19) == true)  //20~39
+        {
+            ch_check_img_pack[0].GetComponent<Image>().color = new Color(1,1,1,1);
+        }
+        else ch_check_img_pack[0].GetComponent<Image>().color = new Color(1,1,1,0);
 
-            if(GetBool("ch1" + 19) == true)  //0~19
-            {
-                ch_1_check_img.GetComponent<Image>().color = new Color(1,1,1,1);
-            }
-            else ch_1_check_img.GetComponent<Image>().color = new Color(1,1,1,0);
+        if(GetBool("ch1" + 39) == true)  //20~39
+        {
+            ch_check_img_pack[1].GetComponent<Image>().color = new Color(1,1,1,1);
+        }
+        else ch_check_img_pack[1].GetComponent<Image>().color = new Color(1,1,1,0);
+        if(GetBool("ch1" + 59) == true)  //20~39
+        {
+            ch_check_img_pack[2].GetComponent<Image>().color = new Color(1,1,1,1);
+        }
+        else ch_check_img_pack[2].GetComponent<Image>().color = new Color(1,1,1,0);
+        if(GetBool("ch1" + 79) == true)  //20~39
+        {
+            ch_check_img_pack[3].GetComponent<Image>().color = new Color(1,1,1,1);
+        }
+        else ch_check_img_pack[3].GetComponent<Image>().color = new Color(1,1,1,0);
+        if(GetBool("ch1" + 99) == true)  //20~39
+        {
+            ch_check_img_pack[4].GetComponent<Image>().color = new Color(1,1,1,1);
+            ch_btn[1].SetActive(true);
+        }
+        else {
+            ch_check_img_pack[4].GetComponent<Image>().color = new Color(1,1,1,0);
+            ch_btn[1].SetActive(false);
+        }
+            
 
-            if(GetBool("ch1" + 39) == true)  //20~39
-            {
-                ch_2_check_img.GetComponent<Image>().color = new Color(1,1,1,1);
-            }
-            else ch_2_check_img.GetComponent<Image>().color = new Color(1,1,1,0);
+        if(GetBool("ch1" + 119) == true)  //20~39
+        {
+            ch_check_img_pack[5].GetComponent<Image>().color = new Color(1,1,1,1);
+        }
+        else ch_check_img_pack[5].GetComponent<Image>().color = new Color(1,1,1,0);
 
-            if(GetBool("ch1" + 59) == true)  //20~39
-            {
-                ch_3_check_img.GetComponent<Image>().color = new Color(1,1,1,1);
-            }
-            else ch_3_check_img.GetComponent<Image>().color = new Color(1,1,1,0);
+        if(GetBool("ch1" + 139) == true)  //20~39
+        {
+         ch_check_img_pack[6].GetComponent<Image>().color = new Color(1,1,1,1);
+        }
+         else ch_check_img_pack[6].GetComponent<Image>().color = new Color(1,1,1,0);
 
-            if(GetBool("ch1" + 79) == true)  //20~39
-            {
-                ch_4_check_img.GetComponent<Image>().color = new Color(1,1,1,1);
-            }
-            else ch_4_check_img.GetComponent<Image>().color = new Color(1,1,1,0);
+        if(GetBool("ch1" + 159) == true)  //20~39
+        {
+         ch_check_img_pack[7].GetComponent<Image>().color = new Color(1,1,1,1);
+        }
+        else ch_check_img_pack[7].GetComponent<Image>().color = new Color(1,1,1,0);
 
-            if(GetBool("ch1" + 99) == true)  //20~39
-            {
-                ch_5_check_img.GetComponent<Image>().color = new Color(1,1,1,1);
-            }
-            else ch_5_check_img.GetComponent<Image>().color = new Color(1,1,1,0);
+        if(GetBool("ch1" + 179) == true)  //20~39
+        {
+         ch_check_img_pack[8].GetComponent<Image>().color = new Color(1,1,1,1);
+        }
+        else ch_check_img_pack[8].GetComponent<Image>().color = new Color(1,1,1,0);
 
-            if(GetBool("ch1" + 119) == true)  //20~39
-            {
-                ch_6_check_img.GetComponent<Image>().color = new Color(1,1,1,1);
-            }
-            else ch_6_check_img.GetComponent<Image>().color = new Color(1,1,1,0);
+        if(GetBool("ch1" + 199) == true)  //20~39
+        {
+            ch_check_img_pack[9].GetComponent<Image>().color = new Color(1,1,1,1);
+            ch_btn[2].SetActive(true);
+        }
+        else {
+             ch_check_img_pack[9].GetComponent<Image>().color = new Color(1,1,1,0);
+            ch_btn[2].SetActive(false);
+        }
 
-            if(GetBool("ch1" + 139) == true)  //20~39
-            {
-                ch_7_check_img.GetComponent<Image>().color = new Color(1,1,1,1);
-            }
-            else ch_7_check_img.GetComponent<Image>().color = new Color(1,1,1,0);
+        if(GetBool("ch1" + 219) == true)  //20~39
+        {
+             ch_check_img_pack[10].GetComponent<Image>().color = new Color(1,1,1,1);
+        }
+        else {
+             ch_check_img_pack[10].GetComponent<Image>().color = new Color(1,1,1,0);
+        }
+        if(GetBool("ch1" + 239) == true)  //20~39
+        {
+             ch_check_img_pack[11].GetComponent<Image>().color = new Color(1,1,1,1);
+        }
+        else {
+             ch_check_img_pack[11].GetComponent<Image>().color = new Color(1,1,1,0);
+        }
+        if(GetBool("ch1" + 259) == true)  //20~39
+        {
+             ch_check_img_pack[12].GetComponent<Image>().color = new Color(1,1,1,1);
+        }
+        else {
+             ch_check_img_pack[12].GetComponent<Image>().color = new Color(1,1,1,0);
+        }
+        if(GetBool("ch1" + 279) == true)  //20~39
+        {
+             ch_check_img_pack[13].GetComponent<Image>().color = new Color(1,1,1,1);
+        }
+        else {
+             ch_check_img_pack[13].GetComponent<Image>().color = new Color(1,1,1,0);
+        }
+        if(GetBool("ch1" + 299) == true)  //20~39
+        {
+             ch_check_img_pack[14].GetComponent<Image>().color = new Color(1,1,1,1);
+        }
+        else {
+             ch_check_img_pack[14].GetComponent<Image>().color = new Color(1,1,1,0);
+        }
 
-            if(GetBool("ch1" + 159) == true)  //20~39
-            {
-                ch_8_check_img.GetComponent<Image>().color = new Color(1,1,1,1);
-            }
-            else ch_8_check_img.GetComponent<Image>().color = new Color(1,1,1,0);
-
-            if(GetBool("ch1" + 179) == true)  //20~39
-            {
-                ch_9_check_img.GetComponent<Image>().color = new Color(1,1,1,1);
-            }
-            else ch_9_check_img.GetComponent<Image>().color = new Color(1,1,1,0);
-
-            if(GetBool("ch1" + 199) == true)  //20~39
-            {
-                ch_10_check_img.GetComponent<Image>().color = new Color(1,1,1,1);
-            }
-            else ch_10_check_img.GetComponent<Image>().color = new Color(1,1,1,0);
+            
     } 
     
     

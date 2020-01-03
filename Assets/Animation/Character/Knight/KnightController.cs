@@ -20,9 +20,7 @@ public class KnightController : MonoBehaviour
     
     public float speed = 5f;
 
-    float close_distance = 5f;
     GameObject close_enemy;
-    bool enemy_is_die = false;
 
     public GameObject prefab_floating_text;
 
@@ -176,11 +174,21 @@ public class KnightController : MonoBehaviour
                 {
                     break;
                 }
-                if(Vector3.Distance(A[i].transform.position, this.transform.position) > Vector3.Distance(A[i+1].transform.position, this.transform.position))
+                
+                try
                 {
-                    GameObject tmp = A[i];
-                    A[i] = A[i+1];
-                    A[i+1] = tmp;
+                    if(Vector3.Distance(A[i].transform.position, this.transform.position) > Vector3.Distance(A[i+1].transform.position, this.transform.position))
+                    {
+                        GameObject tmp = A[i];
+                        A[i] = A[i+1];
+                        A[i+1] = tmp;
+                    }
+                }
+                catch (MissingReferenceException ie)
+                {
+                    Debug.Log(ie);
+                    A.Clear();
+                    A.Add(enemies[0]);
                 }
             }
             
@@ -196,26 +204,32 @@ public class KnightController : MonoBehaviour
             Invoke("skill", 0.5f);
         }
           
-         
-        if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 1f && skilling == true)
-        {
-            skilling = true;
-            movebool = false;
-            allAnimatorStop();
-            animator.SetBool("isSkill1", true);    //스킬공격
-            
-            currentSkillPoint = 0;  //스킬포인트 초기화
-        }   
+         try{
+            if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 1f && skilling == true)
+            {
+                skilling = true;
+                movebool = false;
+                allAnimatorStop();
+                animator.SetBool("isSkill1", true);    //스킬공격
+                
+                currentSkillPoint = 0;  //스킬포인트 초기화
+            }   
 
-        else if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 1f && skilling==false)
-        {                       //(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 1f && skilling==false)
-            movebool = false;
-            allAnimatorStop();
-            animator.SetBool("isAttack", true);    //공격
-            //WaitFotIt();
+            else if(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 1f && skilling==false)
+            {                       //(Vector3.Distance(close_enemy.transform.position, this.transform.position) < 1f && skilling==false)
+                movebool = false;
+                allAnimatorStop();
+                animator.SetBool("isAttack", true);    //공격
+                //WaitFotIt();
+            }
+            else
+            {
+                movebool = true;
+            }
         }
-        else
-        {
+        
+        catch(MissingReferenceException) {
+            //Debug.Log(ie);
             movebool = true;
         }
         

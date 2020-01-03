@@ -33,7 +33,7 @@ public class EffectController : MonoBehaviour
 
     void Start()
     {
-        explosion.Stop();
+        //explosion.Stop();
     }
 
     public void click() // 예제용 연결된 오브젝트 없음

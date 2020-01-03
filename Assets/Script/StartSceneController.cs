@@ -7,6 +7,6 @@ public class StartSceneController : MonoBehaviour
 {
     public void move_to_scene_1()
     {
-        SceneManager.LoadScene("SampleScene");
+        //SceneManager.LoadScene("SampleScene");
     }
 }

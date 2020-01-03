@@ -109,11 +109,62 @@ public class UiManager : MonoBehaviour
 
     void Start()
     {
+        if(!PlayerPrefs.HasKey("click_background"))
+        {
+            PlayerPrefs.SetInt("click_background", 0);
+        }
         clickButton.GetComponent<Image>().sprite = background_pack[PlayerPrefs.GetInt("click_background")];
         background_name_text.text = background_name[PlayerPrefs.GetInt("click_background")];
         StartCoroutine("UpdateCanvasUi");
+        Time.timeScale = 1;
     }
 
+
+    static public string ToGoldStringKR(long bigInteger)
+    {
+        string output = "";
+
+        if (BigInteger.Compare(bigInteger, new BigInteger(10000)) == -1)
+        {
+            output = bigInteger.ToString();
+        }
+        else if (BigInteger.Compare(bigInteger, new BigInteger(100000000)) == -1)
+        {
+            string strTmp = bigInteger.ToString();
+
+            output = strTmp.Substring(0, strTmp.Length - 1 - 3) + "만" +
+            strTmp.Substring(strTmp.Length -1 - 3);
+
+        }
+        else if (BigInteger.Compare(bigInteger, new BigInteger(1000000000000)) == -1)
+        {
+            string strTmp = bigInteger.ToString();
+
+            output = strTmp.Substring(0, strTmp.Length - 8) + "억" + 
+                        strTmp.Substring(strTmp.Length -8, 4) + "만";
+                        /* + strTmp.Substring(strTmp.Length - 1 - 3);*/
+        }
+        else if (BigInteger.Compare(bigInteger, new BigInteger(10000000000000000)) == -1)
+        {
+            string strTmp = bigInteger.ToString();
+ 
+            output = strTmp.Substring(0, strTmp.Length - 12) + "조" + 
+                        strTmp.Substring(strTmp.Length -12, 4) + "억";
+                       /*+ strTmp.Substring(strTmp.Length - 8, 4) + "만"
+                        + strTmp.Substring(strTmp.Length - 4);*/
+        }
+        else if (BigInteger.Compare(bigInteger, new BigInteger(10000000000000000000)) == -1)
+        {
+            string strTmp = bigInteger.ToString();
+
+            output = strTmp.Substring(0, strTmp.Length - 16) + "경" + 
+                        strTmp.Substring(strTmp.Length -16, 4) + "조";
+                        /*+ strTmp.Substring(strTmp.Length - 12, 4) + "억"
+                        + strTmp.Substring(strTmp.Length - 8, 4) + "만"
+                        + strTmp.Substring(strTmp.Length - 4);*/
+        }
+        return output;
+    }
 
     static public string ToStringKR(long bigInteger)
     {
@@ -183,14 +234,15 @@ public class UiManager : MonoBehaviour
         while(true)
         {
             yield return new WaitForSeconds(0.1f);
-            goldDisplayer.text = ToStringKR(DataController.Instance.gold) + "원";
+            //goldDisplayer.text = ToStringKR(DataController.Instance.gold) + "원";
+            goldDisplayer.text = ToGoldStringKR(DataController.Instance.gold) + "원";
             DataController.Instance.goldPerClick = DataController.Instance.goldPerClick;
             goldPerClickDisplayer.text = "터치골드획득 : " + ToStringKR(DataController.Instance.goldPerClick);
             goldPerSecDisplayer.text = "초당퀘스트골드 : " + ToStringKR(DataController.Instance.GetGoldPerSec());
             diamondDisplayer.text = "" + DataController.Instance.diamond;
             artifact_ticket.text = "유물뽑기권: " + DataController.Instance.artifact_ticket;
             power_ticket.text = "권능해방권: " + DataController.Instance.power_ticket;
-            upgradeDisplayer.text = "강화비용 " + ToStringKR(DataController.Instance.currentCost);
+            upgradeDisplayer.text = "강화비용 " + ToGoldStringKR(DataController.Instance.currentCost);
             GoldLevelDisplayer.text = "레벨  " + DataController.Instance.level + "   X" + ToStringKR(DataController.Instance.besu); 
             char_level_displayer.text = "" + DataController.Instance.char_level;
             current_max_exp_displayer.text = "EXP: " + DataController.Instance.current_exp + "/" + DataController.Instance.max_exp;
@@ -307,12 +359,5 @@ public class UiManager : MonoBehaviour
         clickButton.GetComponent<Image>().sprite = background_pack[PlayerPrefs.GetInt("click_background")];
         background_name_text.text = background_name[PlayerPrefs.GetInt("click_background")];
     }
-
-
-
-   void Update()
-   {
-
-   }
 
 }

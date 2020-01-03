@@ -60,7 +60,10 @@ public class UpgradeButton : MonoBehaviour
        
             UpdateUpgrade();
             //DataController.Instance.SaveUpgradeButton(this);
-            
+        }
+        else {
+            goToPanel.Instance.show_noticePanel();
+            goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "골드가 부족합니다.";
         }
     }
 

@@ -10,7 +10,29 @@ public class ClickButton : MonoBehaviour
     
     public Inventory inventory;
 
+    public Sprite crystal_img;
+
     int result = 0;
+
+    private static ClickButton instance;
+
+    public static ClickButton Instance
+    {
+        get{
+            if(instance == null)
+            {
+                instance = FindObjectOfType<ClickButton>();
+
+                if(instance == null)
+                {
+                    GameObject container = new GameObject("ClickButton");
+
+                    instance = container.AddComponent<ClickButton>();
+                }
+            }
+            return instance;
+        }
+    }
 
      public void OnClick()
      {
@@ -125,7 +147,7 @@ public class ClickButton : MonoBehaviour
             child.GetComponent<Text>().text = "   +" + amount;
 
             child.transform.GetChild(0).gameObject.SetActive(true);
-            child.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>("Image/UI/Freeui/ZOSMA/Main/Cristal");
+            child.GetComponentInChildren<Image>().sprite = crystal_img;
             //child.GetComponentInChildren<Image>().transform.localScale = new Vector3(0.6f, 0.6f, 1);
         }
 

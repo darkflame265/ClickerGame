@@ -47,6 +47,7 @@ public class MagicTowerController : MonoBehaviour
     public GameObject[]archer = new GameObject[0];
     public GameObject[]wizard = new GameObject[0];
 
+    public Sprite[] skill_img_pack = new Sprite[0];
 
     int index = 0;
     public GameObject SelectFrame;
@@ -195,7 +196,7 @@ public class MagicTowerController : MonoBehaviour
             if(DataController.Instance.knight_level < 3)
             {
                 skill_panel.SetActive(true);
-                skill_image.sprite = Resources.Load<Sprite>("Image/Skill/Skill icons Guardian/Icons/Filled/SIW 2");
+                skill_image.sprite = skill_img_pack[0];
                 skill_text.text = "강타\n(3레벨 흭득)";
             }
             else {
@@ -234,7 +235,7 @@ public class MagicTowerController : MonoBehaviour
             if(DataController.Instance.archer_level < 3)
             {
                 skill_panel.SetActive(true);
-                skill_image.sprite = Resources.Load<Sprite>("Image/Skill/Skill icons Guardian/Icons/Filled/SIH_07");
+                skill_image.sprite = skill_img_pack[1];
                 skill_text.text = "속사\n(3레벨 흭득)";
             }
             else {
@@ -272,7 +273,7 @@ public class MagicTowerController : MonoBehaviour
             if(DataController.Instance.wizard_level < 3)
             {
                 skill_panel.SetActive(true);
-                skill_image.sprite = Resources.Load<Sprite>("Image/Skill/SpellBookPreface/SpellBookPreface_png/SpellBookPreface_18");
+                skill_image.sprite = skill_img_pack[2];
                 skill_text.text = "익스플로전\n(3레벨 흭득)";
             }
             else {

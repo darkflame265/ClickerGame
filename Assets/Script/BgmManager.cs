@@ -73,6 +73,14 @@ public class BgmManager : MonoBehaviour
         }
         audioSource.clip = bgm_pack[PlayerPrefs.GetInt("bgm_num")];
         bgm_name_text.text = bgm_name[PlayerPrefs.GetInt("bgm_num")];
+
+        if(audioSource.clip == bgm_pack[2])
+        {
+            audioSource.volume = 0.712f;
+        } else {
+            audioSource.volume = 0.256f;
+        }
+
         audioSource.Play();
     }
 
@@ -88,6 +96,14 @@ public class BgmManager : MonoBehaviour
         }
         audioSource.clip = bgm_pack[PlayerPrefs.GetInt("bgm_num")];
         bgm_name_text.text = bgm_name[PlayerPrefs.GetInt("bgm_num")];
+
+        if(audioSource.clip == bgm_pack[2])
+        {
+            audioSource.volume = 0.712f;
+        } else {
+            audioSource.volume = 0.256f;
+        }
+
         audioSource.Play();
     }
 

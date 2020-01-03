@@ -47,6 +47,8 @@ public class QuestController : MonoBehaviour
     public Transform tranform_canvas;
 
     Sprite item_image;
+    public Sprite artifact_ticket_img;
+    public Sprite power_ticket_img;
 
     
     // Start is called before the first frame update
@@ -104,6 +106,13 @@ public class QuestController : MonoBehaviour
 
         quest_name.Add("신이 제안한 등가교환(2)");
         quest_name.Add("신이 제안한 등가교환(3)");
+
+        quest_name.Add("극한의 신체");
+        quest_name.Add("극한의 정신");
+
+        quest_name.Add("한계돌파");
+
+        quest_name.Add("창조");
     }
     void insert_quest_cost_toList()
     {
@@ -142,8 +151,15 @@ public class QuestController : MonoBehaviour
         quest_cost.Add((50000000000));
         quest_cost.Add((50000000000));
 
-        quest_cost.Add((100000000000));
+        quest_cost.Add((100000000000));       //1000억
         quest_cost.Add((300000000000));
+
+        quest_cost.Add((500000000000));
+        quest_cost.Add((700000000000));
+
+        quest_cost.Add((1000000000000));    //1조
+        quest_cost.Add((10000000000000));
+
     }
 
     void insert_quest_effect_toList()
@@ -185,6 +201,12 @@ public class QuestController : MonoBehaviour
 
         quest_effect.Add("권능뽑기권 +1\n 클릭골드 2배");
         quest_effect.Add("권능뽑기권 +3\n 클릭골드 2배");
+
+        quest_effect.Add("체력 +500\n 민첩 +500");
+        quest_effect.Add("공격력 +500\n 스킬공격력 +500");
+        quest_effect.Add("모든 스탯 +500\n 클릭골드 2배");
+
+        quest_effect.Add("유물뽑기권 +3\n권능뽑기권+3");
     }
 
     IEnumerator Auto()
@@ -283,7 +305,6 @@ public class QuestController : MonoBehaviour
         questProgress = (float)clear_quest_length / max_quest_length;
         scrollbarr.GetComponent<Scrollbar>().value = 0;
         scrollbarr.GetComponent<Scrollbar>().value = questProgress;
-        Debug.Log(questProgress + 0.05f);
     }
 
     public void PurchaseItem()
@@ -304,6 +325,10 @@ public class QuestController : MonoBehaviour
                         UiManager.SetBool("QuestPurchased" + index, true);
                         break;
                     }
+                }
+                else {      //돈이 부족할 떄
+                    goToPanel.Instance.show_noticePanel();
+                    goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "골드가 부족합니다.";
                 }
             }
         }
@@ -326,6 +351,7 @@ public class QuestController : MonoBehaviour
             else if(index == 4) {
             DataController.Instance.artifact_ticket += 1;
             DataController.Instance.MultiplyGoldPerClick(2);
+            item_image = artifact_ticket_img;
         } else if(index == 5) {
             DataController.Instance.health += 70;
         } else if(index == 6) {
@@ -351,6 +377,7 @@ public class QuestController : MonoBehaviour
         } else if(index == 14) {
             DataController.Instance.power_ticket += 1;
             DataController.Instance.MultiplyGoldPerClick(2);
+            item_image = power_ticket_img;
         } else if(index == 15) {
             DataController.Instance.health += 300;
         } else if(index == 16) {
@@ -381,11 +408,31 @@ public class QuestController : MonoBehaviour
         } else if(index == 25) {
             DataController.Instance.power_ticket += 1;
             DataController.Instance.MultiplyGoldPerClick(2);
+            item_image = power_ticket_img;
         } else if(index == 26) {
             DataController.Instance.power_ticket += 3;
             DataController.Instance.MultiplyGoldPerClick(2);
-        }else Debug.Log("퀘스트 알맞는 이름이 없습니다.");
-        //prefab_floating_text.GetComponent<Text>().text = 
+            item_image = power_ticket_img;
+        } else if(index == 27) {
+            DataController.Instance.health += 500;
+            DataController.Instance.mana += 500;
+        } else if(index == 28) {
+            DataController.Instance.attack += 500;
+            DataController.Instance.special += 500;
+        } else if(index == 29) {
+            DataController.Instance.health += 500;
+            DataController.Instance.mana += 500;
+            DataController.Instance.attack += 500;
+            DataController.Instance.special += 500;
+            DataController.Instance.MultiplyGoldPerClick(2);
+        } else if(index == 30) {
+            DataController.Instance.power_ticket += 3;
+            item_image = power_ticket_img;
+            show_floating_text();
+            DataController.Instance.artifact_ticket += 3;
+            item_image = artifact_ticket_img;
+        }
+
     }
 
     void update_quest_inform()

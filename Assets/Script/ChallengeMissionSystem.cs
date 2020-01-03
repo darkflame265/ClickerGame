@@ -59,17 +59,40 @@ public class ChallengeMissionSystem : MonoBehaviour
 
     public GameObject probability_panel;
 
+    private static ChallengeMissionSystem instance;
+
+    public static ChallengeMissionSystem Instance
+    {
+        get{
+            if(instance == null)
+            {
+                instance = FindObjectOfType<ChallengeMissionSystem>();
+
+                if(instance == null)
+                {
+                    GameObject container = new GameObject("ChallengeMissionSystem");
+
+                    instance = container.AddComponent<ChallengeMissionSystem>();
+                }
+            }
+            return instance;
+        }
+    }
+
+    
+
 
     void Start()
     {
-        //StartCoroutine("Auto");
-        ms1 = ms_1[0];
-        ms2 = ms_2[0];
-        ms3 = ms_3[0];
-        ms4 = ms_4[0];
-        ms5 = ms_5[0];
-        ms6 = ms_6[0];
+        ms1 = ms_1[PlayerPrefs.GetInt("ms1_index")];
+        ms2 = ms_2[PlayerPrefs.GetInt("ms2_index")];
+        ms3 = ms_3[PlayerPrefs.GetInt("ms3_index")];
+        ms4 = ms_4[PlayerPrefs.GetInt("ms4_index")];
+        ms5 = ms_5[PlayerPrefs.GetInt("ms5_index")];
+        ms6 = ms_6[PlayerPrefs.GetInt("ms6_index")];
+        set_chellenge_text();
         checkMission();
+        
         StartCoroutine("Auto");
     }
 
@@ -77,8 +100,8 @@ public class ChallengeMissionSystem : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(10f);
-            checkMission();
+            yield return new WaitForSeconds(5f);
+            //checkMission();
         }
     } 
 
@@ -107,6 +130,13 @@ public class ChallengeMissionSystem : MonoBehaviour
             SetBool("ms5" + i, false);
             SetBool("ms6" + i, false);
         }
+
+        PlayerPrefs.SetInt("ms1_index", 0);
+        PlayerPrefs.SetInt("ms2_index", 0);
+        PlayerPrefs.SetInt("ms3_index", 0);
+        PlayerPrefs.SetInt("ms4_index", 0);
+        PlayerPrefs.SetInt("ms5_index", 0);
+        PlayerPrefs.SetInt("ms6_index", 0);
     }
 
     public void Debugsss()
@@ -121,208 +151,213 @@ public class ChallengeMissionSystem : MonoBehaviour
         {
             Debug.Log("ms1 " + i + " is " + GetBool("ms1" + i));
         }
+        DataController.Instance.clickCount = 9999999999;
+        DataController.Instance.char_level = 500;
+
     }
     
 
     void checkMission()
     {
-        //mission 1
-        // ms1 = ms_1[0];
-        // ms2 = ms_2[0];
-        // ms3 = ms_3[0];
-        // ms4 = ms_4[0];
-        // ms5 = ms_5[0];
-        // ms6 = ms_6[0];
-
-        // for(int i =0; i < reward_list.Length; i++)    //for 목적지가 ms_1.length는 좀...
-        // {
-        //     int count = 0;
-        //     if(GetBool("ms1" + i) == true)
-        //     {
-        //         ms1 = ms_1[i+1];
-        //         current1_i = i+1;
-        //         count++;
-        //     } 
-        //     if(GetBool("ms2" + i) == true)
-        //     {
-        //         ms2 = ms_2[i+1];
-        //         current2_i = i+1;
-        //         count++;
-        //     }
-        //     if(GetBool("ms3" + i) == true)
-        //     {
-        //         ms3 = ms_3[i+1];
-        //         current3_i = i+1;
-        //         count++;
-        //     }
-        //     if(GetBool("ms4" + i) == true)
-        //     {
-        //         ms4 = ms_4[i+1];
-        //         current4_i = i+1;
-        //         count++;
-        //     }
-        //     if(GetBool("ms5" + i) == true)
-        //     {
-        //         ms5 = ms_5[i+1];
-        //         current5_i = i+1;
-        //         count++;
-        //     }
-        //     if(GetBool("ms6" + i) == true)
-        //     {
-        //         ms6 = ms_6[i+1];
-        //         current6_i = i+1;
-        //         count++;
-        //     }
-        //     if(count == 0)
-        //     {
-        //         Debug.Log("i is " + i);
-        //         break;
-        //     }
-        // }
-        int i = 0;
-        while(true)
-        {   
-            if(GetBool("ms1" + i) == false)
+       
+        int i = PlayerPrefs.GetInt("ms1_index");
+ 
+            if(GetBool("ms1" + i) == true)
             {
-                break;
-            } else {
-                ms1 = ms_1[i+1];
+                SetBool("ms1" + i, false);
+                ms1 = ms_1[i+1];              //ms_1 : 미션 조건 수치
                 current1_i = i+1;
+                PlayerPrefs.SetInt("ms1_index", i+1);
             }
-            i++;
+
+        
+        i = PlayerPrefs.GetInt("ms2_index");
+        if(GetBool("ms2" + i) == true)
+        {
+            SetBool("ms2" + i, false);
+            ms2 = ms_2[i+1];              //ms_1 : 미션 조건 수치
+            current2_i = i+1;
+            PlayerPrefs.SetInt("ms2_index", i+1);
         }
-        i = 0;
-        while(true)
-        {   
-            if(GetBool("ms2" + i) == false)
-            {
-                break;
-            } else {
-                ms2 = ms_2[i+1];
-                current2_i = i+1;
-            }
-            i++;
+
+        i = PlayerPrefs.GetInt("ms3_index");
+        if(GetBool("ms3" + i) == true)
+        {
+            SetBool("ms3" + i, false);
+            ms3 = ms_3[i+1];              //ms_1 : 미션 조건 수치
+            current3_i = i+1;
+            PlayerPrefs.SetInt("ms3_index", i+1);
         }
-        i = 0;
-        while(true)
-        {   
-            if(GetBool("ms3" + i) == false)
-            {
-                break;
-            } else {
-                ms3 = ms_3[i+1];
-                current3_i = i+1;
-            }
-            i++;
+
+        i = PlayerPrefs.GetInt("ms4_index");
+        if(GetBool("ms4" + i) == true)
+        {
+            SetBool("ms4" + i, false);
+            ms4 = ms_4[i+1];              //ms_1 : 미션 조건 수치
+            current4_i = i+1;
+            PlayerPrefs.SetInt("ms4_index", i+1);
         }
-        i = 0;
-        while(true)
-        {   
-            if(GetBool("ms4" + i) == false)
+
+        i = PlayerPrefs.GetInt("ms5_index");
+       if(GetBool("ms5" + i) == true)
             {
-                break;
-            } else {
-                ms4 = ms_4[i+1];
-                current4_i = i+1;
-            }
-            i++;
-        }
-        i = 0;
-        while(true)
-        {   
-            if(GetBool("ms5" + i) == false)
-            {
-                break;
-            } else {
-                ms5 = ms_5[i+1];
+                SetBool("ms5" + i, false);
+                ms5 = ms_5[i+1];              //ms_1 : 미션 조건 수치
                 current5_i = i+1;
+                PlayerPrefs.SetInt("ms5_index", i+1);
             }
-            i++;
-        }
-        i = 0;
-        while(true)
-        {   
-            if(GetBool("ms6" + i) == false)
+
+        i = PlayerPrefs.GetInt("ms6_index");
+        if(GetBool("ms6" + i) == true)
             {
-                break;
-            } else {
-                ms6 = ms_6[i+1];
+                SetBool("ms6" + i, false);
+                ms6 = ms_6[i+1];              //ms_1 : 미션 조건 수치
                 current6_i = i+1;
+                PlayerPrefs.SetInt("ms6_index", i+1);
             }
-            i++;
+    }
+
+    
+
+    public void set_chellenge_text()
+    {
+        if(pu_Name == "clickMission(ms1)")
+        {
+            missionList[0].GetComponentInChildren<Text>().text = UiManager.ToStringKR(DataController.Instance.clickCount) + " / " + ms1;
+            missionList[0].transform.GetChild(2).GetComponent<Text>().text = "클릭" + ms_t[current1_i];
+            if(PlayerPrefs.GetInt("ms1_index") == ms_1.Length-1)
+            {
+                goToPanel.Instance.show_noticePanel();
+                goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "이 이상 달성할 업적이 없습니다.";
+                missionList[0].transform.GetChild(0).GetComponent<Button>().interactable = false;
+                missionList[0].transform.GetChild(2).GetComponent<Text>().text = "클릭" + " 업적 끝";
+            }
+            else if(DataController.Instance.clickCount >= ms1) 
+            {
+                SetBool("ms1" + PlayerPrefs.GetInt("ms1_index"), true);
+                missionList[0].transform.GetChild(0).GetComponent<Button>().interactable = true;
+            } 
+            else
+            {
+                missionList[0].transform.GetChild(0).GetComponent<Button>().interactable = false;
+            }
         }
-        missionList[0].GetComponentInChildren<Text>().text = UiManager.ToStringKR(DataController.Instance.clickCount) + " / " + ms1;
-        missionList[0].transform.GetChild(2).GetComponent<Text>().text = "클릭" + ms_t[current1_i];
 
-        missionList[1].GetComponentInChildren<Text>().text = UiManager.ToStringKR(DataController.Instance.char_level) + " / " + ms2;
-        missionList[1].transform.GetChild(2).GetComponent<Text>().text = "레벨" + ms_t[current2_i];
+        else if(pu_Name == "levelMission(ms2)")
+        {
+            missionList[1].GetComponentInChildren<Text>().text = UiManager.ToStringKR(DataController.Instance.char_level) + " / " + ms2;
+            missionList[1].transform.GetChild(2).GetComponent<Text>().text = "레벨" + ms_t[current2_i];
+            if(PlayerPrefs.GetInt("ms2_index") == ms_2.Length-1)
+            {
+                goToPanel.Instance.show_noticePanel();
+                goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "이 이상 달성할 업적이 없습니다.";
+                missionList[1].transform.GetChild(0).GetComponent<Button>().interactable = false;
+                missionList[1].transform.GetChild(2).GetComponent<Text>().text = "레벨" + " 업적 끝";
+            }
+            else if(DataController.Instance.char_level >= ms2) 
+            {
+                SetBool("ms2" + PlayerPrefs.GetInt("ms2_index"), true);
+                missionList[1].transform.GetChild(0).GetComponent<Button>().interactable = true;
+            
+            } 
+            else
+            {
+                missionList[1].transform.GetChild(0).GetComponent<Button>().interactable = false;
+            }
+        }
 
-        missionList[2].GetComponentInChildren<Text>().text = UiManager.ToStringKR(DataController.Instance.level) + " / " + ms3;
-        missionList[2].transform.GetChild(2).GetComponent<Text>().text = "골드레벨" + ms_t[current3_i];
+        else if(pu_Name == "goldLevelMission(ms3)")
+        {
+            missionList[2].GetComponentInChildren<Text>().text = UiManager.ToStringKR(DataController.Instance.level) + " / " + ms3;
+            missionList[2].transform.GetChild(2).GetComponent<Text>().text = "골드레벨" + ms_t[current3_i];
+            
+            if(PlayerPrefs.GetInt("ms3_index") == ms_3.Length-1)
+            {
+                goToPanel.Instance.show_noticePanel();
+                goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "이 이상 달성할 업적이 없습니다.";
+                missionList[2].transform.GetChild(0).GetComponent<Button>().interactable = false;
+                missionList[2].transform.GetChild(2).GetComponent<Text>().text = "골드레벨" + " 업적 끝";
+            }
+            else if(DataController.Instance.level >= ms3) 
+            {
+                SetBool("ms3" + PlayerPrefs.GetInt("ms3_index"), true);
+                missionList[2].transform.GetChild(0).GetComponent<Button>().interactable = true;
+            } 
+            else
+            {
+                missionList[2].transform.GetChild(0).GetComponent<Button>().interactable = false;
+            }
+        }
 
-        missionList[3].GetComponentInChildren<Text>().text = UiManager.ToStringKR(DataController.Instance.stateTotal) + " / " + ms4;
-        missionList[3].transform.GetChild(2).GetComponent<Text>().text = "스탯" + ms_t[current4_i];
+        else if(pu_Name == "stateTotalMission(ms4)")
+        {
+            missionList[3].GetComponentInChildren<Text>().text = UiManager.ToStringKR(DataController.Instance.stateTotal) + " / " + ms4;
+            missionList[3].transform.GetChild(2).GetComponent<Text>().text = "스탯" + ms_t[current4_i];
+            
+             if(PlayerPrefs.GetInt("ms4_index") == ms_4.Length-1)
+            {
+                
+                goToPanel.Instance.show_noticePanel();
+                goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "이 이상 달성할 업적이 없습니다.";
+                missionList[3].transform.GetChild(0).GetComponent<Button>().interactable = false;
+                missionList[3].transform.GetChild(2).GetComponent<Text>().text = "스탯" + "업적 끝";
+            }
+            else if(DataController.Instance.stateTotal >= ms4) 
+            {
+                SetBool("ms4" + PlayerPrefs.GetInt("ms4_index"), true);
+                missionList[3].transform.GetChild(0).GetComponent<Button>().interactable = true;
+            } 
+            else
+            {
+                missionList[3].transform.GetChild(0).GetComponent<Button>().interactable = false;
+            }
+        }
 
-        missionList[4].GetComponentInChildren<Text>().text = UiManager.ToStringKR(battleManager.require_max_stage()) + " / " + ms5;
-        missionList[4].transform.GetChild(2).GetComponent<Text>().text = "스테이지" + ms_t[current5_i];
+        else if(pu_Name == "maxStageMission(ms5)")
+        {
+            missionList[4].GetComponentInChildren<Text>().text = PlayerPrefs.GetInt("userMaxStage") + " / " + ms5;
+            missionList[4].transform.GetChild(2).GetComponent<Text>().text = "스테이지" + ms_t[current5_i];
+            Debug.Log("ms5_index = " + PlayerPrefs.GetInt("ms5_index") + "  ms_5.lenght : " + (ms_5.Length-1));
+            if(PlayerPrefs.GetInt("ms5_index") == ms_5.Length-1)
+            {;
+                goToPanel.Instance.show_noticePanel();
+                goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "이 이상 달성할 업적이 없습니다.";
+                missionList[4].transform.GetChild(0).GetComponent<Button>().interactable = false;
+                missionList[4].transform.GetChild(2).GetComponent<Text>().text = "스테이지" + " 업적 끝";
+            }
+            else if(PlayerPrefs.GetInt("userMaxStage") >= ms5) 
+            {
+                SetBool("ms5" + PlayerPrefs.GetInt("ms5_index"), true);
+                missionList[4].transform.GetChild(0).GetComponent<Button>().interactable = true;
+            } 
+            else
+            {
+                missionList[4].transform.GetChild(0).GetComponent<Button>().interactable = false;
+            }
+        }
+
+        else if(pu_Name == "maxDpsMission(ms6)")
+        {
+            missionList[5].GetComponentInChildren<Text>().text = UiManager.ToStringKR(DataController.Instance.maxDps) + " / " + ms6;
+            missionList[5].transform.GetChild(2).GetComponent<Text>().text = "데미지측정" + ms_t[current6_i];
+            if(PlayerPrefs.GetInt("ms6_index") == ms_6.Length-1)
+            {
+                goToPanel.Instance.show_noticePanel();
+                goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "이 이상 달성할 업적이 없습니다.";
+                missionList[5].transform.GetChild(0).GetComponent<Button>().interactable = false;
+                missionList[5].transform.GetChild(2).GetComponent<Text>().text = "데미지측정" + " 업적 끝";
+            }
+            else if(DataController.Instance.maxDps >= ms6) 
+            {
+                SetBool("ms6" + PlayerPrefs.GetInt("ms6_index"), true);
+                missionList[5].transform.GetChild(0).GetComponent<Button>().interactable = true;
+            } 
+            else
+            {
+                missionList[5].transform.GetChild(0).GetComponent<Button>().interactable = false;
+            }
+        }
         
-        missionList[5].GetComponentInChildren<Text>().text = UiManager.ToStringKR(DataController.Instance.maxDps) + " / " + ms6;
-        missionList[5].transform.GetChild(2).GetComponent<Text>().text = "데미지측정" + ms_t[current6_i];
-
-        if(DataController.Instance.clickCount >= ms1) 
-        {
-            missionList[0].transform.GetChild(0).GetComponent<Button>().interactable = true;
-        } 
-        else
-        {
-            missionList[0].transform.GetChild(0).GetComponent<Button>().interactable = false;
-        }
-
-        if(DataController.Instance.char_level >= ms2) 
-        {
-            missionList[1].transform.GetChild(0).GetComponent<Button>().interactable = true;
-        
-        } 
-        else
-        {
-            missionList[1].transform.GetChild(0).GetComponent<Button>().interactable = false;
-        }
-
-        if(DataController.Instance.level >= ms3) 
-        {
-            missionList[2].transform.GetChild(0).GetComponent<Button>().interactable = true;
-        } 
-        else
-        {
-            missionList[2].transform.GetChild(0).GetComponent<Button>().interactable = false;
-        }
-
-        if(DataController.Instance.stateTotal >= ms4) 
-        {
-            missionList[3].transform.GetChild(0).GetComponent<Button>().interactable = true;
-        } 
-        else
-        {
-            missionList[3].transform.GetChild(0).GetComponent<Button>().interactable = false;
-        }
-
-        if(battleManager.require_max_stage() >= ms5) 
-        {
-            missionList[4].transform.GetChild(0).GetComponent<Button>().interactable = true;
-        } 
-        else
-        {
-            missionList[4].transform.GetChild(0).GetComponent<Button>().interactable = false;
-        }
-
-        if(DataController.Instance.maxDps >= ms6) 
-        {
-            missionList[5].transform.GetChild(0).GetComponent<Button>().interactable = true;
-        } 
-        else
-        {
-            missionList[5].transform.GetChild(0).GetComponent<Button>().interactable = false;
-        }
     }
 
     void gold_text(long currentQuestGold)
@@ -332,7 +367,7 @@ public class ChallengeMissionSystem : MonoBehaviour
 
         clone.transform.SetParent(point_to_spawn_text.transform);
         clone.transform.GetChild(0).gameObject.SetActive(true);
-        clone.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>("Image/UI/Freeui/ZOSMA/Main/Cristal");
+        clone.GetComponentInChildren<Image>().sprite = ClickButton.Instance.crystal_img;
         if(UiManager.ToStringKR(currentQuestGold).Length >= 10)
         {
             clone.GetComponent<FloatingText>().text.text = "                   " + UiManager.ToStringKR(currentQuestGold);
@@ -355,65 +390,208 @@ public class ChallengeMissionSystem : MonoBehaviour
         }
     }
 
+    string pu_Name;
+
     public void getMissionReward() 
     {
-
+        
         //string name =  EventSystem.current.currentSelectedGameObject.name;
         string name = EventSystem.current.currentSelectedGameObject.transform.parent.name;
+        pu_Name = name;
+        set_chellenge_text();
 
-        if(name == "clickMission(ms1)" && GetBool("ms1" + current1_i) == false)
+        if(name == "clickMission(ms1)" && GetBool("ms1" + PlayerPrefs.GetInt("ms1_index")) == true && PlayerPrefs.GetInt("ms1_index") != ms_1.Length)
+        {   //코드 간소화함 => 보상이 골드면 간소화 간단한데 보상이 아이템이면?
+
+            SoundManager.Instance.get_challenge_reward();  
+            reward_crystal = reward_list[PlayerPrefs.GetInt("ms1_index")];
+            DataController.Instance.diamond += reward_crystal;
+            gold_text(reward_crystal);
+        }
+
+        else if(name == "levelMission(ms2)" && GetBool("ms2" + PlayerPrefs.GetInt("ms2_index")) == true && PlayerPrefs.GetInt("ms2_index") != ms_2.Length)
+        {
+
+            SoundManager.Instance.get_challenge_reward();
+            reward_crystal = reward_list[PlayerPrefs.GetInt("ms2_index")];
+            DataController.Instance.diamond += reward_crystal;
+            gold_text(reward_crystal);
+        }
+
+        else if(name == "goldLevelMission(ms3)" && GetBool("ms3" + PlayerPrefs.GetInt("ms3_index")) == true && PlayerPrefs.GetInt("ms3_index") != ms_3.Length)
+        {
+
+            SoundManager.Instance.get_challenge_reward();
+            reward_crystal = reward_list[PlayerPrefs.GetInt("ms3_index")];
+            DataController.Instance.diamond += reward_crystal;
+            gold_text(reward_crystal);
+        }
+
+        else if(name == "stateTotalMission(ms4)" && GetBool("ms4" + PlayerPrefs.GetInt("ms4_index")) == true && PlayerPrefs.GetInt("ms4_index") != ms_4.Length)
+        {
+
+            SoundManager.Instance.get_challenge_reward();
+            reward_crystal = reward_list[PlayerPrefs.GetInt("ms4_index")];
+            DataController.Instance.diamond += reward_crystal;
+            gold_text(reward_crystal);
+        }
+
+        else if(name == "maxStageMission(ms5)" && GetBool("ms5" + PlayerPrefs.GetInt("ms5_index")) == true && PlayerPrefs.GetInt("ms5_index") != ms_5.Length)
+        {   //코드 간소화함 => 보상이 골드면 간소화 간단한데 보상이 아이템이면?
+            if(PlayerPrefs.GetInt("ms5_index") != (ms_5.Length-1))
+            {
+                SoundManager.Instance.get_challenge_reward();
+                DataController.Instance.power_ticket += 1;
+                //gold_text(reward_crystal);
+
+                //권능해방권 부여
+                GameObject clone = Instantiate(prefab_floating_text);
+                clone.transform.position = Vector3.zero;
+
+                clone.transform.SetParent(point_to_spawn_text.transform);
+                clone.transform.GetChild(0).gameObject.SetActive(true);
+                clone.GetComponentInChildren<Image>().sprite = QuestController.Instance.power_ticket_img;
+                clone.GetComponent<FloatingText>().text.text = "권능해방권 +1";
+            }
+            
+        }
+
+        else if(name == "maxDpsMission(ms6)" && GetBool("ms6" + PlayerPrefs.GetInt("ms6_index")) == true && PlayerPrefs.GetInt("ms6_index") != ms_6.Length)
         {   //코드 간소화함 => 보상이 골드면 간소화 간단한데 보상이 아이템이면?
             SoundManager.Instance.get_challenge_reward();
-            SetBool("ms1" + current1_i, true);   
-            reward_crystal = reward_list[current1_i];
-            DataController.Instance.diamond += reward_crystal;
-            gold_text(reward_crystal);
-        }
-
-        else if(name == "levelMission(ms2)" && GetBool("ms2" + current2_i) == false)
-        {
-            SoundManager.Instance.get_challenge_reward();
-            SetBool("ms2" + current2_i, true);
-            reward_crystal = reward_list[current2_i];
-            DataController.Instance.diamond += reward_crystal;
-            gold_text(reward_crystal);
-        }
-
-        else if(name == "goldLevelMission(ms3)" && GetBool("ms3" + current3_i) == false)
-        {
-            SoundManager.Instance.get_challenge_reward();
-            SetBool("ms3" + current3_i, true);
-            reward_crystal = reward_list[current3_i];
-            DataController.Instance.diamond += reward_crystal;
-            gold_text(reward_crystal);
-        }
-
-        else if(name == "stateTotalMission(ms4)" && GetBool("ms4" + current4_i) == false)
-        {
-            SoundManager.Instance.get_challenge_reward();
-            SetBool("ms4" + current4_i, true);
-            reward_crystal = reward_list[current4_i];
-            DataController.Instance.diamond += reward_crystal;
-            gold_text(reward_crystal);
-        }
-
-        else if(name == "maxStageMission(ms5)" && GetBool("ms5" + current5_i) == false)
-        {   //코드 간소화함 => 보상이 골드면 간소화 간단한데 보상이 아이템이면?
-            SoundManager.Instance.get_challenge_reward();
-            SetBool("ms5" + current5_i, true);
-            reward_crystal = reward_list[current5_i];
-            DataController.Instance.diamond += reward_crystal;
-            gold_text(reward_crystal);
-        }
-
-        else if(name == "maxDpsMission(ms6)" && GetBool("ms6" + current6_i) == false)
-        {   //코드 간소화함 => 보상이 골드면 간소화 간단한데 보상이 아이템이면?
-            SoundManager.Instance.get_challenge_reward();
-            SetBool("ms6" + current6_i, true);
-            reward_crystal = reward_list[current6_i];
-            DataController.Instance.diamond += reward_crystal;
-            gold_text(reward_crystal);
+            if(PlayerPrefs.GetInt("ms6_index") % 5 == 0)
+            {
+                DataController.Instance.power_ticket += 1;
+                GameObject clone = Instantiate(prefab_floating_text);
+                clone.transform.position = Vector3.zero;
+                clone.transform.SetParent(point_to_spawn_text.transform);
+                clone.transform.GetChild(0).gameObject.SetActive(true);
+                clone.GetComponentInChildren<Image>().sprite = QuestController.Instance.artifact_ticket_img;
+                clone.GetComponent<FloatingText>().text.text = "유물뽑기권 +1";
+            }
+            else {
+                 reward_crystal = reward_list[PlayerPrefs.GetInt("ms6_index")];
+                DataController.Instance.diamond += reward_crystal;
+                gold_text(reward_crystal);
+            }
+           
         }
         checkMission();
+        set_chellenge_text();
+    }
+
+
+    public void first_Text()
+    {
+
+            missionList[0].GetComponentInChildren<Text>().text = UiManager.ToStringKR(DataController.Instance.clickCount) + " / " + ms1;
+            missionList[0].transform.GetChild(2).GetComponent<Text>().text = "클릭" + ms_t[PlayerPrefs.GetInt("ms1_index")];
+            if(DataController.Instance.clickCount >= ms1) 
+            {
+                SetBool("ms1" + PlayerPrefs.GetInt("ms1_index"), true);
+                missionList[0].transform.GetChild(0).GetComponent<Button>().interactable = true;
+            } 
+            else
+            {
+                missionList[0].transform.GetChild(0).GetComponent<Button>().interactable = false;
+            }
+            if(PlayerPrefs.GetInt("ms1_index") == ms_1.Length-1)
+            {
+                missionList[0].transform.GetChild(0).GetComponent<Button>().interactable = false;
+                missionList[0].transform.GetChild(2).GetComponent<Text>().text = "클릭" + " 업적 끝";
+            }
+        
+
+            missionList[1].GetComponentInChildren<Text>().text = UiManager.ToStringKR(DataController.Instance.char_level) + " / " + ms2;
+            missionList[1].transform.GetChild(2).GetComponent<Text>().text = "레벨" + ms_t[PlayerPrefs.GetInt("ms2_index")];
+            if(DataController.Instance.char_level >= ms2) 
+            {
+                SetBool("ms2" + PlayerPrefs.GetInt("ms2_index"), true);
+                missionList[1].transform.GetChild(0).GetComponent<Button>().interactable = true;
+            
+            } 
+            else
+            {
+                missionList[1].transform.GetChild(0).GetComponent<Button>().interactable = false;
+            }
+            if(PlayerPrefs.GetInt("ms2_index") == ms_2.Length-1)
+            {
+                missionList[1].transform.GetChild(0).GetComponent<Button>().interactable = false;
+                missionList[1].transform.GetChild(2).GetComponent<Text>().text = "레벨" + " 업적 끝";
+            }
+        
+
+            missionList[2].GetComponentInChildren<Text>().text = UiManager.ToStringKR(DataController.Instance.level) + " / " + ms3;
+            missionList[2].transform.GetChild(2).GetComponent<Text>().text = "골드레벨" + ms_t[PlayerPrefs.GetInt("ms3_index")];
+            if(DataController.Instance.level >= ms3) 
+            {
+                SetBool("ms3" + PlayerPrefs.GetInt("ms3_index"), true);
+                missionList[2].transform.GetChild(0).GetComponent<Button>().interactable = true;
+            } 
+            else
+            {
+                missionList[2].transform.GetChild(0).GetComponent<Button>().interactable = false;
+            }
+            if(PlayerPrefs.GetInt("ms3_index") == ms_3.Length-1)
+            {
+                missionList[2].transform.GetChild(0).GetComponent<Button>().interactable = false;
+                missionList[2].transform.GetChild(2).GetComponent<Text>().text = "골드레벨" + " 업적 끝";
+            }
+        
+
+          missionList[3].GetComponentInChildren<Text>().text = UiManager.ToStringKR(DataController.Instance.stateTotal) + " / " + ms4;
+            missionList[3].transform.GetChild(2).GetComponent<Text>().text = "스탯" + ms_t[PlayerPrefs.GetInt("ms4_index")];
+            if(DataController.Instance.stateTotal >= ms4) 
+            {
+                SetBool("ms4" + PlayerPrefs.GetInt("ms4_index"), true);
+                missionList[3].transform.GetChild(0).GetComponent<Button>().interactable = true;
+            } 
+            else
+            {
+                missionList[3].transform.GetChild(0).GetComponent<Button>().interactable = false;
+            }
+            if(PlayerPrefs.GetInt("ms4_index") == ms_4.Length-1)
+            {
+                missionList[3].transform.GetChild(0).GetComponent<Button>().interactable = false;
+                missionList[3].transform.GetChild(2).GetComponent<Text>().text = "스탯" + " 업적 끝";
+            }
+            
+        
+
+            missionList[4].GetComponentInChildren<Text>().text = PlayerPrefs.GetInt("userMaxStage") + " / " + ms5;
+            missionList[4].transform.GetChild(2).GetComponent<Text>().text = "스테이지" + ms_t[PlayerPrefs.GetInt("ms5_index")];
+            if(PlayerPrefs.GetInt("userMaxStage") >= ms5) 
+            {
+                SetBool("ms5" + PlayerPrefs.GetInt("ms5_index"), true);
+                missionList[4].transform.GetChild(0).GetComponent<Button>().interactable = true;
+            } 
+            else
+            {
+                missionList[4].transform.GetChild(0).GetComponent<Button>().interactable = false;
+            }
+            if(PlayerPrefs.GetInt("ms5_index") == ms_5.Length-1)
+            {
+                missionList[4].transform.GetChild(0).GetComponent<Button>().interactable = false;
+                missionList[4].transform.GetChild(2).GetComponent<Text>().text = "스테이지" + " 업적 끝";
+            }
+        
+
+            missionList[5].GetComponentInChildren<Text>().text = UiManager.ToStringKR(DataController.Instance.maxDps) + " / " + ms6;
+            missionList[5].transform.GetChild(2).GetComponent<Text>().text = "데미지측정" + ms_t[PlayerPrefs.GetInt("ms6_index")];
+            if(DataController.Instance.maxDps >= ms6) 
+            {
+                SetBool("ms6" + PlayerPrefs.GetInt("ms6_index"), true);
+                missionList[5].transform.GetChild(0).GetComponent<Button>().interactable = true;
+            } 
+            else
+            {
+                missionList[5].transform.GetChild(0).GetComponent<Button>().interactable = false;
+            }
+            if(PlayerPrefs.GetInt("ms6_index") == ms_6.Length-1)
+            {
+                missionList[5].transform.GetChild(0).GetComponent<Button>().interactable = false;
+                missionList[5].transform.GetChild(2).GetComponent<Text>().text = "데미지측정" + " 업적 끝";
+            }
+        
     }
 }

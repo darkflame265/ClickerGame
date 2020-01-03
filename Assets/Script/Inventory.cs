@@ -330,6 +330,7 @@ public class Inventory : MonoBehaviour
         var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
         float a = 5.0f * BlessingExchange.Instance.blessing_consumEffect_ratio[PlayerPrefs.GetInt("bls_6")];
         clone.transform.SetParent(inventoryPanel.transform);
+        SoundManager.Instance.upgrade_button_sound();
         switch(id)
         {
             case 0: //사과
@@ -361,6 +362,15 @@ public class Inventory : MonoBehaviour
                 DataController.Instance.special += (int)c;
                 clone.GetComponent<FloatingText>().text.text = "체력 +" + c + "\n공격력 +" + c + "\n민첩 +" + c + "\n스킬공격력 +" + c;
                 break;
+            case 6: //유물뽑기권
+                DataController.Instance.artifact_ticket++;
+                clone.GetComponent<FloatingText>().text.text = "유물뽑기권 +1";
+                break;
+            case 7: //권능뽑기권
+                DataController.Instance.power_ticket++;
+                clone.GetComponent<FloatingText>().text.text = "권능뽑기권 +1";
+                break;
+
         }
     }
 
@@ -369,6 +379,7 @@ public class Inventory : MonoBehaviour
         var clone = Instantiate(prefab_floating_text, new Vector3(-6, 0), Quaternion.Euler(Vector3.zero));
         float a = 5.0f * BlessingExchange.Instance.blessing_consumEffect_ratio[PlayerPrefs.GetInt("bls_6")] * (float)amount;
         clone.transform.SetParent(inventoryPanel.transform);
+        SoundManager.Instance.upgrade_button_sound();
         switch(id)
         {
             case 0: //사과

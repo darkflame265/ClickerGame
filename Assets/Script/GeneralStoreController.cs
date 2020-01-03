@@ -141,6 +141,7 @@ public class GeneralStoreController : MonoBehaviour
     {
         if(Product_Cost == 0 && Product_Crystal != 0)
         {
+            SoundManager.Instance.upgrade_button_sound();
             DataController.Instance.diamond -= Product_Crystal; //상품가격만큼 gold 차감
             Inv.GetComponent<Inventory>().AddItem(Product_ID); //인벤토리에 상품 추가
             current_heart -= 1;
@@ -148,7 +149,7 @@ public class GeneralStoreController : MonoBehaviour
         
         else if(DataController.Instance.gold > Product_Cost && current_heart > 0)
         {
-            Debug.Log("its'");
+            SoundManager.Instance.upgrade_button_sound();
             DataController.Instance.gold -= Product_Cost; //상품가격만큼 gold 차감
             Inv.GetComponent<Inventory>().AddItem(Product_ID); //인벤토리에 상품 추가
             current_heart -= 1;
@@ -158,46 +159,64 @@ public class GeneralStoreController : MonoBehaviour
     public void select_product_0()
     {
         Product_Pay_Panel.SetActive(true);
-        ProductExplain.text = "사과\n효과: 체력 5 상승\n가격: 5000Gold";
-        Product_Cost = 5000;
-        Product_Crystal = 0;
+        ProductExplain.text = "사과\n효과: 체력 5 상승\n가격: 300Crystal";
+        Product_Cost = 0;
+        Product_Crystal = 300;
         Product_ID = 0;
     }
 
     public void select_product_1()
     {
         Product_Pay_Panel.SetActive(true);
-        ProductExplain.text = "고기\n효과: 공격력 5 상승\n가격: 5000Gold";
-        Product_Cost = 5000;
-        Product_Crystal = 0;
+        ProductExplain.text = "고기\n효과: 공격력 5 상승\n가격: 300Crystal";
+        Product_Cost = 0;
+        Product_Crystal = 300;
         Product_ID = 1;
     }
 
     public void select_product_2()
     {
         Product_Pay_Panel.SetActive(true);
-        ProductExplain.text = "호박\n효과: 민첩 5 상승\n가격: 5000Gold";
-        Product_Cost = 5000;
-        Product_Crystal = 0;
+        ProductExplain.text = "호박\n효과: 민첩 5 상승\n가격: 300Crystal";
+        Product_Cost = 0;
+        Product_Crystal = 300;
         Product_ID = 2;
     }
 
     public void select_product_3()
     {
         Product_Pay_Panel.SetActive(true);
-        ProductExplain.text = "버섯\n효과: 특성 5 상승\n가격: 5000Gold";
-        Product_Cost = 5000;
-        Product_Crystal = 0;
+        ProductExplain.text = "버섯\n효과: 특성 5 상승\n가격: 300Crystal";
+        Product_Cost = 0;
+        Product_Crystal = 300;
         Product_ID = 3;
     }
 
     public void select_product_4()
     {
         Product_Pay_Panel.SetActive(true);
-        ProductExplain.text = "레벨업 포션\n효과: 현재 레벨에 필요한 양 만큼 경험치를 얻습니다.\n가격: 1000Crystal";
+        ProductExplain.text = "레벨업 포션\n효과: 현재 레벨에 필요한 양 만큼 경험치를 얻습니다.\n가격: 2000Crystal";
         Product_Cost = 0;
-        Product_Crystal = 1000;
+        Product_Crystal = 2000;
         Product_ID = 4;
+    }
+
+    public void select_product_5()
+    {
+        Product_Pay_Panel.SetActive(true);
+        ProductExplain.text = "유물뽑기권(아이템)\n효과: 유물뽑기권을 얻을 수 있는 아이템입니다.\n가격: 20000Crystal";
+        Product_Cost = 0;
+        Product_Crystal = 20000;
+        Product_ID = 6;       //5는 현자의 돌
+    }
+
+    public void select_product_6()
+    {
+        Product_Pay_Panel.SetActive(true);
+        ProductExplain.text = "권능뽑기권(아이템)\n효과: 권능뽑기권을 얻을 수 있는 아이템입니다.\n가격: 20000Crystal";
+        Product_Cost = 0;
+        Product_Crystal = 20000;
+        Product_ID = 7;
     }
 
 }

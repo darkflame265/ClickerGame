@@ -63,5 +63,27 @@
     "rarity": 2,
     "slug": "Runestone",
     "effect": "DataController.Instance.health += 5;"
+  },
+
+  {
+    "id": 6,
+    "title": "유물뽑기권-스크롤",
+    "value": 543,
+    "description": "사용하면 유물뽑기권 티켓이 지급됩니다.",
+    "stackable": true,
+    "rarity": 2,
+    "slug": "T_Scroll",
+    "effect": "DataController.Instance.health += 5;"
+  },
+
+  {
+    "id": 7,
+    "title": "권능뽑기권-스크롤",
+    "value": 543,
+    "description": "사용하면 권능뽑기권 티켓이 지급됩니다.",
+    "stackable": true,
+    "rarity": 2,
+    "slug": "Flag_03",
+    "effect": "DataController.Instance.health += 5;"
   }
 ]
