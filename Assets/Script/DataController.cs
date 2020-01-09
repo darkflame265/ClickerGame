@@ -88,7 +88,7 @@ public class DataController : MonoBehaviour
         {
             if(!PlayerPrefs.HasKey("current_heart")) // 골드가 없을떄
             {
-                return 0;
+                return 3;
             }
             string tmpcurrent_heart = PlayerPrefs.GetString("current_heart");
             return long.Parse(tmpcurrent_heart);

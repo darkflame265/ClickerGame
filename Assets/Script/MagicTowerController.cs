@@ -54,8 +54,7 @@ public class MagicTowerController : MonoBehaviour
 
 
     //각성에 필요한 능력치 설정
-    public long[] knight_require_helth = {50, 100, 150, 200, 300, 500, 600, 800, 1000, 1200, 1400, 1700, 2000};
-    public long[] archer_require_helth = {50, 100, 150, 200, 300, 500, 600, 800, 1000, 1200, 1400, 1700, 2000};
+    public long[] require_public = {50, 100, 150, 200, 300, 500, 600, 800, 1000, 1200, 1400, 1700, 2000};
     public long require_health;
     public long require_attack;
     public long require_mana;
@@ -305,6 +304,28 @@ public class MagicTowerController : MonoBehaviour
                 buy_text.text = "각성 최고레벨";
             }   
         }
+
+        //int skill1_id = CharacterStateController.Instance.
+        if(DataController.Instance.knight_level >= 3) //전사 스킬 조건:전사 3레벨
+                {
+                    PlayerPrefs.SetInt(CharacterStateController.Instance.skill1_id[0], 1);
+                } else {
+                    PlayerPrefs.SetInt(CharacterStateController.Instance.skill1_id[0], 0);
+                }
+
+                if(DataController.Instance.archer_level >= 3) 
+                {
+                    PlayerPrefs.SetInt(CharacterStateController.Instance.skill1_id[1], 1);
+                } else {
+                    PlayerPrefs.SetInt(CharacterStateController.Instance.skill1_id[1], 0);
+                }
+
+                if(DataController.Instance.wizard_level >= 3) 
+                {
+                    PlayerPrefs.SetInt(CharacterStateController.Instance.skill1_id[2], 1);
+                } else {
+                    PlayerPrefs.SetInt(CharacterStateController.Instance.skill1_id[2], 0);
+                }
         
     }
 
@@ -316,10 +337,10 @@ public class MagicTowerController : MonoBehaviour
             if(DataController.Instance.knight_level == index+1)
             {
                 power_up_cost = (long)Mathf.Pow(10, index) * 1000;
-                require_health = knight_require_helth[index];
-                require_attack = 30 * index;
-                require_mana = 30 * index;
-                require_special = 30 * index;
+                require_health = require_public[index];
+                require_attack = require_public[index] / 4;
+                require_mana = require_public[index] / 4;
+                require_special = require_public[index] / 4;
                 check_ability_and_set_color();
                 show_ratio_increase();
                 break;
@@ -336,10 +357,10 @@ public class MagicTowerController : MonoBehaviour
             if(DataController.Instance.archer_level == index+1)
             {
                 power_up_cost = (long)Mathf.Pow(10, index) * 1000;
-                require_health = 30 * index;
-                require_attack = knight_require_helth[index];
-                require_mana = 30 * index;
-                require_special = 30 * index;
+                require_health = require_public[index] / 4;
+                require_attack = require_public[index];
+                require_mana = require_public[index] / 4;
+                require_special = require_public[index] / 4;
                 check_ability_and_set_color();
                 show_ratio_increase();
                 break;
@@ -357,10 +378,10 @@ public class MagicTowerController : MonoBehaviour
             if(DataController.Instance.wizard_level == index+1)
             {
                 power_up_cost = (long)Mathf.Pow(10, index) * 1000;
-                require_health = 30 * index;
-                require_attack = 30 * index;
-                require_mana = 30 * index;
-                require_special = knight_require_helth[index];
+                require_health = require_public[index] / 4;
+                require_attack = require_public[index] / 4;
+                require_mana = require_public[index] / 4;
+                require_special = require_public[index];
                 check_ability_and_set_color();
                 show_ratio_increase();
                 break;

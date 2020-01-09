@@ -179,6 +179,7 @@ public class goToPanel : MonoBehaviour
             show_all_button();
             charPanel.SetActive(false);
         }
+        CharacterStateController.Instance.clear_panel();
         CharacterStateController.Instance.check_current_char();
         //charPanel.SetActive(!charPanel.active);
     }
@@ -320,57 +321,68 @@ public class goToPanel : MonoBehaviour
 
     public void show_option_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
         option_panel.SetActive(true);
     }
 
     public void hide_option_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
         option_panel.SetActive(false);
     }
 
     public void show_store_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
         store_panel.SetActive(true);
         QuestController.Instance.set_start_position();
     }
 
     public void hide_store_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
         store_panel.SetActive(false);
     }
 
     public void show_quest_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
         quest_panel.SetActive(true);
     }
 
     public void hide_quest_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
         quest_panel.SetActive(false);
     }
 
     public void show_buyCash_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
         buyCash_panel.SetActive(true);
     }
 
     public void hide_buyCash_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
         buyCash_panel.SetActive(false);
     }
 
     public void show_gamble_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
         gamble_panel.SetActive(true);
     }
 
     public void hide_gamble_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
         gamble_panel.SetActive(false);
     }
 
     public void show_challenge_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
         challenge_panel.SetActive(true);
         //ChallengeMissionSystem.Instance.set_chellenge_text();
         ChallengeMissionSystem.Instance.first_Text();
@@ -378,26 +390,31 @@ public class goToPanel : MonoBehaviour
 
     public void hide_challenge_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
         challenge_panel.SetActive(false);
     }
 
     public void show_inventory_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
         inventory_panel.SetActive(true);
     }
 
     public void hide_inventory_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
         inventory_panel.SetActive(false);
     }
 
     public void show_camp_dispose_panel()
     {
+        //SoundManager.Instance.play_fight_panel_btn_sound();
         camp_dispose_panel.SetActive(true);
     }
 
     public void hide_camp_dispose_panel()
     {
+        //SoundManager.Instance.play_fight_panel_btn_sound();
         camp_dispose_panel.SetActive(false);
     }
 
@@ -474,11 +491,14 @@ public class goToPanel : MonoBehaviour
     public void show_stage_1_panel()
     {
         stage_1_panel.SetActive(true);
+        SoundManager.Instance.play_fight_panel_btn_sound();
         //stage_explain_panel.SetActive(true);
     }
 
     public void hide_stage_1_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+
         stage_1_panel.SetActive(false);
         stage_explain_panel.SetActive(false);
         stage_reward_explain_panel.SetActive(false);
@@ -488,12 +508,16 @@ public class goToPanel : MonoBehaviour
 
     public void show_stage_2_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+
         stage_2_panel.SetActive(true);
         //stage_explain_panel.SetActive(true);
     }
 
     public void hide_stage_2_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+
         stage_2_panel.SetActive(false);
         stage_explain_panel.SetActive(false);
         stage_reward_explain_panel.SetActive(false);
@@ -503,12 +527,16 @@ public class goToPanel : MonoBehaviour
 
     public void show_stage_3_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+
         stage_3_panel.SetActive(true);
         //stage_explain_panel.SetActive(true);
     }
 
     public void hide_stage_3_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+
         stage_3_panel.SetActive(false);
         stage_explain_panel.SetActive(false);
         stage_reward_explain_panel.SetActive(false);
@@ -518,12 +546,16 @@ public class goToPanel : MonoBehaviour
 
     public void show_stage_4_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+
         stage_4_panel.SetActive(true);
         //stage_explain_panel.SetActive(true);
     }
 
     public void hide_stage_4_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+
         stage_4_panel.SetActive(false);
         stage_explain_panel.SetActive(false);
         stage_reward_explain_panel.SetActive(false);
@@ -533,12 +565,16 @@ public class goToPanel : MonoBehaviour
 
     public void show_stage_5_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+
         stage_5_panel.SetActive(true);
         //stage_explain_panel.SetActive(true);
     }
 
     public void hide_stage_5_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+
         stage_5_panel.SetActive(false);
         stage_explain_panel.SetActive(false);
         stage_reward_explain_panel.SetActive(false);
@@ -548,11 +584,15 @@ public class goToPanel : MonoBehaviour
 
     public void show_stage_6_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+
         stage_6_panel.SetActive(true);
         //stage_explain_panel.SetActive(true);
     }
     public void hide_stage_6_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+
         stage_6_panel.SetActive(false);
         stage_explain_panel.SetActive(false);
         stage_reward_explain_panel.SetActive(false);
@@ -562,11 +602,15 @@ public class goToPanel : MonoBehaviour
 
     public void show_stage_7_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+
         stage_7_panel.SetActive(true);
         //stage_explain_panel.SetActive(true);
     }
     public void hide_stage_7_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+
         stage_7_panel.SetActive(false);
         stage_explain_panel.SetActive(false);
         stage_reward_explain_panel.SetActive(false);
@@ -576,11 +620,15 @@ public class goToPanel : MonoBehaviour
 
     public void show_stage_8_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+
         stage_8_panel.SetActive(true);
         //stage_explain_panel.SetActive(true);
     }
     public void hide_stage_8_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+
         stage_8_panel.SetActive(false);
         stage_explain_panel.SetActive(false);
         stage_reward_explain_panel.SetActive(false);
@@ -590,11 +638,15 @@ public class goToPanel : MonoBehaviour
 
     public void show_stage_9_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+
         stage_9_panel.SetActive(true);
         //stage_explain_panel.SetActive(true);
     }
     public void hide_stage_9_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+
         stage_9_panel.SetActive(false);
         stage_explain_panel.SetActive(false);
         stage_reward_explain_panel.SetActive(false);
@@ -604,36 +656,50 @@ public class goToPanel : MonoBehaviour
 
     public void show_stage_10_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+
         stage_10_panel.SetActive(true);
     }
 
     public void show_stage_11_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+
         stage_11_panel.SetActive(true);
     }
 
     public void show_stage_12_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+
         stage_12_panel.SetActive(true);
     }
 
     public void show_stage_13_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+
         stage_13_panel.SetActive(true);
     }
 
     public void show_stage_14_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+
         stage_14_panel.SetActive(true);
     }
 
     public void show_stage_15_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+
         stage_15_panel.SetActive(true);
     }
 
     public void hide_all_stage_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+
         stage_1_panel.SetActive(false);
         stage_2_panel.SetActive(false);
         stage_3_panel.SetActive(false);
@@ -656,6 +722,8 @@ public class goToPanel : MonoBehaviour
     }
     public void hide_stage_10_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
+
         stage_10_panel.SetActive(false);
         stage_explain_panel.SetActive(false);
         stage_reward_explain_panel.SetActive(false);
@@ -720,42 +788,50 @@ public class goToPanel : MonoBehaviour
 
     public void show_black_smith_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
         black_smith_panel.SetActive(true);
     }
 
     public void hide_black_smith_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
         black_smith_panel.SetActive(false);
     }
 
     public void show_general_store_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
         general_store.SetActive(true);
     }
 
     public void hide_general_store_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
         general_store.SetActive(false);
     }
 
     public void show_magic_tower_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
         magic_tower.SetActive(true);
         MagicTowerController.Instance.select_knight();
     }
 
     public void hide_magic_tower_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
         magic_tower.SetActive(false);
     }
     
     public void show_bar_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
         bar_panel.SetActive(true);
     }
 
     public void hide_bar_panel()
     {
+        SoundManager.Instance.play_fight_panel_btn_sound();
         bar_panel.SetActive(false);
     }
 

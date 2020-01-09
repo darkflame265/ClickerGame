@@ -28,7 +28,8 @@ public class LoadingScene : MonoBehaviour
             if(progressbar.value < 1f)
             {
                 progressbar.value = Mathf.MoveTowards(progressbar.value, 1f, Time.deltaTime);
-                loadText.text = "" + progressbar.value + "%";
+                string result = string.Format("{0:0.##}", progressbar.value);
+                loadText.text = "" + result + "%";
             }
             else {
                 loadText.text = "100%...";

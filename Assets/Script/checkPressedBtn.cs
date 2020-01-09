@@ -21,7 +21,7 @@ public class checkPressedBtn : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     public void Update()
     {
         if(isBtnDown) {
-            Debug.Log("pointerDownTimer is " + pointerDownTimer);
+            //Debug.Log("pointerDownTimer is " + pointerDownTimer);
             pointerDownTimer += Time.deltaTime;
             complate_point_up();
             

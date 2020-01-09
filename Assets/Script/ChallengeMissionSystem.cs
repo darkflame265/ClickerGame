@@ -461,7 +461,7 @@ public class ChallengeMissionSystem : MonoBehaviour
             SoundManager.Instance.get_challenge_reward();
             if(PlayerPrefs.GetInt("ms6_index") % 5 == 0)
             {
-                DataController.Instance.power_ticket += 1;
+                DataController.Instance.artifact_ticket += 1;
                 GameObject clone = Instantiate(prefab_floating_text);
                 clone.transform.position = Vector3.zero;
                 clone.transform.SetParent(point_to_spawn_text.transform);

@@ -89,11 +89,13 @@ public class stoneFighterController : MonoBehaviour
 
             if(cp.x > 8.5f)
             {
-                this.transform.position = new Vector3(8.5f, cp.y, 0);
+                //this.transform.position = new Vector3(8.5f, cp.y, 0);
+                this.transform.position = new Vector2(8.5f, cp.y);
             }
             if(cp.x < -8.5f)
             {
-                this.transform.position = new Vector3(-8.5f, cp.y, 0);
+                //this.transform.position = new Vector3(-8.5f, cp.y, 0);
+                this.transform.position = new Vector2(-8.5f, cp.y);
             }
 
             //Vector3 wp = Camera.main.ScreenToWorldPoint(Input.mousel);

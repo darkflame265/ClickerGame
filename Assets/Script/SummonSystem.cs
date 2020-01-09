@@ -7,6 +7,25 @@ using UnityEngine.UI;
 public class SummonSystem : MonoBehaviour
 {
     // Start is called before the first frame update
+    private static SummonSystem instance;
+
+    public static SummonSystem Instance
+    {
+        get{
+            if(instance == null)
+            {
+                instance = FindObjectOfType<SummonSystem>();
+
+                if(instance == null)
+                {
+                    GameObject container = new GameObject("SummonSystem");
+
+                    instance = container.AddComponent<SummonSystem>();
+                }
+            }
+            return instance;
+        }
+    }
     
     public GameObject[]hero = new GameObject[0];
 
@@ -104,7 +123,7 @@ public class SummonSystem : MonoBehaviour
         while(true)
         {
             gold_text.text = UiManager.ToStringKR(DataController.Instance.gold);
-            crystal_text.text = UiManager.ToStringKR(DataController.Instance.diamond);
+            crystal_text.text = DataController.Instance.diamond.ToString();
             while(LimitTime < 0)
                 {
 
@@ -266,13 +285,13 @@ public class SummonSystem : MonoBehaviour
             goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "뽑기 기회를 모두 소진하셨습니다.";
         }
         gold_text.text = UiManager.ToStringKR(DataController.Instance.gold);
-        crystal_text.text = UiManager.ToStringKR(DataController.Instance.diamond);
+        crystal_text.text = DataController.Instance.diamond.ToString();
         
     }
 
     public void rare_summon()
     {
-        require_diamond = 100;
+        require_diamond = 500;
         if(DataController.Instance.diamond >= require_diamond)
         {
             int number = UnityEngine.Random.Range(1, 1001); //1~1000 사이의 숫자
@@ -367,27 +386,27 @@ public class SummonSystem : MonoBehaviour
             goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "돈이 부족합니다.";
         }
         gold_text.text = UiManager.ToStringKR(DataController.Instance.gold);
-        crystal_text.text = UiManager.ToStringKR(DataController.Instance.diamond);
+        crystal_text.text = DataController.Instance.diamond.ToString();
         
     }
 
     public void epic_summon()
     {
-        require_diamond = 1000;
+        require_diamond = 2000;
         if(DataController.Instance.diamond >= require_diamond)
         {
             int number = UnityEngine.Random.Range(1, 1001); //1~1000 사이의 숫자
             // 0=에러 1=C 2=B 3=A 4=S 5=??
 
-            if(number > 0 && number <=500) //50%
+            if(number > 0 && number <=300) //50%
             {
                 result = 1; // 음식X30
             }
-            else if(number > 0 && number <=800) // 30%
+            else if(number > 0 && number <=600) // 30%
             {
                 result = 2; // 경험치포션X10
             }
-            else if(number > 0 && number <=970) // 17%
+            else if(number > 0 && number <=800) // 17%
             {
                 result = 3; // 유물뽑기권
             }
@@ -463,7 +482,7 @@ public class SummonSystem : MonoBehaviour
             goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "돈이 부족합니다.";
         }
         gold_text.text = UiManager.ToStringKR(DataController.Instance.gold);
-        crystal_text.text = UiManager.ToStringKR(DataController.Instance.diamond);
+        crystal_text.text = DataController.Instance.diamond.ToString();
         
     }
     

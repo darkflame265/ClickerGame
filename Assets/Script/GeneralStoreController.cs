@@ -98,7 +98,7 @@ public class GeneralStoreController : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
             text_Heart.text = "구매기회: " + current_heart + "/" + max_heart;
             gold_text.text = UiManager.ToStringKR(DataController.Instance.gold);
-            crystal_text.text = UiManager.ToStringKR(DataController.Instance.diamond);
+            crystal_text.text = DataController.Instance.diamond.ToString();
             if(DataController.Instance.gold >= Product_Cost && DataController.Instance.diamond >= Product_Crystal && current_heart > 0)
             {
                 Buy_Button.GetComponent<Image>().color = new Color(1, 1, 1, 1);

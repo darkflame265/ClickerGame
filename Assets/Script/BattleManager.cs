@@ -302,33 +302,33 @@ public class BattleManager : MonoBehaviour
     {
         if(DataController.Instance.current_stage <= 20)
         {
-            DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 10000;
-            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 5;
+            DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 1000;
+            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 1;
         }
         else if(DataController.Instance.current_stage <= 40)
         {
-            DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 100000;
-            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 25;
+            DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 10000;
+            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 5;
         }
         else if(DataController.Instance.current_stage <= 60)
         {
             DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 100000;
-            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 40;
+            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 10;
         }
         else if(DataController.Instance.current_stage <= 80)
         {
             DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 250000;
-            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 50;
+            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 30;
         }
         else if(DataController.Instance.current_stage <= 100)
         {
             DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 500000;
-            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 60;
+            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 50;
         }
         else if(DataController.Instance.current_stage <= 120)
         {
             DataController.Instance.get_stage_gold = DataController.Instance.current_stage * 1000000;
-            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 80;
+            DataController.Instance.get_stage_exp = DataController.Instance.current_stage * 70;
         }
         else if(DataController.Instance.current_stage <= 140)
         {
@@ -381,8 +381,8 @@ public class BattleManager : MonoBehaviour
             DataController.Instance.get_stage_gold = DataController.Instance.get_stage_gold / 10;
             DataController.Instance.get_stage_exp = DataController.Instance.get_stage_exp / 10;
         }
-        Debug.Log("DataController.Instance.current_stage : " + DataController.Instance.current_stage);
-        Debug.Log("DataController.Instance.get_stage_gold : " + DataController.Instance.get_stage_gold);
+        //Debug.Log("DataController.Instance.current_stage : " + DataController.Instance.current_stage);
+        //Debug.Log("DataController.Instance.get_stage_gold : " + DataController.Instance.get_stage_gold);
 
         
         //ItemNum = 0;
@@ -392,7 +392,7 @@ public class BattleManager : MonoBehaviour
 
     void set_background_image()
     {
-        Debug.Log("DataController.Instance.current_stage : " + DataController.Instance.current_stage);
+        //Debug.Log("DataController.Instance.current_stage : " + DataController.Instance.current_stage);
         if(DataController.Instance.current_stage > 300)
         {
             Map1.SetActive(false);
@@ -694,6 +694,7 @@ public class BattleManager : MonoBehaviour
                         }
 
                     } else {
+                        Debug.Log("it's set result 0");
                         DataController.Instance.get_stage_gold = 0;
                         DataController.Instance.get_stage_exp = 0;
                         DataController.Instance.get_stage_crystal = 0;
@@ -956,10 +957,10 @@ public class BattleManager : MonoBehaviour
                         DataController.Instance.current_stage = -4;
                         tower_of_diamond();
                     }
-                    if(ItemNum != 0)
-                    {
+                    //if(ItemNum != 0)
+                    //{
                         get_booty();
-                    }
+                    //}
                     stage_resource_result.text = "" + DataController.Instance.get_stage_resource;
                     Debug.Log("7");
                 }
@@ -979,15 +980,30 @@ public class BattleManager : MonoBehaviour
 
     public void get_booty()
     {
-        int rant = UnityEngine.Random.Range(1, 101); //1~!00
-        if(rant > 80)
+        DataController.Instance.get_stage_resource = 0;
+        for(int i = 0; i < 20; i++)
         {
+            if(DataController.Instance.current_stage / 20 == i)
+            {
+                int booty_index = (int)(DataController.Instance.current_stage / 20) % 5;
+                Item_img.sprite = booty_pack[booty_index];
+                //Debug.Log("booty_is " + booty_pack[booty_index].name);
+                break;
+            }
+        }
+        
+        ItemNum = (int)((DataController.Instance.current_stage / 20) % 5) + 1;
+        int rant = UnityEngine.Random.Range(1, 101); //1~!00
+        if(rant > 40)
+        {
+            Debug.Log("it's work!!");
             int current_booty = PlayerPrefs.GetInt("booty_" + ItemNum);
             int max = BlessingExchange.Instance.blessing_get_booty_ratio[PlayerPrefs.GetInt("bls_7")];
             int get_booty_value = UnityEngine.Random.Range(1, max);
             current_booty = current_booty + get_booty_value;
             DataController.Instance.get_stage_resource = get_booty_value;
             PlayerPrefs.SetInt("booty_" + ItemNum, current_booty);
+            
         }
     }
 
@@ -1446,10 +1462,11 @@ public class BattleManager : MonoBehaviour
         if(DataController.Instance.current_stage == 0)
         {
                       //하트 1개 사용하기
-            if(fightPanelTimer.Instance.current_heart == 1)
+            if(fightPanelTimer.Instance.current_heart >= 1)
             {
+                Debug.Log("heart is minus");
                 PlayerPrefs.SetInt("dpsResultBool", 1);
-                fightPanelTimer.Instance.current_heart = 0;
+                fightPanelTimer.Instance.current_heart--;
             } else {
                 PlayerPrefs.SetInt("dpsResultBool", 0);
             }
@@ -1526,6 +1543,8 @@ public class BattleManager : MonoBehaviour
 
     public void over_60()
     {
+        
+
         for(int i = 0; i < FightController.Instance.stageCh1.Length; i++)
         {
 
@@ -1562,6 +1581,7 @@ public class BattleManager : MonoBehaviour
                         string tmp = DataController.Instance.monster_0_ID;
                         DataController.Instance.monster_0_ID = DataController.Instance.monster_1_ID;
                         DataController.Instance.monster_1_ID = tmp;
+                        
                     }
                 }
                 if(DataController.Instance.current_stage % 20 > 15)
@@ -1586,6 +1606,11 @@ public class BattleManager : MonoBehaviour
                 if (x == 0) x = 1;
                 DataController.Instance.monster_hp = DataController.Instance.current_stage * 10;
                 DataController.Instance.monster_damage = DataController.Instance.current_stage * 10;
+                if(DataController.Instance.current_stage % 20 == 0)
+                {
+                    DataController.Instance.monster_hp = DataController.Instance.current_stage * 30;
+                    DataController.Instance.monster_damage = DataController.Instance.current_stage * 30;
+                }
                 set_hero_monster();
                 set_fight_reward();
                 //set_explanation_panel();
@@ -1597,6 +1622,8 @@ public class BattleManager : MonoBehaviour
 
     public void over_100()
     {
+        
+
         for(int i = 100; i < FightController.Instance.stageCh1.Length; i++)
         {
 
@@ -1668,6 +1695,8 @@ public class BattleManager : MonoBehaviour
 
     public void over_200()
     {
+        
+
         for(int i = 200; i < FightController.Instance.stageCh1.Length; i++)
         {
 
@@ -1739,6 +1768,8 @@ public class BattleManager : MonoBehaviour
 
     public void stage1_100()
     {
+        
+
         monster_init();
         DataController.Instance.monster_0_ID = "Bat_Bose"; 
         DataController.Instance.monster_hp = 5000;
@@ -1757,6 +1788,8 @@ public class BattleManager : MonoBehaviour
 
     public void stage1_200()   //200스테이지 보스
     {
+        
+
         monster_init();
         DataController.Instance.monster_0_ID = "crazy_portal_Bose"; 
         DataController.Instance.monster_1_ID = "crazy_portal_Bose"; 
@@ -1777,6 +1810,8 @@ public class BattleManager : MonoBehaviour
 
      public void stage1_300()   //200스테이지 보스
     {
+        
+
         monster_init();
         DataController.Instance.monster_2_ID = "Bose_scareCrow"; 
         DataController.Instance.monster_hp = 100000;
@@ -1936,8 +1971,8 @@ public class BattleManager : MonoBehaviour
             }
             set_hero_monster();
 
-            DataController.Instance.monster_hp = tower_stage * 100;
-            DataController.Instance.monster_damage = tower_stage * 100;
+            DataController.Instance.monster_hp = tower_stage * 500;
+            DataController.Instance.monster_damage = tower_stage * 500;
 
             DataController.Instance.get_stage_gold = 10000 * (long)Mathf.Pow(2, (tower_stage/2));
             DataController.Instance.get_stage_exp = tower_stage * 100;
@@ -1959,14 +1994,13 @@ public class BattleManager : MonoBehaviour
 
         if(DataController.Instance.current_stage == -2)
         { 
-             if(fightPanelTimer.Instance.infinity_mode_heart == 1)
+             if(fightPanelTimer.Instance.infinity_mode_heart > 0)
             {
-                Debug.Log("it's work");
                 PlayerPrefs.SetInt("infinityResultBool", 1);
-                fightPanelTimer.Instance.infinity_mode_heart = 0;
+                fightPanelTimer.Instance.infinity_mode_heart--;
             } else {
                 PlayerPrefs.SetInt("infinityResultBool", 0);
-                fightPanelTimer.Instance.infinity_mode_heart = 0;
+                //fightPanelTimer.Instance.infinity_mode_heart--;
             }
             Set_Hero_Base();
             

@@ -24,6 +24,7 @@ public class TrollController : MonoBehaviour
     public long damage;
     public GameObject prefab_floating_text;
 
+    bool postion_y = false;
 
     public float xMov;
     void Start(){
@@ -115,6 +116,13 @@ public class TrollController : MonoBehaviour
     {
         if(movebool == true)
         {
+            if(postion_y == true && movebool == true )
+            {
+                //아래로 이동
+                this.transform.position = new Vector3(transform.position.x, this.transform.position.y-1f, transform.position.z);
+                postion_y = false;
+            }
+
             if(this.GetComponent<EnemyController>().timestop == false)
             {
                 this.transform.Translate(new Vector3(xMov, 0, 0));
@@ -166,6 +174,12 @@ public class TrollController : MonoBehaviour
                 movebool = false;
                 allAnimatorStop();
                 animator.SetBool("isAttack", true);
+                if(postion_y == false && movebool == false)
+                {
+                    //위로이동  172
+                    this.transform.position = new Vector3(transform.position.x, this.transform.position.y+1f, transform.position.z);
+                    postion_y = true;
+                }
             }
             else if(wait == false)
             {
@@ -180,24 +194,18 @@ public class TrollController : MonoBehaviour
 
     public void check_current_height()
     {            //45 - > 165 y축]
-        if(animator.GetCurrentAnimatorStateInfo(0).IsName("walk") && this.transform.localPosition.y >= 100f)
-        {
-            Debug.Log("wwwwwwwwwwwww");
-            this.transform.position = new Vector3(transform.position.x, this.transform.position.y-1f, transform.position.z);
-        }
-        else if(animator.GetCurrentAnimatorStateInfo(0).IsName("attack") && this.transform.localPosition.y <= 46f)
-        {
-            Debug.Log("arrrrrrrrrrrrrrrr");
-            this.transform.position = new Vector3(transform.position.x, this.transform.position.y+1f, transform.position.z);
-        }
-        Debug.Log("this.transform.localPosition.y : " + this.transform.localPosition.y);
-        // if(this.transform.localPosition.y < 2f)
+        // if(animator.GetCurrentAnimatorStateInfo(0).IsName("walk") && this.transform.localPosition.y >= 100f)
         // {
-        //     Debug.Log("oraaaaa");
+        //     Debug.Log("wwwwwwwwwwwww");
+        //     this.transform.position = new Vector3(transform.position.x, this.transform.position.y-1f, transform.position.z);
         // }
-        // else {
-        //    Debug.Log("wrrrrrrrrrrrrrrrrrry");
+        // else if(animator.GetCurrentAnimatorStateInfo(0).IsName("attack") && this.transform.localPosition.y <= 46f)
+        // {
+        //     Debug.Log("arrrrrrrrrrrrrrrr");
+        //     this.transform.position = new Vector3(transform.position.x, this.transform.position.y+1f, transform.position.z);
         // }
+        // Debug.Log("this.transform.localPosition.y : " + this.transform.localPosition.y);
+
     }
     
 

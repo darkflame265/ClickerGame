@@ -68,6 +68,8 @@ public class UiManager : MonoBehaviour
 
    //설정창
    public GameObject clickButton;
+   public GameObject Ads_btn_summonPanel;
+   public GameObject Ads_btn_skillPanel;
    
 
 
@@ -275,15 +277,27 @@ public class UiManager : MonoBehaviour
                     show_current_stage.text = "Stage " + DataController.Instance.current_stage.ToString();
                     Stage_explain.text = "몹 평균 체력\n" + DataController.Instance.avg_hp + "\n몹 평균 공격력\n" + DataController.Instance.avg_dg;
                 }
-                
-
-                
                 tower_of_diamond.text = "시련의 탑" + " " + DataController.Instance.tower_stage + "층";
             }
-            
+            if(goToPanel.Instance.gamble_panel.activeSelf == true)
+            {
+                if(DataController.Instance.diamond < 2000)
+                {
+                    Ads_btn_summonPanel.SetActive(true);
+                } else {
+                    Ads_btn_summonPanel.SetActive(false);
+                }
+            }
 
-            
-
+            // if(goToPanel.Instance.black_smith_panel.activeSelf == true)
+            // {
+            //     if(DataController.Instance.diamond < 500)
+            //     {
+            //         Ads_btn_skillPanel.SetActive(true);
+            //     } else {
+            //         Ads_btn_skillPanel.SetActive(false);
+            //     }
+            // }
             if(GetBool("floatnotice") == true)//check가 on이면 bool
             {
                 SetBool("floatnotice", false);

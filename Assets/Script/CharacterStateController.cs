@@ -27,7 +27,8 @@ public class CharacterStateController : MonoBehaviour
         }
     }
 
-    
+    public Text gold_text;
+    public Text crystal_text;
 
     public GameObject skill_panel;
 
@@ -59,8 +60,9 @@ public class CharacterStateController : MonoBehaviour
     //skill 목록
     public Text skill_explain;
 
-    List<string> skill_name = new List<string>();
-    List<string> skill_effect = new List<string>();
+    //List<string> skill_name = new List<string>();
+    public string[] skill_name = new string[0];
+    public string[] skill_effect = new string[0];
 
     List<string> skill1_name = new List<string>();
     List<string> skill1_effect = new List<string>();
@@ -93,61 +95,52 @@ public class CharacterStateController : MonoBehaviour
 
     public GameObject probability_panel;
 
+    public GameObject skill_upgrade_button;
+
+    
+
     void Start()
     {
+        for(int index = 0; index < 3; index++)
+        {
+            skill_box_pack[index].GetComponent<Image>().sprite = Skill_Img_pack[PlayerPrefs.GetInt("select_skill" + index)]; //스킬 이미지
+            skill_box_pack[index].GetComponentInChildren<Text>().text = PlayerPrefs.GetString("skill_name_text" + index); //PlayerPrefs.GetString("skill_name_text")
+            Debug.Log("PlayerPrefs.GetString(skill_name_text + index) : " + PlayerPrefs.GetString("skill_name_text" + index));
+            if(PlayerPrefs.GetString("skill_name_text" + index) == "구매 완료")
+            {
+                price_text[index].transform.parent.GetComponent<Button>().interactable = false;
+            }
+            
+            price_text[index].text = ""+ PlayerPrefs.GetInt("skill_Price_diamond"+ index);
+        }
+
+        Debug.Log("price_text[0].text : " + price_text[0].text);
+        if(price_text[0].text == "0")     //맨처음 1번만 실행
+        {
+            DataController.Instance.diamond += 500;
+            change_skill_in_shop();
+        } else {
+        }
+        
+
         select_knight();
-        insert_skill_name_toList();
-        insert_skill_effect_toList();
         insert_skill1_name_toList();
         insert_skill1_effect_toList();
         StartCoroutine("SomeCoroutine");
+        StartCoroutine("Auto");
     }
 
-    void insert_skill_name_toList()
+    IEnumerator Auto()
     {
-        skill_name.Add("경건한 몸");
-        skill_name.Add("상급 방패술");
-        skill_name.Add("최상급 방패술");
-        skill_name.Add("수호자의 자질");
-
-        skill_name.Add("전사의 분노");
-        skill_name.Add("사무라이의 일섬");
-        skill_name.Add("일격필살");
-        skill_name.Add("검의 달인");
-
-        skill_name.Add("암살의 길");
-        skill_name.Add("숙련된 암살자");
-        skill_name.Add("돈이 필요해");
-        skill_name.Add("동화");
-
-        skill_name.Add("마나의 존재");
-        skill_name.Add("마나의 정수");
-        skill_name.Add("마법진 그리기");
-        skill_name.Add("영감");
+        while(true)
+        {   
+            yield return new WaitForSeconds(0.1f);
+            gold_text.text = UiManager.ToStringKR(DataController.Instance.gold);
+            crystal_text.text = UiManager.ToStringKR(DataController.Instance.diamond);
+        }
     }
 
-    void insert_skill_effect_toList()
-    {
-        skill_effect.Add("체력+20, 근력+10, 민첩+10, 마력+10");
-        skill_effect.Add("체력+50 근력+30");
-        skill_effect.Add("체력+100");
-        skill_effect.Add("체력+200, 근력+100, 민첩+50, 스킬공격력+50");
-
-        skill_effect.Add("체력+5, 근력+20, 민첩+10");
-        skill_effect.Add("근력+50, 민첩+20");
-        skill_effect.Add("근력+75");
-        skill_effect.Add("체력+100 근력+250, 민첩+100, 스킬공격력+50");
-
-        skill_effect.Add("근력+5, 민첩+20, 스킬공격력+10, 클릭골드 2배");
-        skill_effect.Add("민첩+50, 스킬공격력+30, 클릭골드 3배");
-        skill_effect.Add("민첩+75 클릭골드 4배");
-        skill_effect.Add("체력+50, 근력+100, 민첩+200, 스킬공격력+100, 클릭골드 5배");
-
-        skill_effect.Add("체력+5, 민첩+10, 스킬공격력+20");
-        skill_effect.Add("민첩+30, 스킬공격력+50");
-        skill_effect.Add("스킬공격력+75");
-        skill_effect.Add("체력+100, 근력+50, 민첩+ 100, 스킬공격력+200");
-    }
+    
 
     void insert_skill1_name_toList()
     {
@@ -273,8 +266,16 @@ public class CharacterStateController : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
             
             check_exp();
-            check_skill();
-            check_Skill_1();
+            // if(selected_skill_inform != -1)
+            // {
+            //     if(PlayerPrefs.GetInt("skill_card_value"+selected_skill_inform) >= 
+            //     max_card_value[PlayerPrefs.GetInt("skill_level_" + selected_skill_inform)])
+            //     {
+            //         skill_upgrade_button.SetActive(true);
+            //     } else {
+            //         skill_upgrade_button.SetActive(false);
+            //     }
+            // }
 
             for(int i = 0; i < skill.Length; i++) //skill.Length = 16
             {
@@ -311,257 +312,151 @@ public class CharacterStateController : MonoBehaviour
         }
     }
 
-    
+    public Sprite[] Skill_Img_pack = new Sprite[0];
+    public GameObject[] skill_box_pack = new GameObject[0];
+    public Text[] price_text = new Text[0];
 
-
-    public void check_skill()
+    public void change_skill_in_shop()     //상점에 스킬이 없을 떄 => 설치 후 초기에만 실행 => 이후에는 광고보고 실행 가능
     {
-        if(goToPanel.Instance.charPanel.activeSelf == true)
+        if(DataController.Instance.diamond >= 500)
         {
-            if(DataController.Instance.health >= 50 && PlayerPrefs.GetInt(skill_id[0]) == 0 && goToPanel.Instance.get_skill_panel.activeSelf == false)
+            for(int index = 0; index < 3; index++)
             {
-                PlayerPrefs.SetInt(skill_id[0], 1);
-                //스킬얻음페널 Text 바꾸기
-                get_skill_text.text = "체력 50달성 스킬 흭득";
-                get_skill_image.sprite = skill[0].GetComponent<Image>().sprite;
-                get_skill_name.text = "경건한 몸";
-                get_skill_explain.text = "체력+20, 근력+10, 민첩+10, 마력+10";
-                goToPanel.Instance.get_skill_panel.SetActive(true);
-                DataController.Instance.health += 20;
-                DataController.Instance.attack += 10;
-                DataController.Instance.mana += 10;
-                DataController.Instance.special += 10;
-               
-            }
-            if(DataController.Instance.health >= 100 && PlayerPrefs.GetInt(skill_id[1]) == 0 && goToPanel.Instance.get_skill_panel.activeSelf == false)
-            {
-                PlayerPrefs.SetInt(skill_id[1], 1);
-                //스킬얻음페널 Text 바꾸기
-                get_skill_text.text = "체력 100달성 스킬 흭득";
-                get_skill_image.sprite = skill[1].GetComponent<Image>().sprite;
-                get_skill_name.text = "상급 방패술";
-                get_skill_explain.text = "체력+50 근력+30";
-                goToPanel.Instance.get_skill_panel.SetActive(true);
-                DataController.Instance.health += 50;
-                DataController.Instance.attack += 30;
-            }
-            
-            if(DataController.Instance.health >= 300 && PlayerPrefs.GetInt(skill_id[2]) == 0 && goToPanel.Instance.get_skill_panel.activeSelf == false)
-            {
-                PlayerPrefs.SetInt(skill_id[2], 1);
-                //스킬얻음페널 Text 바꾸기
-                get_skill_text.text = "체력 300달성 스킬 흭득";
-                get_skill_image.sprite = skill[2].GetComponent<Image>().sprite;
-                get_skill_name.text = "최상급 방패술";
-                get_skill_explain.text = "체력+100";//방어력 10배
-                goToPanel.Instance.get_skill_panel.SetActive(true);
-                DataController.Instance.health += 100;
-            }
-            
-            if(DataController.Instance.health >= 500 && PlayerPrefs.GetInt(skill_id[3]) == 0 && goToPanel.Instance.get_skill_panel.activeSelf == false)
-            {
-                PlayerPrefs.SetInt(skill_id[3], 1);
-                //스킬얻음페널 Text 바꾸기
-                get_skill_text.text = "체력 500달성 스킬 흭득";
-                get_skill_image.sprite = skill[3].GetComponent<Image>().sprite;
-                get_skill_name.text = "수호자의 자질";
-                get_skill_explain.text = "체력+200, 근력+100, 민첩+50, 스킬공격력+50";//방어력 25배
-                goToPanel.Instance.get_skill_panel.SetActive(true);
-                DataController.Instance.health += 200;
-                DataController.Instance.attack += 100;
-                DataController.Instance.mana += 50;
-                DataController.Instance.special += 50;
-            }
-            
-            if(DataController.Instance.attack >= 50 && PlayerPrefs.GetInt(skill_id[4]) == 0  && goToPanel.Instance.get_skill_panel.activeSelf == false)
-            {
-                PlayerPrefs.SetInt(skill_id[4], 1);
-                //스킬얻음페널 Text 바꾸기
-                get_skill_text.text = "근력 50달성 스킬 흭득";
-                get_skill_image.sprite = skill[4].GetComponent<Image>().sprite;
-                get_skill_name.text = "전사의 분노";
-                get_skill_explain.text = "체력+5, 근력+20, 민첩+10";
-                goToPanel.Instance.get_skill_panel.SetActive(true);
-                DataController.Instance.health += 5;
-                DataController.Instance.attack += 20;
-                DataController.Instance.mana += 10;
-            }
-            
-            if(DataController.Instance.attack >= 100 && PlayerPrefs.GetInt(skill_id[5]) == 0  && goToPanel.Instance.get_skill_panel.activeSelf == false)
-            {
-                PlayerPrefs.SetInt(skill_id[5], 1);
-                //스킬얻음페널 Text 바꾸기
-                get_skill_text.text = "근력 100달성 스킬 흭득";
-                get_skill_image.sprite = skill[5].GetComponent<Image>().sprite;
-                get_skill_name.text = "사무라이의 일섬";
-                get_skill_explain.text = "근력+50, 민첩+20";
-                goToPanel.Instance.get_skill_panel.SetActive(true);
-                DataController.Instance.attack += 50;
-                DataController.Instance.mana += 20;
-            }
-            
-            if(DataController.Instance.attack >= 300 && PlayerPrefs.GetInt(skill_id[6]) == 0  && goToPanel.Instance.get_skill_panel.activeSelf == false)
-            {
-                PlayerPrefs.SetInt(skill_id[6], 1);
-                //스킬얻음페널 Text 바꾸기
-                get_skill_text.text = "근력 300달성 스킬 흭득";
-                get_skill_image.sprite = skill[6].GetComponent<Image>().sprite;
-                get_skill_name.text = "일격필살";
-                get_skill_explain.text = "근력+75";//공격력 10배
-                goToPanel.Instance.get_skill_panel.SetActive(true);
-                DataController.Instance.attack += 75;
-            }
-            
-            if(DataController.Instance.attack >= 500 && PlayerPrefs.GetInt(skill_id[7]) == 0 && goToPanel.Instance.get_skill_panel.activeSelf == false)
-            {
-                PlayerPrefs.SetInt(skill_id[7], 1);
-                //스킬얻음페널 Text 바꾸기
-                get_skill_text.text = "근력 500달성 스킬 흭득";
-                get_skill_image.sprite = skill[7].GetComponent<Image>().sprite;
-                get_skill_name.text = "검의달인";
-                get_skill_explain.text = "체력+100 근력+250, 민첩+100, 스킬공격력+50";//공격력 20배
-                goToPanel.Instance.get_skill_panel.SetActive(true);
-                DataController.Instance.health += 100;
-                DataController.Instance.attack += 250;
-                DataController.Instance.mana += 100;
-                DataController.Instance.special += 50;
-            }
-            
-            if(DataController.Instance.mana >= 50 && PlayerPrefs.GetInt(skill_id[8]) == 0 && goToPanel.Instance.get_skill_panel.activeSelf == false)
-            {
-                PlayerPrefs.SetInt(skill_id[8], 1);
-                //스킬얻음페널 Text 바꾸기
-                get_skill_text.text = "민첩 50달성 스킬 흭득";
-                get_skill_image.sprite = skill[8].GetComponent<Image>().sprite;
-                get_skill_name.text = "암살의 길";
-                get_skill_explain.text = "근력+5, 민첩+20, 스킬공격력+10, 클릭골드 2배";
-                goToPanel.Instance.get_skill_panel.SetActive(true);
-                DataController.Instance.attack += 5;
-                DataController.Instance.mana += 20;
-                DataController.Instance.special += 10;
-                DataController.Instance.MultiplyGoldPerClick(2);
-            }
+                int i = Random.Range(0, skill.Length);
+                
+                price_text[index].transform.parent.GetComponent<Button>().interactable = true;
+                PlayerPrefs.SetInt("select_skill"+index, i);
 
-            if(DataController.Instance.mana >= 100 && PlayerPrefs.GetInt(skill_id[9]) == 0 && goToPanel.Instance.get_skill_panel.activeSelf == false)
-            {
-                PlayerPrefs.SetInt(skill_id[9], 1);
-                //스킬얻음페널 Text 바꾸기
-                get_skill_text.text = "민첩 100달성 스킬 흭득";
-                get_skill_image.sprite = skill[9].GetComponent<Image>().sprite;
-                get_skill_name.text = "숙련된 암살자";
-                get_skill_explain.text = "민첩+50, 스킬공격력+30, 클릭골드 3배";
-                goToPanel.Instance.get_skill_panel.SetActive(true);
-                DataController.Instance.mana += 50;
-                DataController.Instance.special += 30;
-                DataController.Instance.MultiplyGoldPerClick(3);
+                int pr = Random.Range(1, 20);
+
+                PlayerPrefs.SetInt("skill_Price_diamond"+index, pr*100);  //100 ~ 5000까지
+                //if(PlayerPrefs.GetInt("select_skill") == 8)
+
+                skill_box_pack[index].GetComponent<Image>().sprite = Skill_Img_pack[i]; //스킬 이미지
+                skill_box_pack[index].GetComponentInChildren<Text>().text = skill_name[i];
+                price_text[index].text = ""+ PlayerPrefs.GetInt("skill_Price_diamond"+ index);
+                PlayerPrefs.SetString("skill_name_text"+index, skill_name[i]);
             }
-            if(DataController.Instance.mana >= 300 && PlayerPrefs.GetInt(skill_id[10]) == 0 && goToPanel.Instance.get_skill_panel.activeSelf == false)
-            {
-                PlayerPrefs.SetInt(skill_id[10], 1);
-                //스킬얻음페널 Text 바꾸기
-                get_skill_text.text = "민첩 300달성 스킬 흭득";
-                get_skill_image.sprite = skill[10].GetComponent<Image>().sprite;
-                get_skill_name.text = "돈이 필요해";
-                get_skill_explain.text = "민첩+75 클릭골드 4배";//크리티컬확률 6%
-                goToPanel.Instance.get_skill_panel.SetActive(true);
-                DataController.Instance.mana += 75;
-                DataController.Instance.MultiplyGoldPerClick(4);
-            }
-            if(DataController.Instance.mana >= 500 && PlayerPrefs.GetInt(skill_id[11]) == 0 && goToPanel.Instance.get_skill_panel.activeSelf == false)
-            {
-                PlayerPrefs.SetInt(skill_id[11], 1);
-                //스킬얻음페널 Text 바꾸기
-                get_skill_text.text = "민첩 500달성 스킬 흭득";
-                get_skill_image.sprite = skill[11].GetComponent<Image>().sprite;
-                get_skill_name.text = "동화";
-                get_skill_explain.text = "주변에 사물에 동화되어 눈에 띄지 않습니다.\n체력+50, 근력+100, 민첩+200, 스킬공격력+100, 클릭골드 5배";//크리티컬확률 9% 회피율 5%
-                goToPanel.Instance.get_skill_panel.SetActive(true);
-                DataController.Instance.health += 50;
-                DataController.Instance.attack += 100;
-                DataController.Instance.mana += 200;
-                DataController.Instance.special += 100;
-                DataController.Instance.MultiplyGoldPerClick(5);
-            }
-            if(DataController.Instance.special >= 50 && PlayerPrefs.GetInt(skill_id[12]) == 0 && goToPanel.Instance.get_skill_panel.activeSelf == false)
-            {
-                PlayerPrefs.SetInt(skill_id[12], 1);
-                //스킬얻음페널 Text 바꾸기
-                get_skill_text.text = "스킬공격력 50달성 스킬 흭득";
-                get_skill_image.sprite = skill[12].GetComponent<Image>().sprite;
-                get_skill_name.text = "스킬공격력의 존재";
-                get_skill_explain.text = "스킬공격력를 느낄수 있습니다.\n체력+5, 민첩+10, 스킬공격력+20";
-                goToPanel.Instance.get_skill_panel.SetActive(true);
-                DataController.Instance.health += 5;
-                DataController.Instance.mana += 10;
-                DataController.Instance.special += 20;
-            }
-            if(DataController.Instance.special >= 100 && PlayerPrefs.GetInt(skill_id[13]) == 0 && goToPanel.Instance.get_skill_panel.activeSelf == false)
-            {
-                PlayerPrefs.SetInt(skill_id[13], 1);
-                //스킬얻음페널 Text 바꾸기
-                get_skill_text.text = "스킬공격력 100달성 스킬 흭득";
-                get_skill_image.sprite = skill[13].GetComponent<Image>().sprite;
-                get_skill_name.text = "스킬공격력의 정수";
-                get_skill_explain.text = "스킬공격력의 정수를 보았습니다. 좀 더 발전했군요.\n민첩+30, 스킬공격력+50";
-                goToPanel.Instance.get_skill_panel.SetActive(true);
-                DataController.Instance.mana += 30;
-                DataController.Instance.special += 50;
-            }
-            if(DataController.Instance.special >= 300 && PlayerPrefs.GetInt(skill_id[14]) == 0 && goToPanel.Instance.get_skill_panel.activeSelf == false)
-            {
-                PlayerPrefs.SetInt(skill_id[14], 1);
-                //스킬얻음페널 Text 바꾸기
-                get_skill_text.text = "스킬공격력 300달성 스킬 흭득";
-                get_skill_image.sprite = skill[14].GetComponent<Image>().sprite;
-                get_skill_name.text = "마법진 그리기";
-                get_skill_explain.text = "마법진을 그릴수 있습니다.\n스킬공격력+75";//연금술 성공확률 5%증가
-                goToPanel.Instance.get_skill_panel.SetActive(true);
-                DataController.Instance.special += 75;
-            }
-            if(DataController.Instance.special >= 500 && PlayerPrefs.GetInt(skill_id[15]) == 0 && goToPanel.Instance.get_skill_panel.activeSelf == false)
-            {
-                PlayerPrefs.SetInt(skill_id[15], 1);
-                //스킬얻음페널 Text 바꾸기
-                get_skill_text.text = "스킬공격력 500달성 스킬 흭득";
-                get_skill_image.sprite = skill[15].GetComponent<Image>().sprite;
-                get_skill_name.text = "영감";
-                get_skill_explain.text = "깨달음을 얻었습니다.\n이는 당신을 더 높은 곳으로 이끌어줍니다.\n체력+100, 근력+50, 민첩+ 100, 스킬공격력+200";//연금술 성공확률 5%증가
-                goToPanel.Instance.get_skill_panel.SetActive(true);
-                DataController.Instance.health += 100;
-                DataController.Instance.attack += 50;
-                DataController.Instance.mana += 100;
-                DataController.Instance.special += 200;
-            }
+            DataController.Instance.diamond -= 500;
         }
+        
+        
     }
 
-    public void check_Skill_1() 
+    private long skill_price_diamond = 0;
+
+    public void buy_skill()   //스킬 구매할 시
     {
-        if(goToPanel.Instance.charPanel.activeSelf == true)
+        //스킬 얻었다고 prefab 수정
+        //스킬 얻었으니 스킬 효과 부여 : 조건 => 스킬을 소지 && 레벨이 올랐을 떄
+         for(int index = 0; index < 3; index++)
         {
-            if(skillContent1.activeSelf ==true) 
+            if(EventSystem.current.currentSelectedGameObject.name == price_text[index].transform.parent.name)
             {
-                if(DataController.Instance.knight_level >= 3) //전사 스킬 조건:전사 3레벨
-                {
-                    PlayerPrefs.SetInt(skill1_id[0], 1);
-                } else {
-                    PlayerPrefs.SetInt(skill1_id[0], 0);
-                }
+                int select_skill = PlayerPrefs.GetInt("select_skill"+index);
+                long skill_price_diamond = PlayerPrefs.GetInt("skill_Price_diamond"+index);
+                Debug.Log("select skill : " + select_skill);
+                Debug.Log("skill_price_diamond : " + skill_price_diamond);
+                    if(DataController.Instance.diamond >= skill_price_diamond)
+                    {
+                        
+                        int current_card = PlayerPrefs.GetInt("skill_card_value"+select_skill);
+                        PlayerPrefs.SetInt("skill_card_value"+select_skill, current_card+1);     //카드 개수 증가
+                        if(PlayerPrefs.GetInt(skill_id[select_skill]) == 0) //스킬을 처음 얻을 때만 효과 부여
+                        {
+                            if(select_skill == 0)
+                            {
+                                DataController.Instance.health += 100;
+                            } else if(select_skill == 1) {
+                                DataController.Instance.attack += 100;
+                            } else if(select_skill == 2) {
+                                DataController.Instance.mana += 100;
+                            } else if(select_skill == 3) {
+                                DataController.Instance.special += 100;
+                            } else if(select_skill == 4) {     //치명타
+                                float current_critical = PlayerPrefs.GetFloat("current_critical");
+                                PlayerPrefs.SetFloat("current_critical", current_critical + 2f);
+                            } else if(select_skill == 5) {        //회피    
+                                float current_avoid = PlayerPrefs.GetFloat("current_avoid");
+                                PlayerPrefs.SetFloat("current_avoid", current_avoid + 2f);
+                            } else if(select_skill == 6) {      //골드 기본수치
+                                int current_plus_gold = PlayerPrefs.GetInt("current_plus_gold");
+                                PlayerPrefs.SetInt("current_plus_gold", current_plus_gold + 5);
+                            } else if(select_skill == 7) {      //상점 최대 구매횟수
+                                int current_plus_maxheart = PlayerPrefs.GetInt("current_plus_maxheart");
+                                PlayerPrefs.SetInt("current_plus_maxheart", current_plus_maxheart + 1);
+                            }
+                        }
+                        Debug.Log("success to buy skill");
+                        PlayerPrefs.SetInt(skill_id[select_skill], 1);  //스킬 얻음
+                        DataController.Instance.diamond -= skill_price_diamond;
 
-                if(DataController.Instance.archer_level >= 3) 
-                {
-                    PlayerPrefs.SetInt(skill1_id[1], 1);
-                } else {
-                    PlayerPrefs.SetInt(skill1_id[1], 0);
-                }
-
-                if(DataController.Instance.wizard_level >= 3) 
-                {
-                    PlayerPrefs.SetInt(skill1_id[2], 1);
-                } else {
-                    PlayerPrefs.SetInt(skill1_id[2], 0);
-                }
+                        price_text[index].transform.parent.GetComponent<Button>().interactable = false;
+                        skill_box_pack[index].GetComponentInChildren<Text>().text = "구매 완료";
+                        PlayerPrefs.SetString("skill_name_text"+index, "구매 완료");
+                    } else {
+                        goToPanel.Instance.show_noticePanel();
+                        goToPanel.Instance.NoticePanel.GetComponentInChildren<Text>().text = "금액이 부족합니다";
+                    }
+                    break;
             }
+        }
+        
+       
+        
+    }
+
+    public void upgrade_skill()
+    {
+        
+        if(PlayerPrefs.GetInt("skill_card_value"+selected_skill_inform) >= 
+        max_card_value[PlayerPrefs.GetInt("skill_level_" + selected_skill_inform)])
+        {
+            SoundManager.Instance.upgrade_button_sound();
+            //카드 지출
+            int current_card_value = PlayerPrefs.GetInt("skill_card_value"+selected_skill_inform);
+            PlayerPrefs.SetInt("skill_card_value"+selected_skill_inform, current_card_value-max_card_value[PlayerPrefs.GetInt("skill_level_" + selected_skill_inform)]);
+
+            //레벨업, 효과 부여
+            int current_level = PlayerPrefs.GetInt("skill_level_" + selected_skill_inform);
+            PlayerPrefs.SetInt("skill_level_" + selected_skill_inform, current_level+1);
+
+            if(selected_skill_inform == 0)
+                    {
+                        DataController.Instance.health += 100;
+                    } else if(selected_skill_inform == 1) {
+                        DataController.Instance.attack += 100;
+                    } else if(selected_skill_inform == 2) {
+                        DataController.Instance.mana += 100;
+                    } else if(selected_skill_inform == 3) {
+                        DataController.Instance.special += 100;
+                    } else if(selected_skill_inform == 4) {     //치명타
+                        float current_critical = PlayerPrefs.GetFloat("current_critical");
+                        PlayerPrefs.SetFloat("current_critical", current_critical + 2f);
+                    } else if(selected_skill_inform == 5) {        //회피    
+                        float current_avoid = PlayerPrefs.GetFloat("current_avoid");
+                        PlayerPrefs.SetFloat("current_avoid", current_avoid + 2f);
+                    } else if(selected_skill_inform == 6) {      //골드 기본수치
+                        int current_plus_gold = PlayerPrefs.GetInt("current_plus_gold");
+                        PlayerPrefs.SetInt("current_plus_gold", current_plus_gold + 5);
+                    } else if(selected_skill_inform == 7) {      //상점 최대 구매횟수
+                        int current_plus_maxheart = PlayerPrefs.GetInt("current_plus_maxheart");
+                        PlayerPrefs.SetInt("current_plus_maxheart", current_plus_maxheart + 1);
+                    }
+
+            skill_explain.text = skill_name[selected_skill_inform] + "   LV." + PlayerPrefs.GetInt("skill_level_" + selected_skill_inform) + 
+                "       " + PlayerPrefs.GetInt("skill_card_value"+selected_skill_inform) + "/" + max_card_value[PlayerPrefs.GetInt("skill_level_" + selected_skill_inform)] 
+                +"\n효과: " + set_skill_effect_string(selected_skill_inform);
+
+            if(PlayerPrefs.GetInt("skill_card_value"+selected_skill_inform) >= 
+                max_card_value[PlayerPrefs.GetInt("skill_level_" + selected_skill_inform)])
+                {
+                    skill_upgrade_button.SetActive(true);
+                    //가격설정
+                    skill_upgrade_button.GetComponentInChildren<Text>().text = "" + UiManager.ToStringKR(skill_upgrade_price[PlayerPrefs.GetInt("skill_level_" + selected_skill_inform)]); 
+                } else {
+                    skill_upgrade_button.SetActive(false);
+                }
         }
     }
 
@@ -580,9 +475,54 @@ public class CharacterStateController : MonoBehaviour
 
             Exp_Bar.fillAmount = exp_percent;
             Exp_Percent_text.text = Mathf.Round(exp_percent * 100) + "%";
-            
         }
     }
+
+    public int[] skill_0_3_value = new int[0];
+    public float[] skill_4_5_value = new float[0];
+    public long[] skill_6_value = new long[0];
+    public int[] skill_7_value = new int[0];
+
+    public string set_skill_effect_string(int i)
+    {
+        string inform = "";
+        if(i == 0)
+        {
+            inform = "체력이 " + "<Color=#00FF00>" + skill_0_3_value[PlayerPrefs.GetInt("skill_level_0")] +"</color>"+ "증가합니다.";
+        }
+        else if(i == 1)
+        {
+            inform = "공격력이 " + "<Color=#00FF00>" + skill_0_3_value[PlayerPrefs.GetInt("skill_level_1")] +"</color>"+ "증가합니다.";
+        }
+        else if(i == 2)
+        {
+            inform = "민첩이 " + "<Color=#00FF00>" + skill_0_3_value[PlayerPrefs.GetInt("skill_level_2")] +"</color>"+ "증가합니다.";
+        }
+        else if(i == 3)
+        {
+            inform = "스킬공격력이 " + "<Color=#00FF00>" + skill_0_3_value[PlayerPrefs.GetInt("skill_level_3")] +"</color>"+ "증가합니다.";
+        }
+        else if(i == 4)
+        {
+            inform = "치명타 확률이 " + "<Color=#00FF00>" + skill_4_5_value[PlayerPrefs.GetInt("skill_level_4")] +"</color>"+ "증가합니다.";
+        }
+        else if(i == 5)
+        {
+            inform = "회피 확률이 " + "<Color=#00FF00>" + skill_4_5_value[PlayerPrefs.GetInt("skill_level_5")] +"</color>"+ "증가합니다.";
+        }
+        else if(i == 6)
+        {
+            inform = "클릭 기본 골드가 " + "<Color=#00FF00>" + skill_6_value[PlayerPrefs.GetInt("skill_level_6")] +"</color>"+ "증가합니다.";
+        }
+        else if(i == 7)
+        {
+            inform = "상점 최대 구매 횟수가 " + "<Color=#00FF00>" + skill_7_value[PlayerPrefs.GetInt("skill_level_7")] +"</color>"+ "증가합니다.";
+        }
+        return inform;
+    }
+    public int[] max_card_value = new int[0];
+    int selected_skill_inform = -1;
+    public long[] skill_upgrade_price = new long[0];
 
     public void show_skill_inform()
     {
@@ -590,11 +530,29 @@ public class CharacterStateController : MonoBehaviour
         {
             if(EventSystem.current.currentSelectedGameObject == skill[i])
             {
-                skill_explain.text = skill_name[i] + "\n효과: " + skill_effect[i];
+                skill_explain.text = skill_name[i] + "   LV." + PlayerPrefs.GetInt("skill_level_" + i) + 
+                "       " + PlayerPrefs.GetInt("skill_card_value"+i) + "/" + max_card_value[PlayerPrefs.GetInt("skill_level_" + i)] 
+                +"\n효과: " + set_skill_effect_string(i);
+                
+                selected_skill_inform = i;
+
+                //업글 버튼 활성화
+                if(PlayerPrefs.GetInt("skill_card_value"+selected_skill_inform) >= 
+                max_card_value[PlayerPrefs.GetInt("skill_level_" + selected_skill_inform)])
+                {
+                    skill_upgrade_button.SetActive(true);
+                    //가격설정
+                    skill_upgrade_button.GetComponentInChildren<Text>().text = "" + UiManager.ToStringKR(skill_upgrade_price[PlayerPrefs.GetInt("skill_level_" + selected_skill_inform)]); 
+                } else {
+                    skill_upgrade_button.SetActive(false);
+                }
+                
             }
             else if(EventSystem.current.currentSelectedGameObject == skill_empty[i])
             {
-                skill_explain.text = skill_name[i] + "\n효과: " + skill_effect[i];
+                //업글 버튼 비활성화
+                skill_upgrade_button.SetActive(false);
+                skill_explain.text = skill_name[i] + "\n효과: " + set_skill_effect_string(i);
             }
         }
         for(int i = 0; i <= skill1.Length-1; i++)
@@ -610,6 +568,13 @@ public class CharacterStateController : MonoBehaviour
         }
         
         
+    }
+
+    public void clear_panel()
+    {
+        skill_explain.text = "";
+        SelectFrame.SetActive(false);
+        skill_upgrade_button.SetActive(false);
     }
 
 

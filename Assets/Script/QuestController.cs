@@ -361,7 +361,6 @@ public class QuestController : MonoBehaviour
         }else if(index == 8) {
             DataController.Instance.special += 100;
         } else if(index == 9) {
-            DataController.Instance.attack += 3000;           //황금 사과 가 없음
             int i = 5;
             inventory.AddItem(i);
             item_image = inventory.database.FetchItemByID(i).Sprite;
@@ -379,17 +378,21 @@ public class QuestController : MonoBehaviour
             DataController.Instance.MultiplyGoldPerClick(2);
             item_image = power_ticket_img;
         } else if(index == 15) {
-            DataController.Instance.health += 300;
+            DataController.Instance.artifact_ticket += 1;
+            DataController.Instance.MultiplyGoldPerClick(2);
+            item_image = artifact_ticket_img;
         } else if(index == 16) {
-            DataController.Instance.attack += 300;
+            DataController.Instance.health += 300;
         } else if(index == 17) {
-            DataController.Instance.mana += 300;
+            DataController.Instance.attack += 300;
         } else if(index == 18) {
-            DataController.Instance.special += 300;
+            DataController.Instance.mana += 300;
         } else if(index == 19) {
+            DataController.Instance.special += 300;
+        } else if(index == 20) {
             DataController.Instance.diamond += 10000;
             DataController.Instance.MultiplyGoldPerClick(2);
-        } else if(index == 20) {
+        } else if(index == 21) {
             for(int i = 1; i < 6; i++)
             {
                 int current_booty = PlayerPrefs.GetInt("booty_" + i);
@@ -397,35 +400,35 @@ public class QuestController : MonoBehaviour
             }
             DataController.Instance.MultiplyGoldPerClick(2);
             
-        } else if(index == 21) {
-            DataController.Instance.health += 400;
         } else if(index == 22) {
-            DataController.Instance.attack += 400;
+            DataController.Instance.health += 400;
         } else if(index == 23) {
-            DataController.Instance.health += 500;
-        } else if(index == 24) {
             DataController.Instance.attack += 400;
+        } else if(index == 24) {
+            DataController.Instance.health += 500;
         } else if(index == 25) {
+            DataController.Instance.attack += 400;
+        } else if(index == 26) {
             DataController.Instance.power_ticket += 1;
             DataController.Instance.MultiplyGoldPerClick(2);
             item_image = power_ticket_img;
-        } else if(index == 26) {
+        } else if(index == 27) {
             DataController.Instance.power_ticket += 3;
             DataController.Instance.MultiplyGoldPerClick(2);
             item_image = power_ticket_img;
-        } else if(index == 27) {
+        } else if(index == 28) {
             DataController.Instance.health += 500;
             DataController.Instance.mana += 500;
-        } else if(index == 28) {
+        } else if(index == 29) {
             DataController.Instance.attack += 500;
             DataController.Instance.special += 500;
-        } else if(index == 29) {
+        } else if(index == 30) {
             DataController.Instance.health += 500;
             DataController.Instance.mana += 500;
             DataController.Instance.attack += 500;
             DataController.Instance.special += 500;
             DataController.Instance.MultiplyGoldPerClick(2);
-        } else if(index == 30) {
+        } else if(index == 31) {
             DataController.Instance.power_ticket += 3;
             item_image = power_ticket_img;
             show_floating_text();
